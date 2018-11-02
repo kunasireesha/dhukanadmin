@@ -1,0 +1,51 @@
+.add-product-btn{
+    background-color: #0d3d66;
+}
+.spec-button{
+    background-color: #0d3d66;
+}
+span input[type=text] {
+    padding: 6px;
+    border: none;
+    margin-top: 8px;
+    margin-bottom: 20px;
+    font-size: 17px;
+    border: solid 1px #eaeaea;
+    border-radius: 5px;
+    width: 30%;
+  }
+  .fa-search{
+    position: absolute;
+    top: 13.5%;
+    left: 26%;
+  }
+
+  .form-control{
+    width: 400px;
+    color: grey;
+}
+textarea{
+    width: 400px !important;
+}
+.vendor-button{
+    background-color: #0d3d66;
+}
+.date{
+    width: 400px;
+}
+.btn-import {
+    cursor: pointer;
+}
+.btn-import label{
+    cursor: pointer;
+    font-size: 15px;
+    margin-bottom: 0px;
+}
+
+.selected{
+    border: 5px #eb9809 solid !important;
+}
+
+img{
+    cursor: pointer;
+}

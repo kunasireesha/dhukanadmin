@@ -1,0 +1,16 @@
+.logout{
+    width: 37px;
+    height: 37px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+.dashboard-header{
+    font-family: initial;
+    padding: 20px;
+}
+.dashboard-header:hover{
+    color: #fff;
+}
+.navbar-brand-wrapper{
+    background: #fff;
+}

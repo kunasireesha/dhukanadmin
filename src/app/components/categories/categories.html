@@ -1,0 +1,73 @@
+<div class="container-scroller">
+    <!-- partial:partials/_navbar.html -->
+
+    <logo-nav></logo-nav>
+
+    <!-- partial -->
+    <div class="container-fluid page-body-wrapper">
+        <div class="row row-offcanvas row-offcanvas-right">
+            <!-- partial:partials/_settings-panel.html -->
+            <header-nav></header-nav>
+            <profile-nav></profile-nav>
+
+            <!-- partial -->
+            <!-- partial:partials/_sidebar.html -->
+
+            <!-- partial -->
+            <div class="content-wrapper">
+                <div class="card">
+                    <div class="card-body">
+                        <a (click)="addCat('','')" id="show" class="btn  btn-maron" style="float: right">Add Category</a>
+                        <h4 class="card-title">Categories </h4>
+                        <span>
+                            <input class="form-control" type="text" placeholder="Search.." name="search" [(ngModel)]="filter"></span>
+                        <br/>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="table-responsive">
+                                    <table id="order-listing" class="table " style="text-align: center">
+                                        <thead class="thead-dark">
+                                            <tr class="todo-list">
+                                                <th>S.no</th>
+                                                <th>Category Name</th>
+                                                <th>Category Image </th>
+                                                <th>Actions </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="todo-list" *ngFor="let cat of category | filter:filter; let i = index">
+                                                <td>{{i+1}}</td>
+                                                <td>{{cat.name}}</td>
+                                                <td><img [src]="cat.pic"></td>
+                                                <td>
+                                                    <a routerLink="/addcategory" class="btn btn-outline-primary" (click)="addCat(cat.name,cat.id,cat.pic)">Edit</a>
+                                                    <button class="btn remove btn-outline-primary" (click)="deleteCat(cat.id)">Delete
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- content-wrapper ends -->
+            <!-- partial:partials/_footer.html -->
+            <footer class="footer">
+                <div class="container-fluid clearfix">
+                    <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © 2018
+                        <a routerLink="#">Dhukan </a>. All rights reserved. </span>
+                    <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">
+                    </span>
+                </div>
+            </footer>
+            <!-- partial -->
+        </div>
+        <!-- row-offcanvas ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+</div>
+
+<script src="../../assets/admin-scripts/bootstrap/dist/js/bootstrap.min.js"></script>

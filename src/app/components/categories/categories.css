@@ -1,0 +1,29 @@
+.uploadfile {
+  cursor: pointer;
+  color: white;
+  background-color: #aa41e0;
+  width: 79px;
+  text-align: center;
+  height: 37px;
+  padding: 7px;
+  border-radius: 3px;
+}
+.todo-list th{
+    cursor: pointer;
+}
+input[type=text] {
+  padding: 6px;
+  border: none;
+  margin-top: 8px;
+  margin-bottom: 20px;
+  font-size: 17px;
+  border: solid 1px #eaeaea;
+  border-radius: 5px;
+  width: 30%;
+}
+.fa-search{
+  position: absolute;
+  top: 14%;
+  left: 26%;
+}
+

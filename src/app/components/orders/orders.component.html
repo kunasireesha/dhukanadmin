@@ -1,0 +1,133 @@
+<div class="container-scroller">
+  <!-- partial:partials/_navbar.html -->
+  <logo-nav></logo-nav>
+  <!-- partial -->
+  <div class="container-fluid page-body-wrapper">
+    <div class="row row-offcanvas row-offcanvas-right">
+      <header-nav></header-nav>
+      <profile-nav></profile-nav>
+      <!-- partial -->
+      <div class="content-wrapper">
+        <div class="card">
+          <div class="card-body">
+              <span><input type="text" placeholder="Search.."><i class="fa fa-search" aria-hidden="true"></i></span>
+            <br/>
+            <div class="row">
+              <div class="col-12">
+                <div class="table-responsive">
+                  <table id="order-listing" class="table " style="text-align: center">
+                    <thead class="thead-dark">
+                      <tr>
+                        <th>S no</th>
+                        <th>Order<span><i class="fa fa-sort" aria-hidden="true"></i></span></th>
+                        <th>Address<span><i class="fa fa-sort" aria-hidden="true"></i></span></th>
+                        <th>Phone Number<span><i class="fa fa-sort" aria-hidden="true"></i></span></th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr class="todo-list">
+                        <td>1 </td>
+                        <td>OrderId 1 </td>
+                        <td>TransactionId 1</td>
+                        <td>120656 </td>
+                        <td>
+                          <a class="btn btn-outline-primary">Edit</a>
+                          <button (click)="delete()" class="btn  remove btn-outline-primary">Remove </button>
+                        </td>
+                        </tr>
+                      <tr class="todo-list">
+                        <td>2 </td>
+                        <td>OrderId 2 </td>
+                        <td>TransactionId 2 </td>
+                        <td>120666 </td>
+                        <td>
+                          <a class="btn btn-outline-primary">Edit</a>
+                          <button (click)="delete()" class="btn  remove btn-outline-primary">Remove </button>
+                        </td>
+                      </tr>
+                      <tr class="todo-list">
+                        <td>3 </td>
+                        <td>OrderId 3 </td>
+                        <td>TransactionId 3 </td>
+                        <td>1201323</td>
+                        <td>
+                          <a class="btn btn-outline-primary">Edit</a>
+                          <button (click)="delete()" class="btn  remove btn-outline-primary">Remove </button>
+                        </td>
+                      </tr>
+                      <tr class="todo-list">
+                        <td>4 </td>
+                        <td>OrderId 4 </td>
+                        <td>TransactionId 4 </td>
+                        <td>6565666</td>
+                        <td>
+                          <a class="btn btn-outline-primary">Edit</a>
+                          <button (click)="delete()" class="btn  remove btn-outline-primary">Remove </button>
+                        </td>
+                      </tr>
+                      <tr class="todo-list">
+                        <td>5 </td>
+                        <td>OrderId 5 </td>
+                        <td>TransactionId 1 </td>
+                        <td>154545</td>
+                        <td>
+                          <a class="btn btn-outline-primary">Edit</a>
+                          <button (click)="delete()" class="btn  remove btn-outline-primary">Remove </button>
+                        </td>
+                      </tr>
+                      <tr class="todo-list">
+                          <td>6 </td>
+                          <td>OrderId 5 </td>
+                          <td>TransactionId 1 </td>
+                          <td>795656</td>
+                          <td>
+                            <a class="btn btn-outline-primary">Edit</a>
+                            <button (click)="delete()" class="btn  remove btn-outline-primary">Remove </button>
+                          </td>
+                        </tr>
+                        <tr class="todo-list">
+                            <td>7</td>
+                            <td>OrderId 5 </td>
+                            <td>TransactionId 1 </td>
+                            <td>78945</td>
+                            <td>
+                              <a class="btn btn-outline-primary">Edit</a>
+                              <button (click)="delete()" class="btn  remove btn-outline-primary">Remove </button>
+                            </td>
+                          </tr>
+                          <tr class="todo-list">
+                              <td>8</td>
+                              <td>OrderId 5 </td>
+                              <td>TransactionId 1 </td>
+                              <td>465656</td>
+                              <td>
+                                <a class="btn btn-outline-primary">Edit</a>
+                                <button (click)="delete()" class="btn  remove btn-outline-primary">Remove </button>
+                              </td>
+                            </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- content-wrapper ends -->
+      <!-- partial:partials/_footer.html -->
+      <footer class="footer">
+        <div class="container-fluid clearfix">
+          <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © 2018
+            <a routerLink="#">Dhukan </a>. All rights reserved. </span>
+          <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">
+           
+          </span>
+        </div>
+      </footer>
+      <!-- partial -->
+    </div>
+    <!-- row-offcanvas ends -->
+  </div>
+  <!-- page-body-wrapper ends -->
+</div>

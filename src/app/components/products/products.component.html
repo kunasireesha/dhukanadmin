@@ -1,0 +1,86 @@
+<div class="container-scroller">
+    <!-- partial:partials/_navbar.html -->
+
+    <logo-nav></logo-nav>
+    <!-- partial -->
+    <div class="container-fluid page-body-wrapper">
+        <div class="row row-offcanvas row-offcanvas-right">
+            <!-- partial:partials/_settings-panel.html -->
+            <header-nav></header-nav>
+            <profile-nav></profile-nav>
+            <!-- partial -->
+            <!-- partial:partials/_sidebar.html -->
+
+            <!-- partial -->
+            <div class="content-wrapper">
+                <div class="card">
+                    <div class="card-body">
+                        <!-- <div class="buttons" style="float:right">
+                <button class="btn btn-maron">Import to Excel</button>
+                <button class="btn btn-maron">Export to Excel</button>
+            </div> -->
+                        <a (click)="addprod('')" id="show" class="btn btn-maron" style="float: right">Add Product</a>
+                        <a id="show" class="btn btn-maron btn-import" style="float: right;"><label for="imageUpload">Import
+                                to Excel
+                            </label><input type="file" id="imageUpload" style="display: none" (change)=fileEvent($event)></a>
+                        <a (click)="exportAsXLSX()" id="show" class="btn btn-maron" style="float: right">Export to Excel</a>
+                        <h4 class="card-title">Products </h4>
+                        <span>
+                            <input class="form-control" type="text" placeholder="Search.." name="search" [(ngModel)]="filter"></span>
+                        <br/>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="table-responsive">
+                                    <table id="order-listing" class="table " style="text-align: center">
+                                        <thead class="thead-dark">
+                                            <tr>
+                                                <th>S.no</th>
+                                                <th>Category Name </th>
+                                                <th>Sub Category Name </th>
+                                                <th>Product Name </th>
+                                                <th>Product Image </th>
+                                                <th>Date </th>
+                                                <th>Actions </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="todo-list" *ngFor="let prod of product | filter:filter ;let i = index">
+                                                <td>{{i+1}}</td>
+                                                <td>{{prod.main_cat}}</td>
+                                                <td>{{prod.sub_cat}} </td>
+                                                <td>{{prod.title}}</td>
+                                                <td>
+                                                    <img [src]="prod.imagevalue" alt="prod.productimg" /></td>
+                                                <td>{{prod.created_on | date: 'dd/MM/yyyy'}}</td>
+                                                <td>
+                                                    <!-- <a routerLink="/addprducts" class="btn btn-outline-primary" (click)="editProd(prod.title,prod.category_id,prod.main_cat,prod.id,prod.sub_cat,prod.category2_id)">Edit</a> -->
+                                                    <a routerLink="/addprducts" class="btn btn-outline-primary" (click)="editProd(prod.id)">Edit</a>
+
+                                                    <button class="btn remove btn-outline-primary" (click)="deleteProduct(prod.id)">Remove
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- content-wrapper ends -->
+            <!-- partial:partials/_footer.html -->
+            <footer class="footer">
+                <div class="container-fluid clearfix">
+                    <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © 2018
+                        <a routerLink="#">Dhukan </a>. All rights reserved. </span>
+                    <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">
+                    </span>
+                </div>
+            </footer>
+            <!-- partial -->
+        </div>
+        <!-- row-offcanvas ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+</div>

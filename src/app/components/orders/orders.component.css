@@ -1,0 +1,15 @@
+input[type=text] {
+    padding: 6px;
+    border: none;
+    margin-top: 8px;
+    margin-bottom: 20px;
+    font-size: 17px;
+    border: solid 1px #eaeaea;
+    border-radius: 5px;
+    width: 30%;
+}
+.fa-search{
+    position: absolute;
+    top: 11.5%;
+    left: 26%;
+}

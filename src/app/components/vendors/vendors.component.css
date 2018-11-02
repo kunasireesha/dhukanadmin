@@ -1,0 +1,16 @@
+.add-vendor-btn{
+    margin-top: 20px;
+    background-color: #0d3d66;
+}
+.add-vendor-btn:hover{
+    background-color: #0d3d66;
+}
+
+.form-group input{
+    border-radius: 5px;
+}
+.vendor-delete{
+    margin-left: 15px;
+    color: #03a9f3;
+}
+
