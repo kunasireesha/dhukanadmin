@@ -16,7 +16,7 @@ import { ProductService } from '../../services/productService'
 export class ProductsComponent implements OnInit {
     product: any;
     productimg: any;
-    ss = [];
+    image;
     constructor(private appService: AppService, public router: Router, public proServ: ProductService, private excelService: ExcelService) { }
     // url = 'http://versatilemobitech.co.in/DHUKAN/images/'
     ngOnInit() {
@@ -43,30 +43,33 @@ export class ProductsComponent implements OnInit {
 
     aa;
     bb;
+    Image;
     //   get product
     getProduct() {
         let goodResponse = [];
         this.appService.getProduct()
             .subscribe(resp => {
-                if (resp.json().message === 'Success') {
-                    this.product = resp.json().data;
-                    // for (var i = 0; i < this.product.length; i++) {
-                    //     this.ss = JSON.parse(this.product[i].product_image);
-                    //     var image = JSON.stringify(this.ss[0]);
-                    //     this.aa = JSON.parse(image);
-                    //     this.bb = Object.values(this.aa);
-                    //     this.product[i].imagevalue = this.bb[0];
-                    // }
+                // if (resp.json().message === 'Success') {
+                this.product = resp.json().result;
+                for (var i = 0; i < this.product.length; i++) {
+                    for (var j = 0; j < this.product[i].myImages.length; j++) {
+                        this.product[i].image = this.product[i].myImages[0].product_image;
+                    }
                 }
-                else if (resp.json().data.length == 0) {
-                    swal("No data found, please add new one", '', 'error');
-                }
-                else {
-                }
-            },
-                error => {
-                    console.log(error, "error");
-                })
+                // for (var j = 0; j < this.image.length; i++) {
+                //     this.productimg = this.image[i];
+                //     console.log(this.productimg);
+                // }
+            })
+        // else if (resp.json().result.length == 0) {
+        //     swal("No data found, please add new one", '', 'error');
+        // }
+        // else {
+        // }
+        // },
+        error => {
+            console.log(error, "error");
+        }
     }
     // delete product
     deleteProduct(id) {

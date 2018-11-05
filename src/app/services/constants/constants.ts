@@ -16,5 +16,6 @@ export const AppSettings = {
     uploadProductimg: base_url + 'products/uploadimage',
     importExcel: base_url + 'products/readExcel',
     multiproductimgUrl: base_url + 'products/getproductbyid',
-    getSubCatUrl: base_url + 'products/getsubdata'
+    getSubCatUrl: base_url + 'products/getsubdata',
+    deleteProImgUrl: base_url + 'products/deleteproductimage'
 }

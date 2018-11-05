@@ -3,6 +3,7 @@ import { ImageUploadComponent } from './components/image-upload/image-upload.com
 // import * as xlsx from "xlsx";
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
+
 import { NgModule, NO_ERRORS_SCHEMA, Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import swal from 'sweetalert'

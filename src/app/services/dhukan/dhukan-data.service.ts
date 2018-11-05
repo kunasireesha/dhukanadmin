@@ -77,4 +77,8 @@ export class AppService {
         const headers = new Headers({ 'Content-Type': "application/JSON" });
         return this.http.post(AppSettings.getSubCatUrl, params, { headers: headers })
     }
+    deleteProdImg(params) {
+        const headers = new Headers({ 'Content-Type': "application/JSON" });
+        return this.http.post(AppSettings.deleteProImgUrl, params, { headers: headers })
+    }
 }

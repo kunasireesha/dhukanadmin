@@ -19,7 +19,9 @@ export class AddProductsComponent implements OnInit {
     // title;
     // catId;
     // url = '';
-    addProd: boolean
+    addProd: boolean;
+    removeImg: boolean = false;
+    Image: boolean;
     // selectedFile: File;
     data: any;
     category;
@@ -52,25 +54,30 @@ export class AddProductsComponent implements OnInit {
     subcatId;
     size;
     quantity;
+    brand;
+    brandid;
     constructor(private appService: AppService, private route: ActivatedRoute, public proserv: ProductService, public router: Router) {
         this.route.queryParams.subscribe(params => {
             this.action = params.prodId;
         });
 
         if (this.action === '') {
+            this.removeImg = false;
             this.addProd = true;
+
         } else {
+            this.Image = true;
+            // this.removeImg = true;
             this.addProd = false;
             this.productId = this.action;
+
         }
-
-
     }
 
     ngOnInit() {
-
         if (this.action !== '') {
             this.editProImages();
+
         }
 
         this.getCat();
@@ -95,8 +102,6 @@ export class AddProductsComponent implements OnInit {
         })
     }
     changeSubCat(id) {
-
-        // this.subcatId = id;
         for (var i = 0; i < this.subCategoryName.length; i++) {
             if (id === this.subCategoryName[i].sub_cat) {
                 this.subCatId = this.subCategoryName[i].id;
@@ -111,7 +116,6 @@ export class AddProductsComponent implements OnInit {
             .subscribe(resp => {
                 if (resp.json().message === 'Success') {
                     this.category = resp.json().result;
-                    console.log(this.category);
                 }
                 else {
 
@@ -123,7 +127,6 @@ export class AddProductsComponent implements OnInit {
     }
 
     updateProduct() {
-        console.log(this.images);
         var data = {
             'category_id': (this.caId === undefined) ? this.categoryId : this.caId,
             'title': this.proName,
@@ -138,21 +141,25 @@ export class AddProductsComponent implements OnInit {
         }
         this.appService.updateProduct(data)
             .subscribe(resp => {
-                if (resp.json().message === 'Success') {
-                    this.category = resp.json().result;
-                    swal('update product successfully', '', 'success')
-                    this.router.navigate(['/prducts']);
-                }
-                else {
-                }
+                // if (resp.json().message === 'Success') {
+                //     this.category = resp.json().result;
+                swal('update product successfully', '', 'success')
+                this.router.navigate(['/prducts']);
+                // }
+                // else {
+                // }
             },
                 error => {
                     console.log(error, "error");
                 })
     }
+    subCategoryId: any;
     getSubCategory() {
         this.appService.getSubCategery().subscribe(resp => {
             this.subCategoryName = resp.json().result;
+            for (var i = 0; i < this.subCategoryName.length; i++) {
+                this.subCategoryId = this.subCategoryName[i].sub_cat_id;
+            }
 
         },
             error => {
@@ -205,17 +212,30 @@ export class AddProductsComponent implements OnInit {
             for (let i = 0; i < filesAmount; i++) {
                 const fileReader: FileReader = new FileReader();
                 fileReader.onload = (event) => {
-                    if (this.selectedImage === '' || this.selectedImage === undefined || this.selectedImage === null) {
-                        this.imagenum = this.urls.push(fileReader.result);
-                        console.log(this.imagenum);
+                    if (this.action !== '') {
+                        if (this.selectedImage === undefined) {
+                            this.img = fileReader.result;
+                            this.strImage = this.img.split(',')[1];
+                            this.productDetails[0].myImages.push({ 'id': '', 'product_image': fileReader.result });
+                            this.images.push({ 'image_no': '', 'image_data': this.strImage })
+                        } else {
+                            this.img = fileReader.result;
+                            this.strImage = this.img.split(',')[1];
+                            for (var i = 0; i < this.productDetails[0].myImages.length; i++) {
+                                if (this.productDetails[0].myImages[i].id === this.selectedImage) {
+                                    this.productDetails[0].myImages.splice(i, 1)
+                                }
+                            }
+                            this.productDetails[0].myImages.push({ 'id': this.selectedImage, 'product_image': fileReader.result });
+                            this.images.push({ 'image_no': this.selectedImage, 'image_data': this.strImage })
+                            // this.imagenum = this.urls.push(fileReader.result);
+                        }
                     } else {
-                        this.imagenum = this.selectedImage.toString();
+                        this.img = fileReader.result;
+                        this.strImage = this.img.split(',')[1];
+                        this.urls.push(fileReader.result);
+                        this.images.push(this.strImage);
                     }
-                    this.img = fileReader.result;
-                    this.strImage = this.img.split(',')[1];
-                    this.images.push(this.strImage);
-                    console.log(this.images);
-
                 }
                 fileReader.readAsDataURL(event.target.files[i]);
             }
@@ -228,7 +248,7 @@ export class AddProductsComponent implements OnInit {
             'title': this.proName,
             'category_id': this.caId,
             'image': this.images,
-            'subcategory_id': (this.subCatId === undefined) ? this.subCateId : this.subCatId,
+            'subcategory_id': (this.subCatId === undefined) ? this.subCategoryId : this.subCatId,
             'description': this.textarea,
             'sku': this.size,
             'actual_price': this.mrp,
@@ -238,8 +258,8 @@ export class AddProductsComponent implements OnInit {
         }
         this.appService.insertProduct(data)
             .subscribe(resp => {
-                if (resp.json().message === 'Success') {
-                    this.data = resp.json().result;
+                if (resp.json().status === 200) {
+                    // this.data = resp.json().result;
                     swal('product added successfully', '', 'success');
                     this.router.navigate(['/prducts']);
                 }
@@ -255,24 +275,29 @@ export class AddProductsComponent implements OnInit {
             'id': this.productId
         }
         this.appService.editproductImg(data).subscribe(resp => {
-            this.productDetails = resp.json().products;
+            this.productDetails = resp.json().result;
             this.proName = this.productDetails[0].title;
             this.categoryId = this.productDetails[0].category_id;
             this.categoryName = this.productDetails[0].category1;
             this.productId = this.productDetails[0].id;
             this.subCatName = this.productDetails[0].category2;
             this.subCateId = this.productDetails[0].category2_id;
-            this.Productimages = JSON.parse(this.productDetails[0].product_image);
-            for (var i = 0; i < this.Productimages.length; i++) {
-                this.Productimages[i].image = Object.values(this.Productimages[i]);
-                this.Productimages[i].keyValue = Object.keys(this.Productimages[i]);
-                this.productImg.push({ 'image': this.Productimages[i].image[0], 'key': this.Productimages[i].keyValue[0] });
-                this.imagesData.push({ 'image': this.Productimages[i].image[0], 'key': this.Productimages[i].keyValue[0] });
-            }
         })
     }
-
     updateImage(index) {
         this.selectedImage = index;
+    }
+    removeImgPopup() {
+        this.removeImg = !this.removeImg;
+    }
+    deleteImg: any;
+    DeleteImg(i) {
+        this.deleteImg = i;
+        var data = {
+            'id': this.deleteImg
+        }
+        this.appService.deleteProdImg(data).subscribe(resp => {
+            this.editProImages();
+        })
     }
 }

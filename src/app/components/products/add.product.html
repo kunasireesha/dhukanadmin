@@ -7,6 +7,7 @@
             <header-nav></header-nav>
             <profile-nav></profile-nav>
             <!-- partial -->
+
             <div class="content-wrapper">
                 <div class="row">
                     <div class="col-lg-12">
@@ -42,9 +43,24 @@
                                         <div class="form-group">
                                             <label for="firstname" name="prodName">Product Image :</label>
                                             <input class="form-control" type='file' (change)="onSelectFile($event)" multiple><br/>
+                                            <div *ngIf="!removeImg">
+                                                <img *ngFor='let url of urls' [src]="url" height="200" style="margin-right: 2%;border: 1px solid;margin-bottom:5%">
+                                                <div *ngFor='let url of productDetails'>
+                                                    <img *ngFor="let imgUrl of url.myImages;let i =index" [src]="imgUrl.product_image" height="200" style="margin-right: 2%;border: 1px solid;margin-bottom:5%"
+                                                        (click)="updateImage(imgUrl.id)" [ngClass]="{'selected':selectedImage==imgUrl.id}">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group" *ngIf="Image">
+                                            <label (click)="removeImgPopup()"><strong>Remove Product Image Individual</strong></label>
+                                        </div>
+                                        <br>
+                                        <div class="" *ngIf="removeImg">
                                             <img *ngFor='let url of urls' [src]="url" height="200" style="margin-right: 2%;border: 1px solid;margin-bottom:5%">
-                                            <!-- <img *ngFor='let url of productImg' [src]="url.image" height="200" style="margin-right: 2%;border: 1px solid;margin-bottom:5%"
-                                                (click)="updateImage(url.key)" [ngClass]="{'selected':selectedImage==url.key}"> -->
+                                            <div *ngFor='let url of productDetails'>
+                                                <img *ngFor="let imgUrl of url.myImages;let i =index" [src]="imgUrl.product_image" height="200" style="margin-right: 2%;border: 1px solid;margin-bottom:5%"
+                                                    (click)="DeleteImg(imgUrl.id)" [ngClass]="{'active':deleteImg==imgUrl.id}">
+                                            </div>
                                         </div>
                                         <div class="form-group date">
                                             <label>Date: </label>
@@ -54,7 +70,7 @@
                                             <label for="firstname">Description :</label>
                                             <br/>
                                             <textarea class="form-control" rows="4" cols="50" style="width: 100%;border: 1px solid;" [(ngModel)]="textarea" name="textarea">
-                                                </textarea>
+                                        </textarea>
                                         </div>
                                         <div class="form-group">
                                             <label for="firstname">Manufacture Name</label>
@@ -77,11 +93,19 @@
                                             <label for="firstname">Offer Price : </label>
                                             <input id="category" class="form-control" name="category" type="text" [(ngModel)]="offer" name="offer" />
                                         </div>
+                                        <div class="form-group">
+                                            <label for="firstname">Brand name: </label>
+                                            <input id="category" class="form-control" name="category" type="text" [(ngModel)]="brand" name="brand" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="firstname">Brand Id : </label>
+                                            <input id="category" class="form-control" name="category" type="text" [(ngModel)]="brandid" name="brandid" />
+                                        </div>
                                         <!-- <mat-form-field>
-                                                    <input matInput [matDatepicker]="picker" placeholder="Choose a date">
-                                                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                                                    <mat-datepicker #picker></mat-datepicker>
-                                                  </mat-form-field>                                                   -->
+                                        <input matInput [matDatepicker]="picker" placeholder="Choose a date">
+                                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                        <mat-datepicker #picker></mat-datepicker>
+                                    </mat-form-field>                                                   -->
                                         <br/>
                                         <button type="submit" class="btn btn-primary vendor-button" (click)="insertProduct()" *ngIf="addProd">Add
                                             Product
@@ -103,7 +127,6 @@
                     <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © 2018
                         <a routerLink="#">Dhukan </a>. All rights reserved. </span>
                     <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">
-
                     </span>
                 </div>
             </footer>

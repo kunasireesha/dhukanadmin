@@ -52,6 +52,7 @@ export class AddCatComponent implements OnInit {
             .subscribe(resp => {
                 if (resp.json().message === 'Success') {
                     this.data = resp.json().result;
+                    swal('Category added', '', 'success');
                     this.router.navigate(['/category']);
 
                 }

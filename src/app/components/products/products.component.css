@@ -49,3 +49,10 @@ textarea{
 img{
     cursor: pointer;
 }
+.active{
+    border: 5px red solid !important; 
+}
+strong{
+    /* color:red; */
+    cursor: pointer;
+}
