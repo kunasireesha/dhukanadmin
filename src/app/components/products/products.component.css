@@ -56,3 +56,9 @@ strong{
     /* color:red; */
     cursor: pointer;
 }
+.form-inline{
+    margin-top: 30px;
+}
+.form-inline .form-control{
+    margin-right: 20px;  
+}

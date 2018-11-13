@@ -22,6 +22,8 @@ export class ProductsComponent implements OnInit {
     ngOnInit() {
         this.getProduct();
 
+
+
     }
     data = [];
     arrVal = [];

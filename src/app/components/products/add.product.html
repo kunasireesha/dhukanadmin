@@ -77,6 +77,55 @@
                                             <input id="category" class="form-control" name="category" type="text" [(ngModel)]="Manufacture" name="Manufacture" />
                                         </div>
                                         <div class="form-group">
+                                            <label for="firstname">Add sku:
+                                                <button class="btn btn-primary" (click)=sku()>+</button>
+                                            </label>
+                                        </div>
+                                        <div class="form-inline" *ngFor="let skuValues of skusData;let i= index">
+                                            <div class="form-group">
+
+                                                <input id="category" class="form-control" name="category" type="text" placeholder="Size" [(ngModel)]="skuValues.size" [ngModelOptions]="{standalone:true}"
+                                                />
+                                            </div>
+                                            <div class="form-group">
+
+                                                <input id="category" class="form-control" name="category" type="text" placeholder="Quantity" [(ngModel)]="skuValues.quantity"
+                                                    [ngModelOptions]="{standalone:true}" />
+                                            </div>
+                                            <div class="form-group">
+
+                                                <input id="category" class="form-control" name="category" type="text" placeholder="Actual Price" [(ngModel)]="skuValues.mrp"
+                                                    [ngModelOptions]="{standalone:true}" />
+                                            </div>
+                                            <div class="form-group">
+
+                                                <input id="category" class="form-control" name="category" type="text" placeholder="Offer Price" [(ngModel)]="skuValues.offer"
+                                                    [ngModelOptions]="{standalone:true}" />
+                                            </div>
+                                            <div class="form-group">
+
+                                                <input id="category" class="form-control" name="category" type="text" placeholder="Selling Price" [(ngModel)]="skuValues.sellingPrice"
+                                                    [ngModelOptions]="{standalone:true}" />
+                                            </div>
+                                            <div class="form-group">
+
+                                                <input id="category" class="form-control" name="category" type="text" placeholder="Stock" [(ngModel)]="skuValues.stock" [ngModelOptions]="{standalone:true}"
+                                                />
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">Category Image</label>
+                                                <input class="form-control" type="file" accept="image/*" [(ngModel)]="skuValues.skuImage" [name]="skuImage" (change)="changeListener($event,i)">
+                                                <div *ngIf="image">
+                                                    <h4>Image:</h4>
+                                                    <img src="{{skuValues.image}}" alt="" width="200" height="200">
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+
+                                        <!-- <div class="form-group">
                                             <label for="firstname">Size : </label>
                                             <input id="category" class="form-control" name="category" type="text" placeholder="50gm" [(ngModel)]="size" name="size" />
                                         </div>
@@ -100,7 +149,15 @@
                                         <div class="form-group">
                                             <label for="firstname">Brand Id : </label>
                                             <input id="category" class="form-control" name="category" type="text" [(ngModel)]="brandid" name="brandid" />
-                                        </div>
+                                        </div> -->
+                                        <!-- <div class="form-group">
+                                            <label for="firstname">Specifications:
+                                              <button class="btn btn-primary">+</button>
+                                            </label>
+                      
+                                            <input id="category" class="form-control" name="category" type="text" />
+                      
+                                          </div> -->
                                         <!-- <mat-form-field>
                                         <input matInput [matDatepicker]="picker" placeholder="Choose a date">
                                         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>

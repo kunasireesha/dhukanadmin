@@ -13,4 +13,11 @@
     margin-left: 15px;
     color: #03a9f3;
 }
+.form-control {
+    width: 400px;
+}
+.vendor-button{
+    background-color: #0d3d66 !important;
+}
+
 

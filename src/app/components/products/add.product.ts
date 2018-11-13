@@ -15,20 +15,14 @@ export class AddProductsComponent implements OnInit {
         dateFormat: 'dd.mm.yyyy',
     };
     public model: any = { date: { year: 2018, month: 10, day: 9 } };
-    // id;
-    // title;
-    // catId;
-    // url = '';
     addProd: boolean;
     removeImg: boolean = false;
     Image: boolean;
-    // selectedFile: File;
     data: any;
     category;
     categoryId;
     proName;
     categoryName;
-    // input;
     productId;
     action;
     subCategory: any;
@@ -36,11 +30,9 @@ export class AddProductsComponent implements OnInit {
     cateGoryId;
     strImage;
     subCatName;
-    // subCat;
     subCatId;
     subCateId;
     productDetails;
-    // strImge;
     img;
     urls = [];
     imagenum;
@@ -49,6 +41,19 @@ export class AddProductsComponent implements OnInit {
     selectedImage;
     textarea;
     mrp;
+    skuImg = '';
+
+    skuImage;
+    skusData = [];
+    skuValues = {
+        size: '',
+        quantity: '',
+        mrp: '',
+        offer: '',
+        sellingPrice: '',
+        stock: '',
+        skuImage: this.skuImg
+    }
     offer;
     Manufacture;
     subcatId;
@@ -126,33 +131,7 @@ export class AddProductsComponent implements OnInit {
                 })
     }
 
-    updateProduct() {
-        var data = {
-            'category_id': (this.caId === undefined) ? this.categoryId : this.caId,
-            'title': this.proName,
-            'id': this.productId,
-            'subcategory_id': (this.subCatId === undefined) ? this.subCateId : this.subCatId,
-            'image': this.images,
-            "sku": this.size,
-            "description": this.textarea,
-            "actual_price": this.mrp,
-            "offer_price": this.offer,
-            "manufacture_name": this.Manufacture
-        }
-        this.appService.updateProduct(data)
-            .subscribe(resp => {
-                // if (resp.json().message === 'Success') {
-                //     this.category = resp.json().result;
-                swal('update product successfully', '', 'success')
-                this.router.navigate(['/prducts']);
-                // }
-                // else {
-                // }
-            },
-                error => {
-                    console.log(error, "error");
-                })
-    }
+
     subCategoryId: any;
     getSubCategory() {
         this.appService.getSubCategery().subscribe(resp => {
@@ -250,16 +229,15 @@ export class AddProductsComponent implements OnInit {
             'image': this.images,
             'subcategory_id': (this.subCatId === undefined) ? this.subCategoryId : this.subCatId,
             'description': this.textarea,
-            'sku': this.size,
-            'actual_price': this.mrp,
-            'offer_price': this.offer,
             'manufacture_name': this.Manufacture,
-            'quantity': this.quantity
+            'sku': this.skusData
+            // 'actual_price': this.mrp,
+            // 'offer_price': this.offer,
+            // 'quantity': this.quantity
         }
         this.appService.insertProduct(data)
             .subscribe(resp => {
                 if (resp.json().status === 200) {
-                    // this.data = resp.json().result;
                     swal('product added successfully', '', 'success');
                     this.router.navigate(['/prducts']);
                 }
@@ -300,4 +278,71 @@ export class AddProductsComponent implements OnInit {
             this.editProImages();
         })
     }
+
+    image;
+    imagess;
+    changeListener($event, index): void {
+        this.readThis($event.target, index);
+    }
+
+    readThis(inputValue: any, index): void {
+        this.skuImg = ''
+        var file: File = inputValue.files[0];
+        var myReader: FileReader = new FileReader();
+
+        myReader.onloadend = (e) => {
+            this.image = myReader.result;
+            this.skuImg = this.image.split(',')[1];
+            for (var i = 0; i < this.skusData.length; i++) {
+                if (i === index) {
+                    this.skusData[i].image = myReader.result;
+                    this.skusData[i].skuImage = this.skuImg;
+                }
+            }
+        }
+        myReader.readAsDataURL(file);
+    }
+
+
+    sku() {
+        this.skuImg = ''
+        this.skusData.push({
+            size: '',
+            quantity: '',
+            mrp: '',
+            offer: '',
+            sellingPrice: '',
+            stock: '',
+            skuImage: this.skuImg
+        });
+    }
+
+    updateProduct() {
+        var data = {
+            'category_id': (this.caId === undefined) ? this.categoryId : this.caId,
+            'title': this.proName,
+            'id': this.productId,
+            'subcategory_id': (this.subCatId === undefined) ? this.subCateId : this.subCatId,
+            'image': this.images,
+            "sku": this.size,
+            "description": this.textarea,
+            "actual_price": this.mrp,
+            "offer_price": this.offer,
+            "manufacture_name": this.Manufacture
+        }
+        this.appService.updateProduct(data)
+            .subscribe(resp => {
+                // if (resp.json().message === 'Success') {
+                //     this.category = resp.json().result;
+                swal('update product successfully', '', 'success')
+                this.router.navigate(['/prducts']);
+                // }
+                // else {
+                // }
+            },
+                error => {
+                    console.log(error, "error");
+                })
+    }
+
 }
