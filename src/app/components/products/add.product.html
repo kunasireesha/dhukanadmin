@@ -41,7 +41,7 @@
                                             <input id="category" class="form-control" name="category" type="text" [(ngModel)]="proName" />
                                         </div>
                                         <div class="form-group">
-                                            <label for="firstname" name="prodName">Product Image :</label>
+                                            <label for="firstname" name="prodName">Product Images :</label>
                                             <input class="form-control" type='file' (change)="onSelectFile($event)" multiple><br/>
                                             <div *ngIf="!removeImg">
                                                 <img *ngFor='let url of urls' [src]="url" height="200" style="margin-right: 2%;border: 1px solid;margin-bottom:5%">
@@ -49,6 +49,25 @@
                                                     <img *ngFor="let imgUrl of url.myImages;let i =index" [src]="imgUrl.product_image" height="200" style="margin-right: 2%;border: 1px solid;margin-bottom:5%"
                                                         (click)="updateImage(imgUrl.id)" [ngClass]="{'selected':selectedImage==imgUrl.id}">
                                                 </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group" *ngIf="Image">
+                                            <label (click)="removeImgPopup()"><strong>Remove Product Image Individual</strong></label>
+                                        </div>
+                                        <div class="" *ngIf="removeImg">
+                                            <img *ngFor='let url of urls' [src]="url" height="200" style="margin-right: 2%;border: 1px solid;margin-bottom:5%">
+                                            <div *ngFor='let url of productDetails'>
+                                                <img *ngFor="let imgUrl of url.myImages;let i =index" [src]="imgUrl.product_image" height="200" style="margin-right: 2%;border: 1px solid;margin-bottom:5%"
+                                                    (click)="DeleteImg(imgUrl.id)" [ngClass]="{'active':deleteImg==imgUrl.id}">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Quality Image</label>
+                                            <input class="form-control" type="file" accept="image/*" (change)="changeListener($event)">
+                                            <br>
+                                            <div *ngIf="image">
+                                                <h4>Image:</h4>
+                                                <img src="{{image}}" alt="" width="200" height="200">
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -59,35 +78,30 @@
                                             <label for="firstname" name="prodName">Selling Price :</label>
                                             <input id="category" class="form-control" name="selling" type="text" [(ngModel)]="sellingPrice" />
                                         </div>
-                                        <div class="form-group" *ngIf="Image">
-                                            <label (click)="removeImgPopup()"><strong>Remove Product Image Individual</strong></label>
-                                        </div>
-                                        <br>
-                                        <div class="" *ngIf="removeImg">
-                                            <img *ngFor='let url of urls' [src]="url" height="200" style="margin-right: 2%;border: 1px solid;margin-bottom:5%">
-                                            <div *ngFor='let url of productDetails'>
-                                                <img *ngFor="let imgUrl of url.myImages;let i =index" [src]="imgUrl.product_image" height="200" style="margin-right: 2%;border: 1px solid;margin-bottom:5%"
-                                                    (click)="DeleteImg(imgUrl.id)" [ngClass]="{'active':deleteImg==imgUrl.id}">
-                                            </div>
-                                        </div>
-                                        <!-- <div class="form-group">
-                                            <label for="sel1">Choose your Location</label>
-                                            <select class="form-control border-primary" id="sel1">
-                                                <i class="fa fa-chevron-down" aria-hidden="true"></i>
-                                                <option value="" disabled selected hidden>Select Current Location</option>
-                                                <option>INDIA</option>
-                                                <option>UAE</option>
-                                            </select>
-                                        </div> -->
-                                        <br>
                                         <div class="form-group">
-                                            <label for="sel1">Delivery Options</label>
-                                            <select class="form-control border-primary" id="sel1" (change)="changeDeliveryOpt($event.target.value)">
+                                            <label for="sel1">Discount Type</label>
+                                            <select class="form-control border-primary" id="sel1" (change)="changeDiscountOpt($event.target.value)">
                                                 <i class="fa fa-chevron-down" aria-hidden="true"></i>
-                                                <option value="" disabled selected hidden>Select Delivery Options</option>
-                                                <option>Express Delivery</option>
-                                                <option>Normal Delivery</option>
+                                                <option value="" disabled selected hidden>Select Discount Options</option>
+                                                <option value="1">Rupees</option>
+                                                <option value="2">Percentage</option>
                                             </select>
+                                        </div>
+                                        <div class="form-group" *ngIf="amount">
+                                            <label for="exampleInputEmail1">Discount Amount</label>
+                                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" [(ngModel)]="disAmount" name="disAmount">
+                                        </div>
+                                        <div class="form-group" *ngIf="percentage">
+                                            <label for="exampleInputEmail1">Discount Percentage</label>
+                                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" [(ngModel)]="disPercentage"
+                                                name="disPercentage">
+                                        </div>
+                                        <div class="form-group">
+                                            <h6>Select Delivery Options</h6>
+                                            <div class="margin" *ngFor="let item of list">
+                                                <label class="checkbox-inline"><input type="checkbox" [value]="item.title"
+                                                        [(ngModel)]="item.checked" (click)="checkbox($event.target.value)">{{item.title}}</label>
+                                            </div>
                                         </div>
                                         <!-- <div class="form-group date">
                                             <label>Date: </label>
@@ -112,9 +126,14 @@
                                         </textarea>
                                         </div>
                                         <div class="form-group">
-                                            <label for="firstname">FAQs : </label>
-                                            <br/>
+                                            <h6 for="firstname">FAQs : </h6>
+                                            <label for="firstname">Question</label>
                                             <textarea class="form-control" rows="4" cols="50" style="width: 100%;border: 1px solid;" [(ngModel)]="faq" name="faq">
+                                        </textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="firstname">Answer</label>
+                                            <textarea class="form-control" rows="4" cols="50" style="width: 100%;border: 1px solid;" [(ngModel)]="answer" name="answer">
                                         </textarea>
                                         </div>
                                         <div class="form-group">
@@ -158,15 +177,16 @@
                                                 />
                                             </div>
                                             <div class="form-group">
-                                                <label for="exampleInputEmail1">Sku Image</label>
-                                                <input class="form-control" type="file" accept="image/*" (change)="changeListener($event,i)">
+                                                <label for="exampleInputEmail1">Sku Images : </label>
+                                                <!-- <input class="form-control" type="file" accept="image/*" (change)="changeListener($event,i)"> -->
+                                                <input class="form-control" type='file' (change)="onSelectFile1($event,i)" multiple>
                                                 <!-- <div *ngIf="image">
                                                     <h4>Image:</h4>
                                                     <img src="{{skuValues.image}}" alt="" width="200" height="200">
                                                 </div> -->
                                             </div>
                                             <div class="form-group">
-                                                <label for="exampleInputEmail2">Veg or nonVeg</label>
+                                                <label for="exampleInputEmail2">Veg or nonVeg : </label>
                                                 <input class="form-control" type="file" accept="image1/*" (change)="changeListener1($event,i)">
                                                 <!-- <div *ngIf="image">
                                                     <h4>Image:</h4>

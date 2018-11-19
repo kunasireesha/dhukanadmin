@@ -18,6 +18,8 @@ export class AddProductsComponent implements OnInit {
     addProd: boolean;
     removeImg: boolean = false;
     Image: boolean;
+    amount: boolean;
+    percentage: boolean;
     data: any;
     category;
     categoryId;
@@ -67,6 +69,8 @@ export class AddProductsComponent implements OnInit {
     brandid;
     actualPrice;
     sellingPrice;
+    list: any[];
+
     constructor(private appService: AppService, private route: ActivatedRoute, public proserv: ProductService, public router: Router) {
         this.route.queryParams.subscribe(params => {
             this.action = params.prodId;
@@ -86,6 +90,18 @@ export class AddProductsComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.list = [
+            {
+                id: 1,
+                title: 'Express Delivery',
+                checked: true,
+            },
+            {
+                id: 2,
+                title: 'Normal Delivery',
+                checked: true,
+            }
+        ]
         if (this.action !== '') {
             this.editProImages();
 
@@ -118,6 +134,10 @@ export class AddProductsComponent implements OnInit {
                 this.subCatId = this.subCategoryName[i].id;
             }
         }
+    }
+    value = [];
+    checkbox(evt) {
+        this.value.push(evt);
     }
 
 
@@ -228,7 +248,6 @@ export class AddProductsComponent implements OnInit {
     }
 
     insertProduct() {
-        alert(this.deliveryOption);
         var data = {
             'id': this.productId,
             'title': this.proName,
@@ -241,7 +260,7 @@ export class AddProductsComponent implements OnInit {
             'faq': this.faq,
             'specification': this.specification,
             'terms': this.terms,
-            'delivery': this.deliveryOption,
+            'delivery': this.value,
             'actual_price': this.actualPrice,
             'selling_price': this.sellingPrice
         }
@@ -289,25 +308,20 @@ export class AddProductsComponent implements OnInit {
         })
     }
 
+
     image;
-    changeListener($event, index): void {
-        this.readThis($event.target, index);
+
+    changeListener($event): void {
+        this.readThis($event.target);
     }
 
-    readThis(inputValue: any, index): void {
-        this.skuImg = ''
+    readThis(inputValue: any): void {
         var file: File = inputValue.files[0];
         var myReader: FileReader = new FileReader();
 
         myReader.onloadend = (e) => {
             this.image = myReader.result;
-            this.skuImg = this.image.split(',')[1];
-            for (var i = 0; i < this.skusData.length; i++) {
-                if (i === index) {
-
-                    this.skusData[i].skuImage = this.skuImg;
-                }
-            }
+            this.strImage = this.image.split(',')[1];
         }
         myReader.readAsDataURL(file);
     }
@@ -333,6 +347,32 @@ export class AddProductsComponent implements OnInit {
             }
         }
         myReader1.readAsDataURL(file);
+    }
+    urls1 = [];
+    img1: any;
+    strImage1: any;
+    images1 = [];
+    onSelectFile1(event, index) {
+        if (event.target.files && event.target.files[0]) {
+            var filesAmount = event.target.files.length;
+            for (let i = 0; i < filesAmount; i++) {
+                const fileReader: FileReader = new FileReader();
+
+                fileReader.onload = (event: Event) => {
+                    this.img1 = fileReader.result;
+                    this.strImage1 = this.img1.split(',')[1];
+                    this.images1.push(this.strImage1);
+                    for (var i = 0; i < this.skusData.length; i++) {
+                        if (i === index) {
+                            // this.skusData[i].image = myReader.result;
+                            this.skusData[i].skuImage = this.images1;
+                        }
+                    }
+                }
+
+                fileReader.readAsDataURL(event.target.files[i]);
+            }
+        }
     }
 
 
@@ -378,8 +418,16 @@ export class AddProductsComponent implements OnInit {
                     console.log(error, "error");
                 })
     }
-    deliveryOption: any;
-    changeDeliveryOpt(evt) {
-        this.deliveryOption = evt;
+    discountOption: any;
+    changeDiscountOpt(event) {
+        this.discountOption = event;
+        if (this.discountOption === '1') {
+            this.amount = true;
+            this.percentage = false;
+        }
+        else {
+            this.amount = false;
+            this.percentage = true;
+        }
     }
 }

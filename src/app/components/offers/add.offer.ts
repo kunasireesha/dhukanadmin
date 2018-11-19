@@ -16,7 +16,6 @@ export class AddOffersComponent implements OnInit {
     }
     discount(event) {
         this.discountType = event;
-        alert(this.discountType);
         if (this.discountType === '1') {
             this.amount = true;
             this.percentage = false;
