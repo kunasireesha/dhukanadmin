@@ -1,4 +1,5 @@
 const base_url = 'http://192.169.243.70:5000/';
+const base_url1 = 'http://192.168.0.116:9000/'
 export const AppSettings = {
     loginUrl: base_url + 'users/admin/login',
     getCatUrl: base_url + 'cart/admin/catagiry',
@@ -25,4 +26,8 @@ export const AppSettings = {
     getOrdersUrl: base_url + 'orders',
     getOffersUrl: 'http://192.168.0.116:9000/offers',
     postOffersUrl: 'http://192.168.0.116:9000/offers',
+    getOfferbyId: 'http://192.168.0.116:9000/offers/',
+    updateOfferById: 'http://192.168.0.116:9000/offers/',
+    deleteOfferById: 'http://192.168.0.116:9000/offers/',
+    addDeliveryUrl: base_url + 'oders/delvory'
 }

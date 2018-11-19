@@ -21,7 +21,7 @@
                         </a>
                         <h4 class="card-title">
                             Total Coupons </h4>
-                        <br/>
+                        <br />
                         <div class="row">
                             <div class="col-12">
                                 <div class="table-responsive">
@@ -43,15 +43,16 @@
                                             <tr class="todo-list" *ngFor="let coupons of coupons;let i = index">
                                                 <td>{{i+1}}</td>
                                                 <td>{{coupons.voucher_code}}</td>
-                                                <td>{{coupons.discount_type}}</td>
+                                                <td>{{coupons.discount_type===1?'Flat':'Percentage' }}</td>
                                                 <td>{{coupons.discount_amount}}</td>
                                                 <td>{{coupons.discount_percentage}}</td>
                                                 <td>{{coupons.total_count}}</td>
                                                 <td>{{coupons.minimum_value}}</td>
 
                                                 <td>
-                                                    <a routerLink="/addvendors" class="btn btn-outline-primary coupon-margin" (click)="editVendor(vendorDetails.u_id)">Edit</a>
-                                                    <a class="btn btn-outline-primary vendor-delete" (click)="deleteVendor(vendorDetails.u_id)">Delete</a>
+                                                    <a routerLink="/addOffers" class="btn btn-outline-primary coupon-margin"
+                                                        (click)="editOffer(coupons.id)">Edit</a>
+                                                    <a class="btn btn-outline-primary vendor-delete" (click)="deleteOffer(coupons.id)">Delete</a>
                                                 </td>
                                             </tr>
                                         </tbody>

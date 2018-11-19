@@ -228,7 +228,6 @@ export class AddProductsComponent implements OnInit {
     }
 
     insertProduct() {
-        alert(this.deliveryOption);
         var data = {
             'id': this.productId,
             'title': this.proName,

@@ -12,6 +12,15 @@ export class OrdersComponent implements OnInit {
     constructor(private appServie: AppService) { }
 
     ngOnInit() {
+        this.getOrders();
     }
+    getOrders() {
+        this.appServie.getOrders().subscribe(res => {
+            console.log(res.json());
+        }, error => {
+
+        })
+    }
+
 
 }

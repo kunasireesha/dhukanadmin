@@ -21,7 +21,8 @@
                                 <form>
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Category Name</label>
-                                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" [(ngModel)]="input" name="input">
+                                        <input type="email" class="form-control" id="exampleInputEmail1"
+                                            aria-describedby="emailHelp" [(ngModel)]="input" name="input">
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Category Image</label>
@@ -33,14 +34,32 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="firstname">Description :</label>
-                                        <br/>
-                                        <textarea class="form-control" rows="4" cols="50" style="width: 100%;border: 1px solid;" [(ngModel)]="textarea" name="textarea">
+                                        <br />
+                                        <textarea class="form-control" rows="4" cols="50" style="width: 100%;border: 1px solid;"
+                                            [(ngModel)]="textarea" name="textarea">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                                                 </textarea>
                                     </div>
-                                    <button type="submit" class="btn btn-primary vendor-button" (click)="addCat(input)" *ngIf="addcat">Add
+                                    <button type="submit" class="btn btn-primary vendor-button" (click)="addCat(input)"
+                                        *ngIf="addcat">Add
                                         category
                                     </button>
-                                    <button type="submit" class="btn btn-primary vendor-button" (click)="updateCat(input)" *ngIf="!addcat">Update
+                                    <button type="submit" class="btn btn-primary vendor-button" (click)="updateCat(input)"
+                                        *ngIf="!addcat">Update
                                         category
                                     </button>
                                 </form>

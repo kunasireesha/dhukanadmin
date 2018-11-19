@@ -23,11 +23,12 @@
                         <a id="show" class="btn btn-maron btn-import" style="float: right;"><label for="imageUpload">Import
                                 to Excel
                             </label><input type="file" id="imageUpload" style="display: none" (change)=fileEvent($event)></a>
-                        <a (click)="exportAsXLSX()" id="show" class="btn btn-maron" style="float: right">Export to Excel</a>
+                        <a (click)="exportAsXLSX()" id="show" class="btn btn-maron" style="float: right">Export to
+                            Excel</a>
                         <h4 class="card-title">Products </h4>
                         <span>
                             <input class="form-control" type="text" placeholder="Search.." name="search" [(ngModel)]="filter"></span>
-                        <br/>
+                        <br />
                         <div class="row">
                             <div class="col-12">
                                 <div class="table-responsive">

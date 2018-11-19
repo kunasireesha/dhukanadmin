@@ -15,13 +15,14 @@
                             <div class="card-body">
                                 <h4 class="card-title">Add Product </h4>
                                 <a routerLink="/prducts" id="show" class="btn  btn-maron" style="float: right;    margin-top: -45px;">Back</a>
-                                <form class="cmxform" id="signupForm" method="get" action="#" #myForm="ngForm" novalidate>
+                                <form class="cmxform" id="signupForm" method="get" action="#" #myForm="ngForm"
+                                    novalidate>
                                     <fieldset>
                                         <div class="form-group">
                                             <label for="firstname">Category :</label>
                                             <div class="form-group">
-                                                <select required class="form-control border-primary" id="exampleSelectPrimary" [(ngModel)]="categoryName" name="categoryName"
-                                                    (change)="changeCat($event.target.value)">
+                                                <select required class="form-control border-primary" id="exampleSelectPrimary"
+                                                    [(ngModel)]="categoryName" name="categoryName" (change)="changeCat($event.target.value)">
                                                     <option hidden>Select Category</option>
                                                     <option *ngFor="let cat of category" value="{{cat.name}}">{{cat.name}}</option>
                                                 </select>
@@ -30,7 +31,8 @@
                                         <div class="form-group">
                                             <label for="firstname">Sub Category :</label>
                                             <div class="form-group">
-                                                <select class="form-control border-primary" id="exampleSelectPrimary" [(ngModel)]="subCatName" name="subCatName" (change)="changeSubCat($event.target.value)">
+                                                <select class="form-control border-primary" id="exampleSelectPrimary"
+                                                    [(ngModel)]="subCatName" name="subCatName" (change)="changeSubCat($event.target.value)">
                                                     <!-- <option value=" " disabled selected hidden>select Sub category</option> -->
                                                     <option *ngFor="let subCat of subCategoryName" value="{{subCat.sub_cat}}">{{subCat.sub_cat}}</option>
                                                 </select>
@@ -38,26 +40,31 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="firstname" name="prodName">Product Name :</label>
-                                            <input id="category" class="form-control" name="category" type="text" [(ngModel)]="proName" />
+                                            <input id="category" class="form-control" name="category" type="text"
+                                                [(ngModel)]="proName" />
                                         </div>
                                         <div class="form-group">
                                             <label for="firstname" name="prodName">Product Image :</label>
-                                            <input class="form-control" type='file' (change)="onSelectFile($event)" multiple><br/>
+                                            <input class="form-control" type='file' (change)="onSelectFile($event)"
+                                                multiple><br />
                                             <div *ngIf="!removeImg">
                                                 <img *ngFor='let url of urls' [src]="url" height="200" style="margin-right: 2%;border: 1px solid;margin-bottom:5%">
                                                 <div *ngFor='let url of productDetails'>
-                                                    <img *ngFor="let imgUrl of url.myImages;let i =index" [src]="imgUrl.product_image" height="200" style="margin-right: 2%;border: 1px solid;margin-bottom:5%"
+                                                    <img *ngFor="let imgUrl of url.myImages;let i =index" [src]="imgUrl.product_image"
+                                                        height="200" style="margin-right: 2%;border: 1px solid;margin-bottom:5%"
                                                         (click)="updateImage(imgUrl.id)" [ngClass]="{'selected':selectedImage==imgUrl.id}">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label for="firstname" name="prodName">Actual Price :</label>
-                                            <input id="category" class="form-control" name="actual" type="text" [(ngModel)]="actualPrice" />
+                                            <input id="category" class="form-control" name="actual" type="text"
+                                                [(ngModel)]="actualPrice" />
                                         </div>
                                         <div class="form-group">
                                             <label for="firstname" name="prodName">Selling Price :</label>
-                                            <input id="category" class="form-control" name="selling" type="text" [(ngModel)]="sellingPrice" />
+                                            <input id="category" class="form-control" name="selling" type="text"
+                                                [(ngModel)]="sellingPrice" />
                                         </div>
                                         <div class="form-group" *ngIf="Image">
                                             <label (click)="removeImgPopup()"><strong>Remove Product Image Individual</strong></label>
@@ -66,7 +73,8 @@
                                         <div class="" *ngIf="removeImg">
                                             <img *ngFor='let url of urls' [src]="url" height="200" style="margin-right: 2%;border: 1px solid;margin-bottom:5%">
                                             <div *ngFor='let url of productDetails'>
-                                                <img *ngFor="let imgUrl of url.myImages;let i =index" [src]="imgUrl.product_image" height="200" style="margin-right: 2%;border: 1px solid;margin-bottom:5%"
+                                                <img *ngFor="let imgUrl of url.myImages;let i =index" [src]="imgUrl.product_image"
+                                                    height="200" style="margin-right: 2%;border: 1px solid;margin-bottom:5%"
                                                     (click)="DeleteImg(imgUrl.id)" [ngClass]="{'active':deleteImg==imgUrl.id}">
                                             </div>
                                         </div>
@@ -95,31 +103,160 @@
                                         </div> -->
                                         <div class="form-group">
                                             <label for="firstname">Product Details :</label>
-                                            <br/>
-                                            <textarea class="form-control" rows="4" cols="50" style="width: 100%;border: 1px solid;" [(ngModel)]="Description" name="Description">
+                                            <br />
+                                            <textarea class="form-control" rows="4" cols="50" style="width: 100%;border: 1px solid;"
+                                                [(ngModel)]="Description" name="Description">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                                         </textarea>
                                         </div>
                                         <div class="form-group">
                                             <label for="firstname">Specifications : </label>
-                                            <br/>
-                                            <textarea class="form-control" rows="4" cols="50" style="width: 100%;border: 1px solid;" [(ngModel)]="specification" name="specification">
+                                            <br />
+                                            <textarea class="form-control" rows="4" cols="50" style="width: 100%;border: 1px solid;"
+                                                [(ngModel)]="specification" name="specification">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                                         </textarea>
                                         </div>
                                         <div class="form-group">
                                             <label for="firstname">Terms & Conditions</label>
-                                            <br/>
-                                            <textarea class="form-control" rows="4" cols="50" style="width: 100%;border: 1px solid;" [(ngModel)]="terms" name="terms">
+                                            <br />
+                                            <textarea class="form-control" rows="4" cols="50" style="width: 100%;border: 1px solid;"
+                                                [(ngModel)]="terms" name="terms">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                                         </textarea>
                                         </div>
                                         <div class="form-group">
                                             <label for="firstname">FAQs : </label>
-                                            <br/>
-                                            <textarea class="form-control" rows="4" cols="50" style="width: 100%;border: 1px solid;" [(ngModel)]="faq" name="faq">
+                                            <br />
+                                            <textarea class="form-control" rows="4" cols="50" style="width: 100%;border: 1px solid;"
+                                                [(ngModel)]="faq" name="faq">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                                         </textarea>
                                         </div>
                                         <div class="form-group">
                                             <label for="firstname">Manufacture Name</label>
-                                            <input id="category" class="form-control" name="category" type="text" [(ngModel)]="Manufacture" name="Manufacture" />
+                                            <input id="category" class="form-control" name="category" type="text"
+                                                [(ngModel)]="Manufacture" name="Manufacture" />
                                         </div>
                                         <div class="form-group">
                                             <label for="firstname">Add sku:
@@ -129,33 +266,33 @@
                                         <div class="form-inline" *ngFor="let skuValues of skusData;let i= index">
                                             <div class="form-group">
 
-                                                <input id="category" class="form-control" type="text" placeholder="Size" [(ngModel)]="skuValues.size" [ngModelOptions]="{standalone:true}"
-                                                />
+                                                <input id="category" class="form-control" type="text" placeholder="Size"
+                                                    [(ngModel)]="skuValues.size" [ngModelOptions]="{standalone:true}" />
                                             </div>
                                             <div class="form-group">
 
-                                                <input id="category" class="form-control" type="text" placeholder="Quantity" [(ngModel)]="skuValues.quantity" [ngModelOptions]="{standalone:true}"
-                                                />
+                                                <input id="category" class="form-control" type="text" placeholder="Quantity"
+                                                    [(ngModel)]="skuValues.quantity" [ngModelOptions]="{standalone:true}" />
                                             </div>
                                             <div class="form-group">
 
-                                                <input id="category" class="form-control" type="text" placeholder="Actual Price" [(ngModel)]="skuValues.mrp" [ngModelOptions]="{standalone:true}"
-                                                />
+                                                <input id="category" class="form-control" type="text" placeholder="Actual Price"
+                                                    [(ngModel)]="skuValues.mrp" [ngModelOptions]="{standalone:true}" />
                                             </div>
                                             <div class="form-group">
 
-                                                <input id="category" class="form-control" type="text" placeholder="Offer Price" [(ngModel)]="skuValues.offer" [ngModelOptions]="{standalone:true}"
-                                                />
+                                                <input id="category" class="form-control" type="text" placeholder="Offer Price"
+                                                    [(ngModel)]="skuValues.offer" [ngModelOptions]="{standalone:true}" />
                                             </div>
                                             <div class="form-group">
 
-                                                <input id="category" class="form-control" type="text" placeholder="Selling Price" [(ngModel)]="skuValues.sellingPrice" [ngModelOptions]="{standalone:true}"
-                                                />
+                                                <input id="category" class="form-control" type="text" placeholder="Selling Price"
+                                                    [(ngModel)]="skuValues.sellingPrice" [ngModelOptions]="{standalone:true}" />
                                             </div>
                                             <div class="form-group">
 
-                                                <input id="category" class="form-control" type="text" placeholder="Stock" [(ngModel)]="skuValues.stock" [ngModelOptions]="{standalone:true}"
-                                                />
+                                                <input id="category" class="form-control" type="text" placeholder="Stock"
+                                                    [(ngModel)]="skuValues.stock" [ngModelOptions]="{standalone:true}" />
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1">Sku Image</label>
@@ -216,11 +353,13 @@
                                         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                                         <mat-datepicker #picker></mat-datepicker>
                                     </mat-form-field>                                                   -->
-                                        <br/>
-                                        <button type="submit" class="btn btn-primary vendor-button" (click)="insertProduct()" *ngIf="addProd">Add
+                                        <br />
+                                        <button type="submit" class="btn btn-primary vendor-button" (click)="insertProduct()"
+                                            *ngIf="addProd">Add
                                             Product
                                         </button>
-                                        <button type="submit" class="btn btn-primary vendor-button" (click)="updateProduct()" *ngIf="!addProd">Update
+                                        <button type="submit" class="btn btn-primary vendor-button" (click)="updateProduct()"
+                                            *ngIf="!addProd">Update
                                             Product
                                         </button>
                                     </fieldset>

@@ -97,20 +97,37 @@ export class AppService {
         const headers = new Headers({ 'Content-Type': "application/JSON" });
         return this.http.delete(AppSettings.deleteVendorById + id, { headers: headers })
     }
+    //offers
     getOffers() {
         const headers = new Headers({ 'Content-Type': "application/x-www-form-urlencoded" });
         return this.http.get(AppSettings.getOffersUrl, { headers: headers })
     }
-    postOffersUrl(id) {
+    postOffersUrl(data) {
         const headers = new Headers({ 'Content-Type': "application/JSON" });
-        return this.http.post(AppSettings.postOffersUrl + id, { headers: headers })
+        return this.http.post(AppSettings.postOffersUrl, data, { headers: headers })
     }
-
-    // getOrders() {
-    //     const headers = new Headers({
-    //         'Content-Type': "application/JSON",
-    //         'token': localStorage.token,
-    //     });
-    //     return this.http.get(AppSettings.getOrdersUrl, { headers: headers });
-    // }
+    getOfferbyId(id) {
+        const headers = new Headers({ 'Content-Type': "application/JSON" });
+        return this.http.get(AppSettings.getOfferbyId + id, { headers: headers })
+    }
+    updateOfferById(id, params) {
+        const headers = new Headers({ 'Content-Type': "application/JSON" });
+        return this.http.put(AppSettings.updateOfferById + id, params, { headers: headers })
+    }
+    deleteOfferById(id) {
+        const headers = new Headers({ 'Content-Type': "application/JSON" });
+        return this.http.delete(AppSettings.deleteOfferById + id, { headers: headers })
+    }
+    //delivery
+    addDeliveryUrl(params) {
+        const headers = new Headers({ 'Content-Type': "application/JSON" });
+        return this.http.post(AppSettings.addDeliveryUrl, params, { headers: headers });
+    }
+    getOrders() {
+        const headers = new Headers({
+            'Content-Type': "application/JSON",
+            // 'token': localStorage.token,
+        });
+        return this.http.get(AppSettings.getOrdersUrl, { headers: headers });
+    }
 }
