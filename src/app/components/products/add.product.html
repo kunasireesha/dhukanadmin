@@ -43,6 +43,7 @@
                                         <div class="form-group">
                                             <label for="firstname" name="prodName">Product Images :</label>
                                             <input class="form-control" type='file' (change)="onSelectFile($event)" multiple><br/>
+
                                             <div *ngIf="!removeImg">
                                                 <img *ngFor='let url of urls' [src]="url" height="200" style="margin-right: 2%;border: 1px solid;margin-bottom:5%">
                                                 <div *ngFor='let url of productDetails'>
@@ -51,6 +52,7 @@
                                                 </div>
                                             </div>
                                         </div>
+
                                         <div class="form-group" *ngIf="Image">
                                             <label (click)="removeImgPopup()"><strong>Remove Product Image Individual</strong></label>
                                         </div>
@@ -109,26 +111,27 @@
                                         </div> -->
                                         <div class="form-group">
                                             <label for="firstname">Product Details :</label>
-                                            <br/>
+                                            <br />
                                             <textarea class="form-control" rows="4" cols="50" style="width: 100%;border: 1px solid;" [(ngModel)]="Description" name="Description">
                                         </textarea>
                                         </div>
                                         <div class="form-group">
                                             <label for="firstname">Specifications : </label>
-                                            <br/>
+                                            <br />
                                             <textarea class="form-control" rows="4" cols="50" style="width: 100%;border: 1px solid;" [(ngModel)]="specification" name="specification">
                                         </textarea>
                                         </div>
                                         <div class="form-group">
                                             <label for="firstname">Terms & Conditions</label>
-                                            <br/>
+                                            <br />
                                             <textarea class="form-control" rows="4" cols="50" style="width: 100%;border: 1px solid;" [(ngModel)]="terms" name="terms">
-                                        </textarea>
+                                       </textarea>
                                         </div>
                                         <div class="form-group">
                                             <h6 for="firstname">FAQs : </h6>
                                             <label for="firstname">Question</label>
                                             <textarea class="form-control" rows="4" cols="50" style="width: 100%;border: 1px solid;" [(ngModel)]="faq" name="faq">
+
                                         </textarea>
                                         </div>
                                         <div class="form-group">
@@ -236,7 +239,7 @@
                                         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                                         <mat-datepicker #picker></mat-datepicker>
                                     </mat-form-field>                                                   -->
-                                        <br/>
+                                        <br />
                                         <button type="submit" class="btn btn-primary vendor-button" (click)="insertProduct()" *ngIf="addProd">Add
                                             Product
                                         </button>
