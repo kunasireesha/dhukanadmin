@@ -9,18 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OffersComponent implements OnInit {
     coupons: any;
+    couponsId: any;
     constructor(private AppService: AppService) { }
 
     ngOnInit() {
-        this.getOffers();
+        this.coupons();
     }
-    getOffers() {
+    getCoupons() {
         this.AppService.getOffers().subscribe(resp => {
             this.coupons = resp.json().data;
+            // for (var i = 0; i < this.coupons.length; i++) {
+            //     this.couponsId = this.coupons[i].id;
+            //     console.log(this.couponsId);
+            // }
         })
     }
-    addCoupon() {
-
-    }
-
 }

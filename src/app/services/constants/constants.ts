@@ -25,5 +25,4 @@ export const AppSettings = {
     getOrdersUrl: base_url + 'orders',
     getOffersUrl: 'http://192.168.0.116:9000/offers',
     postOffersUrl: 'http://192.168.0.116:9000/offers',
-
 }
