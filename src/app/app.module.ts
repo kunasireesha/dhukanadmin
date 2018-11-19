@@ -1,3 +1,6 @@
+import { AddOffersComponent } from './components/offers/add.offer';
+import { AddDeliveryComponent } from './components/delivery/add.delivery';
+
 import { ImageUploadComponent } from './components/image-upload/image-upload.component';
 
 // import * as xlsx from "xlsx";
@@ -65,6 +68,8 @@ import { AppService } from './services/dhukan/dhukan-data.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule, MatCheckboxModule } from '@angular/material';
 import { ExcelService } from './services/excel.service';
+import { DeliveryComponent } from './components/delivery/delivery.component';
+import { OffersComponent } from './components/offers/offers.component';
 
 
 // import { ExcelService } from './excel.service';
@@ -92,7 +97,11 @@ import { ExcelService } from './services/excel.service';
         VendorsComponent,
         AddVendorsComponent,
         OrdersComponent,
-        ImageUploadComponent
+        ImageUploadComponent,
+        DeliveryComponent,
+        AddDeliveryComponent,
+        OffersComponent,
+        AddOffersComponent
 
     ],
     imports: [
@@ -132,7 +141,11 @@ import { ExcelService } from './services/excel.service';
             { path: 'vendors', component: VendorsComponent, data: [{ page: 'vendors' }] },
             { path: 'addvendors', component: AddVendorsComponent, data: [{ page: 'addvendors' }] },
             { path: 'orders', component: OrdersComponent, data: [{ page: 'orders' }] },
-            { path: 'imageUpload', component: ImageUploadComponent, data: [{ page: 'imageupload' }] }
+            { path: 'imageUpload', component: ImageUploadComponent, data: [{ page: 'imageupload' }] },
+            { path: 'delivery', component: DeliveryComponent, data: [{ page: 'addDelivery' }] },
+            { path: 'addDelivery', component: AddDeliveryComponent, data: [{ page: 'addDelivery' }] },
+            { path: 'offers', component: OffersComponent, data: [{ page: 'addOffers' }] },
+            { path: 'addOffers', component: AddOffersComponent, data: [{ page: 'addOffers' }] },
 
         ], { useHash: true }),
         BrowserAnimationsModule

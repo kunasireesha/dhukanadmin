@@ -17,5 +17,13 @@ export const AppSettings = {
     importExcel: base_url + 'products/readExcel',
     multiproductimgUrl: base_url + 'products/getproductbyid',
     getSubCatUrl: base_url + 'products/getsubdata',
-    deleteProImgUrl: base_url + 'products/deleteproductimage'
+    deleteProImgUrl: base_url + 'products/deleteproductimage',
+    getVendorUrl: 'http://192.168.0.116:9000/vendors',
+    getVendorById: base_url + 'vendors/',
+    updateVendorById: base_url + 'vendors/',
+    deleteVendorById: 'http://192.168.0.116:9000/vendors/',
+    getOrdersUrl: base_url + 'orders',
+    getOffersUrl: 'http://192.168.0.116:9000/offers',
+    postOffersUrl: 'http://192.168.0.116:9000/offers',
+
 }

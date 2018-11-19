@@ -39,11 +39,14 @@ export class AddProductsComponent implements OnInit {
     images = [];
     Productimages = [];
     selectedImage;
-    textarea;
+    Description;
+    specification;
+    terms;
+    faq;
     mrp;
     skuImg = '';
-
     skuImage;
+    vegImage
     skusData = [];
     skuValues = {
         size: '',
@@ -52,7 +55,8 @@ export class AddProductsComponent implements OnInit {
         offer: '',
         sellingPrice: '',
         stock: '',
-        skuImage: this.skuImg
+        skuImage: this.skuImg,
+        vegImage: this.vegImage
     }
     offer;
     Manufacture;
@@ -61,6 +65,8 @@ export class AddProductsComponent implements OnInit {
     quantity;
     brand;
     brandid;
+    actualPrice;
+    sellingPrice;
     constructor(private appService: AppService, private route: ActivatedRoute, public proserv: ProductService, public router: Router) {
         this.route.queryParams.subscribe(params => {
             this.action = params.prodId;
@@ -222,18 +228,22 @@ export class AddProductsComponent implements OnInit {
     }
 
     insertProduct() {
+        alert(this.deliveryOption);
         var data = {
             'id': this.productId,
             'title': this.proName,
             'category_id': this.caId,
             'image': this.images,
             'subcategory_id': (this.subCatId === undefined) ? this.subCategoryId : this.subCatId,
-            'description': this.textarea,
+            'description': this.Description,
             'manufacture_name': this.Manufacture,
-            'sku': this.skusData
-            // 'actual_price': this.mrp,
-            // 'offer_price': this.offer,
-            // 'quantity': this.quantity
+            'sku': this.skusData,
+            'faq': this.faq,
+            'specification': this.specification,
+            'terms': this.terms,
+            'delivery': this.deliveryOption,
+            'actual_price': this.actualPrice,
+            'selling_price': this.sellingPrice
         }
         this.appService.insertProduct(data)
             .subscribe(resp => {
@@ -280,7 +290,6 @@ export class AddProductsComponent implements OnInit {
     }
 
     image;
-    imagess;
     changeListener($event, index): void {
         this.readThis($event.target, index);
     }
@@ -295,7 +304,7 @@ export class AddProductsComponent implements OnInit {
             this.skuImg = this.image.split(',')[1];
             for (var i = 0; i < this.skusData.length; i++) {
                 if (i === index) {
-                    this.skusData[i].image = myReader.result;
+
                     this.skusData[i].skuImage = this.skuImg;
                 }
             }
@@ -303,9 +312,33 @@ export class AddProductsComponent implements OnInit {
         myReader.readAsDataURL(file);
     }
 
+    image1;
+    changeListener1($event, index): void {
+        this.readThis1($event.target, index);
+    }
+
+    readThis1(inputValue: any, index): void {
+        this.vegImage = ''
+        var file: File = inputValue.files[0];
+        var myReader1: FileReader = new FileReader();
+
+        myReader1.onloadend = (e) => {
+            this.image1 = myReader1.result;
+            this.vegImage = this.image1.split(',')[1];
+            for (var i = 0; i < this.skusData.length; i++) {
+                if (i === index) {
+                    // this.skusData[i].image = myReader.result;
+                    this.skusData[i].vegImage = this.vegImage;
+                }
+            }
+        }
+        myReader1.readAsDataURL(file);
+    }
+
 
     sku() {
         this.skuImg = ''
+        this.vegImage = ''
         this.skusData.push({
             size: '',
             quantity: '',
@@ -313,7 +346,8 @@ export class AddProductsComponent implements OnInit {
             offer: '',
             sellingPrice: '',
             stock: '',
-            skuImage: this.skuImg
+            skuImage: this.skuImg,
+            vegImage: this.vegImage
         });
     }
 
@@ -325,7 +359,7 @@ export class AddProductsComponent implements OnInit {
             'subcategory_id': (this.subCatId === undefined) ? this.subCateId : this.subCatId,
             'image': this.images,
             "sku": this.size,
-            "description": this.textarea,
+            "description": this.Description,
             "actual_price": this.mrp,
             "offer_price": this.offer,
             "manufacture_name": this.Manufacture
@@ -344,5 +378,8 @@ export class AddProductsComponent implements OnInit {
                     console.log(error, "error");
                 })
     }
-
+    deliveryOption: any;
+    changeDeliveryOpt(evt) {
+        this.deliveryOption = evt;
+    }
 }

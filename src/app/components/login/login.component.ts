@@ -33,6 +33,7 @@ export class LoginComponent implements OnInit {
             if (resp.json().status === 200) {
                 swal(resp.json().message, '', 'success');
                 this.router.navigate(['/category']);
+                localStorage.setItem('token', JSON.stringify(resp.json().token));
             }
             else if (resp.json().status === 400) {
                 swal(resp.json().message, '', 'error');

@@ -39,7 +39,7 @@
                                                 <th>Sub Category Name </th>
                                                 <th>Product Name </th>
                                                 <th>Product Image </th>
-                                                <th>Date </th>
+                                                <!-- <th>Date </th> -->
                                                 <th>Actions </th>
                                             </tr>
                                         </thead>
@@ -51,7 +51,7 @@
                                                 <td>{{prod.title}}</td>
                                                 <td>
                                                     <img [src]="prod.image" alt="prod.image" /></td>
-                                                <td>{{prod.created_on | date: 'dd/MM/yyyy'}}</td>
+                                                <!-- <td>{{prod.created_on | date: 'dd/MM/yyyy'}}</td> -->
                                                 <td>
                                                     <!-- <a routerLink="/addprducts" class="btn btn-outline-primary" (click)="editProd(prod.title,prod.category_id,prod.main_cat,prod.id,prod.sub_cat,prod.category2_id)">Edit</a> -->
                                                     <a routerLink="/addprducts" class="btn btn-outline-primary" (click)="editProd(prod.id)">Edit</a>

@@ -1,5 +1,9 @@
-.fa-product-hunt,.fa-cog,.fa-bug,.fa-caret-square-o-right{
+.fa-product-hunt,.fa-cog,.fa-bug,.fa-caret-square-o-right,.fa-cart-arrow-down{
     padding-right: 20px;
+    font-size: 17px;
+}
+.fa-truck{
+    padding-right: 19px;
     font-size: 17px;
 }
 .profile-image img{

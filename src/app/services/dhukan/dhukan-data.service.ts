@@ -81,4 +81,36 @@ export class AppService {
         const headers = new Headers({ 'Content-Type': "application/JSON" });
         return this.http.post(AppSettings.deleteProImgUrl, params, { headers: headers })
     }
+    getVendors() {
+        const headers = new Headers({ 'Content-Type': "application/x-www-form-urlencoded" });
+        return this.http.get(AppSettings.getVendorUrl, { headers: headers })
+    }
+    getVendorsbyId(id) {
+        const headers = new Headers({ 'Content-Type': "application/JSON" });
+        return this.http.get(AppSettings.getVendorById + id, { headers: headers })
+    }
+    updateVendorbyId(id, params) {
+        const headers = new Headers({ 'Content-Type': "application/JSON" });
+        return this.http.put(AppSettings.updateVendorById + id, params, { headers: headers })
+    }
+    deleteVendorbyId(id) {
+        const headers = new Headers({ 'Content-Type': "application/JSON" });
+        return this.http.delete(AppSettings.deleteVendorById + id, { headers: headers })
+    }
+    getOffers() {
+        const headers = new Headers({ 'Content-Type': "application/x-www-form-urlencoded" });
+        return this.http.get(AppSettings.getOffersUrl, { headers: headers })
+    }
+    postOffersUrl(id) {
+        const headers = new Headers({ 'Content-Type': "application/JSON" });
+        return this.http.post(AppSettings.postOffersUrl + id, { headers: headers })
+    }
+
+    // getOrders() {
+    //     const headers = new Headers({
+    //         'Content-Type': "application/JSON",
+    //         'token': localStorage.token,
+    //     });
+    //     return this.http.get(AppSettings.getOrdersUrl, { headers: headers });
+    // }
 }

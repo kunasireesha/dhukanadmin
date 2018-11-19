@@ -16,9 +16,11 @@
                 <div class="card">
                     <div class="card-body">
                         <!-- <a href="" id="show" class="btn  btn-maron" style="float: right">Export To Excel</a> -->
-                        <!-- <a routerLink="/addvendors" id="show" class="btn  btn-maron" style="float: right">Add Vendor</a> -->
+                        <a routerLink="/addOffers" (click)="addCoupon('')" id="show" class="btn  btn-maron" style="float: right">Add
+                            Coupon
+                        </a>
                         <h4 class="card-title">
-                            vendors </h4>
+                            Total Coupons </h4>
                         <br/>
                         <div class="row">
                             <div class="col-12">
@@ -27,23 +29,26 @@
                                         <thead class="thead-dark">
                                             <tr>
                                                 <th>S.no</th>
-                                                <th>Contact Name </th>
-                                                <th>Business Name</th>
-                                                <th>Email </th>
-                                                <th>Phone </th>
-                                                <th>Logo</th>
+                                                <th>Coupon Code</th>
+                                                <th>Discount Type</th>
+                                                <th>Amount</th>
+                                                <th>Percentage</th>
+                                                <th>Total Count</th>
+                                                <th>Up to </th>
+                                                <!-- <th>Logo</th> -->
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr class="todo-list" *ngFor="let vendorDetails of vendors;let i = index">
+                                            <tr class="todo-list" *ngFor="let coupons of coupons;let i = index">
                                                 <td>{{i+1}}</td>
-                                                <td>{{vendorDetails.first_name}}</td>
-                                                <td>{{vendorDetails.business_name}}</td>
-                                                <td>{{vendorDetails.email}}</td>
-                                                <td>{{vendorDetails.phone}}</td>
-                                                <td>
-                                                    <img src="assets/images/samples/1.jpg"> </td>
+                                                <td>{{coupons.voucher_code}}</td>
+                                                <td>{{coupons.discount_type}}</td>
+                                                <td>{{coupons.discount_amount}}</td>
+                                                <td>{{coupons.discount_percentage}}</td>
+                                                <td>{{coupons.total_count}}</td>
+                                                <td>{{coupons.minimum_value}}</td>
+
                                                 <td>
                                                     <a routerLink="/addvendors" class="btn btn-outline-primary" (click)="editVendor(vendorDetails.u_id)">Edit</a>
                                                     <a class="btn btn-outline-primary vendor-delete" (click)="deleteVendor(vendorDetails.u_id)">Delete</a>
