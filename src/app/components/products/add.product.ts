@@ -52,11 +52,11 @@ export class AddProductsComponent implements OnInit {
     skusData = [];
     skuValues = {
         size: '',
-        quantity: '',
+        quantity: 0,
         mrp: '',
         offer: '',
         sellingPrice: '',
-        stock: '',
+        stock: 0,
         skuImage: this.skuImg,
         vegImage: this.vegImage
     }
@@ -64,7 +64,7 @@ export class AddProductsComponent implements OnInit {
     Manufacture;
     subcatId;
     size;
-    quantity;
+    quantity: string;
     brand;
     brandid;
     actualPrice;
@@ -250,6 +250,10 @@ export class AddProductsComponent implements OnInit {
     }
 
     insertProduct() {
+        for (var i = 0; i < this.skusData.length; i++) {
+            this.skusData[i].quantity = this.skusData[i].quantity.toString();
+            this.skusData[i].stock = this.skusData[i].stock.toString();
+        }
         var data = {
             'id': this.productId,
             'title': this.proName,
@@ -263,15 +267,14 @@ export class AddProductsComponent implements OnInit {
             'discount_amount': this.disAmount,
             'discount_percentage': this.disPercentage,
             'express_delivery': true,
-            "normal_delivery": false,
+            'normal_delivery': false,
             'description': this.Description,
             'specification': this.specification,
             'terms': this.terms,
             'manufacture_name': this.Manufacture,
             'sku': this.skusData,
             'question': this.faq,
-            'answer': this.answer,
-
+            'answer': this.answer
         }
         this.appService.insertProduct(data)
             .subscribe(resp => {
@@ -386,15 +389,16 @@ export class AddProductsComponent implements OnInit {
 
 
     sku() {
-        this.skuImg = ''
-        this.vegImage = ''
+        this.skuImg = '';
+        this.vegImage = '';
+        this.images1 = [];
         this.skusData.push({
             size: '',
-            quantity: '',
+            quantity: 0,
             mrp: '',
             offer: '',
             sellingPrice: '',
-            stock: '',
+            stock: 0,
             skuImage: this.skuImg,
             vegImage: this.vegImage
         });
