@@ -73,6 +73,7 @@ export class AddProductsComponent implements OnInit {
     disAmount;
     disPercentage;
     answer;
+    isChecked;
     constructor(private appService: AppService, private route: ActivatedRoute, public proserv: ProductService, public router: Router) {
         this.route.queryParams.subscribe(params => {
             this.action = params.prodId;
@@ -138,8 +139,11 @@ export class AddProductsComponent implements OnInit {
         }
     }
     // value = [];
-    checkbox(evt) {
-        alert(evt);
+    checkbox(evt: boolean, id, data) {
+        if (id === data.id) {
+            this.isChecked = evt;
+        }
+        alert(this.isChecked);
     }
 
 
@@ -262,8 +266,8 @@ export class AddProductsComponent implements OnInit {
             'discount_type': this.discountOption,
             'discount_amount': this.disAmount,
             'discount_percentage': this.disPercentage,
-            'express_delivery': true,
-            "normal_delivery": false,
+            'express_delivery': this.isChecked,
+            "normal_delivery": this.isChecked,
             'description': this.Description,
             'specification': this.specification,
             'terms': this.terms,
@@ -273,6 +277,7 @@ export class AddProductsComponent implements OnInit {
             'answer': this.answer,
 
         }
+        console.log(data);
         this.appService.insertProduct(data)
             .subscribe(resp => {
                 if (resp.json().status === 200) {

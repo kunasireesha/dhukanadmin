@@ -29,5 +29,7 @@ export const AppSettings = {
     getOfferbyId: 'http://192.168.0.116:9000/offers/',
     updateOfferById: 'http://192.168.0.116:9000/offers/',
     deleteOfferById: 'http://192.168.0.116:9000/offers/',
-    addDeliveryUrl: base_url + 'oders/delvory'
+    addDeliveryUrl: base_url + 'oders/delvory',
+    getDeliveryUrl: base_url + 'oders/getdelvory',
+    deleteDeliveryById: base_url + 'oders/deletedelvory'
 }
