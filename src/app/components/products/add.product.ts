@@ -70,7 +70,9 @@ export class AddProductsComponent implements OnInit {
     actualPrice;
     sellingPrice;
     list: any[];
-
+    disAmount;
+    disPercentage;
+    answer;
     constructor(private appService: AppService, private route: ActivatedRoute, public proserv: ProductService, public router: Router) {
         this.route.queryParams.subscribe(params => {
             this.action = params.prodId;
@@ -99,7 +101,7 @@ export class AddProductsComponent implements OnInit {
             {
                 id: 2,
                 title: 'Normal Delivery',
-                checked: true,
+                checked: false,
             }
         ]
         if (this.action !== '') {
@@ -254,15 +256,21 @@ export class AddProductsComponent implements OnInit {
             'category_id': this.caId,
             'image': this.images,
             'subcategory_id': (this.subCatId === undefined) ? this.subCategoryId : this.subCatId,
+            'actual_price': this.actualPrice,
+            'selling_price': this.sellingPrice,
+            'quality_image': this.strImage,
+            'discount_type': this.discountOption,
+            'discount_amount': this.disAmount,
+            'discount_percentage': this.disPercentage,
+            'delivery': this.value,
             'description': this.Description,
-            'manufacture_name': this.Manufacture,
-            'sku': this.skusData,
-            'faq': this.faq,
             'specification': this.specification,
             'terms': this.terms,
-            'delivery': this.value,
-            'actual_price': this.actualPrice,
-            'selling_price': this.sellingPrice
+            'manufacture_name': this.Manufacture,
+            'sku': this.skusData,
+            'question': this.faq,
+            'answer': this.answer,
+
         }
         this.appService.insertProduct(data)
             .subscribe(resp => {
@@ -421,7 +429,8 @@ export class AddProductsComponent implements OnInit {
     discountOption: any;
     changeDiscountOpt(event) {
         this.discountOption = event;
-        if (this.discountOption === '1') {
+        alert(this.discountOption);
+        if (this.discountOption === 'Rupees') {
             this.amount = true;
             this.percentage = false;
         }
