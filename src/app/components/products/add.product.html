@@ -101,8 +101,8 @@
                                         <div class="form-group">
                                             <h6>Select Delivery Options</h6>
                                             <div class="margin" *ngFor="let item of list">
-                                                <label class="checkbox-inline"><input type="checkbox" name="item" [value]="item.title"
-                                                        [(ngModel)]="item.checked" (click)="checkbox($event.target.value)">{{item.title}}</label>
+                                                <label class="checkbox-inline"><input type="checkbox" name="item" [(ngModel)]="item.checked"
+                                                        [value]="item.checked" (click)="checkbox($event.target.value)">{{item.title}}</label>
                                             </div>
                                         </div>
                                         <!-- <div class="form-group date">

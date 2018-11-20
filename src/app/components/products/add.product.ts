@@ -137,9 +137,9 @@ export class AddProductsComponent implements OnInit {
             }
         }
     }
-    value = [];
+    // value = [];
     checkbox(evt) {
-        this.value.push(evt);
+        alert(evt);
     }
 
 
@@ -262,7 +262,8 @@ export class AddProductsComponent implements OnInit {
             'discount_type': this.discountOption,
             'discount_amount': this.disAmount,
             'discount_percentage': this.disPercentage,
-            'delivery': this.value,
+            'express_delivery': true,
+            "normal_delivery": false,
             'description': this.Description,
             'specification': this.specification,
             'terms': this.terms,
