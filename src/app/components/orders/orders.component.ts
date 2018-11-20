@@ -10,13 +10,13 @@ import { Component, OnInit } from '@angular/core';
 export class OrdersComponent implements OnInit {
 
     constructor(private appServie: AppService) { }
-
+    orders;
     ngOnInit() {
         this.getOrders();
     }
     getOrders() {
         this.appServie.getOrders().subscribe(res => {
-            console.log(res.json());
+            this.orders = res.json().data;
         }, error => {
 
         })

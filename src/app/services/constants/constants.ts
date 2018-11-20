@@ -23,7 +23,7 @@ export const AppSettings = {
     getVendorById: base_url + 'vendors/',
     updateVendorById: base_url + 'vendors/',
     deleteVendorById: 'http://192.168.0.116:9000/vendors/',
-    getOrdersUrl: base_url + 'orders',
+    getOrdersUrl: base_url + 'oders',
     getOffersUrl: 'http://192.168.0.116:9000/offers',
     postOffersUrl: 'http://192.168.0.116:9000/offers',
     getOfferbyId: 'http://192.168.0.116:9000/offers/',
