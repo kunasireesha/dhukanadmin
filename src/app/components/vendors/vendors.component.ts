@@ -34,8 +34,18 @@ export class VendorsComponent implements OnInit {
         this.router.navigate(['/addvendors'], navigationExtras);
     }
     deleteVendor(id) {
-        this.appService.deleteVendorbyId(id).subscribe(resp => {
-            this.getVendors();
-        })
+        swal("Do you want to delete?", "", "warning", {
+            buttons: ["Cancel!", "Okay!"],
+        }).then((value) => {
+
+            if (value === true) {
+                this.appService.deleteVendorbyId(id).subscribe(resp => {
+                    this.getVendors();
+                })
+            } else {
+                return;
+            }
+        });
+
     }
 }

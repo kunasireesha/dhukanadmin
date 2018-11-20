@@ -17,19 +17,7 @@ export class SubCatComponent implements OnInit {
     ngOnInit() {
         this.getSubCategory();
     }
-    delete() {
-        swal({
-            title: "Are you sure?",
-            text: "Are you sure that you want to delete",
-            icon: "warning",
-            dangerMode: true,
-        })
-            .then(willDelete => {
-                if (willDelete) {
-                    swal("Deleted!", "Your file has been deleted!", "success");
-                }
-            });
-    }
+
     getSubCategory() {
         this.appService.getSubCategery().subscribe(resp => {
             this.subCategory = resp.json().result;
@@ -43,13 +31,23 @@ export class SubCatComponent implements OnInit {
         )
     }
     deleteSubCat(id) {
-        var data = {
-            'sub_cat_id': id
-        }
-        this.appService.deleteSubCat(data).subscribe(resp => {
-            swal("delete subCat successfully", '', 'success');
-            this.getSubCategory();
-        })
+        swal("Do you want to delete?", "", "warning", {
+            buttons: ["Cancel!", "Okay!"],
+        }).then((value) => {
+
+            if (value === true) {
+                var data = {
+                    'sub_cat_id': id
+                }
+                this.appService.deleteSubCat(data).subscribe(resp => {
+                    swal("delete subCat successfully", '', 'success');
+                    this.getSubCategory();
+                })
+            } else {
+                return;
+            }
+        });
+
     }
 
 

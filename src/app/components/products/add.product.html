@@ -155,9 +155,10 @@
                                                 />
                                             </div>
                                             <div class="form-group">
-
-                                                <input id="category" class="form-control" type="text" placeholder="Quantity" [(ngModel)]="skuValues.quantity" [ngModelOptions]="{standalone:true}"
-                                                />
+                                                <input id="category" class="form-control" min='0' max='10' type="number" placeholder="Quantity" [(ngModel)]="skuValues.quantity"
+                                                    [ngModelOptions]="{standalone:true}" onkeypress="return (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57">
+                                                <!-- <input id="category" class="form-control" type="text" placeholder="Quantity" [(ngModel)]="skuValues.quantity" [ngModelOptions]="{standalone:true}"
+                                                /> -->
                                             </div>
                                             <div class="form-group">
 
@@ -176,7 +177,8 @@
                                             </div>
                                             <div class="form-group">
 
-                                                <input id="category" class="form-control" type="text" placeholder="Stock" [(ngModel)]="skuValues.stock" [ngModelOptions]="{standalone:true}"
+                                                <input id="category" class="form-control" type="text" placeholder="Stock" min='0' max='20' type="number" [(ngModel)]="skuValues.stock"
+                                                    [ngModelOptions]="{standalone:true}" onkeypress="return (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57"
                                                 />
                                             </div>
                                             <div class="form-group">

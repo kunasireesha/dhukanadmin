@@ -76,22 +76,33 @@ export class ProductsComponent implements OnInit {
     }
     // delete product
     deleteProduct(id) {
-        var data = {
-            'id': id
-        }
-        this.appService.deleteProduct(data)
-            .subscribe(resp => {
-                if (resp.json().message === 'Success') {
-                    swal('product delete successfully', '', 'success')
-                    this.getProduct();
-                }
-                else {
+        swal("Do you want to delete?", "", "warning", {
+            buttons: ["Cancel!", "Okay!"],
+        }).then((value) => {
 
+            if (value === true) {
+                var data = {
+                    'id': id
                 }
-            },
-                error => {
-                    console.log(error, "error");
-                })
+                this.appService.deleteProduct(data)
+                    .subscribe(resp => {
+                        if (resp.json().message === 'Success') {
+                            swal('product delete successfully', '', 'success')
+                            this.getProduct();
+                        }
+                        else {
+
+                        }
+                    },
+                        error => {
+                            console.log(error, "error");
+                        })
+            } else {
+                return;
+            }
+        });
+
+
     }
     addprod(add) {
         let navigationExtras: NavigationExtras = {

@@ -429,7 +429,6 @@ export class AddProductsComponent implements OnInit {
     discountOption: any;
     changeDiscountOpt(event) {
         this.discountOption = event;
-        alert(this.discountOption);
         if (this.discountOption === 'Rupees') {
             this.amount = true;
             this.percentage = false;

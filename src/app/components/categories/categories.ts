@@ -35,17 +35,28 @@ export class CategoriesComponent implements OnInit {
 
     //delete category
     deleteCat(id) {
-        var data = {
-            'id': id
-        }
-        this.appService.deleteCat(data)
-            .subscribe(resp => {
-                swal("Deleted successfully", '', 'success');
-                this.getCat();
-            }),
-            error => {
-                console.log(error, "error");
+
+        swal("Do you want to delete?", "", "warning", {
+            buttons: ["Cancel!", "Okay!"],
+        }).then((value) => {
+
+            if (value === true) {
+                var data = {
+                    'id': id
+                }
+                this.appService.deleteCat(data)
+                    .subscribe(resp => {
+                        swal("Deleted successfully", '', 'success');
+                        this.getCat();
+                    }),
+                    error => {
+                        console.log(error, "error");
+                    }
+            } else {
+                return;
             }
+        });
+
     }
 
     // add and update category
