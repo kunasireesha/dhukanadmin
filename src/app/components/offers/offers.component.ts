@@ -40,7 +40,7 @@ export class OffersComponent implements OnInit {
 
             if (value === true) {
                 this.AppService.deleteOfferById(id).subscribe(response => {
-                    console.log(response.json());
+                    swal("Deleted successfully", '', 'success');
                     this.getCoupons();
                 }, error => {
 
