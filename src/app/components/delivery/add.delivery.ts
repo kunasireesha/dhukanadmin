@@ -26,9 +26,6 @@ export class AddDeliveryComponent implements OnInit {
         }
         this.appService.addDeliveryUrl(data).subscribe(res => {
             swal(res.json().message, "", "success");
-            if (res.json().status === 200) {
-                swal(res.json().message, "", "error");
-            }
         }, error => {
 
         })

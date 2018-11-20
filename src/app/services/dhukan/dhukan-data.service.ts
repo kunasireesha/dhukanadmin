@@ -130,4 +130,18 @@ export class AppService {
         });
         return this.http.get(AppSettings.getOrdersUrl, { headers: headers });
     }
+    getDelivery() {
+        const headers = new Headers({
+            'Content-Type': "application/JSON",
+            // 'token': localStorage.token,
+        });
+        return this.http.get(AppSettings.getDeliveryUrl, { headers: headers });
+    }
+    deleteDelivery(id) {
+        const headers = new Headers({
+            'Content-Type': "application/JSON",
+            // 'token': localStorage.token,
+        });
+        return this.http.post(AppSettings.deleteDeliveryById, id, { headers: headers });
+    }
 }

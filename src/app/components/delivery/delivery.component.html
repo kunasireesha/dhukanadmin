@@ -37,17 +37,16 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr class="todo-list" *ngFor="let vendorDetails of vendors;let i = index">
+                                            <tr class="todo-list" *ngFor="let item of delData;let i = index">
                                                 <td>{{i+1}}</td>
-                                                <td>{{vendorDetails.contact_name}}</td>
-                                                <td>{{vendorDetails.business_name}}</td>
-                                                <td>{{vendorDetails.email}}</td>
-                                                <td>{{vendorDetails.phone}}</td>
+                                                <td>{{item.first_name}}</td>
+                                                <td>{{item.email}}</td>
+                                                <td>{{item.phone}}</td>
                                                 <td>
-                                                    <img src="assets/images/samples/1.jpg"> </td>
+                                                    <img [src]="url+item.image"> </td>
                                                 <td>
                                                     <a routerLink="/addvendors" class="btn btn-outline-primary">Edit</a>
-                                                    <a (click)="delete()" class="btn btn-outline-primary vendor-delete">Delete</a>
+                                                    <a (click)="delete(item.u_id)" class="btn btn-outline-primary vendor-delete">Delete</a>
                                                 </td>
                                             </tr>
                                         </tbody>
