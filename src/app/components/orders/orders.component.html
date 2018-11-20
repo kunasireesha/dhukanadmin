@@ -27,19 +27,19 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr class="todo-list">
-                                                <td>1 </td>
-                                                <td>OrderId 1 </td>
-                                                <td>TransactionId 1</td>
-                                                <td>120656 </td>
-                                                <td>New Orders</td>
+                                            <tr class="todo-list" *ngFor="let item of orders; let i =index">
+                                                <td>{{i+1}} </td>
+                                                <td>{{item.order_id}} </td>
+                                                <td>{{item.delivery_address}}</td>
+                                                <td> </td>
+                                                <td>{{item.status}}</td>
                                                 <td>
                                                     <a class="btn btn-outline-primary">Edit</a>
                                                     <button (click)="delete()" class="btn  remove btn-outline-primary">Remove
                                                     </button>
                                                 </td>
                                             </tr>
-                                            <tr class="todo-list">
+                                            <!-- <tr class="todo-list">
                                                 <td>2 </td>
                                                 <td>OrderId 2 </td>
                                                 <td>TransactionId 2 </td>
@@ -122,7 +122,7 @@
                                                     <button (click)="delete()" class="btn  remove btn-outline-primary">Remove
                                                     </button>
                                                 </td>
-                                            </tr>
+                                            </tr> -->
                                         </tbody>
                                     </table>
                                 </div>

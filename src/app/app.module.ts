@@ -70,6 +70,7 @@ import { MatButtonModule, MatCheckboxModule } from '@angular/material';
 import { ExcelService } from './services/excel.service';
 import { DeliveryComponent } from './components/delivery/delivery.component';
 import { OffersComponent } from './components/offers/offers.component';
+import { ContentManagementComponent } from './components/content-management/content-management.component';
 
 
 // import { ExcelService } from './excel.service';
@@ -101,7 +102,8 @@ import { OffersComponent } from './components/offers/offers.component';
         DeliveryComponent,
         AddDeliveryComponent,
         OffersComponent,
-        AddOffersComponent
+        AddOffersComponent,
+        ContentManagementComponent
 
     ],
     imports: [
@@ -146,6 +148,8 @@ import { OffersComponent } from './components/offers/offers.component';
             { path: 'addDelivery', component: AddDeliveryComponent, data: [{ page: 'addDelivery' }] },
             { path: 'offers', component: OffersComponent, data: [{ page: 'addOffers' }] },
             { path: 'addOffers', component: AddOffersComponent, data: [{ page: 'addOffers' }] },
+            { path: 'content', component: ContentManagementComponent, data: [{ page: 'content' }] },
+            { path: 'addcontent', component: ContentManagementComponent, data: [{ page: 'addcontent' }] }
 
         ], { useHash: true }),
         BrowserAnimationsModule
