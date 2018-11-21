@@ -1,3 +1,5 @@
+import { AddBannerComponent } from './components/banner/add.banner';
+import { BannerComponent } from './components/banner/banner.component';
 import { AddOffersComponent } from './components/offers/add.offer';
 import { AddDeliveryComponent } from './components/delivery/add.delivery';
 
@@ -74,6 +76,7 @@ import { OffersComponent } from './components/offers/offers.component';
 import { ContentManagementComponent } from './components/content-management/content-management.component';
 
 
+
 // import { ExcelService } from './excel.service';
 // import {MatDatepickerModule,MatNativeDateModule } from '@angular/material/datepicker';
 
@@ -104,7 +107,9 @@ import { ContentManagementComponent } from './components/content-management/cont
         AddDeliveryComponent,
         OffersComponent,
         AddOffersComponent,
-        ContentManagementComponent
+        ContentManagementComponent,
+        BannerComponent,
+        AddBannerComponent
 
     ],
     imports: [
@@ -151,7 +156,9 @@ import { ContentManagementComponent } from './components/content-management/cont
             { path: 'offers', component: OffersComponent, data: [{ page: 'addOffers' }] },
             { path: 'addOffers', component: AddOffersComponent, data: [{ page: 'addOffers' }] },
             { path: 'content', component: ContentManagementComponent, data: [{ page: 'content' }] },
-            { path: 'addcontent', component: ContentManagementComponent, data: [{ page: 'addcontent' }] }
+            { path: 'addcontent', component: ContentManagementComponent, data: [{ page: 'addcontent' }] },
+            { path: 'banner', component: BannerComponent, data: [{ page: 'banner' }] },
+            { path: 'addbanner', component: AddBannerComponent, data: [{ page: 'addbanner' }] },
 
         ], { useHash: true }),
         BrowserAnimationsModule

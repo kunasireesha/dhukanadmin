@@ -43,11 +43,6 @@ export class DeliveryComponent implements OnInit {
                 return;
             }
         });
-
-
-
-
-
     }
     edit(uId) {
         let navigationExtras: NavigationExtras = {
