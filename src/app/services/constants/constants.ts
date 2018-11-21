@@ -1,4 +1,5 @@
-const base_url = 'http://192.169.243.70:5000/';
+// const base_url = 'http://192.169.243.70:5000/';
+const base_url = 'http://192.169.243.70:8200/';
 const base_url1 = 'http://192.168.0.116:9000/'
 export const AppSettings = {
     loginUrl: base_url + 'users/admin/login',
