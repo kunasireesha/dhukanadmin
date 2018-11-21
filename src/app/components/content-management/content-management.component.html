@@ -24,14 +24,22 @@
             <div class="row">
               <div class="col-12">
                 <div class="table-responsive">
-                  <ul>
-                    <li>Terms and Conditions &nbsp; ></li>
-                    <li>Privacy Policy &nbsp; ></li>
+                  <ul class="content-data">
+                    <li><a>Terms and Conditions &nbsp; ></a></li>
+                    <li><a>Privacy Policy &nbsp; ></a></li>
+                    <li><a>About Us &nbsp; ></a></li>
+                    <li><a>Returns&nbsp; ></a></li>
+                    <li><a>Delivery Information &nbsp; ></a></li>
                   </ul>
                 </div>
               </div>
             </div>
           </div>
+          <form role="form" #myForm="ngForm" accept-charset="UTF-8" novalidate>
+            <ckeditor [(ngModel)]="mycontent" #myckeditor="ngModel" name="myckeditor" required [config]="ckeConfig"
+              debounce="500" (change)="onChange($event)">
+            </ckeditor>
+          </form>
         </div>
 
 

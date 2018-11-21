@@ -20,6 +20,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { ForgotPasswordComponent } from './components/login/forgot.password';
+import { CKEditorModule } from 'ng2-ckeditor';
 //side menus
 import { LogNavComponent } from './components/sidenav/logo.nav';
 import { ProfileNavComponent } from './components/sidenav/profile.nav';
@@ -117,6 +118,7 @@ import { ContentManagementComponent } from './components/content-management/cont
         MatButtonModule,
         MatCheckboxModule,
         MyDatePickerModule,
+        CKEditorModule,
         // MatNativeDateModule,
         // MatDatepickerModule,
         TooltipModule.forRoot(),

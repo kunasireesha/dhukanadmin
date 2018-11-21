@@ -45,7 +45,8 @@
                                                 <td>
                                                     <img [src]="url+item.image"> </td>
                                                 <td>
-                                                    <a routerLink="/addvendors" class="btn btn-outline-primary">Edit</a>
+                                                    <a routerLink="/addDelivery" class="btn btn-outline-primary"
+                                                        (click)="edit(item.u_id)">Edit</a>
                                                     <a (click)="delete(item.u_id)" class="btn btn-outline-primary vendor-delete">Delete</a>
                                                 </td>
                                             </tr>

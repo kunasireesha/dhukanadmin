@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from './../../services/dhukan/dhukan-data.service';
+import { Router, NavigationExtras } from '@angular/router';
 
 @Component({
     selector: 'app-delivery',
@@ -8,7 +9,7 @@ import { AppService } from './../../services/dhukan/dhukan-data.service';
 })
 export class DeliveryComponent implements OnInit {
 
-    constructor(private appService: AppService) { }
+    constructor(private appService: AppService, public router: Router) { }
     delData;
     url;
     ngOnInit() {
@@ -47,6 +48,14 @@ export class DeliveryComponent implements OnInit {
 
 
 
+    }
+    edit(uId) {
+        let navigationExtras: NavigationExtras = {
+            queryParams: {
+                deliveryId: uId
+            }
+        }
+        this.router.navigate(['/addDelivery'], navigationExtras);
     }
 }
 

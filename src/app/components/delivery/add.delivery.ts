@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from './../../services/dhukan/dhukan-data.service';
+import { Router, NavigationExtras, ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: 'add-delivery',
@@ -8,13 +9,18 @@ import { AppService } from './../../services/dhukan/dhukan-data.service';
 
 })
 export class AddDeliveryComponent implements OnInit {
-
-    constructor(private appService: AppService) { }
+    deliveryId;
+    constructor(private appService: AppService, private route: ActivatedRoute, public router: Router) {
+        this.route.queryParams.subscribe(params => {
+            this.deliveryId = params.deliveryId
+        })
+    }
     contact;
     email;
     password;
     phone;
     ngOnInit() {
+        this.getDelivory();
     }
     addDelivory() {
         var data = {
@@ -24,11 +30,17 @@ export class AddDeliveryComponent implements OnInit {
             'password': this.password,
             'phone': this.phone
         }
-        this.appService.addDeliveryUrl(data).subscribe(res => {
-            swal(res.json().message, "", "success");
-        }, error => {
+        if ((this.contact = this.email = this.strImage = this.password = this.phone) === undefined) {
+            swal("Please fill the fields", "", "warning");
+        }
+        else {
+            this.appService.addDeliveryUrl(data).subscribe(res => {
+                swal(res.json().message, "", "success");
+            }, error => {
+                swal(error.json().message, "", "error");
+            })
+        }
 
-        })
     }
     image;
     strImage;
@@ -45,6 +57,9 @@ export class AddDeliveryComponent implements OnInit {
             this.strImage = this.image.split(',')[1];
         }
         myReader.readAsDataURL(file);
+    }
+    getDelivory() {
+
     }
 
 }

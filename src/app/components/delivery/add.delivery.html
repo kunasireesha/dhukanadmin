@@ -51,8 +51,13 @@
                                             </div>
                                         </div>
                                         <br>
-                                        <button type="submit" class="btn btn-primary vendor-button" (click)="addDelivory()">
+                                        <button type="submit" *ngIf="!deliveryId" class="btn btn-primary vendor-button"
+                                            (click)="addDelivory()">
                                             Add
+                                        </button>
+                                        <button type="submit" *ngIf="deliveryId" class="btn btn-primary vendor-button"
+                                            (click)="addDelivory()">
+                                            Update
                                         </button>
                                     </fieldset>
                                 </form>

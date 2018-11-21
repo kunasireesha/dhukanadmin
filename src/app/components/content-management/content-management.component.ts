@@ -8,8 +8,16 @@ import { Component, OnInit } from '@angular/core';
 export class ContentManagementComponent implements OnInit {
 
   constructor() { }
+  mycontent;
+  ckeConfig: any;
 
   ngOnInit() {
+    this.mycontent = "hello";
+    this.ckeConfig = {
+      allowedContent: false,
+      extraPlugins: 'divarea',
+      forcePasteAsPlainText: true
+    };
   }
 
 }
