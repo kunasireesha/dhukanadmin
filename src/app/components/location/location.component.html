@@ -1,0 +1,74 @@
+<div class="container-scroller">
+  <!-- partial:partials/_navbar.html -->
+
+  <logo-nav></logo-nav>
+  <!-- partial -->
+  <div class="container-fluid page-body-wrapper">
+    <div class="row row-offcanvas row-offcanvas-right">
+      <!-- partial:partials/_settings-panel.html -->
+      <header-nav></header-nav>
+      <profile-nav></profile-nav>
+      <div class="content-wrapper">
+        <div class="card">
+          <div class="card-body">
+            <!-- <a href="" id="show" class="btn  btn-maron" style="float: right">Export To Excel</a> -->
+            <!-- <a routerLink="/addDelivery" id="show" class="btn  btn-maron" style="float: right">Add Delivery
+          Boy</a> -->
+            <h4 class="card-title">
+              Location Management </h4>
+            <br />
+            <div class="row">
+              <div class="col-12">
+                <div>
+                  <!-- <form #userlogin="ngForm" (ngSubmit)="onClickSubmit(userlogin.value)">
+                    <input type="text" name="emailid" placeholder="emailid" ngModel>
+                    <br />
+                    <input type="password" name="passwd" placeholder="passwd" ngModel>
+                    <br />
+                    <input type="submit" value="submit">
+                  </form> -->
+                  <form>
+                    <div class="form-group mb-3">
+                      <label for="inputState">Select country</label>
+                      <select id="inputState" class="form-control" (change)="changeCountry($event.target.value)">
+                        <option selected>Choose...</option>
+                        <option value="IND">India</option>
+                        <option value="UAE">UAE</option>
+                      </select>
+                    </div>
+
+                    <!-- <div class="form-group mb-3">
+                      <label for="inputState">Select Location</label>
+                      <select id="inputState" class="form-control" [(ngModel)]="formData.lId" name="lId" (change)="changeLocation($event.target.value)">
+                        <option selected value=''>Choose...</option>
+                        <option *ngFor="let data of locationData" value="{{data.id}}">
+                          {{data.location_name}}
+                        </option>
+                      </select>
+                    </div>
+
+                    <div class="form-group mb-3">
+                      <label for="inputState">Pincode</label>
+                      <select id="inputState" class="form-control" [(ngModel)]="formData.pincode" name="pincode"
+                        (change)="changeSubLocation()">
+                        <option selected value=''>Choose...</option>
+                        <option *ngFor="let data of subLocationData" value="{{data.pincode}}">
+                          {{data.address}}
+                        </option>
+                      </select>
+                    </div> -->
+                    <div class="row justify-content-center ">
+                      <div class="col-8">
+                        <button type="submit" class="btn button submit-button" (click)="submitLocation(subLocationName,pincodeOfLocation)">Submit</button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

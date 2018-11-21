@@ -269,7 +269,6 @@ export class AddProductsComponent implements OnInit {
             'quality_image': this.strImage,
             'discount_type': this.discountOption,
             'discount_amount': this.disAmount,
-            'discount_percentage': this.disPercentage,
             'express_delivery': true,
             'normal_delivery': false,
             'description': this.Description,

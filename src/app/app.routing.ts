@@ -18,6 +18,9 @@ import { AddVendorsComponent } from './components/vendors/add.vendor';
 import { OrdersComponent } from './components/orders/orders.component';
 import { ForgotPasswordComponent } from './components/login/forgot.password';
 import { AddDeliveryComponent } from './components/delivery/add.delivery';
+import { BannerComponent } from './components/banner/banner.component';
+import { AddBannerComponent } from './components/banner/add.banner';
+import { LocationComponent } from './components/location/location.component'
 
 export const routes: Routes = [
     { path: '', pathMatch: 'full', redirectTo: 'login' },
@@ -36,7 +39,10 @@ export const routes: Routes = [
     { path: 'vendors', component: VendorsComponent, data: [{ page: 'vendors' }] },
     { path: 'addvendors', component: AddVendorsComponent, data: [{ page: 'addvendors' }] },
     { path: 'orders', component: OrdersComponent, data: [{ page: 'orders' }] },
-    { path: 'adddelivery', component: AddDeliveryComponent, data: [{ page: 'adddelivery' }] }
+    { path: 'adddelivery', component: AddDeliveryComponent, data: [{ page: 'adddelivery' }] },
+    { path: 'banner', component: BannerComponent, data: [{ page: 'banner' }] },
+    { path: 'addbanner', component: AddBannerComponent, data: [{ page: 'addbanner' }] },
+    { path: 'location', component: LocationComponent, data: [{ page: 'location' }] },
 ];
 
 export const routing: ModuleWithProviders = RouterModule.forRoot(routes);

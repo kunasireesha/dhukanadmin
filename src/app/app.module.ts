@@ -74,6 +74,7 @@ import { ExcelService } from './services/excel.service';
 import { DeliveryComponent } from './components/delivery/delivery.component';
 import { OffersComponent } from './components/offers/offers.component';
 import { ContentManagementComponent } from './components/content-management/content-management.component';
+import { LocationComponent } from './components/location/location.component';
 
 
 
@@ -109,7 +110,8 @@ import { ContentManagementComponent } from './components/content-management/cont
         AddOffersComponent,
         ContentManagementComponent,
         BannerComponent,
-        AddBannerComponent
+        AddBannerComponent,
+        LocationComponent
 
     ],
     imports: [
@@ -159,6 +161,7 @@ import { ContentManagementComponent } from './components/content-management/cont
             { path: 'addcontent', component: ContentManagementComponent, data: [{ page: 'addcontent' }] },
             { path: 'banner', component: BannerComponent, data: [{ page: 'banner' }] },
             { path: 'addbanner', component: AddBannerComponent, data: [{ page: 'addbanner' }] },
+            { path: 'location', component: LocationComponent, data: [{ page: 'location' }] },
 
         ], { useHash: true }),
         BrowserAnimationsModule

@@ -13,9 +13,9 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 
 })
 export class ProfileNavComponent implements OnInit {
-    category:any
+    category: any
 
-    constructor(private route: ActivatedRoute,private appService:AppService,
+    constructor(private route: ActivatedRoute, private appService: AppService,
         private http: HttpClient) {
         this.pageNav = this.route.snapshot.data[0]['page'];
     }
@@ -23,5 +23,5 @@ export class ProfileNavComponent implements OnInit {
     ngOnInit() {
         // this.getCat();
     }
-    
+
 }
