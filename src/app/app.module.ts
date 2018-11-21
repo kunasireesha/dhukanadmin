@@ -1,8 +1,8 @@
+import { AddSlotComponent } from './components/slot/add.slot';
 import { AddBannerComponent } from './components/banner/add.banner';
 import { BannerComponent } from './components/banner/banner.component';
 import { AddOffersComponent } from './components/offers/add.offer';
 import { AddDeliveryComponent } from './components/delivery/add.delivery';
-import { CKEditorModule } from 'ng2-ckeditor';
 import { ImageUploadComponent } from './components/image-upload/image-upload.component';
 
 // import * as xlsx from "xlsx";
@@ -23,6 +23,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { ForgotPasswordComponent } from './components/login/forgot.password';
 import { CKEditorModule } from 'ng2-ckeditor';
+import { NgSelectModule } from '@ng-select/ng-select';
 //side menus
 import { LogNavComponent } from './components/sidenav/logo.nav';
 import { ProfileNavComponent } from './components/sidenav/profile.nav';
@@ -75,7 +76,7 @@ import { DeliveryComponent } from './components/delivery/delivery.component';
 import { OffersComponent } from './components/offers/offers.component';
 import { ContentManagementComponent } from './components/content-management/content-management.component';
 import { LocationComponent } from './components/location/location.component';
-import { SlotComponent } from './slot/slot.component';
+import { SlotComponent } from './components/slot/slot.component';
 
 
 
@@ -113,7 +114,8 @@ import { SlotComponent } from './slot/slot.component';
         BannerComponent,
         AddBannerComponent,
         LocationComponent,
-        SlotComponent
+        SlotComponent,
+        AddSlotComponent
 
     ],
     imports: [
@@ -128,6 +130,7 @@ import { SlotComponent } from './slot/slot.component';
         MatCheckboxModule,
         MyDatePickerModule,
         CKEditorModule,
+        NgSelectModule,
         // MatNativeDateModule,
         // MatDatepickerModule,
         TooltipModule.forRoot(),
@@ -164,6 +167,8 @@ import { SlotComponent } from './slot/slot.component';
             { path: 'banner', component: BannerComponent, data: [{ page: 'banner' }] },
             { path: 'addbanner', component: AddBannerComponent, data: [{ page: 'addbanner' }] },
             { path: 'location', component: LocationComponent, data: [{ page: 'location' }] },
+            { path: 'addslot', component: AddSlotComponent, data: [{ page: 'addslot' }] },
+            { path: 'slot', component: SlotComponent, data: [{ page: 'slot' }] },
 
         ], { useHash: true }),
         BrowserAnimationsModule
