@@ -15,11 +15,11 @@
             <div class="content-wrapper">
                 <div class="card">
                     <div class="card-body">
-                        <div class="container">
+                        <div class="container-fluid">
                             <div class="row">
-                                <div class="col-8">
+                                <div class="col-6">
+                                    <h4 class="card-title location">Location Management</h4>
                                     <form>
-                                        <p>I am autocomplete bug</p>
                                         <div class="form-group">
                                             <input placeholder="Select Address" type="text">
                                         </div>
@@ -32,7 +32,9 @@
                                         <div class="form-group">
                                             <ng-select class="form-control" [items]="cities" bindLabel="name" placeholder="Select City"></ng-select>
                                         </div>
-                                        <button type="submit">Submit</button>
+                                        <button type="submit" class="btn btn-primary vendor-button">
+                                            Add
+                                        </button>
                                     </form>
                                 </div>
                             </div>

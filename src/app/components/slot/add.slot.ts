@@ -10,6 +10,7 @@ export class AddSlotComponent implements OnInit {
     constructor() { }
 
     ngOnInit() {
+        console.log(new Date());
     }
 
 }

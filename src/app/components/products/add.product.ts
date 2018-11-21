@@ -92,16 +92,18 @@ export class AddProductsComponent implements OnInit {
         }
     }
 
+    optionsChecked = [];
+
     ngOnInit() {
         this.list = [
             {
                 id: 1,
-                title: 'Express Delivery',
+                title: 'Normal Delivery',
                 checked: true,
             },
             {
                 id: 2,
-                title: 'Normal Delivery',
+                title: 'Express Delivery',
                 checked: false,
             }
         ]
@@ -113,6 +115,8 @@ export class AddProductsComponent implements OnInit {
         this.getCat();
         this.getSubCategory();
         // this.getProduct();
+
+
 
     }
     subCategoryName;
@@ -139,11 +143,28 @@ export class AddProductsComponent implements OnInit {
         }
     }
     // value = [];
+    selectedExpressValue = false;
+    selectedNormalValue = true;
     checkbox(evt: boolean, id, data) {
-        if (id === data.id) {
-            this.isChecked = evt;
+        this.isChecked = evt;
+        for (var i = 0; i < this.list.length; i++) {
+            if (this.isChecked) {
+                if (this.list[i].id === id && data.title === 'Express Delivery') {
+                    this.isChecked = evt;
+                    this.selectedExpressValue = true;
+                    this.selectedNormalValue = true;
+                    return;
+                }
+            } else {
+                this.selectedExpressValue = false;
+                this.selectedNormalValue = true;
+                return;
+            }
         }
-        alert(this.isChecked);
+        // if (id === data.id) {
+        //     this.isChecked = evt;
+        // }
+
     }
 
 
@@ -269,8 +290,8 @@ export class AddProductsComponent implements OnInit {
             'quality_image': this.strImage,
             'discount_type': this.discountOption,
             'discount_percentage': this.disAmount,
-            'express_delivery': true,
-            'normal_delivery': false,
+            'express_delivery': this.selectedExpressValue,
+            'normal_delivery': this.selectedNormalValue,
             'description': this.Description,
             'specification': this.specification,
             'terms': this.terms,

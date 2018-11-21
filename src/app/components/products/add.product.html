@@ -101,11 +101,15 @@
                                         <div class="form-group">
                                             <h6>Select Delivery Options</h6>
                                             <div class="margin" *ngFor="let item of list">
-                                                <label class="checkbox-inline"><input type="checkbox" name="item" [(ngModel)]="item.checked"
-                                                        [value]="item.checked" (click)="checkbox($event.target.checked,item.id,item)"
-                                                        id="item.id">{{item.title}}</label>
+
+                                                <label>
+                                                    <input type="checkbox" name="options" value="{{item}}" [checked]="list.indexOf(item) == 0" [disabled]="list.indexOf(item) == 0"
+                                                        (click)="checkbox($event.target.checked,item.id,item)" />                                                    &nbsp;{{item.title}}
+                                                    {{option}}
+                                                </label>
                                             </div>
                                         </div>
+
                                         <!-- <div class="form-group date">
                                             <label>Date: </label>
                                             <my-date-picker name="mydate" [options]="myDatePickerOptions" [(ngModel)]="model" required></my-date-picker>
