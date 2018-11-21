@@ -42,11 +42,6 @@ export class DeliveryComponent implements OnInit {
                 return;
             }
         });
-
-
-
-
-
     }
 }
 

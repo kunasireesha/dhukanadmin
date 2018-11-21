@@ -52,6 +52,7 @@ export class AddOffersComponent implements OnInit {
         this.appService.postOffersUrl(data).subscribe(resp => {
             console.log(resp.json());
             swal(resp.json().message, "", "success");
+            this.router.navigate(['/offers']);
         })
     }
     getOfferbyId() {
@@ -78,6 +79,7 @@ export class AddOffersComponent implements OnInit {
         }
         this.appService.updateOfferById(this.offerId, data).subscribe(resp => {
             swal(resp.json().message, "", "success");
+            this.router.navigate(['/addoffers']);
         })
     }
     DisType = {

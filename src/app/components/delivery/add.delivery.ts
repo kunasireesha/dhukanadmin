@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from './../../services/dhukan/dhukan-data.service';
+import { Router, NavigationExtras, ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: 'add-delivery',
@@ -9,7 +10,7 @@ import { AppService } from './../../services/dhukan/dhukan-data.service';
 })
 export class AddDeliveryComponent implements OnInit {
 
-    constructor(private appService: AppService) { }
+    constructor(private appService: AppService, public router: Router) { }
     contact;
     email;
     password;
@@ -26,6 +27,7 @@ export class AddDeliveryComponent implements OnInit {
         }
         this.appService.addDeliveryUrl(data).subscribe(res => {
             swal(res.json().message, "", "success");
+            this.router.navigate(['/delivery']);
         }, error => {
 
         })
