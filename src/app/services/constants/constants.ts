@@ -17,4 +17,5 @@ export const AppSettings = {
     importExcel: base_url + 'products/readExcel',
     multiproductimgUrl: base_url + 'products/getproductbyid',
     getSubCatUrl: base_url + 'products/getsubdata'
+
 }
