@@ -43,6 +43,4 @@ export class AddBannerComponent implements OnInit {
         }
         myReader.readAsDataURL(file);
     }
-
-
 }

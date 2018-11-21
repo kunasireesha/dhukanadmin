@@ -2,7 +2,7 @@ import { AddBannerComponent } from './components/banner/add.banner';
 import { BannerComponent } from './components/banner/banner.component';
 import { AddOffersComponent } from './components/offers/add.offer';
 import { AddDeliveryComponent } from './components/delivery/add.delivery';
-
+import { CKEditorModule } from 'ng2-ckeditor';
 import { ImageUploadComponent } from './components/image-upload/image-upload.component';
 
 // import * as xlsx from "xlsx";
@@ -75,6 +75,7 @@ import { DeliveryComponent } from './components/delivery/delivery.component';
 import { OffersComponent } from './components/offers/offers.component';
 import { ContentManagementComponent } from './components/content-management/content-management.component';
 import { LocationComponent } from './components/location/location.component';
+import { SlotComponent } from './slot/slot.component';
 
 
 
@@ -111,7 +112,8 @@ import { LocationComponent } from './components/location/location.component';
         ContentManagementComponent,
         BannerComponent,
         AddBannerComponent,
-        LocationComponent
+        LocationComponent,
+        SlotComponent
 
     ],
     imports: [

@@ -13,37 +13,19 @@
 
       <!-- partial -->
       <div class="content-wrapper">
-        <div class="card">
-          <div class="card-body">
-            <!-- <a href="" id="show" class="btn  btn-maron" style="float: right">Export To Excel</a> -->
-            <!-- <a routerLink="/addDelivery" id="show" class="btn  btn-maron" style="float: right">Add Delivery
-              Boy</a> -->
-            <h4 class="card-title">
-              Content Management </h4>
-            <br />
-            <div class="row">
-              <div class="col-12">
-                <div class="table-responsive">
-                  <ul class="content-data">
-                    <li><a>Terms and Conditions &nbsp; ></a></li>
-                    <li><a>Privacy Policy &nbsp; ></a></li>
-                    <li><a>About Us &nbsp; ></a></li>
-                    <li><a>Returns&nbsp; ></a></li>
-                    <li><a>Delivery Information &nbsp; ></a></li>
-                  </ul>
-                </div>
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="card">
+              <div class="card-body">
+                <p>hhhhhh</p>
+                <ckeditor [(ngModel)]="ckeditorContent">
+                </ckeditor>
+                <h1>result</h1>
+                {{ckeditorContent}}
               </div>
             </div>
           </div>
-          <form role="form" #myForm="ngForm" accept-charset="UTF-8" novalidate>
-            <ckeditor [(ngModel)]="mycontent" #myckeditor="ngModel" name="myckeditor" required [config]="ckeConfig"
-              debounce="500" (change)="onChange($event)">
-            </ckeditor>
-          </form>
         </div>
-
-
-
       </div>
       <!-- content-wrapper ends -->
       <!-- partial:partials/_footer.html -->
@@ -52,7 +34,6 @@
           <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © 2018
             <a routerLink="#">Dhukan </a>. All rights reserved. </span>
           <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">
-
           </span>
         </div>
       </footer>
