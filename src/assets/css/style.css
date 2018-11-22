@@ -11775,11 +11775,13 @@ fieldset:disabled .wizard>.actions a,
 
 .btn-outline-primary:hover,
 .wizard>.actions .disabled a:hover {
-  color: #fff;
+  
   background-color: #03a9f3;
   border-color: #03a9f3;
 }
-
+/* btn .btn-outline-primary{
+    
+} */
 .btn-outline-primary:focus,
 .wizard>.actions .disabled a:focus,
 .btn-outline-primary.focus,
@@ -22371,7 +22373,7 @@ code {
 
 .btn-maron {
   background-color: #0d3d66;
-  color: white;
+  color: white !important;
   margin-left: 6%;
 }
 

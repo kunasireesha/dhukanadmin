@@ -19,5 +19,10 @@
 .vendor-button{
     background-color: #0d3d66 !important;
 }
-
+.btn-outline-primary{
+    color: #03a9f3 !important;
+}
+.btn-outline-primary:hover{
+    color: #fff !important;
+}
 

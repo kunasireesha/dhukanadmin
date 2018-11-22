@@ -1,3 +1,4 @@
+import { AddlocationComponent } from './components/location/add.location';
 import { AddSlotComponent } from './components/slot/add.slot';
 import { AddBannerComponent } from './components/banner/add.banner';
 import { BannerComponent } from './components/banner/banner.component';
@@ -24,6 +25,7 @@ import { LoginComponent } from './components/login/login.component';
 import { ForgotPasswordComponent } from './components/login/forgot.password';
 import { CKEditorModule } from 'ng2-ckeditor';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { AmazingTimePickerModule } from 'amazing-time-picker';
 //side menus
 import { LogNavComponent } from './components/sidenav/logo.nav';
 import { ProfileNavComponent } from './components/sidenav/profile.nav';
@@ -115,7 +117,8 @@ import { SlotComponent } from './components/slot/slot.component';
         AddBannerComponent,
         LocationComponent,
         SlotComponent,
-        AddSlotComponent
+        AddSlotComponent,
+        AddlocationComponent
 
     ],
     imports: [
@@ -131,6 +134,7 @@ import { SlotComponent } from './components/slot/slot.component';
         MyDatePickerModule,
         CKEditorModule,
         NgSelectModule,
+        AmazingTimePickerModule,
         // MatNativeDateModule,
         // MatDatepickerModule,
         TooltipModule.forRoot(),
@@ -166,6 +170,7 @@ import { SlotComponent } from './components/slot/slot.component';
             { path: 'addcontent', component: ContentManagementComponent, data: [{ page: 'addcontent' }] },
             { path: 'banner', component: BannerComponent, data: [{ page: 'banner' }] },
             { path: 'addbanner', component: AddBannerComponent, data: [{ page: 'addbanner' }] },
+            { path: 'addlocation', component: AddlocationComponent, data: [{ page: 'addlocation' }] },
             { path: 'location', component: LocationComponent, data: [{ page: 'location' }] },
             { path: 'addslot', component: AddSlotComponent, data: [{ page: 'addslot' }] },
             { path: 'slot', component: SlotComponent, data: [{ page: 'slot' }] },

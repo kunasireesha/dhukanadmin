@@ -15,27 +15,38 @@
             <div class="content-wrapper">
                 <div class="card">
                     <div class="card-body">
-                        <div class="container-fluid">
-                            <div class="row">
-                                <div class="col-6">
-                                    <h4 class="card-title location">Location Management</h4>
-                                    <form>
-                                        <div class="form-group">
-                                            <input placeholder="Select Address" type="text">
-                                        </div>
-                                        <div class="form-group">
-                                            <ng-select class="form-control" [items]="countries" bindLabel="name" placeholder="Select Country"></ng-select>
-                                        </div>
-                                        <div class="form-group">
-                                            <ng-select class="form-control" [items]="states" bindLabel="name" placeholder="Select State"></ng-select>
-                                        </div>
-                                        <div class="form-group">
-                                            <ng-select class="form-control" [items]="cities" bindLabel="name" placeholder="Select City"></ng-select>
-                                        </div>
-                                        <button type="submit" class="btn btn-primary vendor-button">
-                                            Add
-                                        </button>
-                                    </form>
+                        <a routerLink="/addlocation" id="show" class="btn  btn-maron" style="float: right">Add Location
+                        </a>
+                        <h4 class="card-title">Location Management </h4>
+                        <span>
+                            <input class="form-control" type="text" placeholder="Search.." name="search" [(ngModel)]="filter"></span>
+                        <br/>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="table-responsive">
+                                    <table id="order-listing" class="table " style="text-align: center">
+                                        <thead class="thead-dark">
+                                            <tr class="todo-list">
+                                                <th>S.no</th>
+                                                <th>Country</th>
+                                                <th>City</th>
+                                                <th>Area</th>
+                                                <th>Actions </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="todo-list" *ngFor="let cat of category | filter:filter; let i = index">
+                                                <td>{{i+1}}</td>
+                                                <td>{{cat.name}}</td>
+                                                <td><img [src]="cat.pic"></td>
+                                                <td>
+                                                    <a routerLink="/addcategory" class="btn btn-outline-primary" (click)="addCat(cat.name,cat.id,cat.pic)">Edit</a>
+                                                    <button class="btn remove btn-outline-primary" (click)="deleteCat(cat.id)">Delete
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>

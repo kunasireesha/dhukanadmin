@@ -13,4 +13,9 @@ input[type=text] {
     top: 13.5%;
     left: 26%;
   }
-  
+  .btn-outline-primary{
+    color: #03a9f3 !important ;
+  }
+  .btn-outline-primary:hover{
+    color: #fff !important ;
+  }

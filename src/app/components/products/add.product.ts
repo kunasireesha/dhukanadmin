@@ -52,11 +52,11 @@ export class AddProductsComponent implements OnInit {
     skusData = [];
     skuValues = {
         size: '',
-        quantity: 0,
+        quantity: '',
         mrp: '',
         offer: '',
         sellingPrice: '',
-        stock: 0,
+        stock: '',
         skuImage: this.skuImg,
         vegImage: this.vegImage
     }
@@ -336,13 +336,24 @@ export class AddProductsComponent implements OnInit {
     }
     deleteImg: any;
     DeleteImg(i) {
-        this.deleteImg = i;
-        var data = {
-            'id': this.deleteImg
-        }
-        this.appService.deleteProdImg(data).subscribe(resp => {
-            this.editProImages();
-        })
+        swal("Do you want to delete?", "", "warning", {
+            buttons: ["Cancel!", "Okay!"],
+        }).then((value) => {
+
+            if (value === true) {
+                this.deleteImg = i;
+                var data = {
+                    'id': this.deleteImg
+                }
+                this.appService.deleteProdImg(data).subscribe(resp => {
+                    this.editProImages();
+                    this.router.navigate(['/prducts']);
+                })
+            } else {
+                return;
+            }
+        });
+
     }
 
 
@@ -419,11 +430,11 @@ export class AddProductsComponent implements OnInit {
         this.images1 = [];
         this.skusData.push({
             size: '',
-            quantity: 0,
+            quantity: '',
             mrp: '',
             offer: '',
             sellingPrice: '',
-            stock: 0,
+            stock: '',
             skuImage: this.skuImg,
             vegImage: this.vegImage
         });

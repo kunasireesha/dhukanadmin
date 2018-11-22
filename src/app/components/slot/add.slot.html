@@ -31,11 +31,11 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="firstname">Start Time</label>
-                                            <input type="password" id="category" class="form-control" name="starttime" type="text" [(ngModel)]="starttime" />
+                                            <input class="form-control" type="time" atp-time-picker value="20:55" />
                                         </div>
                                         <div class="form-group">
                                             <label for="firstname">End Time</label>
-                                            <input type="password" id="category" class="form-control" name="endtime" type="text" [(ngModel)]="endtime" />
+                                            <input class="form-control" type="time" atp-time-picker value="20:55" />
                                         </div>
                                         <br>
                                         <button type="submit" *ngIf="!deliveryId" class="btn btn-primary vendor-button" (click)="addSlot()">

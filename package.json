@@ -28,6 +28,7 @@
         "@ngx-translate/http-loader": "^3.0.1",
         "@types/jquery": "^3.3.3",
         "@types/underscore": "^1.8.8",
+        "amazing-time-picker": "^1.8.0",
         "angular-captcha": "^3.3.1",
         "angular-font-awesome": "^3.1.2",
         "angular2-image-zoom": "^1.2.1",

@@ -8,7 +8,7 @@ import { CKEditorComponent } from 'ng2-ckeditor';
 })
 export class ContentManagementComponent implements OnInit {
     title = 'app';
-    ckeditorContent: string = "<b>hjkk kjjkjk</b>"
+    ckeditorContent: string = "Write Your Content Here"
     @ViewChild("CKEditorComponent") ckEditor: CKEditorComponent;
     ngAfterViewChecked() {
         let editor = this.ckEditor.instance;
@@ -27,6 +27,9 @@ export class ContentManagementComponent implements OnInit {
     }
 
     ngOnInit() {
+    }
+    Terms() {
+        console.log(this.ckeditorContent);
     }
 
 }
