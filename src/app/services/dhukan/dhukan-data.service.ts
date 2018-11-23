@@ -131,17 +131,19 @@ export class AppService {
         return this.http.get(AppSettings.getOrdersUrl, { headers: headers });
     }
     getDelivery() {
-        const headers = new Headers({
-            'Content-Type': "application/JSON",
-            // 'token': localStorage.token,
-        });
+        const headers = new Headers({ 'Content-Type': "application/JSON" });
         return this.http.get(AppSettings.getDeliveryUrl, { headers: headers });
     }
     deleteDelivery(id) {
-        const headers = new Headers({
-            'Content-Type': "application/JSON",
-            // 'token': localStorage.token,
-        });
+        const headers = new Headers({ 'Content-Type': "application/JSON" });
         return this.http.post(AppSettings.deleteDeliveryById, id, { headers: headers });
+    }
+    addLocation(params) {
+        const headers = new Headers({ 'Content-Type': "application/JSON" });
+        return this.http.post(AppSettings.addLocationUrl, params, { headers: headers });
+    }
+    getLocations() {
+        const headers = new Headers({ 'Content-Type': "application/x-www-form-urlencoded" });
+        return this.http.get(AppSettings.getCountriesUrl, { headers: headers })
     }
 }

@@ -22,31 +22,137 @@
                             <input class="form-control" type="text" placeholder="Search.." name="search" [(ngModel)]="filter"></span>
                         <br/>
                         <div class="row">
-                            <div class="col-12">
-                                <div class="table-responsive">
-                                    <table id="order-listing" class="table " style="text-align: center">
-                                        <thead class="thead-dark">
-                                            <tr class="todo-list">
-                                                <th>S.no</th>
-                                                <th>Country</th>
-                                                <th>City</th>
-                                                <th>Area</th>
-                                                <th>Actions </th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr class="todo-list" *ngFor="let cat of category | filter:filter; let i = index">
-                                                <td>{{i+1}}</td>
-                                                <td>{{cat.name}}</td>
-                                                <td><img [src]="cat.pic"></td>
-                                                <td>
-                                                    <a routerLink="/addcategory" class="btn btn-outline-primary" (click)="addCat(cat.name,cat.id,cat.pic)">Edit</a>
-                                                    <button class="btn remove btn-outline-primary" (click)="deleteCat(cat.id)">Delete
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                            <div class="col-3">
+                                <div class="card location">
+                                    <div class="card-body location-body">
+                                        <div class="location-table">
+                                            <h5 class="text-center">Country</h5>
+                                        </div>
+                                        <div class="get" *ngFor="let data of getcountry">
+                                            <div class="row">
+                                                <div class="col-sm-1"></div>
+                                                <div class="col-sm-6">
+
+                                                    <p class="p-color"><span><i class="fa fa-times-circle" aria-hidden="true"></i>{{data.name}}</span></p>
+
+                                                </div>
+                                                <!-- <div class="col-sm-2"></div> -->
+                                                <div class="col-sm-5">
+                                                    <p class="loc">View More >></p>
+
+                                                </div>
+                                                <!-- <div class="col-sm-1"></div> -->
+                                            </div>
+                                        </div>
+
+                                        <!-- <div class="row" *ngIf="moreCountry">
+                                            <div class="col-sm-7">
+                                            </div>
+                                            <div class="col-sm-5">
+                                                <ul>
+                                                    <li><span><i class="fa fa-times-circle" aria-hidden="true"></i>India</span></li>
+                                                    <li><span><i class="fa fa-times-circle" aria-hidden="true"></i>India</span></li>
+                                                    <li><span><i class="fa fa-times-circle" aria-hidden="true"></i>India</span></li>
+                                                    <li><span><i class="fa fa-times-circle" aria-hidden="true"></i>India</span></li>
+                                                </ul>
+                                            </div>
+                                        </div> -->
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="card location">
+                                    <div class="card-body location-body" style="height:100px">
+                                        <div class="location-table">
+                                            <h5 class="text-center">State</h5>
+                                        </div>
+                                        <div class="row" *ngIf="moreState">
+                                            <div class="col-sm-1"></div>
+                                            <div class="col-sm-4">
+                                                <p>India</p>
+                                            </div>
+                                            <div class="col-sm-2"></div>
+                                            <div class="col-sm-5">
+                                                <p class="loc">View More >></p>
+                                            </div>
+                                        </div>
+                                        <!-- <div class="row">
+                                            <div class="col-sm-7">
+                                            </div>
+                                            <div class="col-sm-5">
+                                                <ul>
+                                                    <li><span><i class="fa fa-times-circle" aria-hidden="true"></i>India</span></li>
+                                                    <li><span><i class="fa fa-times-circle" aria-hidden="true"></i>India</span></li>
+                                                    <li><span><i class="fa fa-times-circle" aria-hidden="true"></i>India</span></li>
+                                                    <li><span><i class="fa fa-times-circle" aria-hidden="true"></i>India</span></li>
+                                                </ul>
+                                            </div>
+                                        </div> -->
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="card location">
+                                    <div class="card-body location-body" style="height:100px">
+                                        <div class="location-table">
+                                            <h5 class="text-center">City</h5>
+                                        </div>
+                                        <div class="row" *ngIf="moreCity">
+                                            <div class="col-sm-1"></div>
+                                            <div class="col-sm-4">
+                                                <p>India</p>
+                                            </div>
+                                            <div class="col-sm-2"></div>
+                                            <div class="col-sm-5">
+                                                <p class="loc" (click)="city()">View More >>
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <!-- <div class="row">
+                                            <div class="col-sm-7">
+                                            </div>
+                                            <div class="col-sm-5">
+                                                <ul>
+                                                    <li><span><i class="fa fa-times-circle" aria-hidden="true"></i>India</span></li>
+                                                    <li><span><i class="fa fa-times-circle" aria-hidden="true"></i>India</span></li>
+                                                    <li><span><i class="fa fa-times-circle" aria-hidden="true"></i>India</span></li>
+                                                    <li><span><i class="fa fa-times-circle" aria-hidden="true"></i>India</span></li>
+                                                </ul>
+                                            </div>
+                                        </div> -->
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="card location">
+                                    <div class="card-body location-body" style="height:100px">
+                                        <div class="location-table">
+                                            <h5 class="text-center">Area</h5>
+                                        </div>
+                                        <div class="row" *ngIf="moreArea">
+                                            <div class="col-sm-1"></div>
+                                            <div class="col-sm-4">
+                                                <p>India</p>
+                                            </div>
+                                            <div class="col-sm-2"></div>
+                                            <div class="col-sm-5">
+                                                <p class="loc" (click)="area()">View More >>
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <!-- <div class="row">
+                                            <div class="col-sm-7">
+                                            </div>
+                                            <div class="col-sm-5">
+                                                <ul>
+                                                    <li><span><i class="fa fa-times-circle" aria-hidden="true"></i>India</span></li>
+                                                    <li><span><i class="fa fa-times-circle" aria-hidden="true"></i>India</span></li>
+                                                    <li><span><i class="fa fa-times-circle" aria-hidden="true"></i>India</span></li>
+                                                    <li><span><i class="fa fa-times-circle" aria-hidden="true"></i>India</span></li>
+                                                </ul>
+                                            </div>
+                                        </div> -->
+                                    </div>
                                 </div>
                             </div>
                         </div>

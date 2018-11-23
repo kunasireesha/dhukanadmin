@@ -11,6 +11,7 @@ export class AddlocationComponent implements OnInit {
     state;
     city;
     area;
+    locations: any;
     constructor(private appService: AppService) { }
 
     ngOnInit() {
@@ -23,7 +24,7 @@ export class AddlocationComponent implements OnInit {
             'area': this.area
 
         }
-        this.appService.addCat(data).subscribe(resp => {
+        this.appService.addLocation(data).subscribe(resp => {
 
         })
 

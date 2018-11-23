@@ -20,17 +20,41 @@
                                 <a routerLink="/location" id="show" class="btn  btn-maron" style="float: right;    margin-top: -45px;">Back</a>
                                 <form>
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">Select Country</label>
-                                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" [(ngModel)]="country" name="country">
+                                        <p>Select Country</p>
+                                        <input class="form-control" list="countries" name="countries" [(ngModel)]="country" />
+                                        <datalist id="countries">
+                                            <option value="Chrome">
+                                                <option value="Firefox">
+                                        </datalist>
                                     </div>
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">Select State</label>
-                                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" [(ngModel)]="state" name="state">
+                                        <p>Select State</p>
+                                        <input class="form-control" list="state" name="state" [(ngModel)]="state" />
+                                        <datalist id="state">
+                                            <option value="Chrome">
+                                                <option value="Firefox">
+                                        </datalist>
                                     </div>
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">Select City</label>
-                                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" [(ngModel)]="city" name="city">
+                                        <p>Select city</p>
+                                        <input class="form-control" list="city" name="city" [(ngModel)]="city" />
+                                        <datalist id="city">
+                                            <option value="Chrome">
+                                                <option value="Firefox">
+                                        </datalist>
                                     </div>
+                                    <!-- <div class="form-group">
+                                        <p>Select city</p>
+                                        <input class="form-control" list="Area" name="Area" [(ngModel)]="Area" />
+                                        <datalist id="Area">
+                                            <option value="Chrome">
+                                                <option value="Firefox">
+                                                    <option value="Internet Explorer">
+                                                        <option value="Opera">
+                                                            <option value="Safari">
+                                                                <option value="Microsoft Edge">
+                                        </datalist>
+                                    </div> -->
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Select Area</label>
                                         <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" [(ngModel)]="area" name="area">
