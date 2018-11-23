@@ -11,7 +11,8 @@ export class AddSlotComponent implements OnInit {
     slot;
     model;
     starttime;
-    endtime
+    endtime;
+
     constructor(private AppService: AppService) { }
 
     ngOnInit() {
