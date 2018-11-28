@@ -439,7 +439,9 @@ export class AddProductsComponent implements OnInit {
             vegImage: this.vegImage
         });
     }
-
+    deleteSku(index) {
+        this.skusData.splice(index, 1);
+    }
     updateProduct() {
         var data = {
             'category_id': (this.caId === undefined) ? this.categoryId : this.caId,

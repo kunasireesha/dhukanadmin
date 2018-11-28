@@ -31,6 +31,7 @@
                                                 <th>S.no</th>
                                                 <th>Category Name</th>
                                                 <th>Category Image </th>
+                                                <th>Description</th>
                                                 <th>Actions </th>
                                             </tr>
                                         </thead>
@@ -39,8 +40,9 @@
                                                 <td>{{i+1}}</td>
                                                 <td>{{cat.name}}</td>
                                                 <td><img [src]="cat.pic"></td>
+                                                <td class="d-inline-block text-truncate" style="max-width:200px;">{{cat.description}}</td>
                                                 <td>
-                                                    <a routerLink="/addcategory" class="btn btn-outline-primary" (click)="addCat(cat.name,cat.id,cat.pic)">Edit</a>
+                                                    <a routerLink="/addcategory" class="btn btn-outline-primary" (click)="addCat(cat.name,cat.id,cat.pic,cat.description)">View/Edit</a>
                                                     <button class="btn remove btn-outline-primary" (click)="deleteCat(cat.id)">Delete
                                                     </button>
                                                 </td>

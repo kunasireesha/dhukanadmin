@@ -22,13 +22,16 @@ export class AddSubCatComponent implements OnInit {
     caId;
     mainCatId;
     textarea;
+    img;
     constructor(private appService: AppService, private route: ActivatedRoute, public router: Router) {
         this.route.queryParams.subscribe(params => {
             this.id = params.id,
                 this.subCa = params.subCat,
                 this.mainCat = params.mainCat,
                 this.mainCatId = params.mainCatId,
-                this.action = params.action
+                this.action = params.action,
+                this.img = params.img,
+                this.textarea = params.des
         });
         if (this.action === 'addsub') {
             this.subCate = true;

@@ -22,27 +22,33 @@
                                 <form class="cmxform" id="signupForm" method="get" action="#">
                                     <fieldset>
                                         <div class="form-group">
+                                            <label for="sel1">Select Type</label>
+                                            <select class="form-control border-primary" id="sel1" (change)="onChange($event.target.value)">
+                                                <i class="fa fa-chevron-down" aria-hidden="true"></i>
+                                                <option value="" disabled selected hidden>Select Type</option>
+                                                <option value="Categories">Categories</option>
+                                                <option value="Subcategories">Subcategories</option>
+                                                <option value="Product">Product</option>
+                                                <option value="sku">sku</option>
+                                                <option value="Brand">Brand</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
                                             <label for="exampleInputEmail1">Mobile Banner</label>
-                                            <input class="form-control" type="file" accept="image/*" (change)="changeListener($event)">
-                                            <div *ngIf="image">
-                                                <h4>Image:</h4>
-                                                <img src="{{image}}" alt="" width="200" height="200">
-                                            </div>
+                                            <input class="form-control" type='file' (change)="onSelectFile($event)" multiple>
+                                            <br>
+                                            <img *ngFor='let url of urls' [src]="url" height="100" width="100" style="margin-right: 2%;border: 1px solid;margin-bottom:5%">
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Website Banner</label>
-                                            <input class="form-control" type="file" accept="image1/*" (change)="changeListener1($event)">
-                                            <div *ngIf="image1">
-                                                <h4>Image:</h4>
-                                                <img src="{{image1}}" alt="" width="200" height="200">
-                                            </div>
+                                            <input class="form-control" type='file' (change)="onSelectFile1($event)" multiple>
+                                            <br>
+                                            <img *ngFor='let url of urls1' [src]="url" height="100" width="100" style="margin-right: 2%;border: 1px solid;margin-bottom:5%">
                                         </div>
-                                        <button type="submit" class="btn btn-primary vendor-button" *ngIf="!offerId"
-                                            (click)="addOffer()">
+                                        <button type="submit" class="btn btn-primary vendor-button" *ngIf="!offerId" (click)="addbanner()">
                                             Add Banner
                                         </button>
-                                        <button type="submit" class="btn btn-primary vendor-button" *ngIf="offerId"
-                                            (click)="updateOfferById()">
+                                        <button type="submit" class="btn btn-primary vendor-button" *ngIf="offerId" (click)="updateOfferById()">
                                             Update Coupon
                                         </button>
                                     </fieldset>

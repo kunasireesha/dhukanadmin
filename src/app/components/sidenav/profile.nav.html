@@ -42,12 +42,24 @@
                     <span class="menu-title sub">Products </span>
                 </a>
             </li>
-            <li class="nav-item" [ngClass]="{'active':pageNav==='banner' || pageNav==='addbanner'}">
+            <!-- <li class="nav-item" [ngClass]="{'active':pageNav==='banner' || pageNav==='addbanner'}">
                 <a class="nav-link" routerLink="/banner">
                     <i class="fa fa-picture-o" aria-hidden="true"></i>
                     <span class="menu-title sub">Banners</span>
                 </a>
+            </li> -->
+            <li data-toggle="collapse" data-target="#banners" class="collapsed active" [ngClass]="{'active':pageNav==='banner' || pageNav==='addbanner'}"
+                style="margin-left:2px;">
+                <a class="sub"> <i class="fa fa-picture-o" aria-hidden="true"></i> <span class="sub"></span>Banners
+                    <span class="arrow"></span></a>
             </li>
+            <ul class="sub-menu collapse keep-inside-clicks-open'" id="banners">
+                <li routerLink="/banner" routerLinkActive='active'><a>Main Banners</a></li>
+                <li routerLink="/bestDeals" routerLinkActive='active'><a>Best Deals</a></li>
+                <li routerLink="/bestAppliances" routerLinkActive='active'><a>Best Appliances</a></li>
+                <li routerLink="/bestDiscount" routerLinkActive='active'><a>Best Discount</a></li>
+                <li routerLink="/bestBrands" routerLinkActive='active'><a>Best Brands</a></li>
+            </ul>
             <li class="nav-item" [ngClass]="{'active':pageNav==='location'}">
                 <a class="nav-link" routerLink="/location">
                     <i class="fa fa-map-marker"></i>
@@ -72,31 +84,17 @@
                     <span class="menu-title">Orders </span>
                 </a>
             </li>
-            <!-- <li data-toggle="collapse" data-target="#products" class="nav-item collapsed active" [ngClass]="{'active':pageNav==='content' || pageNav==='addcontent'}">
-                <a class="nav-link" routerLink="/addcontent">
-                    <i class="fa fa-file-text"></i>Content Management
-                    <span class="menu-title sub arrow"></span>
-                </a>
-            </li> -->
             <li data-toggle="collapse" data-target="#products" class="collapsed active" [ngClass]="{'active':pageNav==='content' || pageNav==='addcontent'}">
-                <a class="sub"><i class="fa fa-gift fa-lg"></i> <span class="sub"></span>Content Management <span class="arrow"></span></a>
+                <a class="sub"><i class="fa fa-book" aria-hidden="true"></i> <span class="sub"></span>Content Management
+                    <span class="arrow"></span></a>
             </li>
             <ul class="sub-menu collapse" id="products">
-                <li class="active" routerLink="/addcontent"><a>Terms & Conditions</a></li>
-                <li><a>About Us</a></li>
-                <li><a>Delivery Information</a></li>
-                <li><a>Privacy & Policy</a></li>
-                <li><a>Returns</a></li>
+                <li routerLink="/addcontent" routerLinkActive='active'><a>Terms & Conditions</a></li>
+                <li routerLink="/aboutUs" routerLinkActive='active'><a>About Us</a></li>
+                <li routerLink="/deliveryInfo" routerLinkActive='active'><a>Delivery Information</a></li>
+                <li routerLink="/privacy" routerLinkActive='active'><a>Privacy & Policy</a></li>
+                <li routerLink="/returns" routerLinkActive='active'><a>Returns</a></li>
             </ul>
-            <!-- <li data-toggle="collapse" data-target="#products" class="collapsed active">
-                <a><i class="fa fa-gift fa-lg"></i> Content Management <span class="arrow"></span></a>
-            </li>
-            <ul class="sub-menu collapse" id="products">
-                <li class="active" routerLink="/users"><a>RFT-H1</a></li>
-                <li><a>RFT-H2</a></li>
-                <li><a>BTB-H1</a></li>
-                <li><a>BTB-H2</a></li>
-            </ul> -->
             <li class="nav-item" [ngClass]="{'active':pageNav==='users' || pageNav==='addusers'}">
                 <a class="nav-link" routerLink="/users">
                     <i class="icon-people menu-icon"></i>

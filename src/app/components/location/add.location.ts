@@ -1,6 +1,6 @@
 import { AppService } from './../../services/dhukan/dhukan-data.service';
 import { Component, OnInit } from '@angular/core';
-
+import { HttpClient } from '@angular/common/http';
 @Component({
     selector: 'add-location',
     templateUrl: './add.location.html',
@@ -12,9 +12,13 @@ export class AddlocationComponent implements OnInit {
     city;
     area;
     locations: any;
-    constructor(private appService: AppService) { }
+    countries: any;
+    constructor(private appService: AppService, private httpClient: HttpClient) { }
 
     ngOnInit() {
+        this.httpClient.get('https://restcountries.eu/rest/v2/all').subscribe(data => {
+            this.countries = data;
+        });
     }
     addLocation() {
         var data = {

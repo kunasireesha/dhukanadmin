@@ -19,7 +19,6 @@ export class LocationComponent implements OnInit {
     constructor(private httpClient: HttpClient, private appService: AppService) { }
 
     ngOnInit() {
-        this.getCountries();
     }
     country() {
         this.moreCountry = !this.moreCountry;
@@ -33,10 +32,18 @@ export class LocationComponent implements OnInit {
     area() {
         this.moreArea = !this.moreArea;
     }
-    getCountries() {
-        this.appService.getLocations().subscribe(resp => {
-            this.getcountry = resp.json().result;
-        })
-    }
+    // getCountries() {
+    //     this.appService.getCountries().subscribe(resp => {
+    //         this.getcountry = resp.json().result;
+    //     })
+    // }
+    // getStatesbyId(id) {
+    //     var data = {
+    //         'state_id': id
+    //     }
+    //     this.appService.getStatedbyId(data).subscribe(resp => {
+
+    //     })
+    // }
 
 }

@@ -34,6 +34,7 @@
                                                 <th>Sub Category Name
                                                 </th>
                                                 <th>Sub Category Image</th>
+                                                <th>Description</th>
                                                 <th>Actions </th>
                                             </tr>
                                         </thead>
@@ -43,8 +44,9 @@
                                                 <td>{{subCat.main_cat}}</td>
                                                 <td>{{subCat.sub_cat}}</td>
                                                 <td><img [src]="subCat.image"></td>
+                                                <td class="d-inline-block text-truncate" style="max-width:200px;">{{subCat.sub_cat_description}}</td>
                                                 <td>
-                                                    <a class="btn btn-outline-primary" (click)="addSub(subCat.sub_cat_id,subCat.main_cat,subCat.sub_cat,subCat.main_cat_id,'editsub')">Edit</a>
+                                                    <a class="btn btn-outline-primary" (click)="addSub(subCat.sub_cat_id,subCat.main_cat,subCat.sub_cat,subCat.main_cat_id,'editsub',subCat.image,subCat.sub_cat_description)">View/Edit</a>
                                                     <button class="btn remove btn-outline-primary" (click)="deleteSubCat(subCat.sub_cat_id)">Delete
                                                     </button>
                                                 </td>

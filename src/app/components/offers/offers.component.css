@@ -7,3 +7,9 @@
 .coupon-margin{
     margin-right: 10px;
 }
+.btn-outline-primary{
+    color: #03a9f3 !important;
+}
+.btn-outline-primary:hover{
+    color: #fff !important;
+}

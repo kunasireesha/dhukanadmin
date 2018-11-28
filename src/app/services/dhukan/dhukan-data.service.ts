@@ -142,8 +142,24 @@ export class AppService {
         const headers = new Headers({ 'Content-Type': "application/JSON" });
         return this.http.post(AppSettings.addLocationUrl, params, { headers: headers });
     }
-    getLocations() {
+    getCountries() {
         const headers = new Headers({ 'Content-Type': "application/x-www-form-urlencoded" });
         return this.http.get(AppSettings.getCountriesUrl, { headers: headers })
+    }
+    getStatedbyId(params) {
+        const headers = new Headers({ 'Content-Type': "application/x-www-form-urlencoded" });
+        return this.http.post(AppSettings.getStatesbyId, params, { headers: headers })
+    }
+    termsConditions(params) {
+        const headers = new Headers({ 'Content-Type': "application/JSON" });
+        return this.http.post(AppSettings.getStatesbyId, params, { headers: headers })
+    }
+    postBannerUrl(params) {
+        const headers = new Headers({ 'Content-Type': "application/JSON" });
+        return this.http.post(AppSettings.bannersUrl, params, { headers: headers })
+    }
+    getBannerUrl() {
+        const headers = new Headers({ 'Content-Type': "application/x-www-form-urlencoded" });
+        return this.http.get(AppSettings.getBannerUrl, { headers: headers })
     }
 }
