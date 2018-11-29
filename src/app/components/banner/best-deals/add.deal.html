@@ -18,7 +18,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <h4 class="card-title text-center">Add Banner</h4>
-                                <a routerLink="/banner" id="show" class="btn  btn-maron" style="float: right;    margin-top: -45px;">Back</a>
+                                <a routerLink="/bestDeals" id="show" class="btn  btn-maron" style="float: right;    margin-top: -45px;">Back</a>
                                 <form class="cmxform" id="signupForm" method="get" action="#">
                                     <fieldset>
                                         <div class="form-group">
@@ -38,26 +38,18 @@
                                             <input class="form-control" type='file' (change)="onSelectFile($event)" multiple>
                                             <br>
                                             <img *ngFor='let url of urls' [src]="url" height="100" width="100" style="margin-right: 2%;border: 1px solid;margin-bottom:5%">
-                                            <div *ngFor='let url of productDetails'>
-                                                <img *ngFor="let imgUrl of url.myImages;let i =index" [src]="imgUrl.product_image" height="100" width="100" style="margin-right: 2%;border: 1px solid;margin-bottom:5%"
-                                                    (click)="updateImage(imgUrl.id)" [ngClass]="{'selected':selectedImage==imgUrl.id}">
-                                            </div>
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Website Banner</label>
                                             <input class="form-control" type='file' (change)="onSelectFile1($event)" multiple>
                                             <br>
                                             <img *ngFor='let url of urls1' [src]="url" height="100" width="100" style="margin-right: 2%;border: 1px solid;margin-bottom:5%">
-                                            <div *ngFor='let url of productDetails'>
-                                                <img *ngFor="let imgUrl of url.myImages;let i =index" [src]="imgUrl.product_image" height="100" width="100" style="margin-right: 2%;border: 1px solid;margin-bottom:5%"
-                                                    (click)="updateImage1(imgUrl.id)" [ngClass]="{'selected':selectedImage==imgUrl.id}">
-                                            </div>
                                         </div>
-                                        <button type="submit" class="btn btn-primary vendor-button" *ngIf="addbanners" (click)="addbanner()">
+                                        <button type="submit" class="btn btn-primary vendor-button" *ngIf="!offerId" (click)="addbanner()">
                                             Add Banner
                                         </button>
-                                        <button type="submit" class="btn btn-primary vendor-button" *ngIf="!addbanners">
-                                            Update Banner
+                                        <button type="submit" class="btn btn-primary vendor-button" *ngIf="offerId" (click)="updateOfferById()">
+                                            Update Coupon
                                         </button>
                                     </fieldset>
                                 </form>

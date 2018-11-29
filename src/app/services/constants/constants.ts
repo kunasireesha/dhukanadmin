@@ -37,6 +37,12 @@ export const AppSettings = {
     getCountriesUrl: base_url + 'location/getcountrys',
     getStatesbyId: base_url + 'location/getstatus',
     termConditionsUrl: 'http://localhost:9000/terms_conditions',
-    bannersUrl: base_url + 'banners/new_banner',
-    getBannerUrl: base_url + 'banners/banners-list'
+    postbannersUrl: base_url + 'banners/new_banner',
+    getBannerUrl: base_url + 'banners/banners-list',
+    deleteBannerUrl: base_url + 'banners/delete_banner',
+    updatebannerUrl: base_url + 'banners/update_banner'
+    // postDealbannersUrl: base_url + 'banners/new_banner',
+    // getDealBannerUrl: base_url + 'banners/banners-list',
+    // deleteDealBannerUrl: base_url + 'banners/delete_banner',
+    // updateDealbannerUrl: base_url + 'banners/update_banner'
 }

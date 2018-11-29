@@ -26,4 +26,8 @@ input[type=text] {
   top: 14%;
   left: 26%;
 }
+.form-control{
+    border-color: #495057;
+}
+
 

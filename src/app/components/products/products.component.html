@@ -23,8 +23,8 @@
                         <a id="show" class="btn btn-maron btn-import" style="float: right;"><label for="imageUpload">Import
                                 to Excel
                             </label><input type="file" id="imageUpload" style="display: none" (change)=fileEvent($event)></a>
-                        <a (click)="exportAsXLSX()" id="show" class="btn btn-maron" style="float: right">Export to
-                            Excel</a>
+                        <a (click)="exportAsXLSX()" id="show" class="btn btn-maron" style="float: right">Export to Excel
+                        </a>
                         <h4 class="card-title">Products </h4>
                         <span>
                             <input class="form-control" type="text" placeholder="Search.." name="search" [(ngModel)]="filter"></span>
@@ -51,7 +51,7 @@
                                                 <td>{{prod.sub_cat}} </td>
                                                 <td>{{prod.title}}</td>
                                                 <td>
-                                                    <img [src]="prod.image" alt="prod.image" /></td>
+                                                    <img [src]="prod.myImages[0].product_image" alt="prod.image" /></td>
                                                 <!-- <td>{{prod.created_on | date: 'dd/MM/yyyy'}}</td> -->
                                                 <td>
                                                     <!-- <a routerLink="/addprducts" class="btn btn-outline-primary" (click)="editProd(prod.title,prod.category_id,prod.main_cat,prod.id,prod.sub_cat,prod.category2_id)">Edit</a> -->

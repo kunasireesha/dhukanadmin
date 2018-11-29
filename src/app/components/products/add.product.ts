@@ -135,9 +135,9 @@ export class AddProductsComponent implements OnInit {
 
         })
     }
-    changeSubCat(id) {
+    changeSubCat(name) {
         for (var i = 0; i < this.subCategoryName.length; i++) {
-            if (id === this.subCategoryName[i].sub_cat) {
+            if (name === this.subCategoryName[i].sub_cat) {
                 this.subCatId = this.subCategoryName[i].id;
             }
         }
@@ -267,6 +267,7 @@ export class AddProductsComponent implements OnInit {
                         this.strImage = this.img.split(',')[1];
                         this.urls.push(fileReader.result);
                         this.images.push(this.strImage);
+
                     }
                 }
                 fileReader.readAsDataURL(event.target.files[i]);

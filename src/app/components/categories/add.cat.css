@@ -25,3 +25,7 @@ textarea{
 .selected{
     border:red;
 }
+.form-control{
+    border-color: #495057;
+}
+

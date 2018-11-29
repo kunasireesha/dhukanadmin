@@ -16,7 +16,9 @@
                 <div class="card">
                     <div class="card-body">
                         <!-- <a href="" id="show" class="btn  btn-maron" style="float: right">Export To Excel</a> -->
-                        <a routerLink="/addbanner" id="show" class="btn  btn-maron" style="float: right">Add Banners</a>
+                        <a (click)="addBanner('')" routerLink="/addbanner" id="show" class="btn  btn-maron" style="float: right">Add
+                            Banners
+                        </a>
                         <h4 class="card-title">
                             Banners </h4>
                         <br />
@@ -36,17 +38,16 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr class="todo-list" *ngFor="let vendorDetails of vendors;let i = index">
+                                            <tr class="todo-list" *ngFor="let data of banner;let i = index">
                                                 <td>{{i+1}}</td>
-                                                <td>{{vendorDetails.first_name}}</td>
-                                                <td>{{vendorDetails.business_name}}</td>
-                                                <td>{{vendorDetails.email}}</td>
-                                                <td>{{vendorDetails.phone}}</td>
                                                 <td>
-                                                    <img src="assets/images/samples/1.jpg"> </td>
+                                                    <img [src]="data.mobile_banner[0].image_path" alt="data.image" /></td>
                                                 <td>
-                                                    <a routerLink="/addvendors" class="btn btn-outline-primary" (click)="editVendor(vendorDetails.u_id)">Edit</a>
-                                                    <a class="btn btn-outline-primary vendor-delete" (click)="deleteVendor(vendorDetails.u_id)">Delete</a>
+                                                    <img [src]="data.website_banner[0].image_path" alt="prod.image" /></td>
+                                                <td>{{data.type}}</td>
+                                                <td>
+                                                    <a routerLink="/addbanner" class="btn btn-outline-primary" (click)="editBanner(data.id)" style="margin-right:10px">Edit</a>
+                                                    <a class="btn btn-outline-primary vendor-delete" (click)="deleteBanner(data.id)">Delete</a>
                                                 </td>
                                             </tr>
                                         </tbody>

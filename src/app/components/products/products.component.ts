@@ -53,12 +53,12 @@ export class ProductsComponent implements OnInit {
             .subscribe(resp => {
                 // if (resp.json().message === 'Success') {
                 this.product = resp.json().result;
-                for (var i = 0; i < this.product.length; i++) {
-                    for (var j = 0; j < this.product[i].myImages.length; j++) {
-                        this.product[i].image = this.product[i].myImages[0].product_image;
-                        // console.log(this.image);
-                    }
-                }
+                // for (var i = 0; i < this.product.length; i++) {
+                //     for (var j = 0; j < this.product[i].myImages.length; j++) {
+                //         this.product[i].image = this.product[i].myImages[0].product_image;
+
+                //     }
+                // }
                 // for (var j = 0; j < this.image.length; i++) {
                 //     this.productimg = this.image[i];
                 //     console.log(this.productimg);

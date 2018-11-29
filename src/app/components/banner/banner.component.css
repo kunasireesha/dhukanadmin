@@ -4,3 +4,12 @@
 .form-control{
     width: 400px;
 }
+.btn-outline-primary{
+    color: #03a9f3 !important;
+}
+.btn-outline-primary:hover{
+    color: #fff !important;
+}
+.selected{
+    border: 5px #eb9809 solid !important;
+}

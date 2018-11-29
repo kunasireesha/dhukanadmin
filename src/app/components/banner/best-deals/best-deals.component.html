@@ -16,7 +16,8 @@
                 <div class="card">
                     <div class="card-body">
                         <!-- <a href="" id="show" class="btn  btn-maron" style="float: right">Export To Excel</a> -->
-                        <a id="show" class="btn  btn-maron" style="float: right">Add Best Deal</a>
+                        <a (click)="addBanner('')" routerLink="/addbestDeals" id="show" class="btn  btn-maron" style="float: right">Add
+                            Best Deal</a>
                         <h4 class="card-title">
                             Best Deal Banners</h4>
                         <br />
@@ -45,8 +46,8 @@
                                                 <td>
                                                     <img src="assets/images/samples/1.jpg"> </td>
                                                 <td>
-                                                    <!-- <a routerLink="/addvendors" class="btn btn-outline-primary" (click)="editVendor(vendorDetails.u_id)">Edit</a> -->
-                                                    <a class="btn btn-outline-primary vendor-delete" (click)="deleteVendor(vendorDetails.u_id)">Delete</a>
+                                                    <a routerLink="/addvendors" class="btn btn-outline-primary" (click)="editBestDealBanner(vendorDetails.u_id)">Edit</a>
+                                                    <a class="btn btn-outline-primary vendor-delete" (click)="deleteBestDealBanner(vendorDetails.u_id)">Delete</a>
                                                 </td>
                                             </tr>
                                         </tbody>
