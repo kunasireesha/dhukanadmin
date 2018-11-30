@@ -90,6 +90,7 @@ import { BestDealsComponent } from './components/banner/best-deals/best-deals.co
 import { BestDiscountComponent } from './components/banner/best-discount/best-discount.component';
 import { BestBrandsComponent } from './components/banner/best-brands/best-brands.component';
 import { BestAppliancesComponent } from './components/banner/best-appliances/best-appliances.component';
+import { BestDiscountAppliancesComponent } from './components/banner/best-discount-appliances/best-discount-appliances.component';
 
 
 
@@ -138,7 +139,8 @@ import { BestAppliancesComponent } from './components/banner/best-appliances/bes
         BestDiscountComponent,
         BestBrandsComponent,
         BestAppliancesComponent,
-        addDealsComponent
+        addDealsComponent,
+        BestDiscountAppliancesComponent
 
     ],
     imports: [
@@ -194,6 +196,7 @@ import { BestAppliancesComponent } from './components/banner/best-appliances/bes
             { path: 'bestDeals', component: BestDealsComponent, data: [{ page: 'bestDeals' }] },
             { path: 'addbestDeals', component: addDealsComponent, data: [{ page: 'addbestDeals' }] },
             { path: 'bestDiscount', component: BestDiscountComponent, data: [{ page: 'bestDiscount' }] },
+            { path: 'bestDiscountAppliances', component: BestDiscountAppliancesComponent, data: [{ page: 'bestDiscountAppliances' }] },
             { path: 'addbanner', component: AddBannerComponent, data: [{ page: 'addbanner' }] },
             { path: 'addlocation', component: AddlocationComponent, data: [{ page: 'addlocation' }] },
             { path: 'location', component: LocationComponent, data: [{ page: 'location' }] },

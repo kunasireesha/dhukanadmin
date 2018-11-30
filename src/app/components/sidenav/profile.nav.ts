@@ -14,7 +14,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 })
 export class ProfileNavComponent implements OnInit {
     category: any
-
+    banner: boolean = false;
     constructor(private route: ActivatedRoute, private appService: AppService,
         private http: HttpClient) {
         this.pageNav = this.route.snapshot.data[0]['page'];
@@ -22,6 +22,10 @@ export class ProfileNavComponent implements OnInit {
     pageNav;
     ngOnInit() {
         // this.getCat();
+    }
+    collapse() {
+        alert(this.banner);
+        this.banner = !this.banner;
     }
 
 }

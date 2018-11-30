@@ -40,7 +40,8 @@ export const AppSettings = {
     postbannersUrl: base_url + 'banners/new_banner',
     getBannerUrl: base_url + 'banners/banners-list',
     deleteBannerUrl: base_url + 'banners/delete_banner',
-    updatebannerUrl: base_url + 'banners/update_banner'
+    editBannerUrl : base_url + 'banners/update_banner',
+    // updatebannerUrl: base_url + 'banners/update_banner'
     // postDealbannersUrl: base_url + 'banners/new_banner',
     // getDealBannerUrl: base_url + 'banners/banners-list',
     // deleteDealBannerUrl: base_url + 'banners/delete_banner',

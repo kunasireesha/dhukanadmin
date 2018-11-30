@@ -314,7 +314,6 @@ export class AddProductsComponent implements OnInit {
                 })
     }
     productImg = [];
-
     editProImages() {
         var data = {
             'id': this.productId
@@ -327,6 +326,14 @@ export class AddProductsComponent implements OnInit {
             this.productId = this.productDetails[0].id;
             this.subCatName = this.productDetails[0].category2;
             this.subCateId = this.productDetails[0].category2_id;
+            this.Description = this.productDetails[0].description;
+            this.terms = this.productDetails[0].terms_and_conditions;
+            this.faq = this.productDetails[0].question;
+            this.answer = this.productDetails[0].answer;
+            this.actualPrice = this.productDetails[0].actual_price;
+            this.sellingPrice = this.productDetails[0].selling_price;
+            this.disAmount = this.productDetails[0].discount;
+            
         })
     }
     updateImage(index) {

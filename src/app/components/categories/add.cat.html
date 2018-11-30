@@ -27,12 +27,11 @@
                                         <label for="exampleInputEmail1">Category Image</label>
                                         <input class="form-control" type="file" accept="image/*" (change)="changeListener($event)" [(ngModel)]="catImg" name="catImg">
                                         <div *ngIf="image">
-                                            <h4>Image:</h4>
-                                            <img src="{{image}}" alt="" width="100" height="100">
+                                            <img src="{{image}}" alt="" width="100" height="100" style="border: solid 1px;margin-top: 2%;">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <img src="{{catImg}}" alt="" width="100" height="100">
+                                        <img src="{{catImg}}" alt="" width="100" height="100" style="border: solid 1px;margin-top: 2%;">
                                     </div>
                                     <div class="form-group">
                                         <label for="firstname">Description :</label>

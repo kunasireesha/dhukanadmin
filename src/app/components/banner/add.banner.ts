@@ -57,7 +57,7 @@ export class AddBannerComponent implements OnInit {
                             this.img = fileReader.result;
                             this.strimg = this.img.split(',')[1];
                             // this.productDetails[0].myImages.push({ 'id': '', 'product_image': fileReader.result });
-                            this.images.push({ 'image_no': '', 'image_data': this.strimg })
+                            this.images.push({ 'mobile_image_id': '', 'uri': this.strimg })
                         } else {
                             this.img = fileReader.result;
                             this.strimg = this.img.split(',')[1];
@@ -67,7 +67,8 @@ export class AddBannerComponent implements OnInit {
                             //     }
                             // }
                             // this.productDetails[0].myImages.push({ 'id': this.selectedImage, 'product_image': fileReader.result });
-                            this.images.push({ 'image_no': this.selectedImage, 'image_data': this.strimg })
+                            this.images.push({ 'mobile_image_id': this.selectedImage, 'uri': this.strimg })
+                            console.log(this.images);
                         }
                     }
                     else {
@@ -75,7 +76,6 @@ export class AddBannerComponent implements OnInit {
                         this.strimg = this.img.split(',')[1]
                         this.urls.push(fileReader.result);
                         this.images.push(this.strimg);
-                        console.log(this.images);
                     }
 
                 }
@@ -107,7 +107,6 @@ export class AddBannerComponent implements OnInit {
         }
     }
     addbanner() {
-        debugger
         var data = {
             'type': this.type,
             'website_banner': this.images1,
@@ -118,15 +117,48 @@ export class AddBannerComponent implements OnInit {
                 swal('banner added successfully', '', 'success');
                 this.router.navigate(['/banner']);
             }
+            else if (resp.json().status === 400) {
+                swal(resp.json().message, '', 'error');
+            }
             else {
-                swal(resp.json().message, '', 'success');
+
             }
         })
     }
+    // addbanner1(){
+    //     var data = {
+    //         'type':this.type,
+    //         'website_banner':this.images1,
+    //         'mobile_banner':this.images
+    //     }
+    //     this.AppService.postBannerUrl(data).subscribe( resp =>{
+    //         if(resp.json().status)
+    //     })
+    // }
+
     editbannerById() {
-        this.AppService.updateBanner(this.bannerId).subscribe(resp => {
+        this.AppService.editBannerbyId(this.bannerId).subscribe(resp => {
 
         })
     }
+    // updateBanner(){
+    //     var data = {
+    //         'type': this.type,
+    //         'website_banner': this.images1,
+    //         'mobile_banner': this.images
+    //     }
+    //     this.AppService.postBannerUrl(data).subscribe(resp => {
+    //         if (resp.json().status === 200) {
+    //             swal('banner added successfully', '', 'success');
+    //             this.router.navigate(['/banner']);
+    //         }
+    //         else if (resp.json().status === 400) {
+    //             swal(resp.json().message, '', 'error');
+    //         }
+    //         else {
+
+    //         }
+    //     })
+    // }
 
 }

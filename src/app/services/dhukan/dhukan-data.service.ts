@@ -166,10 +166,14 @@ export class AppService {
         const headers = new Headers({ 'Content-Type': "application/JSON" });
         return this.http.delete(AppSettings.deleteBannerUrl + '/' + id, { headers: headers })
     }
-    updateBanner(id) {
+    editBannerbyId(id) {
         const headers = new Headers({ 'Content-Type': "application/JSON" });
-        return this.http.put(AppSettings.updatebannerUrl + '/' + id, { headers: headers })
+        return this.http.put(AppSettings.editBannerUrl + '/' + id, { headers: headers })
     }
+    // updateBannerbyId(id) {
+    //     const headers = new Headers({ 'Content-Type': "application/JSON" });
+    //     return this.http.put(AppSettings.up + '/' + id, { headers: headers })
+    // }
     // postDealBannerUrl(params) {
     //     const headers = new Headers({ 'Content-Type': "application/JSON" });
     //     return this.http.post(AppSettings.postDealbannersUrl, params, { headers: headers })
