@@ -41,9 +41,9 @@
                                             <tr class="todo-list" *ngFor="let data of banner;let i = index">
                                                 <td>{{i+1}}</td>
                                                 <td>
-                                                    <img [src]="data.mobile_banner[0].image_path" alt="data.image" /></td>
+                                                    <img [src]="data.mobile_bannerimage" alt="data.image" /></td>
                                                 <td>
-                                                    <img [src]="data.website_banner[0].image_path" alt="prod.image" /></td>
+                                                    <img [src]="data.website_bannerimage" alt="prod.image" /></td>
                                                 <td>{{data.type}}</td>
                                                 <td>
                                                     <a routerLink="/addbanner" class="btn btn-outline-primary" (click)="editBanner(data.id)" style="margin-right:10px">Edit</a>

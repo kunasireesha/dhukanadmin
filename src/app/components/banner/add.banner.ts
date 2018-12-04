@@ -1,13 +1,20 @@
 import { AppService } from './../../services/dhukan/dhukan-data.service';
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationExtras, ActivatedRoute } from '@angular/router';
+
 @Component({
     selector: 'add-users',
     templateUrl: './add.banner.html',
     styleUrls: ['./banner.component.css']
 })
 export class AddBannerComponent implements OnInit {
-    bannerId
+    bannerId;
+    categorydata;
+    category = false;
+    subcategory = false;
+    product = false;
+    skus = false;
+    brand = false;
     type: any;
     selectedImage: any;
     selectedImage1: any;
@@ -16,11 +23,13 @@ export class AddBannerComponent implements OnInit {
     mobile_banner;
     website_banner;
     skusData = [];
+    productData = [];
+    subCategoryName = [];
     skuValues = {
-        name: '',
-        type: '',
-        mobile_banner: this.mobile_banner,
-        website_banner: this.website_banner,
+        // name: '',
+        // type: '',
+        // mobile_banner: this.mobile_banner,
+        // website_banner: this.website_banner,
 
     }
     // bannerId= 
@@ -42,7 +51,11 @@ export class AddBannerComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.getCat();
+        this.getProduct();
+        this.getSubCategory();
         // this.editbannerById();
+        console.log(this.skusData);
     }
 
     sku() {
@@ -55,7 +68,7 @@ export class AddBannerComponent implements OnInit {
             website_banner: '',
             imageurl1: ''
         });
-
+        console.log(this.skusData);
     }
     image;
     strImage;
@@ -98,6 +111,7 @@ export class AddBannerComponent implements OnInit {
                     // this.skusData[i].image = myReader.result;
                     this.skusData[i].website_banner = this.strImage1;
                     this.skusData[i].imageurl1 = this.image1;
+                    this.skusData[i].imageurl1 = this.image1;
                 }
             }
         }
@@ -106,6 +120,76 @@ export class AddBannerComponent implements OnInit {
 
     onChange(type) {
         this.type = type;
+        if (this.type === 'Categories') {
+            this.category = true;
+            this.subcategory = false;
+            this.product = false;
+            this.brand = false;
+            this.skus = false;
+        } else if (this.type === 'Subcategories') {
+            this.subcategory = true;
+            this.category = false;
+            this.product = false;
+            this.brand = false;
+            this.skus = false;
+        } else if (this.type === 'Product') {
+            this.subcategory = false;
+            this.category = false;
+            this.product = true;
+            this.skus = false;
+            this.brand = false;
+        } else if (this.type === 'sku') {
+            this.subcategory = false;
+            this.category = false;
+            this.product = false;
+            this.brand = false;
+            this.skus = true;
+        } else if (this.type === 'Brand') {
+            this.subcategory = false;
+            this.category = false;
+            this.product = false;
+            this.skus = false;
+            this.brand = true;
+        }
+
+    }
+    getCat() {
+        this.AppService.getCat()
+            .subscribe(resp => {
+                if (resp.json().message === 'Success') {
+                    this.categorydata = resp.json().result;
+                }
+                else {
+
+                }
+            },
+                error => {
+                    console.log(error, "error");
+                })
+    }
+    getSubCategory() {
+        this.AppService.getSubCategery().subscribe(resp => {
+            this.subCategoryName = resp.json().result;
+            // for (var i = 0; i < this.subCategoryName.length; i++) {
+            //     this.subCategoryId = this.subCategoryName[i].sub_cat_id;
+            // }
+
+        },
+            error => {
+                console.log(error, "error");
+            })
+    }
+    getProduct() {
+        // let goodResponse = [];
+        this.AppService.getProduct()
+            .subscribe(resp => {
+                this.productData = resp.json().result;
+
+            })
+
+        error => {
+            console.log(error, "error");
+        }
     }
     // updateImage(index) {
     //     this.selectedImage = index;
