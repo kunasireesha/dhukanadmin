@@ -204,23 +204,41 @@ export class AddBannerComponent implements OnInit {
     }
 
 
-    changeCat(id, index) {
-        for (var i = 0; i < this.categorydata.length; i++) {
-            if (this.categorydata[i].id === parseInt(id)) {
-                this.catName.push(this.categorydata[i].name);
-                this.catId.push(this.categorydata[i].id);
+    changeCat(id, index, action) {
+        if (action === 'cat') {
+            for (var i = 0; i < this.categorydata.length; i++) {
+                if (this.categorydata[i].id === parseInt(id)) {
+                    this.catName.push(this.categorydata[i].name);
+                    this.catId.push(this.categorydata[i].id);
 
-                for (var i = 0; i < this.skusData.length; i++) {
-                    // this.skusData[i].image = myReader.result;
-                    if (i === index) {
-                        this.skusData[i].target = this.catId.join(',');
-                        this.skusData[i].catNames = this.catName.join(',');
+                    for (var i = 0; i < this.skusData.length; i++) {
+                        // this.skusData[i].image = myReader.result;
+                        if (i === index) {
+                            this.skusData[i].target = this.catId.join(',');
+                            this.skusData[i].catNames = this.catName.join(',');
+                        }
                     }
+                    return;
                 }
-                return;
+            }
+        } else if (action === 'subcat') {
+            for (var i = 0; i < this.subCategoryName.length; i++) {
+                if (this.subCategoryName[i].sub_cat_id === parseInt(id)) {
+                    this.catName.push(this.subCategoryName[i].sub_cat);
+                    this.catId.push(this.subCategoryName[i].sub_cat_id);
+
+                    for (var i = 0; i < this.skusData.length; i++) {
+                        // this.skusData[i].image = myReader.result;
+                        if (i === index) {
+                            this.skusData[i].target = this.catId.join(',');
+                            this.skusData[i].catNames = this.catName.join(',');
+                        }
+                    }
+                    return;
+                }
             }
         }
-        console.log(this.skusData);
+
     }
 
     // updateImage(index) {

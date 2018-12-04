@@ -70,7 +70,7 @@
                                     <label for="firstname">Category :</label>
                                     <div class="form-group">
                                       <select required class="form-control border-primary" id="exampleSelectPrimary"
-                                        name="categoryName" (change)="changeCat($event.target.value,i)">
+                                        name="categoryName" (change)="changeCat($event.target.value,i,'cat')">
                                         <option value="" disabled selected hidden>Select
                                           Category
                                         </option>
@@ -85,11 +85,14 @@
                                     <label for="firstname">Sub Category :</label>
                                     <div class="form-group">
                                       <select class="form-control border-primary" id="exampleSelectPrimary" [(ngModel)]="subCatName"
-                                        name="subCatName" (change)="changeSubCat($event.target.value)">
+                                        name="subCatName" (change)="changeCat($event.target.value,i,'subcat')">
                                         <option value="" disabled selected hidden>Select
                                           Sub Category</option>
-                                        <option *ngFor="let subCat of subCategoryName" value="{{subCat.sub_cat}}">{{subCat.sub_cat}}</option>
+                                        <option *ngFor="let subCat of subCategoryName" value="{{subCat.sub_cat_id}}">{{subCat.sub_cat}}</option>
                                       </select>
+                                    </div>
+                                    <div>
+                                      <label>{{skuValues.catNames}} </label>
                                     </div>
                                   </div>
                                   <div class="form-group" *ngIf="skuValues.product">
