@@ -59,7 +59,6 @@ export class AddlocationComponent implements OnInit {
             if (resp.json().status === 200) {
                 this.areaData = resp.json().result;
                 console.log(this.areaData);
-                debugger;
             }
         })
     }
