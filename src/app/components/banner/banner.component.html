@@ -32,6 +32,7 @@
                                                 <th>Mobile Banner</th>
                                                 <th>Website Banner</th>
                                                 <th>Type</th>
+                                                <th>Target</th>
                                                 <!-- <th>Phone </th>
                                                 <th>Logo</th> -->
                                                 <th>Action</th>
@@ -45,6 +46,7 @@
                                                 <td>
                                                     <img [src]="data.website_bannerimage" alt="prod.image" /></td>
                                                 <td>{{data.type}}</td>
+                                                <td>333,444,555</td>
                                                 <td>
                                                     <a routerLink="/addbanner" class="btn btn-outline-primary" (click)="editBanner(data.id)" style="margin-right:10px">Edit</a>
                                                     <a class="btn btn-outline-primary vendor-delete" (click)="deleteBanner(data.id)">Delete</a>
