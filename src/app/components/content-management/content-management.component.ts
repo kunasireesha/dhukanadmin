@@ -36,9 +36,9 @@ export class ContentManagementComponent implements OnInit {
             "data": this.ckeditorContent,
             "is_footer": "true"
         }
-        this.AppService.termsConditions(data).subscribe(resp => {
+        // this.AppService.termsConditions(data).subscribe(resp => {
 
-        })
+        // })
     }
 
 }

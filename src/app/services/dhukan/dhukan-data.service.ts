@@ -138,22 +138,22 @@ export class AppService {
         const headers = new Headers({ 'Content-Type': "application/JSON" });
         return this.http.post(AppSettings.deleteDeliveryById, id, { headers: headers });
     }
-    addLocation(params) {
-        const headers = new Headers({ 'Content-Type': "application/JSON" });
-        return this.http.post(AppSettings.addLocationUrl, params, { headers: headers });
-    }
+    // addLocation(params) {
+    //     const headers = new Headers({ 'Content-Type': "application/JSON" });
+    //     return this.http.post(AppSettings.getCountriesUrl, params, { headers: headers });
+    // }
     getCountries() {
         const headers = new Headers({ 'Content-Type': "application/x-www-form-urlencoded" });
         return this.http.get(AppSettings.getCountriesUrl, { headers: headers })
     }
-    getStatedbyId(params) {
+    getStatedUrl(id) {
         const headers = new Headers({ 'Content-Type': "application/x-www-form-urlencoded" });
-        return this.http.post(AppSettings.getStatesbyId, params, { headers: headers })
+        return this.http.get(AppSettings.getStatesUrl + '/' + id, { headers: headers })
     }
-    termsConditions(params) {
-        const headers = new Headers({ 'Content-Type': "application/JSON" });
-        return this.http.post(AppSettings.getStatesbyId, params, { headers: headers })
-    }
+    // termsConditions(params) {
+    //     const headers = new Headers({ 'Content-Type': "application/JSON" });
+    //     return this.http.post(AppSettings.getStatesbyId, params, { headers: headers })
+    // }
     postBannerUrl(params) {
         const headers = new Headers({ 'Content-Type': "application/JSON" });
         return this.http.post(AppSettings.postbannersUrl, params, { headers: headers })
@@ -168,12 +168,12 @@ export class AppService {
     }
     editBannerbyId(id) {
         const headers = new Headers({ 'Content-Type': "application/JSON" });
-        return this.http.put(AppSettings.editBannerUrl + '/' + id, { headers: headers })
+        return this.http.get(AppSettings.editBannerUrl + '/' + id, { headers: headers })
     }
-    // updateBannerbyId(id) {
-    //     const headers = new Headers({ 'Content-Type': "application/JSON" });
-    //     return this.http.put(AppSettings.up + '/' + id, { headers: headers })
-    // }
+    updateBannerbyId(params, id) {
+        const headers = new Headers({ 'Content-Type': "application/JSON" });
+        return this.http.put(AppSettings.updatebannerUrl + '/' + id, params, { headers: headers })
+    }
     // postDealBannerUrl(params) {
     //     const headers = new Headers({ 'Content-Type': "application/JSON" });
     //     return this.http.post(AppSettings.postDealbannersUrl, params, { headers: headers })

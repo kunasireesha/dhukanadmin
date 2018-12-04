@@ -22,6 +22,79 @@
                                 <form class="cmxform" id="signupForm" method="get" action="#">
                                     <fieldset>
                                         <div class="form-group">
+                                            <label for="exampleInputEmail1">Title</label>
+                                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" [(ngModel)]="title" name="title">
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12 col-sm-12">
+                                                <div class="form-group" style="margin-top:20px;margin-bottom:25px;">
+                                                    <label for="firstname">Add Banners:
+                                                        <button class="btn btn-primary" (click)=sku()>+</button>
+                                                    </label>
+                                                </div>
+                                                <div class="" *ngFor="let skuValues of skusData;let i= index" style="margin-bottom:30px;">
+                                                    <div class="">
+                                                        <div class="">
+                                                            <div class="row">
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group">
+                                                                        <label for="exampleInputEmail1">Name</label>
+                                                                        <input id="category" class="form-control" type="text" placeholder="name" [(ngModel)]="skuValues.name" [ngModelOptions]="{standalone:true}"
+                                                                        />
+                                                                    </div>
+
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group">
+                                                                        <label for="exampleInputEmail1">Type</label>
+                                                                        <input id="category" class="form-control" type="text" placeholder="type" [(ngModel)]="skuValues.type" [ngModelOptions]="{standalone:true}"
+                                                                        />
+                                                                        <!-- <label for="sel1">Select Type</label>
+                                                                        <select class="form-control border-primary" id="sel1" name="type" [(ngModel)]="skuValues.type" (change)="onChange($event.target.value)">
+                                                                            <i class="fa fa-chevron-down" aria-hidden="true"></i>
+                                                                            <option value="" disabled selected hidden>Select
+                                                                                Type
+                                                                            </option>
+                                                                            <option value="Categories">Categories</option>
+                                                                            <option value="Subcategories">Subcategories</option>
+                                                                            <option value="Product">Product</option>
+                                                                            <option value="sku">sku</option>
+                                                                            <option value="Brand">Brand</option>
+                                                                        </select> -->
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group">
+                                                                        <label for="exampleInputEmail1">Mobile Banner</label>
+                                                                        <input class="form-control" type="file" accept="image/*" (change)="changeListener($event,i)" [(ngModel)]="catImg" name="catImg">
+                                                                        <div *ngIf="image">
+                                                                            <img src="{{skuValues.imageurl}}" alt="" width="100" height="100" style="border: solid 1px;margin-top: 2%;">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group">
+                                                                        <label for="exampleInputEmail1">website Banner</label>
+                                                                        <input class="form-control" type="file" accept="image1/*" (change)="changeListener1($event,i)" [(ngModel)]="catImg" name="catImg">
+                                                                        <div *ngIf="image">
+                                                                            <img src="{{skuValues.imageurl1}}" alt="" width="100" height="100" style="border: solid 1px;margin-top: 2%;">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <button type="submit" class="btn btn-primary vendor-button" (click)="deleteSku(i)">Delete
+                                                                        Banner
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- <div class="form-group">
                                             <label for="sel1">Select Type</label>
                                             <select class="form-control border-primary" id="sel1" (change)="onChange($event.target.value)">
                                                 <i class="fa fa-chevron-down" aria-hidden="true"></i>
@@ -32,31 +105,31 @@
                                                 <option value="sku">sku</option>
                                                 <option value="Brand">Brand</option>
                                             </select>
-                                        </div>
-                                        <div class="form-group">
+                                        </div> -->
+                                        <!-- <div class="form-group">
                                             <label for="exampleInputEmail1">Mobile Banner</label>
                                             <input class="form-control" type='file' (change)="onSelectFile($event)" multiple>
                                             <br>
                                             <img *ngFor='let url of urls' [src]="url" height="100" width="100" style="margin-right: 2%;border: 1px solid;margin-bottom:5%">
-                                            <div *ngFor='let url of productDetails'>
-                                                <img *ngFor="let imgUrl of url.myImages;let i =index" [src]="imgUrl.product_image" height="100" width="100" style="margin-right: 2%;border: 1px solid;margin-bottom:5%"
-                                                    (click)="updateImage(imgUrl.id)" [ngClass]="{'selected':selectedImage==imgUrl.id}">
+                                            <div>
+                                                <img *ngFor="let imgUrl of mobile_banner;let i =index" [src]="imgUrl.image_path" height="100" width="100" style="margin-right: 2%;border: 1px solid;margin-bottom:5%"
+                                                    (click)="updateImage(imgUrl.mobile_image_id)" [ngClass]="{'selected':selectedImage==imgUrl.mobile_image_id}">
                                             </div>
-                                        </div>
-                                        <div class="form-group">
+                                        </div> -->
+                                        <!-- <div class="form-group">
                                             <label for="exampleInputEmail1">Website Banner</label>
                                             <input class="form-control" type='file' (change)="onSelectFile1($event)" multiple>
                                             <br>
                                             <img *ngFor='let url of urls1' [src]="url" height="100" width="100" style="margin-right: 2%;border: 1px solid;margin-bottom:5%">
-                                            <div *ngFor='let url of productDetails'>
-                                                <img *ngFor="let imgUrl of url.myImages;let i =index" [src]="imgUrl.product_image" height="100" width="100" style="margin-right: 2%;border: 1px solid;margin-bottom:5%"
-                                                    (click)="updateImage1(imgUrl.id)" [ngClass]="{'selected':selectedImage==imgUrl.id}">
+                                            <div>
+                                                <img *ngFor="let imgUrl of website_banner;let i =index" [src]="imgUrl.image_path" height="100" width="100" style="margin-right: 2%;border: 1px solid;margin-bottom:5%"
+                                                    (click)="updateImage1(imgUrl.web_image_id)" [ngClass]="{'selected':selectedImage1==imgUrl.web_image_id}">
                                             </div>
-                                        </div>
+                                        </div> -->
                                         <button type="submit" class="btn btn-primary vendor-button" *ngIf="addbanners" (click)="addbanner()">
                                             Add Banner
                                         </button>
-                                        <button type="submit" class="btn btn-primary vendor-button" *ngIf="!addbanners">
+                                        <button type="submit" class="btn btn-primary vendor-button" *ngIf="!addbanners" (click)="updateBanner()">
                                             Update Banner
                                         </button>
                                     </fieldset>

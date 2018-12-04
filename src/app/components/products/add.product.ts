@@ -286,11 +286,11 @@ export class AddProductsComponent implements OnInit {
             'category_id': this.caId,
             'image': this.images,
             'subcategory_id': (this.subCatId === undefined) ? this.subCategoryId : this.subCatId,
-            'actual_price': this.actualPrice,
-            'selling_price': this.sellingPrice,
+            // 'actual_price': this.actualPrice,
+            // 'selling_price': this.sellingPrice,
             'quality_image': this.strImage,
-            'discount_type': this.discountOption,
-            'discount_percentage': this.disAmount,
+            // 'discount_type': this.discountOption,
+            // 'discount_percentage': this.disAmount,
             'express_delivery': this.selectedExpressValue,
             'normal_delivery': this.selectedNormalValue,
             'description': this.Description,
@@ -333,7 +333,7 @@ export class AddProductsComponent implements OnInit {
             this.actualPrice = this.productDetails[0].actual_price;
             this.sellingPrice = this.productDetails[0].selling_price;
             this.disAmount = this.productDetails[0].discount;
-            
+
         })
     }
     updateImage(index) {

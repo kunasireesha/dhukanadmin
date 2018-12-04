@@ -20,12 +20,13 @@
                                 <a routerLink="/location" id="show" class="btn  btn-maron" style="float: right;    margin-top: -45px;">Back</a>
                                 <form>
                                     <div class="form-group">
-                                        <p>Select Country</p>
-                                        <input class="form-control" list="countries" name="countries" [(ngModel)]="country" />
-                                        <datalist id="countries">
-                                            <option value="India">
-                                                <option value="USA">
-                                        </datalist>
+                                        <label for="firstname">Select Country</label>
+                                        <div class="form-group">
+                                            <select required class="form-control border-primary" id="exampleSelectPrimary" [(ngModel)]="country" name="country" (change)="changeCountry($event.target.value)">
+                                                <option value="" disabled selected hidden>Select country</option>
+                                                <option *ngFor="let data of countrydata" value="{{data.location_id}}">{{data.location}}</option>
+                                            </select>
+                                        </div>
                                     </div>
                                     <div class="form-group">
                                         <p>Select State</p>
