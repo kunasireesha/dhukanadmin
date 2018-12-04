@@ -123,39 +123,44 @@ export class AddBannerComponent implements OnInit {
         myReader.readAsDataURL(file);
     }
 
-    onChange(type) {
+    onChange(type, index) {
         this.type = type;
-        if (this.type === 'Categories') {
-            this.category = true;
-            this.subcategory = false;
-            this.product = false;
-            this.brand = false;
-            this.skus = false;
-        } else if (this.type === 'Subcategories') {
-            this.subcategory = true;
-            this.category = false;
-            this.product = false;
-            this.brand = false;
-            this.skus = false;
-        } else if (this.type === 'Product') {
-            this.subcategory = false;
-            this.category = false;
-            this.product = true;
-            this.skus = false;
-            this.brand = false;
-        } else if (this.type === 'sku') {
-            this.subcategory = false;
-            this.category = false;
-            this.product = false;
-            this.brand = false;
-            this.skus = true;
-        } else if (this.type === 'Brand') {
-            this.subcategory = false;
-            this.category = false;
-            this.product = false;
-            this.skus = false;
-            this.brand = true;
+        for (var i = 0; i < this.skusData.length; i++) {
+            if (i === index) {
+                if (this.type === 'Categories') {
+                    this.category = true;
+                    this.subcategory = false;
+                    this.product = false;
+                    this.brand = false;
+                    this.skus = false;
+                } else if (this.type === 'Subcategories') {
+                    this.subcategory = true;
+                    this.category = false;
+                    this.product = false;
+                    this.brand = false;
+                    this.skus = false;
+                } else if (this.type === 'Product') {
+                    this.subcategory = false;
+                    this.category = false;
+                    this.product = true;
+                    this.skus = false;
+                    this.brand = false;
+                } else if (this.type === 'sku') {
+                    this.subcategory = false;
+                    this.category = false;
+                    this.product = false;
+                    this.brand = false;
+                    this.skus = true;
+                } else if (this.type === 'Brand') {
+                    this.subcategory = false;
+                    this.category = false;
+                    this.product = false;
+                    this.skus = false;
+                    this.brand = true;
+                }
+            }
         }
+
 
     }
     getCat() {

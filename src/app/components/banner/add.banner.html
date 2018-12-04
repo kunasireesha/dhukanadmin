@@ -52,7 +52,7 @@
                                                                         /> -->
                                     <label for="sel1">Select Type</label>
                                     <select class="form-control border-primary" id="sel1" name="type" [(ngModel)]="skuValues.type"
-                                      (change)="onChange($event.target.value)">
+                                      (change)="onChange($event.target.value,i)">
                                       <i class="fa fa-chevron-down" aria-hidden="true"></i>
                                       <option value="" disabled selected hidden>Select
                                         Type

@@ -43,7 +43,7 @@ export const AppSettings = {
     termConditionsUrl: 'http://localhost:9000/terms_conditions',
     postbannersUrl: base_url + 'banners/new_banner',
     getBannerUrl: base_url + 'banners/getbanners',
-    deleteBannerUrl: base_url + 'banners/delete_banner',
+    deleteBannerUrl: base_url + 'banners/delteindivisuval_banner',
     editBannerUrl: base_url + 'banners/banners-list',
     updatebannerUrl: base_url + 'banners/update_banner'
     // postDealbannersUrl: base_url + 'banners/new_banner',

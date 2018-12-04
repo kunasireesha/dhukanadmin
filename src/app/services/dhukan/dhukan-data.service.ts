@@ -170,9 +170,9 @@ export class AppService {
         const headers = new Headers({ 'Content-Type': "application/x-www-form-urlencoded" });
         return this.http.get(AppSettings.getBannerUrl, { headers: headers })
     }
-    deleteBanner(id) {
+    deleteBanner(params) {
         const headers = new Headers({ 'Content-Type': "application/JSON" });
-        return this.http.delete(AppSettings.deleteBannerUrl + '/' + id, { headers: headers })
+        return this.http.post(AppSettings.deleteBannerUrl, params, { headers: headers })
     }
     editBannerbyId(id) {
         const headers = new Headers({ 'Content-Type': "application/JSON" });
