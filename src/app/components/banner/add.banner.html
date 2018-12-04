@@ -66,7 +66,7 @@
                                   </div>
                                 </div>
                                 <div class="col-sm-4">
-                                  <div class="form-group" *ngIf="category">
+                                  <div class="form-group" *ngIf="skuValues.category">
                                     <label for="firstname">Category :</label>
                                     <div class="form-group">
                                       <select required class="form-control border-primary" id="exampleSelectPrimary"
@@ -81,7 +81,7 @@
                                       <label>{{skuValues.catNames}} </label>
                                     </div>
                                   </div>
-                                  <div class="form-group" *ngIf="subcategory">
+                                  <div class="form-group" *ngIf="skuValues.subcategory">
                                     <label for="firstname">Sub Category :</label>
                                     <div class="form-group">
                                       <select class="form-control border-primary" id="exampleSelectPrimary" [(ngModel)]="subCatName"
@@ -92,7 +92,7 @@
                                       </select>
                                     </div>
                                   </div>
-                                  <div class="form-group" *ngIf="product">
+                                  <div class="form-group" *ngIf="skuValues.product">
                                     <label for="firstname">Product :</label>
                                     <div class="form-group">
                                       <select class="form-control border-primary" id="exampleSelectPrimary" [(ngModel)]="subCatName"
@@ -103,11 +103,11 @@
                                       </select>
                                     </div>
                                   </div>
-                                  <div class="form-group" *ngIf="skus">
+                                  <div class="form-group" *ngIf="skuValues.skus">
                                     <label for="firstname" name="prodName">Sku</label>
                                     <input id="category" class="form-control" type="text" />
                                   </div>
-                                  <div class="form-group" *ngIf="brand">
+                                  <div class="form-group" *ngIf="skuValues.brand">
                                     <label for="firstname" name="prodName">Brand</label>
                                     <input id="category" class="form-control" type="text" />
                                   </div>

@@ -128,36 +128,37 @@ export class AddBannerComponent implements OnInit {
         for (var i = 0; i < this.skusData.length; i++) {
             if (i === index) {
                 if (this.type === 'Categories') {
-                    this.category = true;
-                    this.subcategory = false;
-                    this.product = false;
-                    this.brand = false;
-                    this.skus = false;
+                    this.skusData[i].category = true;
+                    this.skusData[i].subcategory = false;
+                    this.skusData[i].product = false;
+                    this.skusData[i].brand = false;
+                    this.skusData[i].skus = false;
                 } else if (this.type === 'Subcategories') {
-                    this.subcategory = true;
-                    this.category = false;
-                    this.product = false;
-                    this.brand = false;
-                    this.skus = false;
+                    this.skusData[i].subcategory = true;
+                    this.skusData[i].category = false;
+                    this.skusData[i].product = false;
+                    this.skusData[i].brand = false;
+                    this.skusData[i].skus = false;
                 } else if (this.type === 'Product') {
-                    this.subcategory = false;
-                    this.category = false;
-                    this.product = true;
-                    this.skus = false;
-                    this.brand = false;
+                    this.skusData[i].subcategory = false;
+                    this.skusData[i].category = false;
+                    this.skusData[i].product = true;
+                    this.skusData[i].skus = false;
+                    this.skusData[i].brand = false;
                 } else if (this.type === 'sku') {
-                    this.subcategory = false;
-                    this.category = false;
-                    this.product = false;
-                    this.brand = false;
-                    this.skus = true;
+                    this.skusData[i].subcategory = false;
+                    this.skusData[i].category = false;
+                    this.skusData[i].product = false;
+                    this.skusData[i].brand = false;
+                    this.skusData[i].skus = true;
                 } else if (this.type === 'Brand') {
-                    this.subcategory = false;
-                    this.category = false;
-                    this.product = false;
-                    this.skus = false;
-                    this.brand = true;
+                    this.skusData[i].subcategory = false;
+                    this.skusData[i].category = false;
+                    this.skusData[i].product = false;
+                    this.skusData[i].skus = false;
+                    this.skusData[i].brand = true;
                 }
+                return;
             }
         }
 
