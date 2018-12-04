@@ -19,22 +19,23 @@
                                 <h4 class="card-title">Add Location</h4>
                                 <a routerLink="/location" id="show" class="btn  btn-maron" style="float: right;    margin-top: -45px;">Back</a>
                                 <form style="margin-top:30px;">
-                                    <!-- <div class="form-group">
+                                    <div class="form-group">
                                         <label for="firstname">Select Country</label>
                                         <div class="form-group">
-                                            <select required class="form-control" id="exampleSelectPrimary" [(ngModel)]="country" name="country" (change)="changeCountry($event.target.value)">
+                                            <select required class="form-control" id="exampleSelectPrimary" [(ngModel)]="country"
+                                                name="country" (change)="changeCountry($event.target.value)">
                                                 <option value="">Select Country</option>
                                                 <option *ngFor="let data of countrydata" value="{{data.location_id}}">{{data.location}}</option>
                                             </select>
                                         </div>
-                                    </div> -->
-                                    <div class="form-group">
-
-                                        <select required class="form-control" (change)="changeCountry($event.target.value)">
-                                            <option value="" disabled>Select country</option>
-                                            <option *ngFor="let data of countrydata" value="{{data.location_id}}">{{data.location}}</option>
-                                        </select>
                                     </div>
+                                    <!-- <div class="form-group">
+                                        <select required class="form-control" [(ngModel)]="selectedType"
+                                            (ngModelChange)="changeCountry($event.target.value)" name="selectedType">
+                                            <option value="" disabled>Select country</option>
+                                            <option *ngFor="let data of countrydata" [ngValue]="data">{{data.location}}</option>
+                                        </select>
+                                    </div> -->
                                     <div class="form-group">
 
                                         <select required class="form-control" (change)="changeState($event.target.value)">
@@ -74,7 +75,8 @@
                                             </option>
                                         </select>
                                     </div>
-                                    <button type="submit" class="btn btn-primary vendor-button" (click)="addLocation()" style="margin-top:20px">Add
+                                    <button type="submit" class="btn btn-primary vendor-button" (click)="addLocation()"
+                                        style="margin-top:20px">Add
                                         Location
                                     </button>
                                     <!-- <button type="submit" class="btn btn-primary vendor-button"*ngIf="!addcat">Update

@@ -16,9 +16,11 @@ export class LocationComponent implements OnInit {
     moreState = false;
     moreCity = false;
     moreArea = false;
+    locationData = [];
     constructor(private httpClient: HttpClient, private appService: AppService) { }
 
     ngOnInit() {
+        this.getLocation();
     }
     country() {
         this.moreCountry = !this.moreCountry;
@@ -31,6 +33,17 @@ export class LocationComponent implements OnInit {
     }
     area() {
         this.moreArea = !this.moreArea;
+    }
+    getLocation() {
+        this.appService.getLocation().subscribe(resp => {
+            this.locationData = resp.json().result;
+        })
+    }
+    deleteLoc(id) {
+        this.appService.deleteLocation(id).subscribe(resp => {
+            swal(resp.json().message, "", "success");
+            this.getLocation();
+        })
     }
     // getCountries() {
     //     this.appService.getCountries().subscribe(resp => {

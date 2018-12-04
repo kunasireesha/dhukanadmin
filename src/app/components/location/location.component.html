@@ -20,32 +20,65 @@
                         <h4 class="card-title">Location Management </h4>
                         <span>
                             <input class="form-control" type="text" placeholder="Search.." name="search" [(ngModel)]="filter"></span>
-                        <br/>
+                        <br />
                         <div class="row">
-                            <div class="col-3">
+                            <div class="col-12">
+                                <div class="table-responsive">
+                                    <table id="order-listing" class="table " style="text-align: center">
+                                        <thead class="thead-dark">
+                                            <tr>
+                                                <th>S.no</th>
+                                                <th>Country
+                                                </th>
+                                                <th>State
+                                                </th>
+                                                <th>City</th>
+                                                <th>Area</th>
+                                                <th>Delete </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="todo-list" *ngFor="let location of locationData | filter:filter;let i = index">
+                                                <td>{{i+1}}</td>
+                                                <td>{{location.country}}</td>
+                                                <td>{{location.state}}</td>
+                                                <td>{{location.city}}</td>
+                                                <td>{{location.area}}</td>
+                                                <td>
+                                                    <button class="btn remove btn-outline-primary">Edit
+                                                    </button>
+                                                    <button class="btn remove btn-outline-primary" (click)="deleteLoc(location.id)">Delete
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <!-- <div class="col-3">
                                 <div class="card location">
                                     <div class="card-body location-body">
                                         <div class="location-table">
                                             <h5 class="text-center">Country</h5>
-                                        </div>
-                                        <div class="get" *ngFor="let data of getcountry">
+                                        </div> -->
+                            <!-- <div class="get" *ngFor="let data of getcountry">
                                             <div class="row">
-                                                <div class="col-sm-1"></div>
-                                                <div class="col-sm-6">
+                                                <div class="col-sm-1"></div> -->
+                            <!-- <div class="col-sm-6">
 
                                                     <p class="p-color"><span><i class="fa fa-times-circle" aria-hidden="true"></i>{{data.name}}</span></p>
 
-                                                </div>
-                                                <!-- <div class="col-sm-2"></div> -->
-                                                <div class="col-sm-5">
+                                                </div> -->
+                            <!-- <div class="col-sm-2"></div> -->
+                            <!-- <div class="col-sm-5">
                                                     <p class="loc" (click)="getStatesbyId(data.id)">Get State >></p>
 
-                                                </div>
-                                                <!-- <div class="col-sm-1"></div> -->
-                                            </div>
-                                        </div>
+                                                </div> -->
+                            <!-- <div class="col-sm-1"></div> -->
+                            <!-- </div>
+                                </div> -->
 
-                                        <!-- <div class="row" *ngIf="moreCountry">
+                            <!-- <div class="row" *ngIf="moreCountry">
                                             <div class="col-sm-7">
                                             </div>
                                             <div class="col-sm-5">
@@ -57,10 +90,10 @@
                                                 </ul>
                                             </div>
                                         </div> -->
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-3">
+                            <!-- </div>
+                    </div>
+                </div> -->
+                            <!-- <div class="col-3">
                                 <div class="card location">
                                     <div class="card-body location-body" style="height:100px">
                                         <div class="location-table">
@@ -75,8 +108,8 @@
                                             <div class="col-sm-5">
                                                 <p class="loc">View More >></p>
                                             </div>
-                                        </div>
-                                        <!-- <div class="row">
+                                        </div> -->
+                            <!-- <div class="row">
                                             <div class="col-sm-7">
                                             </div>
                                             <div class="col-sm-5">
@@ -88,10 +121,10 @@
                                                 </ul>
                                             </div>
                                         </div> -->
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-3">
+                            <!-- </div>
+                    </div>
+                </div> -->
+                            <!-- <div class="col-3">
                                 <div class="card location">
                                     <div class="card-body location-body" style="height:100px">
                                         <div class="location-table">
@@ -107,8 +140,8 @@
                                                 <p class="loc" (click)="city()">View More >>
                                                 </p>
                                             </div>
-                                        </div>
-                                        <!-- <div class="row">
+                                        </div> -->
+                            <!-- <div class="row">
                                             <div class="col-sm-7">
                                             </div>
                                             <div class="col-sm-5">
@@ -120,10 +153,10 @@
                                                 </ul>
                                             </div>
                                         </div> -->
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-3">
+                            <!-- </div>
+                    </div>
+                </div> -->
+                            <!-- <div class="col-3">
                                 <div class="card location">
                                     <div class="card-body location-body" style="height:100px">
                                         <div class="location-table">
@@ -139,8 +172,8 @@
                                                 <p class="loc" (click)="area()">View More >>
                                                 </p>
                                             </div>
-                                        </div>
-                                        <!-- <div class="row">
+                                        </div> -->
+                            <!-- <div class="row">
                                             <div class="col-sm-7">
                                             </div>
                                             <div class="col-sm-5">
@@ -152,9 +185,9 @@
                                                 </ul>
                                             </div>
                                         </div> -->
-                                    </div>
-                                </div>
-                            </div>
+                            <!-- </div>
+                    </div>
+                </div> -->
                         </div>
                     </div>
                 </div>
