@@ -139,7 +139,6 @@
                                                 margin-left: 20px;">Select
                                                     Delivery Options</h6>
                                                 <div class="margin" *ngFor="let item of list">
-
                                                     <label>
                                                         <input type="checkbox" name="options" value="{{item}}" [checked]="list.indexOf(item) == 0" [disabled]="list.indexOf(item) == 0"
                                                             (click)="checkbox($event.target.checked,item.id,item)" />                                                        &nbsp;{{item.title}}

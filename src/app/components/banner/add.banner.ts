@@ -27,17 +27,21 @@ export class AddBannerComponent implements OnInit {
     subCategoryName = [];
     catName = [];
     catId = [];
-    skuValues = {
-        // name: '',
-        // type: '',
-        // mobile_banner: this.mobile_banner,
-        // website_banner: this.website_banner,
+    subCatId = [];
+    prodId = [];
+    // skuValues = {
+    //     name: '',
+    //     // type: '',
+    //     // mobile_banner: this.mobile_banner,
+    //     // website_banner: this.website_banner,
 
-    }
+    // }
     // bannerId= 
     constructor(private AppService: AppService, private route: ActivatedRoute, public router: Router) {
         this.route.queryParams.subscribe(params => {
             this.bannerId = params.bannerId
+
+
         })
         if (this.bannerId === '') {
             // this.removeImg = false;
@@ -47,6 +51,7 @@ export class AddBannerComponent implements OnInit {
             // this.Image = true;
             // this.removeImg = true;
             this.addbanners = false;
+            this.editbannerById();
             // this.addbanners = this.action;
 
         }
@@ -56,8 +61,7 @@ export class AddBannerComponent implements OnInit {
         this.getCat();
         this.getProduct();
         this.getSubCategory();
-        // this.editbannerById();
-        console.log(this.skusData);
+
     }
 
     sku() {
@@ -67,13 +71,12 @@ export class AddBannerComponent implements OnInit {
             type: '',
             // skuImage: this.skuImg,
             mobile_banner: '',
-            imageurl: '',
+            mobile_bannerimage: '',
             website_banner: '',
-            imageurl1: '',
+            website_bannerimage: '',
             target: '',
             catNames: ''
         });
-        console.log(this.skusData);
     }
     image;
     strImage;
@@ -92,7 +95,7 @@ export class AddBannerComponent implements OnInit {
                 if (i === index) {
                     // this.skusData[i].image = myReader.result;
                     this.skusData[i].mobile_banner = this.strImage;
-                    this.skusData[i].imageurl = this.image;
+                    this.skusData[i].mobile_bannerimage = this.image;
                 }
             }
         }
@@ -115,8 +118,7 @@ export class AddBannerComponent implements OnInit {
                 if (i === index) {
                     // this.skusData[i].image = myReader.result;
                     this.skusData[i].website_banner = this.strImage1;
-                    this.skusData[i].imageurl1 = this.image1;
-                    this.skusData[i].imageurl1 = this.image1;
+                    this.skusData[i].website_bannerimage = this.image1;
                 }
             }
         }
@@ -204,23 +206,59 @@ export class AddBannerComponent implements OnInit {
     }
 
 
-    changeCat(id, index) {
-        for (var i = 0; i < this.categorydata.length; i++) {
-            if (this.categorydata[i].id === parseInt(id)) {
-                this.catName.push(this.categorydata[i].name);
-                this.catId.push(this.categorydata[i].id);
+    changeCat(id, index, action) {
 
-                for (var i = 0; i < this.skusData.length; i++) {
-                    // this.skusData[i].image = myReader.result;
-                    if (i === index) {
-                        this.skusData[i].target = this.catId.join(',');
-                        this.skusData[i].catNames = this.catName.join(',');
+        if (action === 'cat') {
+            for (var i = 0; i < this.categorydata.length; i++) {
+                if (this.categorydata[i].id === parseInt(id)) {
+                    this.catName.push(this.categorydata[i].name);
+                    this.catId.push(this.categorydata[i].id);
+
+                    for (var i = 0; i < this.skusData.length; i++) {
+                        // this.skusData[i].image = myReader.result;
+                        if (i === index) {
+                            this.skusData[i].target = this.catId.join(',');
+                            this.skusData[i].catNames = this.catName.join(',');
+                        }
                     }
+                    return;
                 }
-                return;
+            }
+        } else if (action === 'subcat') {
+            for (var i = 0; i < this.subCategoryName.length; i++) {
+                if (this.subCategoryName[i].sub_cat_id === parseInt(id)) {
+                    this.catName.push(this.subCategoryName[i].sub_cat);
+                    this.subCatId.push(this.subCategoryName[i].sub_cat_id);
+
+                    for (var i = 0; i < this.skusData.length; i++) {
+                        // this.skusData[i].image = myReader.result;
+                        if (i === index) {
+                            this.skusData[i].target = this.subCatId.join(',');
+                            this.skusData[i].catNames = this.catName.join(',');
+                        }
+                    }
+                    return;
+                }
             }
         }
-        console.log(this.skusData);
+        else if (action === 'prod') {
+            for (var i = 0; i < this.productData.length; i++) {
+                if (this.productData[i].id === parseInt(id)) {
+                    this.catName.push(this.productData[i].title);
+                    this.prodId.push(this.productData[i].id);
+
+                    for (var i = 0; i < this.skusData.length; i++) {
+                        // this.skusData[i].image = myReader.result;
+                        if (i === index) {
+                            this.skusData[i].target = this.prodId.join(',');
+                            this.skusData[i].catNames = this.catName.join(',');
+                        }
+                    }
+                    return;
+                }
+            }
+        }
+
     }
 
     // updateImage(index) {
@@ -358,17 +396,40 @@ export class AddBannerComponent implements OnInit {
             }
         })
     }
-    // bannerDetails;
+    bannerDetails;
+    skuValues;
+    // name;
     // mobile_banner = [];
     // website_banner = [];
-    // editbannerById() {
-    //     this.AppService.editBannerbyId(this.bannerId).subscribe(resp => {
-    //         this.bannerDetails = resp.json();
-    //         this.mobile_banner = this.bannerDetails[0].mobile_banner;
-    //         this.website_banner = this.bannerDetails[0].website_banner;
+    editbannerById() {
+        var data = {
+            'id': this.bannerId
+        }
+        this.AppService.editBannerbyId(data).subscribe(resp => {
+            this.skusData = resp.json().result;
+            this.image = true;
+            for (var i = 0; i < this.skusData.length; i++) {
+                if (this.skusData[i].type === 'Categories') {
+                    this.skusData[i].category = true;
+                    this.catId.push(this.skusData[i].target);
 
-    //     })
-    // }
+                    // this.skusData[i].catNames=
+                } else if (this.skusData[i].type === 'Subcategories') {
+                    this.skusData[i].subcategory = true;
+                    this.subCatId.push(this.skusData[i].target);
+                } else if (this.skusData[i].type === 'Product') {
+                    this.skusData[i].product = true;
+                    this.prodId.push(this.skusData[i].target);
+                }
+            }
+
+            console.log(this.skusData);
+            // this.skuValues = {
+            //     name: this.bannerDetails.name
+            // }
+            // console.log(this.skuValues.name);
+        })
+    }
     // updateBanner() {
     //     var data = {
     //         'type': this.type,
