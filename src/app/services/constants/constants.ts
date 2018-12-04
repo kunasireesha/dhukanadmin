@@ -32,5 +32,20 @@ export const AppSettings = {
     deleteOfferById: 'http://192.168.0.116:9000/offers/',
     addDeliveryUrl: base_url + 'oders/delvory',
     getDeliveryUrl: base_url + 'oders/getdelvory',
-    deleteDeliveryById: base_url + 'oders/deletedelvory'
+    deleteDeliveryById: base_url + 'oders/deletedelvory',
+    getCountriesUrl: base_url + 'users/location_management/3',
+    getStatesUrl: base_url + 'users/location_management/3',
+    // getCountries: base_url + 'location/location',
+    // getCountriesUrl: base_url + 'location/getcountrys',
+    // getStatesbyId: base_url + 'location/getstatus',
+    termConditionsUrl: 'http://localhost:9000/terms_conditions',
+    postbannersUrl: base_url + 'banners/new_banner',
+    getBannerUrl: base_url + 'banners/getbanners',
+    deleteBannerUrl: base_url + 'banners/delete_banner',
+    editBannerUrl: base_url + 'banners/banners-list',
+    updatebannerUrl: base_url + 'banners/update_banner'
+    // postDealbannersUrl: base_url + 'banners/new_banner',
+    // getDealBannerUrl: base_url + 'banners/banners-list',
+    // deleteDealBannerUrl: base_url + 'banners/delete_banner',
+    // updateDealbannerUrl: base_url + 'banners/update_banner'
 }

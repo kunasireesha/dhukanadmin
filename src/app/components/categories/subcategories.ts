@@ -51,14 +51,16 @@ export class SubCatComponent implements OnInit {
     }
 
 
-    addSub(id, maincat, subcat, maincatId, action) {
+    addSub(id, maincat, subcat, maincatId, action, img, des) {
         let navigationExtras: NavigationExtras = {
             queryParams: {
                 'subCat': subcat,
                 'mainCat': maincat,
                 'id': id,
                 'mainCatId': maincatId,
-                'action': action
+                'action': action,
+                'img': img,
+                'des': des
             }
         }
         this.router.navigate(['/addsubcategory'], navigationExtras);

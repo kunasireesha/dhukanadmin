@@ -16,7 +16,7 @@
                 <div class="card">
                     <div class="card-body">
                         <!-- <a href="" id="show" class="btn  btn-maron" style="float: right">Export To Excel</a> -->
-                        <a routerLink="/addOffers" (click)="addCoupon('')" id="show" class="btn  btn-maron" style="float: right">Add
+                        <a routerLink="/addbestDeals" (click)="addCoupon('')" id="show" class="btn  btn-maron" style="float: right">Add
                             Coupon
                         </a>
                         <h4 class="card-title">
@@ -50,8 +50,7 @@
                                                 <td>{{coupons.minimum_value}}</td>
 
                                                 <td>
-                                                    <a routerLink="/addOffers" class="btn btn-outline-primary coupon-margin"
-                                                        (click)="editOffer(coupons.id)">Edit</a>
+                                                    <a routerLink="/addOffers" class="btn btn-outline-primary coupon-margin" (click)="editOffer(coupons.id)">Edit</a>
                                                     <a class="btn btn-outline-primary vendor-delete" (click)="deleteOffer(coupons.id)">Delete</a>
                                                 </td>
                                             </tr>

@@ -21,6 +21,7 @@ export class AddCatComponent implements OnInit {
             this.catname = params.name
             this.id = params.id
             this.pic = params.pic
+            this.des = params.des
         });
 
         if (this.catname === '') {
@@ -28,6 +29,8 @@ export class AddCatComponent implements OnInit {
         } else {
             this.addcat = false;
             this.input = this.catname;
+            this.textarea = this.des;
+            this.catImg = this.pic;
         }
     }
 
@@ -35,7 +38,8 @@ export class AddCatComponent implements OnInit {
     id;
     addcat: boolean;
     pic;
-
+    des;
+    catImg;
     ngOnInit() {
         // this.addCat();
     }

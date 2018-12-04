@@ -2,6 +2,9 @@
     padding-right: 20px;
     font-size: 17px;
 } */
+.active1{
+    border:red;
+}
 .menu-list{
     margin-top: 50px;
 }
@@ -27,7 +30,10 @@
     font-size: 20px;
     padding-right: 24px;
 }
-
+.menu-content{
+    margin-bottom: 17%!important;
+    padding-bottom: 12%!important;
+}
 /* sidenav */
 .nav-side-menu {
     overflow: auto;

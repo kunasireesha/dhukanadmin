@@ -22,3 +22,10 @@
 textarea{
     width: 400px !important;
 }
+.selected{
+    border:red;
+}
+.form-control{
+    border-color: #495057;
+}
+

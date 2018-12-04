@@ -1,0 +1,77 @@
+<div class="container-scroller">
+    <!-- partial:partials/_navbar.html -->
+
+    <logo-nav></logo-nav>
+    <!-- partial -->
+    <div class="container-fluid page-body-wrapper">
+        <div class="row row-offcanvas row-offcanvas-right">
+            <!-- partial:partials/_settings-panel.html -->
+            <header-nav></header-nav>
+            <profile-nav></profile-nav>
+            <!-- partial -->
+            <!-- partial:partials/_sidebar.html -->
+
+            <!-- partial -->
+            <div class="content-wrapper">
+                <div class="card">
+                    <div class="card-body">
+                        <!-- <a href="" id="show" class="btn  btn-maron" style="float: right">Export To Excel</a> -->
+                        <a (click)="addBanner('')" routerLink="/addbestDeals" id="show" class="btn  btn-maron" style="float: right">Add
+                            Best Deal</a>
+                        <h4 class="card-title">
+                            Best Deal Banners</h4>
+                        <br />
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="table-responsive">
+                                    <table id="order-listing" class="table " style="text-align: center">
+                                        <thead class="thead-dark">
+                                            <tr>
+                                                <th>S.no</th>
+                                                <th>Moblie Banner</th>
+                                                <th>Website Banner</th>
+                                                <th>Type</th>
+                                                <!-- <th>Phone </th>
+                                                <th>Logo</th> -->
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="todo-list" *ngFor="let vendorDetails of vendors;let i = index">
+                                                <td>{{i+1}}</td>
+                                                <td>{{vendorDetails.first_name}}</td>
+                                                <td>{{vendorDetails.business_name}}</td>
+                                                <td>{{vendorDetails.email}}</td>
+                                                <td>{{vendorDetails.phone}}</td>
+                                                <td>
+                                                    <img src="assets/images/samples/1.jpg"> </td>
+                                                <td>
+                                                    <a routerLink="/addvendors" class="btn btn-outline-primary" (click)="editBestDealBanner(vendorDetails.u_id)">Edit</a>
+                                                    <a class="btn btn-outline-primary vendor-delete" (click)="deleteBestDealBanner(vendorDetails.u_id)">Delete</a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- content-wrapper ends -->
+            <!-- partial:partials/_footer.html -->
+            <footer class="footer">
+                <div class="container-fluid clearfix">
+                    <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © 2018
+                        <a routerLink="#">Dhukan </a>. All rights reserved. </span>
+                    <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">
+
+                    </span>
+                </div>
+            </footer>
+            <!-- partial -->
+        </div>
+        <!-- row-offcanvas ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+</div>

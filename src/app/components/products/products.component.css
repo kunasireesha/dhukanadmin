@@ -14,19 +14,13 @@ span input[type=text] {
     border-radius: 5px;
     width: 30%;
   }
+  
   .fa-search{
     position: absolute;
     top: 13.5%;
     left: 26%;
   }
 
-  .form-control{
-    width: 400px;
-    color: grey;
-}
-textarea{
-    width: 400px !important;
-}
 .vendor-button{
     background-color: #0d3d66;
 }
@@ -77,5 +71,14 @@ strong{
 .form-group label{
     font-size: 16px;
     line-height: 2;
+}
+.cmxform{
+    margin-top: 40px;
+    border: solid 1px #dbdbdb;
+    border-radius: 10px;
+    padding: 15px;
+}
+.form-control{
+    border-color: #495057;
 }
 

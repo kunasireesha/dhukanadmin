@@ -1,0 +1,18 @@
+ul.content-data{
+    width: 26%;
+}
+.content-data li 
+{
+    cursor: pointer;
+    list-style: none;
+    
+}
+li a:hover {
+    color: black;
+}
+.form-control{
+    width: 400px;
+}
+.vendor-button{
+    background-color: #0d3d66;
+}

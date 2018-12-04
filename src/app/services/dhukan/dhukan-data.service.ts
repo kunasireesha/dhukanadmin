@@ -131,17 +131,63 @@ export class AppService {
         return this.http.get(AppSettings.getOrdersUrl, { headers: headers });
     }
     getDelivery() {
-        const headers = new Headers({
-            'Content-Type': "application/JSON",
-            // 'token': localStorage.token,
-        });
+        const headers = new Headers({ 'Content-Type': "application/JSON" });
         return this.http.get(AppSettings.getDeliveryUrl, { headers: headers });
     }
     deleteDelivery(id) {
-        const headers = new Headers({
-            'Content-Type': "application/JSON",
-            // 'token': localStorage.token,
-        });
+        const headers = new Headers({ 'Content-Type': "application/JSON" });
         return this.http.post(AppSettings.deleteDeliveryById, id, { headers: headers });
     }
+    // addLocation(params) {
+    //     const headers = new Headers({ 'Content-Type': "application/JSON" });
+    //     return this.http.post(AppSettings.getCountriesUrl, params, { headers: headers });
+    // }
+    getCountries() {
+        const headers = new Headers({ 'Content-Type': "application/x-www-form-urlencoded" });
+        return this.http.get(AppSettings.getCountriesUrl, { headers: headers })
+    }
+    getStatedUrl(id) {
+        const headers = new Headers({ 'Content-Type': "application/x-www-form-urlencoded" });
+        return this.http.get(AppSettings.getStatesUrl + '/' + id, { headers: headers })
+    }
+    // termsConditions(params) {
+    //     const headers = new Headers({ 'Content-Type': "application/JSON" });
+    //     return this.http.post(AppSettings.getStatesbyId, params, { headers: headers })
+    // }
+    postBannerUrl(params) {
+        const headers = new Headers({ 'Content-Type': "application/JSON" });
+        return this.http.post(AppSettings.postbannersUrl, params, { headers: headers })
+    }
+    getBannerUrl() {
+        const headers = new Headers({ 'Content-Type': "application/x-www-form-urlencoded" });
+        return this.http.get(AppSettings.getBannerUrl, { headers: headers })
+    }
+    deleteBanner(id) {
+        const headers = new Headers({ 'Content-Type': "application/JSON" });
+        return this.http.delete(AppSettings.deleteBannerUrl + '/' + id, { headers: headers })
+    }
+    editBannerbyId(id) {
+        const headers = new Headers({ 'Content-Type': "application/JSON" });
+        return this.http.get(AppSettings.editBannerUrl + '/' + id, { headers: headers })
+    }
+    updateBannerbyId(params, id) {
+        const headers = new Headers({ 'Content-Type': "application/JSON" });
+        return this.http.put(AppSettings.updatebannerUrl + '/' + id, params, { headers: headers })
+    }
+    // postDealBannerUrl(params) {
+    //     const headers = new Headers({ 'Content-Type': "application/JSON" });
+    //     return this.http.post(AppSettings.postDealbannersUrl, params, { headers: headers })
+    // }
+    // getDealBannerUrl() {
+    //     const headers = new Headers({ 'Content-Type': "application/x-www-form-urlencoded" });
+    //     return this.http.get(AppSettings.getDealBannerUrl, { headers: headers })
+    // }
+    // deleteDealBanner(id) {
+    //     const headers = new Headers({ 'Content-Type': "application/JSON" });
+    //     return this.http.delete(AppSettings.deleteDealBannerUrl + '/' + id, { headers: headers })
+    // }
+    // updateDealBanner(id) {
+    //     const headers = new Headers({ 'Content-Type': "application/JSON" });
+    //     return this.http.put(AppSettings.updateDealbannerUrl + '/' + id, { headers: headers })
+    // }
 }

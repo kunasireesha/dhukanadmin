@@ -25,16 +25,19 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Category Image</label>
-                                        <input class="form-control" type="file" accept="image/*" (change)="changeListener($event)">
+                                        <input class="form-control" type="file" accept="image/*" (change)="changeListener($event)" [(ngModel)]="catImg" name="catImg">
                                         <div *ngIf="image">
-                                            <h4>Image:</h4>
-                                            <img src="{{image}}" alt="" width="200" height="200">
+                                            <img src="{{image}}" alt="" width="100" height="100" style="border: solid 1px;margin-top: 2%;">
                                         </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <img src="{{catImg}}" alt="" width="100" height="100" style="border: solid 1px;margin-top: 2%;">
                                     </div>
                                     <div class="form-group">
                                         <label for="firstname">Description :</label>
                                         <br />
-                                        <textarea class="form-control" rows="4" cols="50" style="width: 100%;border: 1px solid;" [(ngModel)]="textarea" name="textarea">
+                                        <textarea class="form-control" rows="4" cols="50" style="width: 100%;border: 1px solid;height:130px;font-size: 14px;" [(ngModel)]="textarea"
+                                            name="textarea">
                                                 </textarea>
                                     </div>
                                     <button type="submit" class="btn btn-primary vendor-button" (click)="addCat(input)" *ngIf="addcat">Add

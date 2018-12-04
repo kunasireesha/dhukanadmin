@@ -135,9 +135,9 @@ export class AddProductsComponent implements OnInit {
 
         })
     }
-    changeSubCat(id) {
+    changeSubCat(name) {
         for (var i = 0; i < this.subCategoryName.length; i++) {
-            if (id === this.subCategoryName[i].sub_cat) {
+            if (name === this.subCategoryName[i].sub_cat) {
                 this.subCatId = this.subCategoryName[i].id;
             }
         }
@@ -267,6 +267,7 @@ export class AddProductsComponent implements OnInit {
                         this.strImage = this.img.split(',')[1];
                         this.urls.push(fileReader.result);
                         this.images.push(this.strImage);
+
                     }
                 }
                 fileReader.readAsDataURL(event.target.files[i]);
@@ -285,11 +286,11 @@ export class AddProductsComponent implements OnInit {
             'category_id': this.caId,
             'image': this.images,
             'subcategory_id': (this.subCatId === undefined) ? this.subCategoryId : this.subCatId,
-            'actual_price': this.actualPrice,
-            'selling_price': this.sellingPrice,
+            // 'actual_price': this.actualPrice,
+            // 'selling_price': this.sellingPrice,
             'quality_image': this.strImage,
-            'discount_type': this.discountOption,
-            'discount_percentage': this.disAmount,
+            // 'discount_type': this.discountOption,
+            // 'discount_percentage': this.disAmount,
             'express_delivery': this.selectedExpressValue,
             'normal_delivery': this.selectedNormalValue,
             'description': this.Description,
@@ -313,7 +314,6 @@ export class AddProductsComponent implements OnInit {
                 })
     }
     productImg = [];
-
     editProImages() {
         var data = {
             'id': this.productId
@@ -326,6 +326,14 @@ export class AddProductsComponent implements OnInit {
             this.productId = this.productDetails[0].id;
             this.subCatName = this.productDetails[0].category2;
             this.subCateId = this.productDetails[0].category2_id;
+            this.Description = this.productDetails[0].description;
+            this.terms = this.productDetails[0].terms_and_conditions;
+            this.faq = this.productDetails[0].question;
+            this.answer = this.productDetails[0].answer;
+            this.actualPrice = this.productDetails[0].actual_price;
+            this.sellingPrice = this.productDetails[0].selling_price;
+            this.disAmount = this.productDetails[0].discount;
+
         })
     }
     updateImage(index) {
@@ -439,7 +447,9 @@ export class AddProductsComponent implements OnInit {
             vegImage: this.vegImage
         });
     }
-
+    deleteSku(index) {
+        this.skusData.splice(index, 1);
+    }
     updateProduct() {
         var data = {
             'category_id': (this.caId === undefined) ? this.categoryId : this.caId,

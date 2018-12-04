@@ -22,3 +22,40 @@ input[type=text] {
   .form-control{
       width: 400px;
   }
+  .location{
+    border: solid 1px #c9c9c9;
+    border-radius: 10px;
+  }
+  .location-body{
+    margin-top:0px !important;
+    padding-top: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-bottom: 0px;
+    min-height: 100%;
+  }
+  .loc{
+    color: #007bff;
+    cursor: pointer;
+  }
+  .fa-times-circle{
+      padding-right: 10px;
+  }
+  ul li{
+      list-style:none
+  }
+  .location-table{
+    background-color: black;
+    color: #fff;
+    padding: 10px;
+    margin-bottom: 15px;
+  }
+  .location-table h5{
+    margin-bottom: 0px;
+  }
+  .location-body i{
+      cursor: pointer;
+  }
+  .p-color{
+    color: #000;
+}

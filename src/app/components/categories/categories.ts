@@ -60,12 +60,13 @@ export class CategoriesComponent implements OnInit {
     }
 
     // add and update category
-    addCat(name, id, pic) {
+    addCat(name, id, pic, des) {
         let navigationExtras: NavigationExtras = {
             queryParams: {
                 'name': name,
                 'id': id,
-                'pic': pic
+                'pic': pic,
+                'des': des
 
             }
         }

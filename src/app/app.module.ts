@@ -1,3 +1,5 @@
+import { addDealsComponent } from './components/banner/best-deals/add.deal';
+
 import { AddlocationComponent } from './components/location/add.location';
 import { AddSlotComponent } from './components/slot/add.slot';
 import { AddBannerComponent } from './components/banner/add.banner';
@@ -5,6 +7,7 @@ import { BannerComponent } from './components/banner/banner.component';
 import { AddOffersComponent } from './components/offers/add.offer';
 import { AddDeliveryComponent } from './components/delivery/add.delivery';
 import { ImageUploadComponent } from './components/image-upload/image-upload.component';
+
 
 // import * as xlsx from "xlsx";
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
@@ -79,6 +82,15 @@ import { OffersComponent } from './components/offers/offers.component';
 import { ContentManagementComponent } from './components/content-management/content-management.component';
 import { LocationComponent } from './components/location/location.component';
 import { SlotComponent } from './components/slot/slot.component';
+import { AboutUsComponent } from './components/about-us/about-us.component';
+import { DeliveryInfoComponent } from './components/delivery-info/delivery-info.component';
+import { PrivacyPolicyComponent } from './components/privacy-policy/privacy-policy.component';
+import { ReturnsComponent } from './components/returns/returns.component';
+import { BestDealsComponent } from './components/banner/best-deals/best-deals.component';
+import { BestDiscountComponent } from './components/banner/best-discount/best-discount.component';
+import { BestBrandsComponent } from './components/banner/best-brands/best-brands.component';
+import { BestAppliancesComponent } from './components/banner/best-appliances/best-appliances.component';
+import { BestDiscountAppliancesComponent } from './components/banner/best-discount-appliances/best-discount-appliances.component';
 
 
 
@@ -118,7 +130,17 @@ import { SlotComponent } from './components/slot/slot.component';
         LocationComponent,
         SlotComponent,
         AddSlotComponent,
-        AddlocationComponent
+        AddlocationComponent,
+        AboutUsComponent,
+        DeliveryInfoComponent,
+        PrivacyPolicyComponent,
+        ReturnsComponent,
+        BestDealsComponent,
+        BestDiscountComponent,
+        BestBrandsComponent,
+        BestAppliancesComponent,
+        addDealsComponent,
+        BestDiscountAppliancesComponent
 
     ],
     imports: [
@@ -169,11 +191,21 @@ import { SlotComponent } from './components/slot/slot.component';
             { path: 'content', component: ContentManagementComponent, data: [{ page: 'content' }] },
             { path: 'addcontent', component: ContentManagementComponent, data: [{ page: 'addcontent' }] },
             { path: 'banner', component: BannerComponent, data: [{ page: 'banner' }] },
+            { path: 'bestAppliances', component: BestAppliancesComponent, data: [{ page: 'bestAppliances' }] },
+            { path: 'bestBrands', component: BestBrandsComponent, data: [{ page: 'bestBrands' }] },
+            { path: 'bestDeals', component: BestDealsComponent, data: [{ page: 'bestDeals' }] },
+            { path: 'addbestDeals', component: addDealsComponent, data: [{ page: 'addbestDeals' }] },
+            { path: 'bestDiscount', component: BestDiscountComponent, data: [{ page: 'bestDiscount' }] },
+            { path: 'bestDiscountAppliances', component: BestDiscountAppliancesComponent, data: [{ page: 'bestDiscountAppliances' }] },
             { path: 'addbanner', component: AddBannerComponent, data: [{ page: 'addbanner' }] },
             { path: 'addlocation', component: AddlocationComponent, data: [{ page: 'addlocation' }] },
             { path: 'location', component: LocationComponent, data: [{ page: 'location' }] },
             { path: 'addslot', component: AddSlotComponent, data: [{ page: 'addslot' }] },
             { path: 'slot', component: SlotComponent, data: [{ page: 'slot' }] },
+            { path: 'aboutUs', component: AboutUsComponent, data: [{ page: 'aboutUs' }] },
+            { path: 'deliveryInfo', component: DeliveryInfoComponent, data: [{ page: 'deliveryInfo' }] },
+            { path: 'privacy', component: PrivacyPolicyComponent, data: [{ page: 'privacy' }] },
+            { path: 'returns', component: ReturnsComponent, data: [{ page: 'returns' }] }
 
         ], { useHash: true }),
         BrowserAnimationsModule
