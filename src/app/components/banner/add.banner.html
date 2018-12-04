@@ -46,10 +46,10 @@
                                                                 </div>
                                                                 <div class="col-md-4">
                                                                     <div class="form-group">
-                                                                        <label for="exampleInputEmail1">Type</label>
+                                                                        <!-- <label for="exampleInputEmail1">Type</label>
                                                                         <input id="category" class="form-control" type="text" placeholder="type" [(ngModel)]="skuValues.type" [ngModelOptions]="{standalone:true}"
-                                                                        />
-                                                                        <!-- <label for="sel1">Select Type</label>
+                                                                        /> -->
+                                                                        <label for="sel1">Select Type</label>
                                                                         <select class="form-control border-primary" id="sel1" name="type" [(ngModel)]="skuValues.type" (change)="onChange($event.target.value)">
                                                                             <i class="fa fa-chevron-down" aria-hidden="true"></i>
                                                                             <option value="" disabled selected hidden>Select
@@ -60,7 +60,49 @@
                                                                             <option value="Product">Product</option>
                                                                             <option value="sku">sku</option>
                                                                             <option value="Brand">Brand</option>
-                                                                        </select> -->
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-sm-4">
+                                                                    <div class="form-group" *ngIf="category">
+                                                                        <label for="firstname">Category :</label>
+                                                                        <div class="form-group">
+                                                                            <select required class="form-control border-primary" id="exampleSelectPrimary" [(ngModel)]="categoryName" name="categoryName"
+                                                                                (change)="changeCat($event.target.value)">
+                                                                                <option value="" disabled selected hidden>Select
+                                                                                    Category
+                                                                                </option>
+                                                                                <option *ngFor="let cat of categorydata" value="{{cat.name}}">{{cat.name}}</option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group" *ngIf="subcategory">
+                                                                        <label for="firstname">Sub Category :</label>
+                                                                        <div class="form-group">
+                                                                            <select class="form-control border-primary" id="exampleSelectPrimary" [(ngModel)]="subCatName" name="subCatName" (change)="changeSubCat($event.target.value)">
+                                                                                <option value="" disabled selected hidden>Select
+                                                                                    Sub Category</option>
+                                                                                <option *ngFor="let subCat of subCategoryName" value="{{subCat.sub_cat}}">{{subCat.sub_cat}}</option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group" *ngIf="product">
+                                                                        <label for="firstname">Product :</label>
+                                                                        <div class="form-group">
+                                                                            <select class="form-control border-primary" id="exampleSelectPrimary" [(ngModel)]="subCatName" name="subCatName" (change)="changeSubCat($event.target.value)">
+                                                                                <option value="" disabled selected hidden>Select
+                                                                                    Sub Category</option>
+                                                                                <option *ngFor="let product of productData" value="{{productData.sub_cat}}">{{product.title}}</option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group" *ngIf="skus">
+                                                                        <label for="firstname" name="prodName">Sku</label>
+                                                                        <input id="category" class="form-control"  type="text" />
+                                                                    </div>
+                                                                    <div class="form-group" *ngIf="brand">
+                                                                        <label for="firstname" name="prodName">Brand</label>
+                                                                        <input id="category" class="form-control" type="text" />
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -84,7 +126,7 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-4">
-                                                                    <button type="submit" class="btn btn-primary vendor-button" (click)="deleteSku(i)">Delete
+                                                                    <button type="submit" class="btn btn-primary vendor-button" (click)="deleteSku(i)" style="margin-top: 25px;">Delete
                                                                         Banner
                                                                     </button>
                                                                 </div>

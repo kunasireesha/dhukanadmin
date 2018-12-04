@@ -18,7 +18,11 @@ export class BannerComponent implements OnInit {
     }
     getBanners() {
         this.AppService.getBannerUrl().subscribe(resp => {
-            this.banner = resp.json().result.TOP1;
+            if (resp.json().status === 200) {
+                this.banner = resp.json().result[5].banner;
+
+            }
+
             // for (var i = 0; i < this.banner.length; i++) {
             //     for (var j = 0; j < this.banner[i].mobile_banner.length; j++) {
             //         this.banner[i].image = this.banner[i].mobile_banner[0].image_path;
