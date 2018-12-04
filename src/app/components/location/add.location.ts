@@ -14,6 +14,9 @@ export class AddlocationComponent implements OnInit {
     locations: any;
     countrydata = [];
     statesData = [];
+    selectedCountry;
+    countryName;
+    stateName;
     constructor(private appService: AppService, private httpClient: HttpClient) { }
 
     ngOnInit() {
@@ -26,6 +29,12 @@ export class AddlocationComponent implements OnInit {
 
 
     changeCountry(id) {
+
+        for (var i = 0; i < this.countrydata.length; i++) {
+            if (this.countrydata[i].location_id === parseInt(id)) {
+                this.countryName = this.countrydata[i].location;
+            }
+        }
         this.countryId = id;
         this.appService.getStatedUrl(this.countryId).subscribe(resp => {
             if (resp.json().status === 200) {
@@ -45,7 +54,17 @@ export class AddlocationComponent implements OnInit {
     stateId;
     cityData = [];
     areaData = [];
+    cityId;
+    areaId;
+    cityName;
+    areaName;
+    locationData = [];
     changeState(id) {
+        for (var i = 0; i < this.statesData.length; i++) {
+            if (this.statesData[i].location_id === parseInt(id)) {
+                this.stateName = this.statesData[i].location;
+            }
+        }
         this.stateId = id;
         this.appService.getCityUrl(this.stateId).subscribe(resp => {
             if (resp.json().status === 200) {
@@ -54,12 +73,45 @@ export class AddlocationComponent implements OnInit {
         })
     }
     changeCity(id) {
-        this.stateId = id;
+        for (var i = 0; i < this.cityData.length; i++) {
+            if (this.cityData[i].location_id === parseInt(id)) {
+                this.cityName = this.cityData[i].location;
+            }
+        }
+        this.cityId = id;
+        this.appService.getAreaUrl(this.cityId).subscribe(resp => {
+            if (resp.json().status === 200) {
+                this.areaData = resp.json().result;
+                console.log(this.areaData);
+            }
+        })
+    }
+    changeArea(id) {
+        for (var i = 0; i < this.areaData.length; i++) {
+            if (this.areaData[i].location_id === parseInt(id)) {
+                this.areaName = this.areaData[i].location;
+            }
+        }
+        this.areaId = id;
         this.appService.getAreaUrl(this.stateId).subscribe(resp => {
             if (resp.json().status === 200) {
                 this.areaData = resp.json().result;
                 console.log(this.areaData);
             }
+        })
+    }
+    addLocation() {
+        var inData = {
+            "country": this.countryName,
+            "state": this.stateName,
+            "city": this.cityName,
+            "area": this.areaName
+        }
+        this.appService.addLocation(inData).subscribe(resp => {
+            console.log(resp.json());
+            swal(resp.json().message, "", "success");
+        }, error => {
+            console.log(error);
         })
     }
 

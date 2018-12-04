@@ -158,6 +158,18 @@ export class AppService {
         const headers = new Headers({ 'Content-Type': "application/x-www-form-urlencoded" });
         return this.http.get(AppSettings.getAreaUrl + '/' + id, { headers: headers })
     }
+    addLocation(params) {
+        const headers = new Headers({ 'Content-Type': "application/json" });
+        return this.http.post(AppSettings.addLocation, params, { headers: headers })
+    }
+    getLocation() {
+        const headers = new Headers({ 'Content-Type': "application/json" });
+        return this.http.get(AppSettings.getLocation, { headers: headers })
+    }
+    deleteLocation(id) {
+        const headers = new Headers({ 'Content-Type': "application/json" });
+        return this.http.delete(AppSettings.deleteLocation + "/" + id, { headers: headers })
+    }
     // termsConditions(params) {
     //     const headers = new Headers({ 'Content-Type': "application/JSON" });
     //     return this.http.post(AppSettings.getStatesbyId, params, { headers: headers })
