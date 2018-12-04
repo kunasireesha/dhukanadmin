@@ -22,7 +22,8 @@
                                     <div class="form-group">
                                         <label for="firstname">Select Country</label>
                                         <div class="form-group">
-                                            <select required class="form-control border-primary" id="exampleSelectPrimary" [(ngModel)]="country" name="country" (change)="changeCountry($event.target.value)">
+                                            <select required class="form-control border-primary" id="exampleSelectPrimary"
+                                                [(ngModel)]="country" name="country" (change)="changeCountry($event.target.value)">
                                                 <option value="" disabled selected hidden>Select country</option>
                                                 <option *ngFor="let data of countrydata" value="{{data.location_id}}">{{data.location}}</option>
                                             </select>
@@ -30,19 +31,19 @@
                                     </div>
                                     <div class="form-group">
                                         <p>Select State</p>
-                                        <input class="form-control" list="state" name="state" [(ngModel)]="state" />
-                                        <datalist id="state">
-                                            <option value="Chrome">
-                                                <option value="Firefox">
-                                        </datalist>
+                                        <select required class="form-control border-primary" (change)="changeState($event.target.value)">
+                                            <option *ngFor="let state of statesData" value="{{state.location_id}}">
+                                                {{state.location}}
+                                            </option>
+                                        </select>
                                     </div>
                                     <div class="form-group">
                                         <p>Select city</p>
-                                        <input class="form-control" list="city" name="city" [(ngModel)]="city" />
-                                        <datalist id="city">
-                                            <option value="Chrome">
-                                                <option value="Firefox">
-                                        </datalist>
+                                        <select required class="form-control border-primary" (change)="changeCity($event.target.value)">
+                                            <option *ngFor="let city of cityData" value="{{city.location_id}}">
+                                                {{city.location}}
+                                            </option>
+                                        </select>
                                     </div>
                                     <!-- <div class="form-group">
                                         <p>Select city</p>
@@ -58,7 +59,11 @@
                                     </div> -->
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Select Area</label>
-                                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" [(ngModel)]="area" name="area">
+                                        <select required class="form-control border-primary" (change)="changeArea($event.target.value)">
+                                            <option *ngFor="let area of areaData" value="{{area.location_id}}">
+                                                {{area.location}}
+                                            </option>
+                                        </select>
                                     </div>
                                     <button type="submit" class="btn btn-primary vendor-button" (click)="addLocation()">Add
                                         Location

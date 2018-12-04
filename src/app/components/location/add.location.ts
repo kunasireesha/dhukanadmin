@@ -13,6 +13,7 @@ export class AddlocationComponent implements OnInit {
     area;
     locations: any;
     countrydata = [];
+    statesData = [];
     constructor(private appService: AppService, private httpClient: HttpClient) { }
 
     ngOnInit() {
@@ -27,6 +28,10 @@ export class AddlocationComponent implements OnInit {
     changeCountry(id) {
         this.countryId = id;
         this.appService.getStatedUrl(this.countryId).subscribe(resp => {
+            if (resp.json().status === 200) {
+                this.statesData = resp.json().result;
+            }
+
         })
     }
     getCountries() {
@@ -37,14 +42,26 @@ export class AddlocationComponent implements OnInit {
         })
 
     }
-    getStates() {
-        alert(this.countryId);
-
+    stateId;
+    cityData = [];
+    areaData = [];
+    changeState(id) {
+        this.stateId = id;
+        this.appService.getCityUrl(this.stateId).subscribe(resp => {
+            if (resp.json().status === 200) {
+                this.cityData = resp.json().result;
+            }
+        })
     }
-    // getStates(){
-    //     this.appService.getStatedUrl(id).subscribe(resp =>{
-
-    //     })
-    // }
+    changeCity(id) {
+        this.stateId = id;
+        this.appService.getAreaUrl(this.stateId).subscribe(resp => {
+            if (resp.json().status === 200) {
+                this.areaData = resp.json().result;
+                console.log(this.areaData);
+                debugger;
+            }
+        })
+    }
 
 }
