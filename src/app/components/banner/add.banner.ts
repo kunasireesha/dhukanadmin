@@ -25,6 +25,8 @@ export class AddBannerComponent implements OnInit {
     skusData = [];
     productData = [];
     subCategoryName = [];
+    catName = [];
+    catId = [];
     skuValues = {
         // name: '',
         // type: '',
@@ -59,6 +61,7 @@ export class AddBannerComponent implements OnInit {
     }
 
     sku() {
+        this.catName = [];
         this.skusData.push({
             name: '',
             type: '',
@@ -66,7 +69,9 @@ export class AddBannerComponent implements OnInit {
             mobile_banner: '',
             imageurl: '',
             website_banner: '',
-            imageurl1: ''
+            imageurl1: '',
+            target: '',
+            catNames: ''
         });
         console.log(this.skusData);
     }
@@ -118,39 +123,44 @@ export class AddBannerComponent implements OnInit {
         myReader.readAsDataURL(file);
     }
 
-    onChange(type) {
+    onChange(type, index) {
         this.type = type;
-        if (this.type === 'Categories') {
-            this.category = true;
-            this.subcategory = false;
-            this.product = false;
-            this.brand = false;
-            this.skus = false;
-        } else if (this.type === 'Subcategories') {
-            this.subcategory = true;
-            this.category = false;
-            this.product = false;
-            this.brand = false;
-            this.skus = false;
-        } else if (this.type === 'Product') {
-            this.subcategory = false;
-            this.category = false;
-            this.product = true;
-            this.skus = false;
-            this.brand = false;
-        } else if (this.type === 'sku') {
-            this.subcategory = false;
-            this.category = false;
-            this.product = false;
-            this.brand = false;
-            this.skus = true;
-        } else if (this.type === 'Brand') {
-            this.subcategory = false;
-            this.category = false;
-            this.product = false;
-            this.skus = false;
-            this.brand = true;
+        for (var i = 0; i < this.skusData.length; i++) {
+            if (i === index) {
+                if (this.type === 'Categories') {
+                    this.category = true;
+                    this.subcategory = false;
+                    this.product = false;
+                    this.brand = false;
+                    this.skus = false;
+                } else if (this.type === 'Subcategories') {
+                    this.subcategory = true;
+                    this.category = false;
+                    this.product = false;
+                    this.brand = false;
+                    this.skus = false;
+                } else if (this.type === 'Product') {
+                    this.subcategory = false;
+                    this.category = false;
+                    this.product = true;
+                    this.skus = false;
+                    this.brand = false;
+                } else if (this.type === 'sku') {
+                    this.subcategory = false;
+                    this.category = false;
+                    this.product = false;
+                    this.brand = false;
+                    this.skus = true;
+                } else if (this.type === 'Brand') {
+                    this.subcategory = false;
+                    this.category = false;
+                    this.product = false;
+                    this.skus = false;
+                    this.brand = true;
+                }
+            }
         }
+
 
     }
     getCat() {
@@ -191,6 +201,27 @@ export class AddBannerComponent implements OnInit {
             console.log(error, "error");
         }
     }
+
+
+    changeCat(id, index) {
+        for (var i = 0; i < this.categorydata.length; i++) {
+            if (this.categorydata[i].id === parseInt(id)) {
+                this.catName.push(this.categorydata[i].name);
+                this.catId.push(this.categorydata[i].id);
+
+                for (var i = 0; i < this.skusData.length; i++) {
+                    // this.skusData[i].image = myReader.result;
+                    if (i === index) {
+                        this.skusData[i].target = this.catId.join(',');
+                        this.skusData[i].catNames = this.catName.join(',');
+                    }
+                }
+                return;
+            }
+        }
+        console.log(this.skusData);
+    }
+
     // updateImage(index) {
     //     this.selectedImage = index;
     // }
