@@ -150,6 +150,14 @@ export class AppService {
         const headers = new Headers({ 'Content-Type': "application/x-www-form-urlencoded" });
         return this.http.get(AppSettings.getStatesUrl + '/' + id, { headers: headers })
     }
+    getCityUrl(id) {
+        const headers = new Headers({ 'Content-Type': "application/x-www-form-urlencoded" });
+        return this.http.get(AppSettings.getCityUrl + '/' + id, { headers: headers })
+    }
+    getAreaUrl(id) {
+        const headers = new Headers({ 'Content-Type': "application/x-www-form-urlencoded" });
+        return this.http.get(AppSettings.getAreaUrl + '/' + id, { headers: headers })
+    }
     // termsConditions(params) {
     //     const headers = new Headers({ 'Content-Type': "application/JSON" });
     //     return this.http.post(AppSettings.getStatesbyId, params, { headers: headers })

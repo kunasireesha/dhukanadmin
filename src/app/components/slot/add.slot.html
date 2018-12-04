@@ -23,25 +23,31 @@
                                     <fieldset>
                                         <div class="form-group">
                                             <label for="firstname">Slot Name</label>
-                                            <input id="category" class="form-control" name="slot" type="text" [(ngModel)]="slot" />
+                                            <input id="category" class="form-control" name="slot" type="text"
+                                                [(ngModel)]="slot" />
                                         </div>
                                         <div class="form-group date date-picker">
                                             <label>Date: </label>
-                                            <my-date-picker name="mydate" [options]="myDatePickerOptions" [(ngModel)]="model" required></my-date-picker>
+                                            <my-date-picker name="mydate" [options]="myDatePickerOptions" [(ngModel)]="model"
+                                                required></my-date-picker>
                                         </div>
                                         <div class="form-group">
                                             <label for="firstname">Start Time</label>
-                                            <input class="form-control" type="time" atp-time-picker value="20:55 AM" [(ngModel)]="starttime" name="starttime" />
+                                            <input class="form-control" type="time" atp-time-picker [(ngModel)]="starttime"
+                                                name="starttime" />
                                         </div>
                                         <div class="form-group">
                                             <label for="firstname">End Time</label>
-                                            <input class="form-control" type="time" atp-time-picker value="20:55 PM" [(ngModel)]="endtime" name="endtime" />
+                                            <input class="form-control" type="time" atp-time-picker [(ngModel)]="endtime"
+                                                name="endtime" />
                                         </div>
                                         <br>
-                                        <button type="submit" *ngIf="!deliveryId" class="btn btn-primary vendor-button" (click)="addSlot()">
+                                        <button type="submit" *ngIf="!deliveryId" class="btn btn-primary vendor-button"
+                                            (click)="addSlot()">
                                             Add
                                         </button>
-                                        <button type="submit" *ngIf="deliveryId" class="btn btn-primary vendor-button" (click)="addDelivory()">
+                                        <button type="submit" *ngIf="deliveryId" class="btn btn-primary vendor-button"
+                                            (click)="addDelivory()">
                                             Update
                                         </button>
                                     </fieldset>

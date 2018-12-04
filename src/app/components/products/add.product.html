@@ -93,7 +93,51 @@
                                     <div class="row">
                                         <div class="col-md-4 col-sm-4">
                                             <div class="form-group">
-                                                <h6>Select Delivery Options</h6>
+                                                <label for="firstname">Product Details :</label>
+                                                <br />
+                                                <textarea class="form-control" rows="4" cols="50" style="width: 100%;border: 1px solid;" [(ngModel)]="Description" name="Description">
+                                </textarea>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-sm-4">
+                                            <div class="form-group">
+                                                <label for="firstname">Specifications : </label>
+                                                <br />
+                                                <textarea class="form-control" rows="4" cols="50" style="width: 100%;border: 1px solid;" [(ngModel)]="specification" name="specification">
+                               </textarea>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-sm-4">
+                                            <div class="form-group">
+                                                <label for="firstname">Terms & Conditions</label>
+                                                <br />
+                                                <textarea class="form-control" rows="4" cols="50" style="width: 100%;border: 1px solid;" [(ngModel)]="terms" name="terms">
+                               </textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4 col-sm-4">
+                                            <div class="form-group">
+                                                <h6 for="firstname">FAQs : </h6>
+                                                <label for="firstname">Question</label>
+                                                <textarea class="form-control" rows="4" cols="50" style="width: 100%;border: 1px solid;" [(ngModel)]="faq" name="faq">
+                                                </textarea>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-sm-4">
+                                            <div class="form-group">
+                                                <h6 for="firstname" style="margin-top:25px"></h6>
+                                                <label for="firstname">Answer</label>
+                                                <textarea class="form-control" rows="4" cols="50" style="width: 100%;border: 1px solid;" [(ngModel)]="answer" name="answer">
+                                                </textarea>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <h6 style="margin-top: 53px;
+                                                margin-left: 20px;">Select
+                                                    Delivery Options</h6>
                                                 <div class="margin" *ngFor="let item of list">
 
                                                     <label>
@@ -105,6 +149,7 @@
                                             </div>
                                         </div>
                                     </div>
+
                                     <!-- <div class="row">
                                         <div class="col-md-4 col-sm-4">
                                             <div class="form-group">
@@ -213,32 +258,7 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div class="row">
-                                                            <div class="col-md-4 col-sm-4">
-                                                                <div class="form-group">
-                                                                    <label for="firstname">Product Details :</label>
-                                                                    <br />
-                                                                    <textarea class="form-control" rows="4" cols="50" style="width: 100%;border: 1px solid;" [(ngModel)]="Description" name="Description">
-                                                    </textarea>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-4 col-sm-4">
-                                                                <div class="form-group">
-                                                                    <label for="firstname">Specifications : </label>
-                                                                    <br />
-                                                                    <textarea class="form-control" rows="4" cols="50" style="width: 100%;border: 1px solid;" [(ngModel)]="specification" name="specification">
-                                                   </textarea>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-4 col-sm-4">
-                                                                <div class="form-group">
-                                                                    <label for="firstname">Terms & Conditions</label>
-                                                                    <br />
-                                                                    <textarea class="form-control" rows="4" cols="50" style="width: 100%;border: 1px solid;" [(ngModel)]="terms" name="terms">
-                                                   </textarea>
-                                                                </div>
-                                                            </div>
-                                                        </div>
+
                                                         <div class="row">
                                                             <div class="col-md-4">
                                                                 <div class="form-group">
