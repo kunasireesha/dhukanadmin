@@ -1,142 +1,152 @@
 <div class="container-scroller">
-    <!-- partial:partials/_navbar.html -->
+  <!-- partial:partials/_navbar.html -->
 
-    <logo-nav></logo-nav>
-    <!-- partial -->
-    <div class="container-fluid page-body-wrapper">
-        <div class="row row-offcanvas row-offcanvas-right">
-            <!-- partial:partials/_settings-panel.html -->
-            <header-nav></header-nav>
-            <profile-nav></profile-nav>
-            <!-- partial -->
-            <!-- partial:partials/_sidebar.html -->
+  <logo-nav></logo-nav>
+  <!-- partial -->
+  <div class="container-fluid page-body-wrapper">
+    <div class="row row-offcanvas row-offcanvas-right">
+      <!-- partial:partials/_settings-panel.html -->
+      <header-nav></header-nav>
+      <profile-nav></profile-nav>
+      <!-- partial -->
+      <!-- partial:partials/_sidebar.html -->
 
-            <!-- partial -->
-            <div class="content-wrapper">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="card-title text-center">Add Banner</h4>
-                                <a routerLink="/banner" id="show" class="btn  btn-maron" style="float: right;    margin-top: -45px;">Back</a>
-                                <form class="cmxform" id="signupForm" method="get" action="#">
-                                    <fieldset>
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1">Title</label>
-                                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" [(ngModel)]="title" name="title">
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-12 col-sm-12">
-                                                <div class="form-group" style="margin-top:20px;margin-bottom:25px;">
-                                                    <label for="firstname">Add Banners:
-                                                        <button class="btn btn-primary" (click)=sku()>+</button>
-                                                    </label>
-                                                </div>
-                                                <div class="" *ngFor="let skuValues of skusData;let i= index" style="margin-bottom:30px;">
-                                                    <div class="">
-                                                        <div class="">
-                                                            <div class="row">
-                                                                <div class="col-md-4">
-                                                                    <div class="form-group">
-                                                                        <label for="exampleInputEmail1">Name</label>
-                                                                        <input id="category" class="form-control" type="text" placeholder="name" [(ngModel)]="skuValues.name" [ngModelOptions]="{standalone:true}"
-                                                                        />
-                                                                    </div>
+      <!-- partial -->
+      <div class="content-wrapper">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="card">
+              <div class="card-body">
+                <h4 class="card-title text-center">Add Banner</h4>
+                <a routerLink="/banner" id="show" class="btn  btn-maron" style="float: right;    margin-top: -45px;">Back</a>
+                <form class="cmxform" id="signupForm" method="get" action="#">
+                  <fieldset>
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Title</label>
+                      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                        [(ngModel)]="title" name="title">
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12 col-sm-12">
+                        <div class="form-group" style="margin-top:20px;margin-bottom:25px;">
+                          <label for="firstname">Add Banners:
+                            <button class="btn btn-primary" (click)=sku()>+</button>
+                          </label>
+                        </div>
+                        <div class="" *ngFor="let skuValues of skusData;let i= index" style="margin-bottom:30px;border:solid 1px;padding: 20px">
+                          <div class="">
+                            <div class="">
+                              <div class="row">
+                                <div class="col-md-4">
+                                  <div class="form-group">
+                                    <label for="exampleInputEmail1">Name</label>
+                                    <input id="category" class="form-control" type="text" placeholder="name"
+                                      [(ngModel)]="skuValues.name" [ngModelOptions]="{standalone:true}" />
+                                  </div>
 
-                                                                </div>
-                                                                <div class="col-md-4">
-                                                                    <div class="form-group">
-                                                                        <!-- <label for="exampleInputEmail1">Type</label>
+                                </div>
+                                <div class="col-md-4">
+                                  <div class="form-group">
+                                    <!-- <label for="exampleInputEmail1">Type</label>
                                                                         <input id="category" class="form-control" type="text" placeholder="type" [(ngModel)]="skuValues.type" [ngModelOptions]="{standalone:true}"
                                                                         /> -->
-                                                                        <label for="sel1">Select Type</label>
-                                                                        <select class="form-control border-primary" id="sel1" name="type" [(ngModel)]="skuValues.type" (change)="onChange($event.target.value)">
-                                                                            <i class="fa fa-chevron-down" aria-hidden="true"></i>
-                                                                            <option value="" disabled selected hidden>Select
-                                                                                Type
-                                                                            </option>
-                                                                            <option value="Categories">Categories</option>
-                                                                            <option value="Subcategories">Subcategories</option>
-                                                                            <option value="Product">Product</option>
-                                                                            <option value="sku">sku</option>
-                                                                            <option value="Brand">Brand</option>
-                                                                        </select>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-sm-4">
-                                                                    <div class="form-group" *ngIf="category">
-                                                                        <label for="firstname">Category :</label>
-                                                                        <div class="form-group">
-                                                                            <select required class="form-control border-primary" id="exampleSelectPrimary" [(ngModel)]="categoryName" name="categoryName"
-                                                                                (change)="changeCat($event.target.value)">
-                                                                                <option value="" disabled selected hidden>Select
-                                                                                    Category
-                                                                                </option>
-                                                                                <option *ngFor="let cat of categorydata" value="{{cat.name}}">{{cat.name}}</option>
-                                                                            </select>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="form-group" *ngIf="subcategory">
-                                                                        <label for="firstname">Sub Category :</label>
-                                                                        <div class="form-group">
-                                                                            <select class="form-control border-primary" id="exampleSelectPrimary" [(ngModel)]="subCatName" name="subCatName" (change)="changeSubCat($event.target.value)">
-                                                                                <option value="" disabled selected hidden>Select
-                                                                                    Sub Category</option>
-                                                                                <option *ngFor="let subCat of subCategoryName" value="{{subCat.sub_cat}}">{{subCat.sub_cat}}</option>
-                                                                            </select>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="form-group" *ngIf="product">
-                                                                        <label for="firstname">Product :</label>
-                                                                        <div class="form-group">
-                                                                            <select class="form-control border-primary" id="exampleSelectPrimary" [(ngModel)]="subCatName" name="subCatName" (change)="changeSubCat($event.target.value)">
-                                                                                <option value="" disabled selected hidden>Select
-                                                                                    Sub Category</option>
-                                                                                <option *ngFor="let product of productData" value="{{productData.sub_cat}}">{{product.title}}</option>
-                                                                            </select>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="form-group" *ngIf="skus">
-                                                                        <label for="firstname" name="prodName">Sku</label>
-                                                                        <input id="category" class="form-control"  type="text" />
-                                                                    </div>
-                                                                    <div class="form-group" *ngIf="brand">
-                                                                        <label for="firstname" name="prodName">Brand</label>
-                                                                        <input id="category" class="form-control" type="text" />
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="col-md-4">
-                                                                    <div class="form-group">
-                                                                        <label for="exampleInputEmail1">Mobile Banner</label>
-                                                                        <input class="form-control" type="file" accept="image/*" (change)="changeListener($event,i)" [(ngModel)]="catImg" name="catImg">
-                                                                        <div *ngIf="image">
-                                                                            <img src="{{skuValues.imageurl}}" alt="" width="100" height="100" style="border: solid 1px;margin-top: 2%;">
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-md-4">
-                                                                    <div class="form-group">
-                                                                        <label for="exampleInputEmail1">website Banner</label>
-                                                                        <input class="form-control" type="file" accept="image1/*" (change)="changeListener1($event,i)" [(ngModel)]="catImg" name="catImg">
-                                                                        <div *ngIf="image">
-                                                                            <img src="{{skuValues.imageurl1}}" alt="" width="100" height="100" style="border: solid 1px;margin-top: 2%;">
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-md-4">
-                                                                    <button type="submit" class="btn btn-primary vendor-button" (click)="deleteSku(i)" style="margin-top: 25px;">Delete
-                                                                        Banner
-                                                                    </button>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- <div class="form-group">
+                                    <label for="sel1">Select Type</label>
+                                    <select class="form-control border-primary" id="sel1" name="type" [(ngModel)]="skuValues.type"
+                                      (change)="onChange($event.target.value)">
+                                      <i class="fa fa-chevron-down" aria-hidden="true"></i>
+                                      <option value="" disabled selected hidden>Select
+                                        Type
+                                      </option>
+                                      <option value="Categories">Categories</option>
+                                      <option value="Subcategories">Subcategories</option>
+                                      <option value="Product">Product</option>
+                                      <option value="sku">sku</option>
+                                      <option value="Brand">Brand</option>
+                                    </select>
+                                  </div>
+                                </div>
+                                <div class="col-sm-4">
+                                  <div class="form-group" *ngIf="category">
+                                    <label for="firstname">Category :</label>
+                                    <div class="form-group">
+                                      <select required class="form-control border-primary" id="exampleSelectPrimary"
+                                        name="categoryName" (change)="changeCat($event.target.value,i)">
+                                        <option value="" disabled selected hidden>Select
+                                          Category
+                                        </option>
+                                        <option *ngFor="let cat of categorydata" value="{{cat.id}}">{{cat.name}}</option>
+                                      </select>
+                                    </div>
+                                    <div>
+                                      <label>{{skuValues.catNames}} </label>
+                                    </div>
+                                  </div>
+                                  <div class="form-group" *ngIf="subcategory">
+                                    <label for="firstname">Sub Category :</label>
+                                    <div class="form-group">
+                                      <select class="form-control border-primary" id="exampleSelectPrimary" [(ngModel)]="subCatName"
+                                        name="subCatName" (change)="changeSubCat($event.target.value)">
+                                        <option value="" disabled selected hidden>Select
+                                          Sub Category</option>
+                                        <option *ngFor="let subCat of subCategoryName" value="{{subCat.sub_cat}}">{{subCat.sub_cat}}</option>
+                                      </select>
+                                    </div>
+                                  </div>
+                                  <div class="form-group" *ngIf="product">
+                                    <label for="firstname">Product :</label>
+                                    <div class="form-group">
+                                      <select class="form-control border-primary" id="exampleSelectPrimary" [(ngModel)]="subCatName"
+                                        name="subCatName" (change)="changeSubCat($event.target.value)">
+                                        <option value="" disabled selected hidden>Select
+                                          Sub Category</option>
+                                        <option *ngFor="let product of productData" value="{{productData.sub_cat}}">{{product.title}}</option>
+                                      </select>
+                                    </div>
+                                  </div>
+                                  <div class="form-group" *ngIf="skus">
+                                    <label for="firstname" name="prodName">Sku</label>
+                                    <input id="category" class="form-control" type="text" />
+                                  </div>
+                                  <div class="form-group" *ngIf="brand">
+                                    <label for="firstname" name="prodName">Brand</label>
+                                    <input id="category" class="form-control" type="text" />
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="col-md-4">
+                                  <div class="form-group">
+                                    <label for="exampleInputEmail1">Mobile Banner</label>
+                                    <input class="form-control" type="file" accept="image/*" (change)="changeListener($event,i)"
+                                      [(ngModel)]="catImg" name="catImg">
+                                    <div *ngIf="image">
+                                      <img src="{{skuValues.imageurl}}" alt="" width="100" height="100" style="border: solid 1px;margin-top: 2%;">
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="col-md-4">
+                                  <div class="form-group">
+                                    <label for="exampleInputEmail1">website Banner</label>
+                                    <input class="form-control" type="file" accept="image1/*" (change)="changeListener1($event,i)"
+                                      [(ngModel)]="catImg" name="catImg">
+                                    <div *ngIf="image">
+                                      <img src="{{skuValues.imageurl1}}" alt="" width="100" height="100" style="border: solid 1px;margin-top: 2%;">
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="col-md-4">
+                                  <button type="submit" class="btn btn-primary vendor-button" (click)="deleteSku(i)"
+                                    style="margin-top: 25px;">Delete
+                                    Banner
+                                  </button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- <div class="form-group">
                                             <label for="sel1">Select Type</label>
                                             <select class="form-control border-primary" id="sel1" (change)="onChange($event.target.value)">
                                                 <i class="fa fa-chevron-down" aria-hidden="true"></i>
@@ -148,7 +158,7 @@
                                                 <option value="Brand">Brand</option>
                                             </select>
                                         </div> -->
-                                        <!-- <div class="form-group">
+                    <!-- <div class="form-group">
                                             <label for="exampleInputEmail1">Mobile Banner</label>
                                             <input class="form-control" type='file' (change)="onSelectFile($event)" multiple>
                                             <br>
@@ -158,7 +168,7 @@
                                                     (click)="updateImage(imgUrl.mobile_image_id)" [ngClass]="{'selected':selectedImage==imgUrl.mobile_image_id}">
                                             </div>
                                         </div> -->
-                                        <!-- <div class="form-group">
+                    <!-- <div class="form-group">
                                             <label for="exampleInputEmail1">Website Banner</label>
                                             <input class="form-control" type='file' (change)="onSelectFile1($event)" multiple>
                                             <br>
@@ -168,32 +178,32 @@
                                                     (click)="updateImage1(imgUrl.web_image_id)" [ngClass]="{'selected':selectedImage1==imgUrl.web_image_id}">
                                             </div>
                                         </div> -->
-                                        <button type="submit" class="btn btn-primary vendor-button" *ngIf="addbanners" (click)="addbanner()">
-                                            Add Banner
-                                        </button>
-                                        <button type="submit" class="btn btn-primary vendor-button" *ngIf="!addbanners" (click)="updateBanner()">
-                                            Update Banner
-                                        </button>
-                                    </fieldset>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                    <button type="submit" class="btn btn-primary vendor-button" *ngIf="addbanners" (click)="addbanner()">
+                      Add Banner
+                    </button>
+                    <button type="submit" class="btn btn-primary vendor-button" *ngIf="!addbanners" (click)="updateBanner()">
+                      Update Banner
+                    </button>
+                  </fieldset>
+                </form>
+              </div>
             </div>
-            <!-- content-wrapper ends -->
-            <!-- partial:partials/_footer.html -->
-            <footer class="footer">
-                <div class="container-fluid clearfix">
-                    <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © 2018
-                        <a routerLink="#">Dhukan </a>. All rights reserved. </span>
-                    <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">
-                    </span>
-                </div>
-            </footer>
-            <!-- partial -->
+          </div>
         </div>
-        <!-- row-offcanvas ends -->
+      </div>
+      <!-- content-wrapper ends -->
+      <!-- partial:partials/_footer.html -->
+      <footer class="footer">
+        <div class="container-fluid clearfix">
+          <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © 2018
+            <a routerLink="#">Dhukan </a>. All rights reserved. </span>
+          <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">
+          </span>
+        </div>
+      </footer>
+      <!-- partial -->
     </div>
-    <!-- page-body-wrapper ends -->
+    <!-- row-offcanvas ends -->
+  </div>
+  <!-- page-body-wrapper ends -->
 </div>

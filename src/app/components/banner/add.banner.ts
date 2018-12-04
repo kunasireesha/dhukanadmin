@@ -25,6 +25,8 @@ export class AddBannerComponent implements OnInit {
     skusData = [];
     productData = [];
     subCategoryName = [];
+    catName = [];
+    catId = [];
     skuValues = {
         // name: '',
         // type: '',
@@ -59,6 +61,7 @@ export class AddBannerComponent implements OnInit {
     }
 
     sku() {
+        this.catName = [];
         this.skusData.push({
             name: '',
             type: '',
@@ -66,7 +69,9 @@ export class AddBannerComponent implements OnInit {
             mobile_banner: '',
             imageurl: '',
             website_banner: '',
-            imageurl1: ''
+            imageurl1: '',
+            target: '',
+            catNames: ''
         });
         console.log(this.skusData);
     }
@@ -191,6 +196,27 @@ export class AddBannerComponent implements OnInit {
             console.log(error, "error");
         }
     }
+
+
+    changeCat(id, index) {
+        for (var i = 0; i < this.categorydata.length; i++) {
+            if (this.categorydata[i].id === parseInt(id)) {
+                this.catName.push(this.categorydata[i].name);
+                this.catId.push(this.categorydata[i].id);
+
+                for (var i = 0; i < this.skusData.length; i++) {
+                    // this.skusData[i].image = myReader.result;
+                    if (i === index) {
+                        this.skusData[i].target = this.catId.join(',');
+                        this.skusData[i].catNames = this.catName.join(',');
+                    }
+                }
+                return;
+            }
+        }
+        console.log(this.skusData);
+    }
+
     // updateImage(index) {
     //     this.selectedImage = index;
     // }
