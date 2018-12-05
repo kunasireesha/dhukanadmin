@@ -1,3 +1,9 @@
+import { AddBrandComponent } from './components/banner/best-brands/add.brand';
+
+import { BestDiscountApplianceComponent } from './components/banner/best-discount-appliance/best-discount-appliance.component';
+
+import { AddBestAppliancesComponent } from './components/banner/best-appliances/add.best-appliances';
+
 import { addDealsComponent } from './components/banner/best-deals/add.deal';
 
 import { AddlocationComponent } from './components/location/add.location';
@@ -90,7 +96,9 @@ import { BestDealsComponent } from './components/banner/best-deals/best-deals.co
 import { BestDiscountComponent } from './components/banner/best-discount/best-discount.component';
 import { BestBrandsComponent } from './components/banner/best-brands/best-brands.component';
 import { BestAppliancesComponent } from './components/banner/best-appliances/best-appliances.component';
-import { BestDiscountAppliancesComponent } from './components/banner/best-discount-appliances/best-discount-appliances.component';
+// import { BestDiscountAppliancesComponent } from './components/banner/best-discount-appliances/best-discount-appliances.component';
+import { AddBestDiscountComponent } from './components/banner/best-discount/add.discount';
+import { addDiscountAppliances } from './components/banner/best-discount-appliance/add.best-discount-appliance';
 
 
 
@@ -140,7 +148,12 @@ import { BestDiscountAppliancesComponent } from './components/banner/best-discou
         BestBrandsComponent,
         BestAppliancesComponent,
         addDealsComponent,
-        BestDiscountAppliancesComponent
+        // BestDiscountAppliancesComponent,
+        AddBestDiscountComponent,
+        AddBestAppliancesComponent,
+        BestDiscountApplianceComponent,
+        addDiscountAppliances,
+        AddBrandComponent
 
     ],
     imports: [
@@ -192,11 +205,16 @@ import { BestDiscountAppliancesComponent } from './components/banner/best-discou
             { path: 'addcontent', component: ContentManagementComponent, data: [{ page: 'addcontent' }] },
             { path: 'banner', component: BannerComponent, data: [{ page: 'banner' }] },
             { path: 'bestAppliances', component: BestAppliancesComponent, data: [{ page: 'bestAppliances' }] },
+            { path: 'addbestAppliances', component: AddBestAppliancesComponent, data: [{ page: 'addbestAppliances' }] },
+            { path: 'bestDiscountAppliances', component: BestDiscountApplianceComponent, data: [{ page: 'bestDiscountAppliances' }] },
+            { path: 'addDiscountAppliances', component: addDiscountAppliances, data: [{ page: 'addDiscountAppliances' }] },
             { path: 'bestBrands', component: BestBrandsComponent, data: [{ page: 'bestBrands' }] },
+            { path: 'addBrands', component: AddBrandComponent, data: [{ page: 'addBrands' }] },
             { path: 'bestDeals', component: BestDealsComponent, data: [{ page: 'bestDeals' }] },
             { path: 'addbestDeals', component: addDealsComponent, data: [{ page: 'addbestDeals' }] },
             { path: 'bestDiscount', component: BestDiscountComponent, data: [{ page: 'bestDiscount' }] },
-            { path: 'bestDiscountAppliances', component: BestDiscountAppliancesComponent, data: [{ page: 'bestDiscountAppliances' }] },
+            { path: 'addbestDeals', component: addDealsComponent, data: [{ page: 'addbestDeals' }] },
+            { path: 'addbestdiscount', component: AddBestDiscountComponent, data: [{ page: 'addbestdiscount' }] },
             { path: 'addbanner', component: AddBannerComponent, data: [{ page: 'addbanner' }] },
             { path: 'addlocation', component: AddlocationComponent, data: [{ page: 'addlocation' }] },
             { path: 'location', component: LocationComponent, data: [{ page: 'location' }] },

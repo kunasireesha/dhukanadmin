@@ -31,23 +31,24 @@
                                                 <th>Moblie Banner</th>
                                                 <th>Website Banner</th>
                                                 <th>Type</th>
+                                                <th>Target</th>
                                                 <!-- <th>Phone </th>
                                                 <th>Logo</th> -->
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr class="todo-list" *ngFor="let vendorDetails of vendors;let i = index">
+                                            <tr class="todo-list" *ngFor="let data of banner;let i = index">
                                                 <td>{{i+1}}</td>
-                                                <td>{{vendorDetails.first_name}}</td>
-                                                <td>{{vendorDetails.business_name}}</td>
-                                                <td>{{vendorDetails.email}}</td>
-                                                <td>{{vendorDetails.phone}}</td>
                                                 <td>
-                                                    <img src="assets/images/samples/1.jpg"> </td>
+                                                    <img [src]="data.mobile_bannerimage" alt="data.image" /></td>
                                                 <td>
-                                                    <a routerLink="/addvendors" class="btn btn-outline-primary" (click)="editBestDealBanner(vendorDetails.u_id)">Edit</a>
-                                                    <a class="btn btn-outline-primary vendor-delete" (click)="deleteBestDealBanner(vendorDetails.u_id)">Delete</a>
+                                                    <img [src]="data.website_bannerimage" alt="prod.image" /></td>
+                                                <td>{{data.type}}</td>
+                                                <td>{{data.target}}</td>
+                                                <td>
+                                                    <a routerLink="/addbanner" class="btn btn-outline-primary" (click)="editBanner(data.id)" style="margin-right:10px">Edit</a>
+                                                    <a class="btn btn-outline-primary vendor-delete" (click)="deleteBanner(data.id)">Delete</a>
                                                 </td>
                                             </tr>
                                         </tbody>

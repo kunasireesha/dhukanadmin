@@ -1,13 +1,13 @@
-import { AppService } from './../../services/dhukan/dhukan-data.service';
+import { AppService } from './../../../services/dhukan/dhukan-data.service';
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationExtras } from '@angular/router';
 
 @Component({
-    selector: 'app-banner',
-    templateUrl: './banner.component.html',
-    styleUrls: ['./banner.component.css']
+    selector: 'app-best-discount-appliance',
+    templateUrl: './best-discount-appliance.component.html',
+    styleUrls: ['./best-discount-appliance.component.css']
 })
-export class BannerComponent implements OnInit {
+export class BestDiscountApplianceComponent implements OnInit {
     banner: any;
     bannerImg = [];
     mobileBanner;
@@ -19,12 +19,11 @@ export class BannerComponent implements OnInit {
     ngOnInit() {
         this.getBanners();
     }
-
     getBanners() {
         this.AppService.getBannerUrl().subscribe(resp => {
             if (resp.json().status === 200) {
-                this.banner = resp.json().result[0].banner;
-                this.mainBannerId = resp.json().result[0].id;
+                this.banner = resp.json().result[6].banner;
+                this.mainBannerId = resp.json().result[6].id;
                 for (var i = 0; i < this.banner.length; i++) {
                     this.mobileBanner = this.banner[0].mobile_bannerimage;
                     this.websiteBanner = this.banner[0].website_bannerimage;
@@ -32,12 +31,6 @@ export class BannerComponent implements OnInit {
 
             }
 
-            // for (var i = 0; i < this.banner.length; i++) {
-            //     for (var j = 0; j < this.banner[i].mobile_banner.length; j++) {
-            //         this.banner[i].image = this.banner[i].mobile_banner[0].image_path;
-            //         console.log(this.image);
-            //     }
-            // }
         })
     }
     deleteBanner(id) {
@@ -46,7 +39,7 @@ export class BannerComponent implements OnInit {
         }
         this.AppService.deleteBanner(data).subscribe(resp => {
             swal('banner deleted successfully', '', 'success');
-            this.getBanners();
+            // this.getBanners();
         })
     }
     editBanner(id) {
@@ -56,7 +49,7 @@ export class BannerComponent implements OnInit {
                 mainId: this.mainBannerId
             }
         }
-        this.router.navigate(['/addbanner'], navigationExtras);
+        this.router.navigate(['/addDiscountAppliances'], navigationExtras);
     }
     addBanner(id) {
         let navigationExtras: NavigationExtras = {
@@ -64,7 +57,7 @@ export class BannerComponent implements OnInit {
                 bannerId: id
             }
         }
-        this.router.navigate(['/addbanner'], navigationExtras);
+        this.router.navigate(['/addDiscountAppliances'], navigationExtras);
     }
 
 }

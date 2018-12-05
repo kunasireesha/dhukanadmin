@@ -3,11 +3,11 @@ import { Component, OnInit } from '@angular/core';
 import { Router, NavigationExtras, ActivatedRoute } from '@angular/router';
 
 @Component({
-    selector: 'app-deals',
-    templateUrl: './add.deal.html',
-    styleUrls: ['./best-deals.component.css']
+    selector: 'app-users',
+    templateUrl: './add.best-discount-appliance.html',
+    styleUrls: ['./best-discount-appliance.component.css']
 })
-export class addDealsComponent implements OnInit {
+export class addDiscountAppliances implements OnInit {
     mainId;
     bannerId;
     categorydata;
@@ -30,14 +30,10 @@ export class addDealsComponent implements OnInit {
     catId = [];
     subCatId = [];
     prodId = [];
-    // skuValues = {
-    //     name: ''
-    // }
     constructor(private AppService: AppService, private route: ActivatedRoute, public router: Router) {
         this.route.queryParams.subscribe(params => {
-            this.bannerId = params.bannerId,
-                this.mainId = params.mainId
-
+            this.bannerId = params.bannerId
+            // this.mainId = params.mainId
         })
         if (this.bannerId === '') {
             // this.removeImg = false;
@@ -47,7 +43,7 @@ export class addDealsComponent implements OnInit {
             // this.Image = true;
             // this.removeImg = true;
             this.addbanners = false;
-            this.editbannerById();
+            // this.editbannerById();
             // this.addbanners = this.action;
 
         }
@@ -63,6 +59,7 @@ export class addDealsComponent implements OnInit {
         this.skusData.push({
             name: '',
             type: '',
+            // skuImage: this.skuImg,
             mobile_banner: '',
             mobile_bannerimage: '',
             website_banner: '',
@@ -71,6 +68,53 @@ export class addDealsComponent implements OnInit {
             catNames: ''
         });
     }
+    image;
+    strImage;
+    changeListener($event, index): void {
+        this.readThis($event.target, index);
+    }
+
+    readThis(inputValue: any, index): void {
+        var file: File = inputValue.files[0];
+        var myReader: FileReader = new FileReader();
+
+        myReader.onloadend = (e) => {
+            this.image = myReader.result;
+            this.strImage = this.image.split(',')[1];
+            for (var i = 0; i < this.skusData.length; i++) {
+                if (i === index) {
+                    // this.skusData[i].image = myReader.result;
+                    this.skusData[i].mobile_banner = this.strImage;
+                    this.skusData[i].mobile_bannerimage = this.image;
+                }
+            }
+        }
+        myReader.readAsDataURL(file);
+    }
+    image1;
+    strImage1;
+    changeListener1($event, index): void {
+        this.readThis1($event.target, index);
+    }
+
+    readThis1(inputValue: any, index): void {
+        var file: File = inputValue.files[0];
+        var myReader: FileReader = new FileReader();
+
+        myReader.onloadend = (e) => {
+            this.image1 = myReader.result;
+            this.strImage1 = this.image1.split(',')[1];
+            for (var i = 0; i < this.skusData.length; i++) {
+                if (i === index) {
+                    // this.skusData[i].image = myReader.result;
+                    this.skusData[i].website_banner = this.strImage1;
+                    this.skusData[i].website_bannerimage = this.image1;
+                }
+            }
+        }
+        myReader.readAsDataURL(file);
+    }
+
     onChange(type, index) {
         this.type = type;
         for (var i = 0; i < this.skusData.length; i++) {
@@ -150,52 +194,7 @@ export class addDealsComponent implements OnInit {
             console.log(error, "error");
         }
     }
-    image;
-    strImage;
-    changeListener($event, index): void {
-        this.readThis($event.target, index);
-    }
 
-    readThis(inputValue: any, index): void {
-        var file: File = inputValue.files[0];
-        var myReader: FileReader = new FileReader();
-
-        myReader.onloadend = (e) => {
-            this.image = myReader.result;
-            this.strImage = this.image.split(',')[1];
-            for (var i = 0; i < this.skusData.length; i++) {
-                if (i === index) {
-                    // this.skusData[i].image = myReader.result;
-                    this.skusData[i].mobile_banner = this.strImage;
-                    this.skusData[i].mobile_bannerimage = this.image;
-                }
-            }
-        }
-        myReader.readAsDataURL(file);
-    }
-    image1;
-    strImage1;
-    changeListener1($event, index): void {
-        this.readThis1($event.target, index);
-    }
-
-    readThis1(inputValue: any, index): void {
-        var file: File = inputValue.files[0];
-        var myReader: FileReader = new FileReader();
-
-        myReader.onloadend = (e) => {
-            this.image1 = myReader.result;
-            this.strImage1 = this.image1.split(',')[1];
-            for (var i = 0; i < this.skusData.length; i++) {
-                if (i === index) {
-                    // this.skusData[i].image = myReader.result;
-                    this.skusData[i].website_banner = this.strImage1;
-                    this.skusData[i].website_bannerimage = this.image1;
-                }
-            }
-        }
-        myReader.readAsDataURL(file);
-    }
 
     changeCat(id, index, action) {
 
@@ -251,6 +250,8 @@ export class addDealsComponent implements OnInit {
         }
 
     }
+
+
     deleteSku(index) {
         this.skusData.splice(index, 1);
     }
@@ -263,7 +264,7 @@ export class addDealsComponent implements OnInit {
         this.AppService.postBannerUrl(data).subscribe(resp => {
             if (resp.json().status === 200) {
                 swal('banner added successfully', '', 'success');
-                this.router.navigate(['/bestDeals']);
+                this.router.navigate(['/bestDiscountAppliances']);
             }
             else if (resp.json().status === 400) {
                 swal(resp.json().message, '', 'error');
@@ -272,7 +273,9 @@ export class addDealsComponent implements OnInit {
     }
     bannerDetails;
     skuValues;
-
+    // name;
+    // mobile_banner = [];
+    // website_banner = [];
     editbannerById() {
         var data = {
             'id': this.bannerId
@@ -309,7 +312,7 @@ export class addDealsComponent implements OnInit {
         this.AppService.updateBannerbyId(data).subscribe(resp => {
             if (resp.json().status === 200) {
                 swal('banner added successfully', '', 'success');
-                this.router.navigate(['/addbestDeals']);
+                this.router.navigate(['/bestDiscountAppliances']);
             }
             else if (resp.json().status === 400) {
                 swal(resp.json().message, '', 'error');
@@ -319,5 +322,6 @@ export class addDealsComponent implements OnInit {
             }
         })
     }
+
 
 }

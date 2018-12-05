@@ -16,9 +16,11 @@
                 <div class="card">
                     <div class="card-body">
                         <!-- <a href="" id="show" class="btn  btn-maron" style="float: right">Export To Excel</a> -->
-                        <a routerLink="/addbanner" id="show" class="btn  btn-maron" style="float: right">Add Banners</a>
+                        <a (click)="addBanner('')" routerLink="/addbestAppliances" id="show" class="btn  btn-maron" style="float: right">Add
+                            Banners
+                        </a>
                         <h4 class="card-title">
-                            Banners </h4>
+                            Best Appliances Banners </h4>
                         <br />
                         <div class="row">
                             <div class="col-12">
@@ -27,26 +29,27 @@
                                         <thead class="thead-dark">
                                             <tr>
                                                 <th>S.no</th>
-                                                <th>Moblie Banner</th>
+                                                <th>Mobile Banner</th>
                                                 <th>Website Banner</th>
-                                                <th>Name</th>
+                                                <th>Type</th>
+                                                <th>Target</th>
                                                 <!-- <th>Phone </th>
-                                                <th>Logo</th> -->
+                                                        <th>Logo</th> -->
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr class="todo-list" *ngFor="let vendorDetails of vendors;let i = index">
+                                            <tr class="todo-list" *ngFor="let data of banner;let i = index">
                                                 <td>{{i+1}}</td>
-                                                <td>{{vendorDetails.first_name}}</td>
-                                                <td>{{vendorDetails.business_name}}</td>
-                                                <td>{{vendorDetails.email}}</td>
-                                                <td>{{vendorDetails.phone}}</td>
                                                 <td>
-                                                    <img src="assets/images/samples/1.jpg"> </td>
+                                                    <img [src]="data.mobile_bannerimage" alt="data.image" /></td>
                                                 <td>
-                                                    <!-- <a routerLink="/addvendors" class="btn btn-outline-primary" (click)="editVendor(vendorDetails.u_id)">Edit</a> -->
-                                                    <a class="btn btn-outline-primary vendor-delete" (click)="deleteVendor(vendorDetails.u_id)">Delete</a>
+                                                    <img [src]="data.website_bannerimage" alt="prod.image" /></td>
+                                                <td>{{data.type}}</td>
+                                                <td>{{data.target}}</td>
+                                                <td>
+                                                    <a routerLink="/addbanner" class="btn btn-outline-primary" (click)="editBanner(data.id)" style="margin-right:10px">Edit</a>
+                                                    <a class="btn btn-outline-primary vendor-delete" (click)="deleteBanner(data.id)">Delete</a>
                                                 </td>
                                             </tr>
                                         </tbody>

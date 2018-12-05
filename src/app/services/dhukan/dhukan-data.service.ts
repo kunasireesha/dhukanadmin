@@ -190,9 +190,9 @@ export class AppService {
         const headers = new Headers({ 'Content-Type': "application/JSON" });
         return this.http.post(AppSettings.editBannerUrl, params, { headers: headers })
     }
-    updateBannerbyId(params, id) {
+    updateBannerbyId(params) {
         const headers = new Headers({ 'Content-Type': "application/JSON" });
-        return this.http.put(AppSettings.updatebannerUrl + '/' + id, params, { headers: headers })
+        return this.http.post(AppSettings.updatebannerUrl, params, { headers: headers })
     }
     // postDealBannerUrl(params) {
     //     const headers = new Headers({ 'Content-Type': "application/JSON" });
