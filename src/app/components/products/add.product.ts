@@ -4,6 +4,8 @@ import { ActivatedRoute } from '@angular/router';
 import { ProductService } from '../../services/productService'
 import { IMyDpOptions } from 'mydatepicker';
 import { Router, NavigationExtras } from '@angular/router';
+import * as _ from 'underscore';
+
 @Component({
     selector: 'add-products',
     templateUrl: './add.product.html',
@@ -50,6 +52,7 @@ export class AddProductsComponent implements OnInit {
     skuImage;
     vegImage
     skusData = [];
+    locationData = [];
     skuValues = {
         size: '',
         quantity: '',
@@ -58,7 +61,12 @@ export class AddProductsComponent implements OnInit {
         sellingPrice: '',
         stock: '',
         skuImage: this.skuImg,
-        vegImage: this.vegImage
+        vegImage: this.vegImage,
+        Description: '',
+        specification: '',
+        terms: '',
+        faq: '',
+        answer: ''
     }
     offer;
     Manufacture;
@@ -74,6 +82,20 @@ export class AddProductsComponent implements OnInit {
     disPercentage;
     answer;
     isChecked;
+    countryData = [];
+    countrys = [];
+    statesData = [];
+    citysData = [];
+    citys = [];
+    areasData = [];
+    areas = [];
+    country;
+    states = [];
+    state;
+    city;
+    area;
+
+
     constructor(private appService: AppService, private route: ActivatedRoute, public proserv: ProductService, public router: Router) {
         this.route.queryParams.subscribe(params => {
             this.action = params.prodId;
@@ -116,7 +138,7 @@ export class AddProductsComponent implements OnInit {
         this.getSubCategory();
         // this.getProduct();
 
-
+        this.getLocation();
 
     }
     subCategoryName;
@@ -293,15 +315,21 @@ export class AddProductsComponent implements OnInit {
             // 'discount_percentage': this.disAmount,
             'express_delivery': this.selectedExpressValue,
             'normal_delivery': this.selectedNormalValue,
-            'description': this.Description,
-            'specification': this.specification,
-            'terms': this.terms,
+            // 'description': this.Description,
+            // 'specification': this.specification,
+            // 'terms': this.terms,
             'manufacture_name': this.Manufacture,
             'sku': this.skusData,
-            'question': this.faq,
-            'answer': this.answer
+            // 'question': this.faq,
+            // 'answer': this.answer,
+            'country': this.country,
+            'state': this.state,
+            'city': this.city,
+            'area': this.area
         }
         console.log(data);
+
+
         this.appService.insertProduct(data)
             .subscribe(resp => {
                 if (resp.json().status === 200) {
@@ -444,7 +472,12 @@ export class AddProductsComponent implements OnInit {
             sellingPrice: '',
             stock: '',
             skuImage: this.skuImg,
-            vegImage: this.vegImage
+            vegImage: this.vegImage,
+            Description: '',
+            specification: '',
+            terms: '',
+            faq: '',
+            answer: ''
         });
     }
     deleteSku(index) {
@@ -489,4 +522,85 @@ export class AddProductsComponent implements OnInit {
             this.percentage = true;
         }
     }
+
+    //get country
+    getLocation() {
+        this.appService.getLocation().subscribe(resp => {
+            this.locationData = resp.json().result;
+            for (var i = 0; i < this.locationData.length; i++) {
+                this.countryData.push(this.locationData[i].country);
+            }
+
+            for (var i = 0; i < this.countryData.length; i++) {
+                this.countrys = _.uniq(this.countryData, function (obj) {
+                    return obj;
+                });
+                // this.sValues.push(this.states);
+            }
+        })
+
+    }
+
+    //get state
+    getStates(country) {
+        this.country = country;
+        this.statesData = [];
+
+        for (var i = 0; i < this.locationData.length; i++) {
+            if (this.locationData[i].country === country) {
+                this.statesData.push(this.locationData[i].state);
+            }
+        }
+
+        for (var i = 0; i < this.statesData.length; i++) {
+            this.states = _.uniq(this.statesData, function (obj) {
+                return obj;
+            });
+            // this.sValues.push(this.states);
+        }
+    }
+
+    //get city
+    getCitys(state) {
+        this.state = state;
+        this.citysData = [];
+        this.areas = [];
+        for (var i = 0; i < this.locationData.length; i++) {
+            if (this.locationData[i].state === state) {
+                this.citysData.push(this.locationData[i].city);
+            }
+        }
+
+        for (var i = 0; i < this.citysData.length; i++) {
+            this.citys = _.uniq(this.citysData, function (obj) {
+                return obj;
+            });
+            // this.sValues.push(this.states);
+        }
+    }
+
+    //get area
+    getArea(city) {
+        this.city = city;
+        this.areasData = [];
+        for (var i = 0; i < this.locationData.length; i++) {
+            if (this.locationData[i].city === city) {
+                this.areasData.push(this.locationData[i].area);
+            }
+        }
+
+        for (var i = 0; i < this.areasData.length; i++) {
+            this.areas = _.uniq(this.areasData, function (obj) {
+                return obj;
+            });
+            // this.sValues.push(this.states);
+        }
+    }
+
+    //chage area
+    changeArea(area) {
+        this.area = area;
+    }
+
+
 }
