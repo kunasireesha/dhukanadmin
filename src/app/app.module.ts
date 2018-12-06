@@ -1,3 +1,5 @@
+import { AddHelpBannerComponent } from './components/banner/help-banner/add.help-banner';
+import { AddOffersBannerComponent } from './components/banner/offer-banner/add.offer-banner';
 import { AddBrandComponent } from './components/banner/best-brands/add.brand';
 
 import { BestDiscountApplianceComponent } from './components/banner/best-discount-appliance/best-discount-appliance.component';
@@ -13,7 +15,7 @@ import { BannerComponent } from './components/banner/banner.component';
 import { AddOffersComponent } from './components/offers/add.offer';
 import { AddDeliveryComponent } from './components/delivery/add.delivery';
 import { ImageUploadComponent } from './components/image-upload/image-upload.component';
-
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 // import * as xlsx from "xlsx";
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
@@ -99,6 +101,8 @@ import { BestAppliancesComponent } from './components/banner/best-appliances/bes
 // import { BestDiscountAppliancesComponent } from './components/banner/best-discount-appliances/best-discount-appliances.component';
 import { AddBestDiscountComponent } from './components/banner/best-discount/add.discount';
 import { addDiscountAppliances } from './components/banner/best-discount-appliance/add.best-discount-appliance';
+import { HelpBannerComponent } from './components/banner/help-banner/help-banner.component';
+import { OfferBannerComponent } from './components/banner/offer-banner/offer-banner.component';
 
 
 
@@ -153,7 +157,11 @@ import { addDiscountAppliances } from './components/banner/best-discount-applian
         AddBestAppliancesComponent,
         BestDiscountApplianceComponent,
         addDiscountAppliances,
-        AddBrandComponent
+        AddBrandComponent,
+        HelpBannerComponent,
+        OfferBannerComponent,
+        AddOffersBannerComponent,
+        AddHelpBannerComponent
 
     ],
     imports: [
@@ -170,6 +178,7 @@ import { addDiscountAppliances } from './components/banner/best-discount-applian
         CKEditorModule,
         NgSelectModule,
         AmazingTimePickerModule,
+        MatSlideToggleModule,
         // MatNativeDateModule,
         // MatDatepickerModule,
         TooltipModule.forRoot(),
@@ -223,7 +232,11 @@ import { addDiscountAppliances } from './components/banner/best-discount-applian
             { path: 'aboutUs', component: AboutUsComponent, data: [{ page: 'aboutUs' }] },
             { path: 'deliveryInfo', component: DeliveryInfoComponent, data: [{ page: 'deliveryInfo' }] },
             { path: 'privacy', component: PrivacyPolicyComponent, data: [{ page: 'privacy' }] },
-            { path: 'returns', component: ReturnsComponent, data: [{ page: 'returns' }] }
+            { path: 'returns', component: ReturnsComponent, data: [{ page: 'returns' }] },
+            { path: 'offersBanners', component: OfferBannerComponent, data: [{ page: 'offersBanners' }] },
+            { path: 'addoffersBanners', component: AddOffersBannerComponent, data: [{ page: 'addoffersBanners' }] },
+            { path: 'helpBanners', component: HelpBannerComponent, data: [{ page: 'helpBanners' }] },
+            { path: 'addhelpBanners', component: AddHelpBannerComponent, data: [{ page: 'addhelpBanners' }] },
 
         ], { useHash: true }),
         BrowserAnimationsModule

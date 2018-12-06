@@ -194,6 +194,10 @@ export class AppService {
         const headers = new Headers({ 'Content-Type': "application/JSON" });
         return this.http.post(AppSettings.updatebannerUrl, params, { headers: headers })
     }
+    getBannerPostion() {
+        const headers = new Headers({ 'Content-Type': "application/JSON" });
+        return this.http.get(AppSettings.bannerPositionUrl, { headers: headers })
+    }
     // postDealBannerUrl(params) {
     //     const headers = new Headers({ 'Content-Type': "application/JSON" });
     //     return this.http.post(AppSettings.postDealbannersUrl, params, { headers: headers })

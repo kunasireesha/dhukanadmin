@@ -3,11 +3,11 @@ import { Component, OnInit } from '@angular/core';
 import { Router, NavigationExtras } from '@angular/router';
 
 @Component({
-    selector: 'app-best-discount-appliance',
-    templateUrl: './best-discount-appliance.component.html',
-    styleUrls: ['./best-discount-appliance.component.css']
+    selector: 'app-offer-banner',
+    templateUrl: './offer-banner.component.html',
+    styleUrls: ['./offer-banner.component.css']
 })
-export class BestDiscountApplianceComponent implements OnInit {
+export class OfferBannerComponent implements OnInit {
     banner: any;
     bannerImg = [];
     mobileBanner;
@@ -22,8 +22,8 @@ export class BestDiscountApplianceComponent implements OnInit {
     getBanners() {
         this.AppService.getBannerUrl().subscribe(resp => {
             if (resp.json().status === 200) {
-                this.banner = resp.json().result[4].banner;
-                this.mainBannerId = resp.json().result[4].id;
+                this.banner = resp.json().result[6].banner;
+                this.mainBannerId = resp.json().result[6].id;
                 for (var i = 0; i < this.banner.length; i++) {
                     this.mobileBanner = this.banner[0].mobile_bannerimage;
                     this.websiteBanner = this.banner[0].website_bannerimage;
@@ -49,15 +49,17 @@ export class BestDiscountApplianceComponent implements OnInit {
                 mainId: this.mainBannerId
             }
         }
-        this.router.navigate(['/addDiscountAppliances'], navigationExtras);
+        this.router.navigate(['/addoffersBanners'], navigationExtras);
     }
     addBanner(id) {
         let navigationExtras: NavigationExtras = {
             queryParams: {
                 bannerId: id
+
             }
         }
-        this.router.navigate(['/addDiscountAppliances'], navigationExtras);
+        this.router.navigate(['/addoffersBanners'], navigationExtras);
     }
+
 
 }

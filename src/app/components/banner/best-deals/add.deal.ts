@@ -30,6 +30,7 @@ export class addDealsComponent implements OnInit {
     catId = [];
     subCatId = [];
     prodId = [];
+    positions = [];
     // skuValues = {
     //     name: ''
     // }
@@ -57,6 +58,15 @@ export class addDealsComponent implements OnInit {
         this.getCat();
         this.getProduct();
         this.getSubCategory();
+        this.getBannerPostion();
+    }
+    getBannerPostion() {
+        this.AppService.getBannerPostion().subscribe(resp => {
+            this.positions = resp.json().result;
+        })
+    }
+    bannerPosition(value) {
+        this.title = value;
     }
     sku() {
         this.catName = [];

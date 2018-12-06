@@ -1,6 +1,7 @@
 import { AppService } from './../../services/dhukan/dhukan-data.service';
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+// import { HttpClient } from '@angular/common/http';
+import { Router, NavigationExtras } from '@angular/router';
 @Component({
     selector: 'add-location',
     templateUrl: './add.location.html',
@@ -17,7 +18,7 @@ export class AddlocationComponent implements OnInit {
     selectedCountry;
     countryName;
     stateName;
-    constructor(private appService: AppService, private httpClient: HttpClient) { }
+    constructor(private appService: AppService, public router: Router) { }
 
     ngOnInit() {
         this.getCountries();
@@ -29,7 +30,6 @@ export class AddlocationComponent implements OnInit {
 
 
     changeCountry(id) {
-
         for (var i = 0; i < this.countrydata.length; i++) {
             if (this.countrydata[i].location_id === parseInt(id)) {
                 this.countryName = this.countrydata[i].location;
@@ -110,6 +110,7 @@ export class AddlocationComponent implements OnInit {
         this.appService.addLocation(inData).subscribe(resp => {
             console.log(resp.json());
             swal(resp.json().message, "", "success");
+            this.router.navigate(['/location']);
         }, error => {
             console.log(error);
         })

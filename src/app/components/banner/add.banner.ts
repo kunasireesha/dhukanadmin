@@ -16,6 +16,7 @@ export class AddBannerComponent implements OnInit {
     product = false;
     skus = false;
     brand = false;
+    positions = [];
     type: any;
     selectedImage: any;
     selectedImage1: any;
@@ -61,9 +62,17 @@ export class AddBannerComponent implements OnInit {
         this.getCat();
         this.getProduct();
         this.getSubCategory();
+        this.getBannerPostion();
 
     }
-
+    getBannerPostion() {
+        this.AppService.getBannerPostion().subscribe(resp => {
+            this.positions = resp.json().result;
+        })
+    }
+    bannerPosition(value) {
+        this.title = value;
+    }
     sku() {
         this.catName = [];
         this.skusData.push({
@@ -207,7 +216,6 @@ export class AddBannerComponent implements OnInit {
 
 
     changeCat(id, index, action) {
-
         if (action === 'cat') {
             for (var i = 0; i < this.categorydata.length; i++) {
                 if (this.categorydata[i].id === parseInt(id)) {
@@ -283,6 +291,7 @@ export class AddBannerComponent implements OnInit {
     }
     bannerDetails;
     skuValues;
+    imageId;
     // name;
     // mobile_banner = [];
     // website_banner = [];
@@ -292,6 +301,7 @@ export class AddBannerComponent implements OnInit {
         }
         this.AppService.editBannerbyId(data).subscribe(resp => {
             this.skusData = resp.json().result;
+            this.imageId = resp.json().result[0].image_id;
             this.image = true;
             for (var i = 0; i < this.skusData.length; i++) {
                 if (this.skusData[i].type === 'Categories') {
@@ -308,7 +318,7 @@ export class AddBannerComponent implements OnInit {
                 }
             }
 
-            console.log(this.skusData);
+
             // this.skuValues = {
             //     name: this.bannerDetails.name
             // }
@@ -316,8 +326,11 @@ export class AddBannerComponent implements OnInit {
         })
     }
     updateBanner() {
+
         var data = {
-            'id': this.mainId
+            'id': this.imageId,
+            'name': this.skusData[0].name
+
         }
         this.AppService.updateBannerbyId(data).subscribe(resp => {
             if (resp.json().status === 200) {

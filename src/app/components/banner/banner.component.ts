@@ -66,5 +66,6 @@ export class BannerComponent implements OnInit {
         }
         this.router.navigate(['/addbanner'], navigationExtras);
     }
+   
 
 }

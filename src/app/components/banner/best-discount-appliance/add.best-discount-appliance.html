@@ -22,9 +22,12 @@
                                 <form class="cmxform" id="signupForm" method="get" action="#">
                                     <fieldset>
                                         <div class="form-group">
-                                            <label for="exampleInputEmail1">Title</label>
-                                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" [(ngModel)]="title" name="title"
-                                                placeholder="Main banners" style="width: 400px">
+                                            <label for="sel1">Title</label>
+                                            <select class="form-control border-primary" id="sel1" style="width:400px" (change)="bannerPosition($event.target.value)">
+                                                <i class="fa fa-chevron-down" aria-hidden="true"></i>
+                                                <option value="" disabled>Select banner type</option>
+                                                <option *ngFor="let item of positions" value="{{item.banner_position}}">{{item.banner_position}}</option>
+                                            </select>
                                         </div>
                                         <div class="row">
                                             <div class="col-md-12 col-sm-12">

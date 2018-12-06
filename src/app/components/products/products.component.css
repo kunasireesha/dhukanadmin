@@ -81,4 +81,14 @@ strong{
 .form-control{
     border-color: #495057;
 }
+::ng-deep .mat-slide-toggle.mat-checked:not(.mat-disabled) .mat-slide-toggle-thumb {
+    background-color:#0c9b3c; /*replace with your color*/
+}
 
+::ng-deep .mat-slide-toggle-thumb{
+    background-color:#dd1f1f;
+}
+
+::ng-deep .mat-slide-toggle.mat-checked:not(.mat-disabled) .mat-slide-toggle-bar{
+    background-color: rgba(0,0,0,.38);
+}

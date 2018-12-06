@@ -3,11 +3,11 @@ import { Component, OnInit } from '@angular/core';
 import { Router, NavigationExtras, ActivatedRoute } from '@angular/router';
 
 @Component({
-    selector: 'app-users',
-    templateUrl: './add.best-discount-appliance.html',
-    styleUrls: ['./best-discount-appliance.component.css']
+    selector: 'app-user',
+    templateUrl: './add.help-banner.html',
+    styleUrls: ['./help-banner.component.css']
 })
-export class addDiscountAppliances implements OnInit {
+export class AddHelpBannerComponent implements OnInit {
     mainId;
     bannerId;
     categorydata;
@@ -16,6 +16,7 @@ export class addDiscountAppliances implements OnInit {
     product = false;
     skus = false;
     brand = false;
+    positions = [];
     type: any;
     selectedImage: any;
     selectedImage1: any;
@@ -30,7 +31,6 @@ export class addDiscountAppliances implements OnInit {
     catId = [];
     subCatId = [];
     prodId = [];
-    positions = [];
     constructor(private AppService: AppService, private route: ActivatedRoute, public router: Router) {
         this.route.queryParams.subscribe(params => {
             this.bannerId = params.bannerId,
@@ -274,7 +274,7 @@ export class addDiscountAppliances implements OnInit {
         this.AppService.postBannerUrl(data).subscribe(resp => {
             if (resp.json().status === 200) {
                 swal('banner added successfully', '', 'success');
-                this.router.navigate(['/bestDiscountAppliances']);
+                this.router.navigate(['/helpBanners']);
             }
             else if (resp.json().status === 400) {
                 swal(resp.json().message, '', 'error');
@@ -322,7 +322,7 @@ export class addDiscountAppliances implements OnInit {
         this.AppService.updateBannerbyId(data).subscribe(resp => {
             if (resp.json().status === 200) {
                 swal('banner added successfully', '', 'success');
-                this.router.navigate(['/bestDiscountAppliances']);
+                this.router.navigate(['/helpBanners']);
             }
             else if (resp.json().status === 400) {
                 swal(resp.json().message, '', 'error');
@@ -332,6 +332,5 @@ export class addDiscountAppliances implements OnInit {
             }
         })
     }
-
 
 }
