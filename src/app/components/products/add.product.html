@@ -37,7 +37,8 @@
                                                         <option value="" disabled>Select Sub Category</option>
                                                         <option *ngFor="let subCat of subCategoryName" [value]="subCat.sub_cat">{{subCat.sub_cat}}</option>
                                                     </select> -->
-                                                    <select class="form-control border-primary" id="exampleSelectPrimary" (change)="changeSub($event.target.value)">
+                                                    <select class="form-control border-primary" id="exampleSelectPrimary" [(ngModel)]="subcategoryName" name="subcategoryName"
+                                                        (change)="changeSub($event.target.value)">
                                                         <option value="" disabled>Select Sub Category</option>
                                                         <option *ngFor="let subCat of subCategoryName" value="{{subCat.sub_cat}}">{{subCat.sub_cat}}</option>
                                                     </select>
@@ -173,8 +174,9 @@
 
 
                                                             <div *ngIf="!removeImg">
-                                                                <img *ngFor='let url of skuValues.sku_images' [src]="url.sku_image" height="100" (click)="updateImage(url.id)" [ngClass]="{'selected':selectedImage==url.id}"
-                                                                    width="100" style="margin-right: 2%;border: 1px solid;margin-bottom:5%">
+                                                                <img *ngFor='let url of skuValues.sku_images' [src]="url.sku_image" height="100" (click)="updateImage(url.id,url.sku_id)"
+                                                                    [ngClass]="{'selected':selectedImage==url.id}" width="100"
+                                                                    style="margin-right: 2%;border: 1px solid;margin-bottom:5%">
 
                                                                 <div *ngFor='let url of skuValues'>
                                                                     <img *ngFor="let imgUrl of url.sku_images;let i =index" [src]="imgUrl.sku_image" height="100" width="100" style="margin-right: 2%;border: 1px solid;margin-bottom:5%"

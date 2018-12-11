@@ -47,8 +47,8 @@
                                         <tbody>
                                             <tr class="todo-list" *ngFor="let prod of product | filter:filter ;let i = index">
                                                 <td>{{i+1}}</td>
-                                                <td>{{prod.main_cat}}</td>
-                                                <td>{{prod.sub_cat}} </td>
+                                                <td>{{prod.main_cat_name}}</td>
+                                                <td>{{prod.sub_cat_name}} </td>
                                                 <td>{{prod.title}}</td>
                                                 <td>
                                                     <img [src]="prod.sku[0].sku_images[0].sku_image" />

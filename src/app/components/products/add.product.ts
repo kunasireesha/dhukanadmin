@@ -23,6 +23,7 @@ export class AddProductsComponent implements OnInit {
     };
     public model: any = { date: { year: 2018, month: 10, day: 9 } };
     type;
+    subcategoryName;
     addProd: boolean;
     removeImg: boolean = false;
     Image: boolean;
@@ -49,6 +50,7 @@ export class AddProductsComponent implements OnInit {
     images = [];
     Productimages = [];
     selectedImage;
+    imgSku;
     Description;
     specification;
     terms;
@@ -151,6 +153,10 @@ export class AddProductsComponent implements OnInit {
                 this.product = resp.json().data.results;
                 for (var i = 0; i < this.product.length; i++) {
                     if (this.action == this.product[i].id) {
+                        // this.product[i].sub_cat_name
+                        this.categoryName = this.product[i].main_cat_name;
+                        this.subcategoryName = this.product[i].sub_cat_name;
+                        // sub_cat_name
                         this.proName = this.product[i].title;
                         this.Manufacture = this.product[i].brand_name;
                         this.cat_id = this.product[i].category_id;
@@ -372,7 +378,7 @@ export class AddProductsComponent implements OnInit {
     //         }
     //     }
     // }
-
+    newSkuData = [];
     onSelectFile(event, index) {
         // this.images = [];
         if (event.target.files && event.target.files[0]) {
@@ -404,47 +410,70 @@ export class AddProductsComponent implements OnInit {
                             this.img = fileReader.result;
                             this.strImage = this.img.split(',')[1];
 
+
                             for (var i = 0; i < this.skusData.length; i++) {
-                                // this.skusData[i].sku_images.push()
-                                for (var j = 0; j < this.skusData[i].sku_images.length; j++) {
-                                    if (this.selectedImage === this.skusData[i].sku_images[j].id) {
-
-                                        this.skusData[i].sku_images[j].sku_image = fileReader.result;
-                                        // this.skusData[i].sku_images[j].push({
-                                        //     "id": this.selectedImage,
-                                        //     "sku_id": this.skusData[i].sku_images[j].sku_id,
-                                        //     "sku_image": this.img,
-                                        //     "product_id": this.skusData[i].sku_images[j].product_id,
-                                        // })
-
-                                        this.skusData[i].images.push({
-                                            "id": this.selectedImage,
-                                            "sku_id": this.skusData[i].sku_images[j].sku_id,
-                                            "sku_image": this.strImage,
-                                            "product_id": this.skusData[i].sku_images[j].product_id,
-                                            "sku_img_path": this.skusData[i].sku_images[j].sku_image,
-                                        })
-
-
-
-
-                                        console.log(this.skusData[i].sku_images[j]);
-                                        for (var k = 0; k < this.skusData[i].images.length; k++) {
-                                            if (this.skusData[i].images[k].id === this.selectedImage) {
-                                                this.skusData[i].images.splice(k, 1);
-                                            }
-
-                                            // console.log(this.skusData[i].sku_images);
-                                            return;
-                                        }
-
-
-                                        return;
-                                    }
+                                if (i === index) {
+                                    this.newSkuData.push(this.skusData[i]);
                                 }
-
-
                             }
+
+                            for (var j = 0; j < this.newSkuData[0].sku_images.length; j++) {
+                                if (this.selectedImage === this.newSkuData[0].sku_images[j].id) {
+                                    this.newSkuData[0].sku_images.splice(j, 1);
+                                }
+                            }
+
+                            this.newSkuData[0].sku_images.push({
+                                'sku_image': this.img,
+                                'id': this.selectedImage,
+                                'sku_id': this.imgSku,
+                                "product_id": this.newSkuData[0].product_id,
+                                "sku_img_path": this.strImage,
+                            })
+
+                            console.log(this.newSkuData);
+
+
+                            // for (var i = 0; i < this.skusData.length; i++) {
+                            //     // this.skusData[i].sku_images.push()
+                            //     for (var j = 0; j < this.skusData[i].sku_images.length; j++) {
+                            //         if (this.selectedImage === this.skusData[i].sku_images[j].id) {
+                            //             this.skusData[i].sku_images.splice(j, 1);
+                            //             // this.skusData[i].sku_images[j].sku_image = fileReader.result;
+                            //             //                                         this.skusData[i].sku_images.push({
+                            //             //                                             "id": this.selectedImage,
+                            //             //                                             "sku_id": this.skusData[i].sku_images[j].sku_id,
+                            //             //                                             "sku_image": this.img,
+                            //             //                                             "product_id": this.skusData[i].sku_images[j].product_id,
+                            //             //                                         })
+                            //             // j
+                            //             //                                         if (this.skusData[i].sku_images[j].id === this.selectedImage) {
+                            //             //                                             this.skusData[i].sku_images.splice(j, 1);
+                            //             //                                         }
+
+
+
+                            //             this.skusData[i].images.push({
+                            //                 "id": this.selectedImage,
+                            //                 "sku_id": this.skusData[i].sku_images[j].sku_id,
+                            //                 "sku_image": this.strImage,
+                            //                 "product_id": this.skusData[i].sku_images[j].product_id,
+                            //                 "sku_img_path": this.skusData[i].sku_images[j].sku_image,
+                            //             })
+
+                            //             for (var k = 0; k < this.skusData[i].images.length; k++) {
+                            //                 if (this.skusData[i].images[k].id === this.selectedImage) {
+                            //                     this.skusData[i].images.splice(k, 1);
+                            //                 }
+                            //             }
+                            //         }
+                            //     }
+
+                            //     this.skusData[i].sku_images.push({
+                            //         "sku_image": this.img,
+                            //         "id": this.selectedImage
+                            //     })
+                            // }
 
                             // for (var i = 0; i < this.productDetails[0].myImages.length; i++) {
                             //     if (this.productDetails[0].myImages[i].id === this.selectedImage) {
@@ -549,8 +578,9 @@ export class AddProductsComponent implements OnInit {
 
     //     })
     // }
-    updateImage(index) {
+    updateImage(index, skuId) {
         this.selectedImage = index;
+        this.imgSku = skuId;
     }
     removeImgPopup() {
         this.removeImg = !this.removeImg;
@@ -732,7 +762,7 @@ export class AddProductsComponent implements OnInit {
                 "state": this.skusData[i].state,
                 "city": this.skusData[i].city,
                 "area": this.skusData[i].area,
-                "sku_images": this.images,
+                "sku_images": this.skusData[i].images,
                 "terms": this.skusData[i].terms,
                 "faq": this.skusData[i].faq,
             })
