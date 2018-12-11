@@ -169,13 +169,15 @@
                                                         <div class="form-group">
                                                             <label for="firstname" name="prodName">Sku Images :
                                                             </label>
-                                                            <input class="form-control" type='file' (change)="onSelectFile($event,i)" multiple><br
-                                                            />
+                                                            <input class="form-control" type='file' (change)="onSelectFile($event,i)" multiple><br/>
+
 
                                                             <div *ngIf="!removeImg">
-                                                                <img *ngFor='let url of skuValues.sku_images' [src]="url.sku_image" height="100" width="100" style="margin-right: 2%;border: 1px solid;margin-bottom:5%">
-                                                                <div *ngFor='let url of productDetails'>
-                                                                    <img *ngFor="let imgUrl of url.myImages;let i =index" [src]="imgUrl.product_image" height="100" width="100" style="margin-right: 2%;border: 1px solid;margin-bottom:5%"
+                                                                <img *ngFor='let url of skuValues.sku_images' [src]="url.sku_image" height="100" (click)="updateImage(url.id)" [ngClass]="{'selected':selectedImage==url.id}"
+                                                                    width="100" style="margin-right: 2%;border: 1px solid;margin-bottom:5%">
+
+                                                                <div *ngFor='let url of skuValues'>
+                                                                    <img *ngFor="let imgUrl of url.sku_images;let i =index" [src]="imgUrl.sku_image" height="100" width="100" style="margin-right: 2%;border: 1px solid;margin-bottom:5%"
                                                                         (click)="updateImage(imgUrl.id)" [ngClass]="{'selected':selectedImage==imgUrl.id}">
                                                                 </div>
                                                             </div>

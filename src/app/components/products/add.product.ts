@@ -105,6 +105,7 @@ export class AddProductsComponent implements OnInit {
     state;
     city;
     area;
+    updatedSkus = [];
 
 
     constructor(private appService: AppService, private route: ActivatedRoute, public proserv: ProductService, public router: Router, private fb: FormBuilder) {
@@ -138,6 +139,9 @@ export class AddProductsComponent implements OnInit {
     productSku = []
     productdetails = [];
     skuimages = [];
+    cat_id;
+    subCat_id;
+    brand_id;
     getProduct() {
         this.skuimages = [];
         let goodResponse = [];
@@ -149,6 +153,10 @@ export class AddProductsComponent implements OnInit {
                     if (this.action == this.product[i].id) {
                         this.proName = this.product[i].title;
                         this.Manufacture = this.product[i].brand_name;
+                        this.cat_id = this.product[i].category_id;
+                        this.subCat_id = this.product[i].category2_id;
+                        this.brand_id = this.product[i].brand_id;
+
                         this.skusData = this.product[i].sku;
                         for (var j = 0; j < this.skusData.length; j++) {
                             this.skusData[j].offer = this.skusData[j].offer_price;
@@ -162,8 +170,11 @@ export class AddProductsComponent implements OnInit {
                             // this.skusData[j].answer = this.skusData[j].faq.answer;
 
                         }
+                        console.log(this.skusData);
+                        // return;
                     }
                 }
+                console.log(this.skusData);
                 // for (var i = 0; i < this.product.length; i++) {
                 //     for (var j = 0; j < this.product[i].myImages.length; j++) {
                 //         this.product[i].image = this.product[i].myImages[0].product_image;
@@ -202,6 +213,7 @@ export class AddProductsComponent implements OnInit {
     optionsChecked = [];
 
     ngOnInit() {
+
         this.list = [
             {
                 id: 1,
@@ -225,6 +237,7 @@ export class AddProductsComponent implements OnInit {
 
         this.getLocation();
         this.type = 'Vegetrian';
+        console.log(this.skusData);
 
     }
     subCategoryName;
@@ -372,18 +385,74 @@ export class AddProductsComponent implements OnInit {
                         if (this.selectedImage === undefined) {
                             this.img = fileReader.result;
                             this.strImage = this.img.split(',')[1];
-                            this.productDetails[0].myImages.push({ 'id': '', 'product_image': fileReader.result });
-                            this.images.push({ 'image_no': '', 'image_data': this.strImage })
+                            // this.productDetails[0].myImages.push({ 'id': '', 'product_image': fileReader.result });
+                            // this.images.push({ 'image_no': '', 'image_data': this.strImage })
+
+                            for (var i = 0; i < this.skusData.length; i++) {
+                                if (i === index) {
+                                    this.skusData[i].sku_images.push({
+                                        "sku_image": this.img,
+                                        "product_id": this.skusData[i].sku_images[0].product_id,
+                                    })
+                                    // for (var j = 0; j < this.skusData[i].sku_images.length; j++) {
+                                    this.skusData[i].images = this.skusData[i].sku_images;
+                                    // }
+                                    return;
+                                }
+                            }
                         } else {
                             this.img = fileReader.result;
                             this.strImage = this.img.split(',')[1];
-                            for (var i = 0; i < this.productDetails[0].myImages.length; i++) {
-                                if (this.productDetails[0].myImages[i].id === this.selectedImage) {
-                                    this.productDetails[0].myImages.splice(i, 1)
+
+                            for (var i = 0; i < this.skusData.length; i++) {
+                                // this.skusData[i].sku_images.push()
+                                for (var j = 0; j < this.skusData[i].sku_images.length; j++) {
+                                    if (this.selectedImage === this.skusData[i].sku_images[j].id) {
+
+                                        this.skusData[i].sku_images[j].sku_image = fileReader.result;
+                                        // this.skusData[i].sku_images[j].push({
+                                        //     "id": this.selectedImage,
+                                        //     "sku_id": this.skusData[i].sku_images[j].sku_id,
+                                        //     "sku_image": this.img,
+                                        //     "product_id": this.skusData[i].sku_images[j].product_id,
+                                        // })
+
+                                        this.skusData[i].images.push({
+                                            "id": this.selectedImage,
+                                            "sku_id": this.skusData[i].sku_images[j].sku_id,
+                                            "sku_image": this.strImage,
+                                            "product_id": this.skusData[i].sku_images[j].product_id,
+                                            "sku_img_path": this.skusData[i].sku_images[j].sku_image,
+                                        })
+
+
+
+
+                                        console.log(this.skusData[i].sku_images[j]);
+                                        for (var k = 0; k < this.skusData[i].images.length; k++) {
+                                            if (this.skusData[i].images[k].id === this.selectedImage) {
+                                                this.skusData[i].images.splice(k, 1);
+                                            }
+
+                                            // console.log(this.skusData[i].sku_images);
+                                            return;
+                                        }
+
+
+                                        return;
+                                    }
                                 }
+
+
                             }
-                            this.productDetails[0].myImages.push({ 'id': this.selectedImage, 'product_image': fileReader.result });
-                            this.images.push({ 'image_no': this.selectedImage, 'image_data': this.strImage })
+
+                            // for (var i = 0; i < this.productDetails[0].myImages.length; i++) {
+                            //     if (this.productDetails[0].myImages[i].id === this.selectedImage) {
+                            //         this.productDetails[0].myImages.splice(i, 1)
+                            //     }
+                            // }
+                            // this.productDetails[0].myImages.push({ 'id': this.selectedImage, 'product_image': fileReader.result });
+                            // this.images.push({ 'image_no': this.selectedImage, 'image_data': this.strImage })
                             // this.imagenum = this.urls.push(fileReader.result);
                         }
                     } else {
@@ -405,6 +474,8 @@ export class AddProductsComponent implements OnInit {
                 fileReader.readAsDataURL(event.target.files[i]);
             }
         }
+
+
     }
 
     insertProduct() {
@@ -634,34 +705,86 @@ export class AddProductsComponent implements OnInit {
     deleteSku(index) {
         this.skusData.splice(index, 1);
     }
-    // updateProduct() {
-    //     var data = {
-    //         'category_id': (this.caId === undefined) ? this.categoryId : this.caId,
-    //         'title': this.proName,
-    //         'id': this.productId,
-    //         'subcategory_id': (this.subCatId === undefined) ? this.subCateId : this.subCatId,
-    //         'subcategory_id': this.subCatId,
-    //         'image': this.images,
-    //         "sku": this.size,
-    //         "description": this.Description,
-    //         "actual_price": this.mrp,
-    //         "offer_price": this.offer,
-    //         "manufacture_name": this.Manufacture
-    //     }
-    //     this.appService.updateProduct(data)
-    //         .subscribe(resp => {
-    //             if (resp.json().message === 'Success') {
-    //                 this.category = resp.json().result;
-    //             swal('update product successfully', '', 'success')
-    //             this.router.navigate(['/prducts']);
-    //             }
-    //             else {
-    //             }
-    //         },
-    //             error => {
-    //                 console.log(error, "error");
-    //             })
-    // }
+
+
+    updateProduct() {
+
+
+        for (var i = 0; i < this.skusData.length; i++) {
+            this.updatedSkus.push({
+                "skid": this.skusData[i].skid,
+                "product_id": this.skusData[i].product_id,
+                "size": this.skusData[i].size,
+                "actual_price": this.skusData[i].actual_price,
+                "mrp": this.skusData[i].mrp,
+                "min_quantity": this.skusData[i].min_quantity,
+                "stock": this.skusData[i].stock,
+                "selling_price": this.skusData[i].selling_price,
+                "offer_price": this.skusData[i].offer_price,
+                "image": this.skusData[i].image,
+                "express_delivery": this.skusData[i].express_delivery,
+                "normal_delivery": this.skusData[i].normal_delivery,
+                "image_quality_path": this.skusData[i].sku_image,
+                "quality_image": this.skusData[i].quality_image,
+                "description": this.skusData[i].description,
+                "specification": this.skusData[i].specification,
+                "country": this.skusData[i].country,
+                "state": this.skusData[i].state,
+                "city": this.skusData[i].city,
+                "area": this.skusData[i].area,
+                "sku_images": this.images,
+                "terms": this.skusData[i].terms,
+                "faq": this.skusData[i].faq,
+            })
+        }
+
+        var data = {
+            "id": this.productId,
+            "title": this.proName,
+            "category_id": this.cat_id,
+            "category2_id": this.subCat_id,
+            "brand_id": this.brand_id,
+            "brand_name": this.Manufacture,
+            "sku": this.updatedSkus,
+
+
+
+
+
+
+
+
+
+            // 'category_id': (this.caId === undefined) ? this.categoryId : this.caId,
+            // 'title': this.proName,
+            // 'id': this.productId,
+            // 'subcategory_id': (this.subCatId === undefined) ? this.subCateId : this.subCatId,
+            // 'subcategory_id': this.subCatId,
+            // 'image': this.images,
+            // "sku": this.size,
+            // "description": this.Description,
+            // "actual_price": this.mrp,
+            // "offer_price": this.offer,
+            // "manufacture_name": this.Manufacture
+        }
+        this.appService.updateProduct(data)
+            .subscribe(resp => {
+                if (resp.json().message === 'Success') {
+                    this.category = resp.json().result;
+                    swal('update product successfully', '', 'success')
+                    this.router.navigate(['/prducts']);
+                }
+                else {
+                }
+            },
+                error => {
+                    console.log(error, "error");
+                })
+    }
+
+
+
+
     discountOption: any;
     changeDiscountOpt(event) {
         this.discountOption = event;
