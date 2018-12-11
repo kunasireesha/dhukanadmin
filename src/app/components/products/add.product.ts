@@ -1,9 +1,11 @@
+import { LoginComponent } from './../login/login.component';
 import { AppService } from './../../services/dhukan/dhukan-data.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProductService } from '../../services/productService'
 import { IMyDpOptions } from 'mydatepicker';
 import { Router, NavigationExtras } from '@angular/router';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import * as _ from 'underscore';
 
 @Component({
@@ -12,11 +14,15 @@ import * as _ from 'underscore';
     styleUrls: ['./products.component.css']
 })
 export class AddProductsComponent implements OnInit {
+    form: FormGroup;
+
+    text: string;
     public myDatePickerOptions: IMyDpOptions = {
         // other options...
         dateFormat: 'dd.mm.yyyy',
     };
     public model: any = { date: { year: 2018, month: 10, day: 9 } };
+    type;
     addProd: boolean;
     removeImg: boolean = false;
     Image: boolean;
@@ -36,7 +42,7 @@ export class AddProductsComponent implements OnInit {
     subCatName;
     subCatId;
     subCateId;
-    productDetails;
+    productDetails = [];
     img;
     urls = [];
     imagenum;
@@ -61,7 +67,12 @@ export class AddProductsComponent implements OnInit {
         sellingPrice: '',
         stock: '',
         skuImage: this.skuImg,
-        vegImage: this.vegImage,
+        quality_image: this.vegImage,
+        image: this.type,
+        country: '',
+        state: '',
+        city: '',
+        area: '',
         Description: '',
         specification: '',
         terms: '',
@@ -96,7 +107,17 @@ export class AddProductsComponent implements OnInit {
     area;
 
 
-    constructor(private appService: AppService, private route: ActivatedRoute, public proserv: ProductService, public router: Router) {
+    constructor(private appService: AppService, private route: ActivatedRoute, public proserv: ProductService, public router: Router, private fb: FormBuilder) {
+        // this.form = this.fb.group({
+        //     enable: false,
+        //     text: [
+        //         {
+        //             value: null,
+        //             disabled: true,
+        //         },
+        //     ],
+        // });
+        // this.updateText();
         this.route.queryParams.subscribe(params => {
             this.action = params.prodId;
         });
@@ -113,6 +134,70 @@ export class AddProductsComponent implements OnInit {
 
         }
     }
+    product: any;
+    productSku = []
+    productdetails = [];
+    skuimages = [];
+    getProduct() {
+        this.skuimages = [];
+        let goodResponse = [];
+        this.appService.getProduct()
+            .subscribe(resp => {
+                // if (resp.json().message === 'Success') {
+                this.product = resp.json().data.results;
+                for (var i = 0; i < this.product.length; i++) {
+                    if (this.action == this.product[i].id) {
+                        this.proName = this.product[i].title;
+                        this.Manufacture = this.product[i].brand_name;
+                        this.skusData = this.product[i].sku;
+                        for (var j = 0; j < this.skusData.length; j++) {
+                            this.skusData[j].offer = this.skusData[j].offer_price;
+                            this.skusData[j].sellingPrice = this.skusData[j].selling_price;
+                            this.skusData[j].quantity = this.skusData[j].min_quantity;
+                            // this.skusData[j].quality_image = this.skusData[j].quality_image;
+                            this.skusData[j].Description = this.skusData[j].description;
+                            this.skusData[j].terms = this.skusData[j].terms.data;
+                            this.skusData[j].faq = this.skusData[j].faq.question;
+                            // this.skusData[j].answer = this.skusData[j].faq.answer;
+                            // this.skusData[j].answer = this.skusData[j].faq.answer;
+
+                        }
+                    }
+                }
+                // for (var i = 0; i < this.product.length; i++) {
+                //     for (var j = 0; j < this.product[i].myImages.length; j++) {
+                //         this.product[i].image = this.product[i].myImages[0].product_image;
+
+                //     }
+                // }
+                // for (var j = 0; j < this.image.length; i++) {
+                //     this.productimg = this.image[i];
+                //     console.log(this.productimg);
+                // }
+            })
+        // else if (resp.json().result.length == 0) {
+        //     swal("No data found, please add new one", '', 'error');
+        // }
+        // else {
+        // }
+        // },
+        error => {
+            console.log(error, "error");
+        }
+    }
+    // private updateText() {
+    //     this.text = this.form.value.enable ? "Vegetrian" : "NonVegetrian";
+    // }
+
+    // onChange(enable: boolean) {
+    //     const field = this.form.get('text');
+    //     if (enable) {
+    //         field.enable();
+    //     } else {
+    //         field.disable();
+    //     }
+    //     this.updateText();
+    // }
 
     optionsChecked = [];
 
@@ -130,15 +215,16 @@ export class AddProductsComponent implements OnInit {
             }
         ]
         if (this.action !== '') {
-            this.editProImages();
+            // this.editProImages();
 
         }
 
         this.getCat();
         this.getSubCategory();
-        // this.getProduct();
+        this.getProduct();
 
         this.getLocation();
+        this.type = 'Vegetrian';
 
     }
     subCategoryName;
@@ -161,13 +247,23 @@ export class AddProductsComponent implements OnInit {
         for (var i = 0; i < this.subCategoryName.length; i++) {
             if (name === this.subCategoryName[i].sub_cat) {
                 this.subCatId = this.subCategoryName[i].id;
+                return;
+            }
+        }
+    }
+
+    changeSub(name) {
+        for (var i = 0; i < this.subCategoryName.length; i++) {
+            if (name === this.subCategoryName[i].sub_cat) {
+                this.subCatId = this.subCategoryName[i].id;
+                return;
             }
         }
     }
     // value = [];
     selectedExpressValue = false;
     selectedNormalValue = true;
-    checkbox(evt: boolean, id, data) {
+    checkbox(evt: boolean, id, data, index) {
         this.isChecked = evt;
         for (var i = 0; i < this.list.length; i++) {
             if (this.isChecked) {
@@ -175,6 +271,14 @@ export class AddProductsComponent implements OnInit {
                     this.isChecked = evt;
                     this.selectedExpressValue = true;
                     this.selectedNormalValue = true;
+                    for (var i = 0; i < this.skusData.length; i++) {
+                        if (i === index) {
+                            this.skusData[i].express_delivery = this.selectedExpressValue;
+                            this.skusData[i].normal_delivery = this.selectedExpressValue;
+                            return;
+
+                        }
+                    }
                     return;
                 }
             } else {
@@ -183,10 +287,6 @@ export class AddProductsComponent implements OnInit {
                 return;
             }
         }
-        // if (id === data.id) {
-        //     this.isChecked = evt;
-        // }
-
     }
 
 
@@ -260,12 +360,14 @@ export class AddProductsComponent implements OnInit {
     //     }
     // }
 
-    onSelectFile(event) {
+    onSelectFile(event, index) {
+        // this.images = [];
         if (event.target.files && event.target.files[0]) {
             var filesAmount = event.target.files.length;
             for (let i = 0; i < filesAmount; i++) {
                 const fileReader: FileReader = new FileReader();
                 fileReader.onload = (event) => {
+                    this.skuImage = '';
                     if (this.action !== '') {
                         if (this.selectedImage === undefined) {
                             this.img = fileReader.result;
@@ -285,11 +387,19 @@ export class AddProductsComponent implements OnInit {
                             // this.imagenum = this.urls.push(fileReader.result);
                         }
                     } else {
-                        this.img = fileReader.result;
-                        this.strImage = this.img.split(',')[1];
-                        this.urls.push(fileReader.result);
-                        this.images.push(this.strImage);
 
+                        for (var i = 0; i < this.skusData.length; i++) {
+                            if (i === index) {
+                                this.img = fileReader.result;
+                                this.strImage = this.img.split(',')[1];
+                                this.urls.push({ sku_image: fileReader.result });
+                                this.images.push(this.strImage);
+                                // this.skusData[i].image = myReader.result;
+                                this.skusData[i].skuImage = this.images;
+                                this.skusData[i].sku_images = this.urls;
+                                return;
+                            }
+                        }
                     }
                 }
                 fileReader.readAsDataURL(event.target.files[i]);
@@ -303,31 +413,35 @@ export class AddProductsComponent implements OnInit {
             this.skusData[i].stock = this.skusData[i].stock.toString();
         }
         var data = {
-            'id': this.productId,
+            // 'id': this.productId,
             'title': this.proName,
             'category_id': this.caId,
-            'image': this.images,
-            'subcategory_id': (this.subCatId === undefined) ? this.subCategoryId : this.subCatId,
+            'brand_name': this.Manufacture,
+            'subcategory_id': this.subCatId,
+            'brand_id': 123,
+            // 'country': this.country,
+            // 'state': this.state,
+            // 'city': this.city,
+            // 'area': this.area,
+            // 'image': this.images,
+
             // 'actual_price': this.actualPrice,
             // 'selling_price': this.sellingPrice,
-            'quality_image': this.strImage,
+            // 'quality_image': this.strImage,
             // 'discount_type': this.discountOption,
             // 'discount_percentage': this.disAmount,
-            'express_delivery': this.selectedExpressValue,
-            'normal_delivery': this.selectedNormalValue,
-            'description': this.Description,
-            'specification': this.specification,
-            'terms': this.terms,
-            'manufacture_name': this.Manufacture,
+            // 'express_delivery': this.selectedExpressValue,
+            // 'normal_delivery': this.selectedNormalValue,
+            // 'description': this.Description,
+            // 'specification': this.specification,
+            // 'terms': this.terms,
+
             'sku': this.skusData,
-            'question': this.faq,
-            'answer': this.answer,
-            'country': this.country,
-            'state': this.state,
-            'city': this.city,
-            'area': this.area
+            // 'question': this.faq,
+            // 'answer': this.answer,
+
         }
-        console.log(data);
+        // console.log(data);
 
 
         this.appService.insertProduct(data)
@@ -342,28 +456,28 @@ export class AddProductsComponent implements OnInit {
                 })
     }
     productImg = [];
-    editProImages() {
-        var data = {
-            'id': this.productId
-        }
-        this.appService.editproductImg(data).subscribe(resp => {
-            this.productDetails = resp.json().result;
-            this.proName = this.productDetails[0].title;
-            this.categoryId = this.productDetails[0].category_id;
-            this.categoryName = this.productDetails[0].category1;
-            this.productId = this.productDetails[0].id;
-            this.subCatName = this.productDetails[0].category2;
-            this.subCateId = this.productDetails[0].category2_id;
-            this.Description = this.productDetails[0].description;
-            this.terms = this.productDetails[0].terms_and_conditions;
-            this.faq = this.productDetails[0].question;
-            this.answer = this.productDetails[0].answer;
-            this.actualPrice = this.productDetails[0].actual_price;
-            this.sellingPrice = this.productDetails[0].selling_price;
-            this.disAmount = this.productDetails[0].discount;
+    // editProImages() {
+    //     var data = {
+    //         'id': this.productId
+    //     }
+    //     this.appService.editproductImg(data).subscribe(resp => {
+    //         this.productDetails = resp.json().result;
+    //         this.proName = this.productDetails[0].title;
+    //         this.categoryId = this.productDetails[0].category_id;
+    //         this.categoryName = this.productDetails[0].category1;
+    //         this.productId = this.productDetails[0].id;
+    //         this.subCatName = this.productDetails[0].category2;
+    //         this.subCateId = this.productDetails[0].category2_id;
+    //         this.Description = this.productDetails[0].description;
+    //         this.terms = this.productDetails[0].terms_and_conditions;
+    //         this.faq = this.productDetails[0].question;
+    //         this.answer = this.productDetails[0].answer;
+    //         this.actualPrice = this.productDetails[0].actual_price;
+    //         this.sellingPrice = this.productDetails[0].selling_price;
+    //         this.disAmount = this.productDetails[0].discount;
 
-        })
-    }
+    //     })
+    // }
     updateImage(index) {
         this.selectedImage = index;
     }
@@ -382,7 +496,7 @@ export class AddProductsComponent implements OnInit {
                     'id': this.deleteImg
                 }
                 this.appService.deleteProdImg(data).subscribe(resp => {
-                    this.editProImages();
+                    // this.editProImages();
                     this.router.navigate(['/prducts']);
                 })
             } else {
@@ -393,77 +507,104 @@ export class AddProductsComponent implements OnInit {
     }
 
 
-    image;
+    // image;
 
-    changeListener($event): void {
-        this.readThis($event.target);
+    // changeListener($event): void {
+    //     this.readThis($event.target);
+    // }
+
+    // readThis(inputValue: any): void {
+    //     var file: File = inputValue.files[0];
+    //     var myReader: FileReader = new FileReader();
+
+    //     myReader.onloadend = (e) => {
+    //         this.image = myReader.result;
+    //         this.strImage = this.image.split(',')[1];
+    //     }
+    //     myReader.readAsDataURL(file);
+    // }
+
+    // image1;
+    // changeListener1($event, index): void {
+    //     this.readThis1($event.target, index);
+    // }
+
+    // readThis1(inputValue: any, index): void {
+    //     this.vegImage = ''
+    //     var file: File = inputValue.files[0];
+    //     var myReader1: FileReader = new FileReader();
+
+    //     myReader1.onloadend = (e) => {
+    //         this.image1 = myReader1.result;
+    //         this.vegImage = this.image1.split(',')[1];
+    //         for (var i = 0; i < this.skusData.length; i++) {
+    //             if (i === index) {
+    //                 // this.skusData[i].image = myReader.result;
+    //                 this.skusData[i].vegImage = this.vegImage;
+    //             }
+    //         }
+    //     }
+    //     myReader1.readAsDataURL(file);
+    // }
+    // urls1 = [];
+    // img1: any;
+    // strImage1: any;
+    // images1 = [];
+    // onSelectFile1(event, index) {
+    //     if (event.target.files && event.target.files[0]) {
+    //         var filesAmount = event.target.files.length;
+    //         for (let i = 0; i < filesAmount; i++) {
+    //             const fileReader: FileReader = new FileReader();
+
+    //             fileReader.onload = (event: Event) => {
+    //                 this.img1 = fileReader.result;
+    //                 this.strImage1 = this.img1.split(',')[1];
+    //                 this.images1.push(this.strImage1);
+    //                 for (var i = 0; i < this.skusData.length; i++) {
+    //                     if (i === index) {
+    //                         // this.skusData[i].image = myReader.result;
+    //                         this.skusData[i].skuImage = this.images1;
+    //                     }
+    //                 }
+    //             }
+
+    //             fileReader.readAsDataURL(event.target.files[i]);
+    //         }
+    //     }
+    // }
+
+    image1;
+
+    changeListener($event, index): void {
+        this.readThis($event.target, index);
     }
 
-    readThis(inputValue: any): void {
+    readThis(inputValue: any, index): void {
         var file: File = inputValue.files[0];
         var myReader: FileReader = new FileReader();
 
         myReader.onloadend = (e) => {
-            this.image = myReader.result;
-            this.strImage = this.image.split(',')[1];
+
+            this.image1 = myReader.result;
+            this.strImage = this.image1.split(',')[1];
+            for (var i = 0; i < this.skusData.length; i++) {
+                if (i === index) {
+                    this.skusData[i].image1 = myReader.result;
+                    this.skusData[i].quality_image = this.strImage;
+                }
+            }
         }
         myReader.readAsDataURL(file);
     }
 
-    image1;
-    changeListener1($event, index): void {
-        this.readThis1($event.target, index);
-    }
-
-    readThis1(inputValue: any, index): void {
-        this.vegImage = ''
-        var file: File = inputValue.files[0];
-        var myReader1: FileReader = new FileReader();
-
-        myReader1.onloadend = (e) => {
-            this.image1 = myReader1.result;
-            this.vegImage = this.image1.split(',')[1];
-            for (var i = 0; i < this.skusData.length; i++) {
-                if (i === index) {
-                    // this.skusData[i].image = myReader.result;
-                    this.skusData[i].vegImage = this.vegImage;
-                }
-            }
-        }
-        myReader1.readAsDataURL(file);
-    }
-    urls1 = [];
-    img1: any;
-    strImage1: any;
-    images1 = [];
-    onSelectFile1(event, index) {
-        if (event.target.files && event.target.files[0]) {
-            var filesAmount = event.target.files.length;
-            for (let i = 0; i < filesAmount; i++) {
-                const fileReader: FileReader = new FileReader();
-
-                fileReader.onload = (event: Event) => {
-                    this.img1 = fileReader.result;
-                    this.strImage1 = this.img1.split(',')[1];
-                    this.images1.push(this.strImage1);
-                    for (var i = 0; i < this.skusData.length; i++) {
-                        if (i === index) {
-                            // this.skusData[i].image = myReader.result;
-                            this.skusData[i].skuImage = this.images1;
-                        }
-                    }
-                }
-
-                fileReader.readAsDataURL(event.target.files[i]);
-            }
-        }
-    }
-
-
     sku() {
         this.skuImg = '';
         this.vegImage = '';
-        this.images1 = [];
+        // this.quality_image = ''
+        // this.images1 = [];
+        this.images = [];
+        this.urls = [];
+        this.image1 = [];
         this.skusData.push({
             size: '',
             quantity: '',
@@ -472,45 +613,55 @@ export class AddProductsComponent implements OnInit {
             sellingPrice: '',
             stock: '',
             skuImage: this.skuImg,
-            vegImage: this.vegImage,
+            quality_image: this.vegImage,
+            image: this.type,
+            country: '',
+            state: '',
+            city: '',
+            area: '',
+            express_delivery: false,
+            normal_delivery: this.selectedNormalValue,
             Description: '',
             specification: '',
             terms: '',
             faq: '',
-            answer: ''
+            answer: '',
+            sku_images: [],
+
         });
     }
+
     deleteSku(index) {
         this.skusData.splice(index, 1);
     }
-    updateProduct() {
-        var data = {
-            'category_id': (this.caId === undefined) ? this.categoryId : this.caId,
-            'title': this.proName,
-            'id': this.productId,
-            // 'subcategory_id': (this.subCatId === undefined) ? this.subCateId : this.subCatId,
-            'subcategory_id': this.subCatId,
-            'image': this.images,
-            "sku": this.size,
-            "description": this.Description,
-            "actual_price": this.mrp,
-            "offer_price": this.offer,
-            "manufacture_name": this.Manufacture
-        }
-        this.appService.updateProduct(data)
-            .subscribe(resp => {
-                // if (resp.json().message === 'Success') {
-                //     this.category = resp.json().result;
-                swal('update product successfully', '', 'success')
-                this.router.navigate(['/prducts']);
-                // }
-                // else {
-                // }
-            },
-                error => {
-                    console.log(error, "error");
-                })
-    }
+    // updateProduct() {
+    //     var data = {
+    //         'category_id': (this.caId === undefined) ? this.categoryId : this.caId,
+    //         'title': this.proName,
+    //         'id': this.productId,
+    //         'subcategory_id': (this.subCatId === undefined) ? this.subCateId : this.subCatId,
+    //         'subcategory_id': this.subCatId,
+    //         'image': this.images,
+    //         "sku": this.size,
+    //         "description": this.Description,
+    //         "actual_price": this.mrp,
+    //         "offer_price": this.offer,
+    //         "manufacture_name": this.Manufacture
+    //     }
+    //     this.appService.updateProduct(data)
+    //         .subscribe(resp => {
+    //             if (resp.json().message === 'Success') {
+    //                 this.category = resp.json().result;
+    //             swal('update product successfully', '', 'success')
+    //             this.router.navigate(['/prducts']);
+    //             }
+    //             else {
+    //             }
+    //         },
+    //             error => {
+    //                 console.log(error, "error");
+    //             })
+    // }
     discountOption: any;
     changeDiscountOpt(event) {
         this.discountOption = event;
@@ -603,5 +754,20 @@ export class AddProductsComponent implements OnInit {
         this.area = area;
     }
 
-
+    foodType(value, index) {
+        // this.type = 'NonVegetrian';
+        if (value === true) {
+            this.type = 'Vegetrian'
+        }
+        else {
+            this.type = 'NonVegetrian'
+        }
+        for (var i = 0; i < this.skusData.length; i++) {
+            if (i === index) {
+                this.skusData[i].image = this.type
+                // this.skusData[i].quality_image = this.strImage;
+            }
+        }
+        // console.log(this.type);
+    }
 }

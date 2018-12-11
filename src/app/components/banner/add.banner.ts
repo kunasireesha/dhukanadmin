@@ -317,8 +317,6 @@ export class AddBannerComponent implements OnInit {
                     this.prodId.push(this.skusData[i].target);
                 }
             }
-
-
             // this.skuValues = {
             //     name: this.bannerDetails.name
             // }
@@ -329,7 +327,11 @@ export class AddBannerComponent implements OnInit {
 
         var data = {
             'id': this.imageId,
-            'name': this.skusData[0].name
+            'name': this.skusData[0].name,
+            'website_bannerimage': this.skusData[0].mobile_banner,
+            'mobile_bannerimage': this.skusData[0].website_banner,
+            'type': this.skusData[0].type
+
 
         }
         this.AppService.updateBannerbyId(data).subscribe(resp => {
@@ -345,5 +347,4 @@ export class AddBannerComponent implements OnInit {
             }
         })
     }
-
 }

@@ -14,7 +14,7 @@ import { ProductService } from '../../services/productService'
     styleUrls: ['./products.component.css']
 })
 export class ProductsComponent implements OnInit {
-    product: any;
+    product = [];
     productimg: any;
     image;
     constructor(private appService: AppService, public router: Router, public proServ: ProductService, private excelService: ExcelService) { }
@@ -52,7 +52,7 @@ export class ProductsComponent implements OnInit {
         this.appService.getProduct()
             .subscribe(resp => {
                 // if (resp.json().message === 'Success') {
-                this.product = resp.json().result;
+                this.product = resp.json().data.results;
                 // for (var i = 0; i < this.product.length; i++) {
                 //     for (var j = 0; j < this.product[i].myImages.length; j++) {
                 //         this.product[i].image = this.product[i].myImages[0].product_image;
