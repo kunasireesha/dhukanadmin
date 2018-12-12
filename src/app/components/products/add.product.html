@@ -118,7 +118,6 @@
                                                         <div class="form-group">
                                                             <label for="firstname">Country :</label>
                                                             <div class="form-group">
-                                                                <label>{{skuValues.country}}</label>
                                                                 <select required class="form-control border-primary" id="exampleSelectPrimary" [(ngModel)]="skuValues.country" name="country"
                                                                     (change)="getStates($event.target.value)">
                                                                     <option value="" disabled selected hidden>Select Country
@@ -133,7 +132,6 @@
                                                             <label for="firstname">State :</label>
                                                             <div class="form-group">
                                                                 <!-- <input [(ngModel)]="skuValues.state"> -->
-                                                                <label>{{skuValues.state}}</label>
                                                                 <select required class="form-control border-primary" id="exampleSelectPrimary" [(ngModel)]="skuValues.state" name="state"
                                                                     (change)="getCitys($event.target.value)">
                                                                     <option value="" disabled selected hidden>Select state
@@ -147,7 +145,6 @@
                                                         <div class="form-group">
                                                             <label for="firstname">City :</label>
                                                             <div class="form-group">
-                                                                <label>{{skuValues.city}}</label>
                                                                 <select required class="form-control border-primary" id="exampleSelectPrimary" [(ngModel)]="skuValues.city" name="city" (change)="getArea($event.target.value)">
                                                                     <option value="" disabled selected hidden>Select City
                                                                     </option>
@@ -160,7 +157,6 @@
                                                         <div class="form-group">
                                                             <label for="firstname">Area :</label>
                                                             <div class="form-group">
-                                                                <label>{{skuValues.area}}</label>
                                                                 <select required class="form-control border-primary" id="exampleSelectPrimary" [(ngModel)]="skuValues.area" name="area" (change)="changeArea($event.target.value)">
                                                                     <option value="" disabled selected hidden>Select Area
                                                                     </option>
@@ -175,7 +171,7 @@
                                                         <div class="form-group">
                                                             <label for="firstname" name="prodName">Sku Images :
                                                             </label>
-                                                            <input class="form-control" type='file' (change)="onSelectFile($event,i)" multiple><br/>
+                                                            <input class="form-control" type='file' (change)="onSelectFile($event,i,skuValues.skid)" multiple><br/>
 
 
                                                             <div *ngIf="!removeImg">
@@ -251,8 +247,8 @@
                                                         <div class="form-group">
                                                             <label for="firstname">Terms & Conditions</label>
                                                             <br />
-                                                            <textarea class="form-control" rows="4" cols="50" style="width: 100%;border: 1px solid;" [(ngModel)]="skuValues.terms" [ngModelOptions]="{standalone:true}"
-                                                                name="terms">
+                                                            <textarea class="form-control" rows="4" cols="50" style="width: 100%;border: 1px solid;" [(ngModel)]="skuValues.termsCnd"
+                                                                [ngModelOptions]="{standalone:true}" name="terms">
                                                                            </textarea>
                                                         </div>
                                                     </div>
@@ -265,8 +261,8 @@
                                                         <div class="form-group">
                                                             <h6 for="firstname">FAQs : </h6>
                                                             <label for="firstname">Question</label>
-                                                            <textarea class="form-control" rows="4" cols="50" style="width: 100%;border: 1px solid;" [(ngModel)]="skuValues.faq" [ngModelOptions]="{standalone:true}"
-                                                                name="faq">
+                                                            <textarea class="form-control" rows="4" cols="50" style="width: 100%;border: 1px solid;" [(ngModel)]="skuValues.question"
+                                                                [ngModelOptions]="{standalone:true}" name="question">
                                                                                                     </textarea>
                                                         </div>
                                                     </div>

@@ -110,7 +110,7 @@ export class AddProductsComponent implements OnInit {
     selarea;
     updatedSkus = [];
     skuImge;
-
+    image1 = false;
 
     constructor(private appService: AppService, private route: ActivatedRoute, public proserv: ProductService, public router: Router, private fb: FormBuilder) {
         // this.form = this.fb.group({
@@ -151,6 +151,7 @@ export class AddProductsComponent implements OnInit {
         this.image1 = true;
         this.skuimages = [];
         let goodResponse = [];
+        this.skusData = [];
         this.appService.getProduct()
             .subscribe(resp => {
                 // if (resp.json().message === 'Success') {
@@ -172,13 +173,12 @@ export class AddProductsComponent implements OnInit {
                             this.skusData[j].quantity = this.skusData[j].min_quantity;
                             this.skusData[j].image1 = this.skusData[j].quality_image;
                             this.skusData[j].Description = this.skusData[j].description;
-                            this.skusData[j].terms = this.skusData[j].terms.data;
+                            this.skusData[j].termsCnd = this.skusData[j].terms.data;
                             this.skusData[j].answer = this.skusData[j].faq.Answer;
-                            this.skusData[j].faq = this.skusData[j].faq.question;
+                            this.skusData[j].question = this.skusData[j].faq.question;
                             this.skusData[j].state = this.skusData[j].State;
                             this.skusData[j].city = this.skusData[j].City;
                             this.skusData[j].area = this.skusData[j].Area;
-                            this.skusData[j].image1 = this.skusData[j].quality_image
                             this.skusData[j].country = this.skusData[j].Country;
                             this.skusData[j].sku_images = this.skusData[j].sku_images;
                             this.locationData = JSON.parse(localStorage.getItem('locationData'));
@@ -389,7 +389,7 @@ export class AddProductsComponent implements OnInit {
     //     }
     // }
     newSkuData = [];
-    onSelectFile(event, index) {
+    onSelectFile(event, index, skid) {
         // this.images = [];
         if (event.target.files && event.target.files[0]) {
             var filesAmount = event.target.files.length;
@@ -415,11 +415,15 @@ export class AddProductsComponent implements OnInit {
                                     this.skusData[i].images = this.skusData[i].sku_images;
                                     // }
                                     this.newSkuData.push(this.skusData[i]);
+                                    for (var j = 0; j < this.newSkuData.length; j++) {
+                                        if (skid === this.newSkuData[j].skid) {
+                                            this.newSkuData.splice(j, 1);
+                                            return;
+                                        }
+                                    }
                                     return;
                                 }
                             }
-
-
                         } else {
                             this.img = fileReader.result;
                             this.strImage = this.img.split(',')[1];
@@ -446,7 +450,6 @@ export class AddProductsComponent implements OnInit {
                                 "new_image": this.strImage
                             })
 
-                            console.log(this.newSkuData);
 
 
                             // for (var i = 0; i < this.skusData.length; i++) {
@@ -695,7 +698,7 @@ export class AddProductsComponent implements OnInit {
     //     }
     // }
 
-    image1;
+    image2;
 
     changeListener($event, index): void {
         this.readThis($event.target, index);
@@ -706,13 +709,13 @@ export class AddProductsComponent implements OnInit {
         var myReader: FileReader = new FileReader();
 
         myReader.onloadend = (e) => {
-
-            this.image1 = myReader.result;
-            this.strImage = this.image1.split(',')[1];
+            this.image2 = myReader.result;
+            this.strImage = this.image2.split(',')[1];
             for (var i = 0; i < this.skusData.length; i++) {
                 if (i === index) {
                     this.skusData[i].image1 = myReader.result;
                     this.skusData[i].quality_image = this.strImage;
+                    this.skusData[i].image_quality_path = this.skusData[i].quality_image;
                 }
             }
         }
@@ -722,11 +725,12 @@ export class AddProductsComponent implements OnInit {
     sku() {
         this.skuImg = '';
         this.vegImage = '';
+        this.selectedImage = undefined;
         // this.quality_image = ''
         // this.images1 = [];
         this.images = [];
         this.urls = [];
-        this.image1 = [];
+        // this.image1 = [];
         this.skusData.push({
             size: '',
             quantity: '',
@@ -745,12 +749,17 @@ export class AddProductsComponent implements OnInit {
             normal_delivery: this.selectedNormalValue,
             Description: '',
             specification: '',
-            terms: '',
-            faq: '',
+            termsCnd: '',
+            question: '',
             answer: '',
-            sku_images: [],
+            sku_images: [{
+                sku_image: '',
+                id: '',
+                sku_id: ''
+            }],
 
         });
+        console.log(this.skusData);
     }
 
     deleteSku(index) {
@@ -759,12 +768,32 @@ export class AddProductsComponent implements OnInit {
 
 
     updateProduct() {
+        for (var k = 0; k < this.skusData.length; k++) {
+            this.skusData[k].product_id = this.action;
+            this.skusData[k].image_quality_path = this.skusData[k].quality_image;
+            this.skusData[k].quality_image = (this.image2 === undefined) ? '' : this.strImage;
+            for (var j = 0; j < this.skusData[k].sku_images.length; j++) {
+                if (this.skusData[k].sku_images[j].sku_img_path === undefined) {
+                    this.skusData[k].sku_images[j].id = '';
+                    this.skusData[k].sku_images[j].sku_id = this.skusData[k].sku_images[j].sku_id;
+                    this.skusData[k].sku_images[j].product_id = '';
+                    this.skusData[k].sku_images[j].sku_img_path = '';
+                    this.skusData[k].sku_images[j].new_image = '';
+                }
+            }
 
+        }
+
+
+        this.newSkuData = this.skusData;
+        // for (var l = 0; l < this.newSkuData.length; l++) {
+        //     this.newSkuData.splice(l, 1);
+        // }
 
         for (var i = 0; i < this.newSkuData.length; i++) {
             this.updatedSkus.push({
                 "skid": this.newSkuData[i].skid,
-                "product_id": this.newSkuData[i].product_id,
+                "product_id": parseInt(this.newSkuData[i].product_id),
                 "size": this.newSkuData[i].size,
                 "actual_price": this.newSkuData[i].actual_price,
                 "mrp": this.newSkuData[i].mrp,
@@ -775,7 +804,7 @@ export class AddProductsComponent implements OnInit {
                 "image": this.newSkuData[i].image,
                 "express_delivery": this.newSkuData[i].express_delivery,
                 "normal_delivery": this.newSkuData[i].normal_delivery,
-                "image_quality_path": this.newSkuData[i].sku_image,
+                "image_quality_path": this.newSkuData[i].image_quality_path,
                 "quality_image": this.newSkuData[i].quality_image,
                 "description": this.newSkuData[i].description,
                 "specification": this.newSkuData[i].specification,
@@ -785,7 +814,7 @@ export class AddProductsComponent implements OnInit {
                 "area": this.newSkuData[i].area,
                 "sku_images": this.newSkuData[i].sku_images,
                 "terms": this.newSkuData[i].terms,
-                "faq": this.newSkuData[i].faq,
+                "faq": this.newSkuData[i].faq
             })
         }
 
@@ -825,6 +854,7 @@ export class AddProductsComponent implements OnInit {
                     this.category = resp.json().result;
                     swal('update product successfully', '', 'success')
                     this.router.navigate(['/prducts']);
+                    this.getProduct();
                 }
                 else {
                 }
