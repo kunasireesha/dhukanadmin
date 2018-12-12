@@ -61,26 +61,27 @@ export class AddProductsComponent implements OnInit {
     vegImage
     skusData = [];
     locationData = [];
-    skuValues = {
-        size: '',
-        quantity: '',
-        mrp: '',
-        offer: '',
-        sellingPrice: '',
-        stock: '',
-        skuImage: this.skuImg,
-        quality_image: this.vegImage,
-        image: this.type,
-        country: '',
-        state: '',
-        city: '',
-        area: '',
-        Description: '',
-        specification: '',
-        terms: '',
-        faq: '',
-        answer: ''
-    }
+    // skuValues = {
+    //     size: '',
+    //     quantity: '',
+    //     mrp: '',
+    //     offer: '',
+    //     sellingPrice: '',
+    //     stock: '',
+    //     skuImage: this.skuImg,
+    //     quality_image: this.vegImage,
+    //     image: this.type,
+    //     country: '',
+    //     state: '',
+    //     city: '',
+    //     area: '',
+    //     Description: '',
+    //     specification: '',
+    //     terms: '',
+    //     faq: '',
+    //     answer: '',
+    //     gg: ''
+    // }
     offer;
     Manufacture;
     subcatId;
@@ -102,11 +103,11 @@ export class AddProductsComponent implements OnInit {
     citys = [];
     areasData = [];
     areas = [];
-    country;
+    selcountry;
     states = [];
-    state;
-    city;
-    area;
+    selstate;
+    selcity;
+    selarea;
     updatedSkus = [];
     skuImge;
 
@@ -145,7 +146,9 @@ export class AddProductsComponent implements OnInit {
     cat_id;
     subCat_id;
     brand_id;
+    is_active;
     getProduct() {
+        this.image1 = true;
         this.skuimages = [];
         let goodResponse = [];
         this.appService.getProduct()
@@ -153,13 +156,14 @@ export class AddProductsComponent implements OnInit {
                 // if (resp.json().message === 'Success') {
                 this.product = resp.json().data.results;
                 for (var i = 0; i < this.product.length; i++) {
-                    if (this.action == this.product[i].id) {
+                    if (parseInt(this.action) === this.product[i].id) {
                         this.categoryName = this.product[i].main_cat_name;
                         this.subcategoryName = this.product[i].sub_cat_name;
                         this.proName = this.product[i].title;
                         this.Manufacture = this.product[i].brand_name;
                         this.cat_id = this.product[i].category_id;
                         this.subCat_id = this.product[i].category2_id;
+                        this.is_active = this.product[i].is_active;
                         this.brand_id = this.product[i].brand_id;
                         this.skusData = this.product[i].sku;
                         for (var j = 0; j < this.skusData.length; j++) {
@@ -169,11 +173,18 @@ export class AddProductsComponent implements OnInit {
                             this.skusData[j].image1 = this.skusData[j].quality_image;
                             this.skusData[j].Description = this.skusData[j].description;
                             this.skusData[j].terms = this.skusData[j].terms.data;
-                            this.skusData[j].faq = this.skusData[j].faq.answer;
-                            this.skusData[j].state = this.skusData[j].state;
-                            this.skusData[j].city = this.skusData[j].city;
-                            this.skusData[j].area = this.skusData[j].area;
-                            this.skusData[j].answer = this.skusData[j].faq.answer;
+                            this.skusData[j].answer = this.skusData[j].faq.Answer;
+                            this.skusData[j].faq = this.skusData[j].faq.question;
+                            this.skusData[j].state = this.skusData[j].State;
+                            this.skusData[j].city = this.skusData[j].City;
+                            this.skusData[j].area = this.skusData[j].Area;
+                            this.skusData[j].image1 = this.skusData[j].quality_image
+                            this.skusData[j].country = this.skusData[j].Country;
+                            this.skusData[j].sku_images = this.skusData[j].sku_images;
+                            this.locationData = JSON.parse(localStorage.getItem('locationData'));
+                            this.getStates(this.skusData[j].country);
+                            this.getCitys(this.skusData[j].state);
+                            this.getArea(this.skusData[j].city);
                         }
                         return;
                     }
@@ -237,9 +248,10 @@ export class AddProductsComponent implements OnInit {
 
         this.getCat();
         this.getSubCategory();
+        this.getLocation();
         this.getProduct();
 
-        this.getLocation();
+
         this.type = 'Vegetrian';
         console.log(this.skusData);
 
@@ -397,6 +409,7 @@ export class AddProductsComponent implements OnInit {
                                     this.skusData[i].sku_images.push({
                                         "sku_image": this.img,
                                         "product_id": this.skusData[i].sku_images[0].product_id,
+                                        "new_image": this.strImage
                                     })
                                     // for (var j = 0; j < this.skusData[i].sku_images.length; j++) {
                                     this.skusData[i].images = this.skusData[i].sku_images;
@@ -513,6 +526,11 @@ export class AddProductsComponent implements OnInit {
         for (var i = 0; i < this.skusData.length; i++) {
             this.skusData[i].quantity = this.skusData[i].quantity.toString();
             this.skusData[i].stock = this.skusData[i].stock.toString();
+            this.skusData[i].country = this.selcountry;
+            this.skusData[i].state = this.selstate;
+            this.skusData[i].city = this.selcity;
+            this.skusData[i].area = this.selarea;
+
         }
         var data = {
             // 'id': this.productId,
@@ -776,6 +794,7 @@ export class AddProductsComponent implements OnInit {
             "title": this.proName,
             "category_id": this.cat_id,
             "category2_id": this.subCat_id,
+            "is_active": this.is_active,
             "brand_id": this.brand_id,
             "brand_name": this.Manufacture,
             "sku": this.updatedSkus,
@@ -835,6 +854,7 @@ export class AddProductsComponent implements OnInit {
     getLocation() {
         this.appService.getLocation().subscribe(resp => {
             this.locationData = resp.json().result;
+            localStorage.setItem('locationData', JSON.stringify(this.locationData));
             for (var i = 0; i < this.locationData.length; i++) {
                 this.countryData.push(this.locationData[i].country);
             }
@@ -846,14 +866,14 @@ export class AddProductsComponent implements OnInit {
                 // this.sValues.push(this.states);
             }
         })
-
     }
 
     //get state
     getStates(country) {
-        this.country = country;
+        this.selcountry = country;
         this.statesData = [];
 
+        // console.log(localStorage.locationData);
         for (var i = 0; i < this.locationData.length; i++) {
             if (this.locationData[i].country === country) {
                 this.statesData.push(this.locationData[i].state);
@@ -870,7 +890,7 @@ export class AddProductsComponent implements OnInit {
 
     //get city
     getCitys(state) {
-        this.state = state;
+        this.selstate = state;
         this.citysData = [];
         this.areas = [];
         for (var i = 0; i < this.locationData.length; i++) {
@@ -889,7 +909,7 @@ export class AddProductsComponent implements OnInit {
 
     //get area
     getArea(city) {
-        this.city = city;
+        this.selcity = city;
         this.areasData = [];
         for (var i = 0; i < this.locationData.length; i++) {
             if (this.locationData[i].city === city) {
@@ -907,7 +927,7 @@ export class AddProductsComponent implements OnInit {
 
     //chage area
     changeArea(area) {
-        this.area = area;
+        this.selarea = area;
     }
 
     foodType(value, index) {

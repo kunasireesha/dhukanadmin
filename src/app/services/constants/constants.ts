@@ -7,7 +7,7 @@ export const AppSettings = {
     addCatUrl: base_url + 'cart/admin/insert',
     updateCat: base_url + 'cart/admin/update',
     deleteCat: base_url + 'cart/admin/delete',
-    getProductUrl: base_url + 'products/getproduct?npp=10&page=4',
+    getProductUrl: base_url + 'products/getproduct?npp=10&page=0',
     deleteProdUrl: base_url + 'products/deleteproduct',
     updateProdUrl: base_url + 'products/updateproduct',
     insertProduct: base_url + 'products/insertproduct',

@@ -118,6 +118,7 @@
                                                         <div class="form-group">
                                                             <label for="firstname">Country :</label>
                                                             <div class="form-group">
+                                                                <label>{{skuValues.country}}</label>
                                                                 <select required class="form-control border-primary" id="exampleSelectPrimary" [(ngModel)]="skuValues.country" name="country"
                                                                     (change)="getStates($event.target.value)">
                                                                     <option value="" disabled selected hidden>Select Country
@@ -131,6 +132,8 @@
                                                         <div class="form-group">
                                                             <label for="firstname">State :</label>
                                                             <div class="form-group">
+                                                                <!-- <input [(ngModel)]="skuValues.state"> -->
+                                                                <label>{{skuValues.state}}</label>
                                                                 <select required class="form-control border-primary" id="exampleSelectPrimary" [(ngModel)]="skuValues.state" name="state"
                                                                     (change)="getCitys($event.target.value)">
                                                                     <option value="" disabled selected hidden>Select state
@@ -144,6 +147,7 @@
                                                         <div class="form-group">
                                                             <label for="firstname">City :</label>
                                                             <div class="form-group">
+                                                                <label>{{skuValues.city}}</label>
                                                                 <select required class="form-control border-primary" id="exampleSelectPrimary" [(ngModel)]="skuValues.city" name="city" (change)="getArea($event.target.value)">
                                                                     <option value="" disabled selected hidden>Select City
                                                                     </option>
@@ -156,6 +160,7 @@
                                                         <div class="form-group">
                                                             <label for="firstname">Area :</label>
                                                             <div class="form-group">
+                                                                <label>{{skuValues.area}}</label>
                                                                 <select required class="form-control border-primary" id="exampleSelectPrimary" [(ngModel)]="skuValues.area" name="area" (change)="changeArea($event.target.value)">
                                                                     <option value="" disabled selected hidden>Select Area
                                                                     </option>
