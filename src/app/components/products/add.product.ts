@@ -108,6 +108,7 @@ export class AddProductsComponent implements OnInit {
     city;
     area;
     updatedSkus = [];
+    skuImge;
 
 
     constructor(private appService: AppService, private route: ActivatedRoute, public proserv: ProductService, public router: Router, private fb: FormBuilder) {
@@ -153,34 +154,31 @@ export class AddProductsComponent implements OnInit {
                 this.product = resp.json().data.results;
                 for (var i = 0; i < this.product.length; i++) {
                     if (this.action == this.product[i].id) {
-                        // this.product[i].sub_cat_name
                         this.categoryName = this.product[i].main_cat_name;
                         this.subcategoryName = this.product[i].sub_cat_name;
-                        // sub_cat_name
                         this.proName = this.product[i].title;
                         this.Manufacture = this.product[i].brand_name;
                         this.cat_id = this.product[i].category_id;
                         this.subCat_id = this.product[i].category2_id;
                         this.brand_id = this.product[i].brand_id;
-
                         this.skusData = this.product[i].sku;
                         for (var j = 0; j < this.skusData.length; j++) {
                             this.skusData[j].offer = this.skusData[j].offer_price;
                             this.skusData[j].sellingPrice = this.skusData[j].selling_price;
                             this.skusData[j].quantity = this.skusData[j].min_quantity;
-                            // this.skusData[j].quality_image = this.skusData[j].quality_image;
+                            this.skusData[j].image1 = this.skusData[j].quality_image;
                             this.skusData[j].Description = this.skusData[j].description;
                             this.skusData[j].terms = this.skusData[j].terms.data;
-                            this.skusData[j].faq = this.skusData[j].faq.question;
-                            // this.skusData[j].answer = this.skusData[j].faq.answer;
-                            // this.skusData[j].answer = this.skusData[j].faq.answer;
-
+                            this.skusData[j].faq = this.skusData[j].faq.answer;
+                            this.skusData[j].state = this.skusData[j].state;
+                            this.skusData[j].city = this.skusData[j].city;
+                            this.skusData[j].area = this.skusData[j].area;
+                            this.skusData[j].answer = this.skusData[j].faq.answer;
                         }
-                        console.log(this.skusData);
-                        // return;
+                        return;
                     }
                 }
-                console.log(this.skusData);
+
                 // for (var i = 0; i < this.product.length; i++) {
                 //     for (var j = 0; j < this.product[i].myImages.length; j++) {
                 //         this.product[i].image = this.product[i].myImages[0].product_image;
@@ -403,9 +401,12 @@ export class AddProductsComponent implements OnInit {
                                     // for (var j = 0; j < this.skusData[i].sku_images.length; j++) {
                                     this.skusData[i].images = this.skusData[i].sku_images;
                                     // }
+                                    this.newSkuData.push(this.skusData[i]);
                                     return;
                                 }
                             }
+
+
                         } else {
                             this.img = fileReader.result;
                             this.strImage = this.img.split(',')[1];
@@ -428,7 +429,8 @@ export class AddProductsComponent implements OnInit {
                                 'id': this.selectedImage,
                                 'sku_id': this.imgSku,
                                 "product_id": this.newSkuData[0].product_id,
-                                "sku_img_path": this.strImage,
+                                "sku_img_path": this.skuImge,
+                                "new_image": this.strImage
                             })
 
                             console.log(this.newSkuData);
@@ -578,9 +580,10 @@ export class AddProductsComponent implements OnInit {
 
     //     })
     // }
-    updateImage(index, skuId) {
+    updateImage(index, skuId, image) {
         this.selectedImage = index;
         this.imgSku = skuId;
+        this.skuImge = image;
     }
     removeImgPopup() {
         this.removeImg = !this.removeImg;
@@ -740,31 +743,31 @@ export class AddProductsComponent implements OnInit {
     updateProduct() {
 
 
-        for (var i = 0; i < this.skusData.length; i++) {
+        for (var i = 0; i < this.newSkuData.length; i++) {
             this.updatedSkus.push({
-                "skid": this.skusData[i].skid,
-                "product_id": this.skusData[i].product_id,
-                "size": this.skusData[i].size,
-                "actual_price": this.skusData[i].actual_price,
-                "mrp": this.skusData[i].mrp,
-                "min_quantity": this.skusData[i].min_quantity,
-                "stock": this.skusData[i].stock,
-                "selling_price": this.skusData[i].selling_price,
-                "offer_price": this.skusData[i].offer_price,
-                "image": this.skusData[i].image,
-                "express_delivery": this.skusData[i].express_delivery,
-                "normal_delivery": this.skusData[i].normal_delivery,
-                "image_quality_path": this.skusData[i].sku_image,
-                "quality_image": this.skusData[i].quality_image,
-                "description": this.skusData[i].description,
-                "specification": this.skusData[i].specification,
-                "country": this.skusData[i].country,
-                "state": this.skusData[i].state,
-                "city": this.skusData[i].city,
-                "area": this.skusData[i].area,
-                "sku_images": this.skusData[i].images,
-                "terms": this.skusData[i].terms,
-                "faq": this.skusData[i].faq,
+                "skid": this.newSkuData[i].skid,
+                "product_id": this.newSkuData[i].product_id,
+                "size": this.newSkuData[i].size,
+                "actual_price": this.newSkuData[i].actual_price,
+                "mrp": this.newSkuData[i].mrp,
+                "min_quantity": this.newSkuData[i].min_quantity,
+                "stock": this.newSkuData[i].stock,
+                "selling_price": this.newSkuData[i].selling_price,
+                "offer_price": this.newSkuData[i].offer_price,
+                "image": this.newSkuData[i].image,
+                "express_delivery": this.newSkuData[i].express_delivery,
+                "normal_delivery": this.newSkuData[i].normal_delivery,
+                "image_quality_path": this.newSkuData[i].sku_image,
+                "quality_image": this.newSkuData[i].quality_image,
+                "description": this.newSkuData[i].description,
+                "specification": this.newSkuData[i].specification,
+                "country": this.newSkuData[i].country,
+                "state": this.newSkuData[i].state,
+                "city": this.newSkuData[i].city,
+                "area": this.newSkuData[i].area,
+                "sku_images": this.newSkuData[i].sku_images,
+                "terms": this.newSkuData[i].terms,
+                "faq": this.newSkuData[i].faq,
             })
         }
 

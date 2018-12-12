@@ -174,7 +174,7 @@
 
 
                                                             <div *ngIf="!removeImg">
-                                                                <img *ngFor='let url of skuValues.sku_images' [src]="url.sku_image" height="100" (click)="updateImage(url.id,url.sku_id)"
+                                                                <img *ngFor='let url of skuValues.sku_images' [src]="url.sku_image" height="100" (click)="updateImage(url.id,url.sku_id,url.sku_image)"
                                                                     [ngClass]="{'selected':selectedImage==url.id}" width="100"
                                                                     style="margin-right: 2%;border: 1px solid;margin-bottom:5%">
 
@@ -191,7 +191,7 @@
                                                             <label for="exampleInputEmail1">Quality Image</label>
                                                             <input class="form-control" type="file" accept="image1/*" (change)="changeListener($event,i)">
                                                             <div *ngIf="image1">
-                                                                <img src="{{skuValues.image1}}" alt="" width="100" height="100" style="border: solid 1px;margin-top: 2%;">
+                                                                <img [src]="skuValues.image1" alt="" width="100" height="100" style="border: solid 1px;margin-top: 2%;">
                                                             </div>
                                                         </div>
                                                         <!-- <div class="form-group" style="margin-top: 45px;
