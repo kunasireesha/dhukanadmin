@@ -21,7 +21,7 @@
                                             <div class="form-group">
                                                 <label for="firstname">Category :</label>
                                                 <div class="form-group">
-                                                    <select required class="form-control border-primary" id="exampleSelectPrimary" [(ngModel)]="categoryName" name="categoryName"
+                                                    <select required class="form-control border-primary" id="exampleSelectPrimary" [(ngModel)]="formdata.categoryName" name="categoryName"
                                                         (change)="changeCat($event.target.value)">
                                                         <option value="" disabled>Select Category</option>
                                                         <option *ngFor="let cat of category" value="{{cat.name}}">{{cat.name}}</option>
@@ -37,7 +37,7 @@
                                                         <option value="" disabled>Select Sub Category</option>
                                                         <option *ngFor="let subCat of subCategoryName" [value]="subCat.sub_cat">{{subCat.sub_cat}}</option>
                                                     </select> -->
-                                                    <select class="form-control border-primary" id="exampleSelectPrimary" [(ngModel)]="subcategoryName" name="subcategoryName"
+                                                    <select class="form-control border-primary" id="exampleSelectPrimary" [(ngModel)]="formdata.subcategoryName" name="subcategoryName"
                                                         (change)="changeSub($event.target.value)">
                                                         <option value="" disabled>Select Sub Category</option>
                                                         <option *ngFor="let subCat of subCategoryName" value="{{subCat.sub_cat}}">{{subCat.sub_cat}}</option>
@@ -48,13 +48,14 @@
                                         <div class="col-sm-3">
                                             <div class="form-group">
                                                 <label for="firstname" name="prodName">Product Name :</label>
-                                                <input id="category" class="form-control" name="category" type="text" [(ngModel)]="proName" />
+                                                <input id="category" class="form-control" name="category" type="text" [(ngModel)]="formdata.proName" />
                                             </div>
                                         </div>
                                         <div class="col-sm-3">
                                             <div class="form-group">
                                                 <label for="firstname">Brand Name</label>
-                                                <input id="category" class="form-control" name="category" type="text" [(ngModel)]="Manufacture" name="Manufacture" />
+                                                <input id="category" class="form-control" name="category" type="text" [(ngModel)]="formdata.Manufacture" name="Manufacture"
+                                                />
                                             </div>
                                         </div>
                                     </div>
@@ -191,7 +192,7 @@
                                                         <div class="form-group">
                                                             <label for="exampleInputEmail1">Quality Image</label>
                                                             <input class="form-control" type="file" accept="image1/*" (change)="changeListener($event,i)">
-                                                            <div *ngIf="image1">
+                                                            <div>
                                                                 <img [src]="skuValues.image1" alt="" width="100" height="100" style="border: solid 1px;margin-top: 2%;">
                                                             </div>
                                                         </div>
@@ -247,7 +248,7 @@
                                                         <div class="form-group">
                                                             <label for="firstname">Terms & Conditions</label>
                                                             <br />
-                                                            <textarea class="form-control" rows="4" cols="50" style="width: 100%;border: 1px solid;" [(ngModel)]="skuValues.termsCnd"
+                                                            <textarea class="form-control" rows="4" cols="50" style="width: 100%;border: 1px solid;" [(ngModel)]="skuValues.termscnd"
                                                                 [ngModelOptions]="{standalone:true}" name="terms">
                                                                            </textarea>
                                                         </div>
