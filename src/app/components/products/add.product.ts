@@ -812,9 +812,6 @@ export class AddProductsComponent implements OnInit {
 
 
     updateProduct() {
-
-
-
         for (var k = 0; k < this.skusData.length; k++) {
             this.skusData[k].product_id = this.action;
             this.skusData[k].image_quality_path = this.skusData[k].image_quality_path;
@@ -883,7 +880,8 @@ export class AddProductsComponent implements OnInit {
                 "normal_delivery": this.newSkuData[i].normal_delivery,
                 "image_quality_path": (this.newSkuData[i].image_quality_path === undefined) ? '' : this.newSkuData[i].image_quality_path,
                 "quality_image": this.newSkuData[i].quality_image,
-                "description": (this.newSkuData[i].description === undefined) ? this.newSkuData[i].Description : this.newSkuData[i].description,
+                // "description": (this.newSkuData[i].description === undefined) ? this.newSkuData[i].Description : this.newSkuData[i].description,
+                "description": this.newSkuData[i].Description,
                 "specification": (this.newSkuData[i].specification === undefined) ? '' : this.newSkuData[i].specification,
                 "country": this.newSkuData[i].country,
                 "state": this.newSkuData[i].state,
