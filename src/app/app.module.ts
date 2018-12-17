@@ -37,6 +37,7 @@ import { ForgotPasswordComponent } from './components/login/forgot.password';
 import { CKEditorModule } from 'ng2-ckeditor';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { AmazingTimePickerModule } from 'amazing-time-picker';
+import { NgxPaginationModule } from 'ngx-pagination';
 //side menus
 import { LogNavComponent } from './components/sidenav/logo.nav';
 import { ProfileNavComponent } from './components/sidenav/profile.nav';
@@ -73,7 +74,8 @@ import { VendorManagementComponent } from './components/vendor-management/vendor
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { MyDatePickerModule } from 'mydatepicker';
-
+import { IntlModule } from '@progress/kendo-angular-intl';
+import { DateInputsModule } from '@progress/kendo-angular-dateinputs';
 
 import { ProductService } from './services/productService'
 
@@ -179,6 +181,9 @@ import { OfferBannerComponent } from './components/banner/offer-banner/offer-ban
         NgSelectModule,
         AmazingTimePickerModule,
         MatSlideToggleModule,
+        IntlModule,
+        NgxPaginationModule,
+        DateInputsModule,
         // MatNativeDateModule,
         // MatDatepickerModule,
         TooltipModule.forRoot(),

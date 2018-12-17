@@ -12,6 +12,7 @@ import { Router, NavigationExtras } from '@angular/router';
 export class SubCatComponent implements OnInit {
     category: any;
     subCategory: any;
+    p: number = 1;
     constructor(private appService: AppService, public router: Router) { }
 
     ngOnInit() {

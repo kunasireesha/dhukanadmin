@@ -72,6 +72,9 @@ strong{
     font-size: 16px;
     line-height: 2;
 }
+label{
+    cursor: pointer;
+}
 .cmxform{
     margin-top: 40px;
     border: solid 1px #dbdbdb;
@@ -92,3 +95,23 @@ strong{
 ::ng-deep .mat-slide-toggle.mat-checked:not(.mat-disabled) .mat-slide-toggle-bar{
     background-color: rgba(0,0,0,.38);
 }
+.pagination {
+    display: inline-block;
+  }
+  
+  .pagination a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: background-color .3s;
+  }
+  
+  .pagination a.active {
+    background-color: #4CAF50;
+    color: white;
+  }
+  /* .present:active{
+      background:red;
+  } */
+  .pagination a:hover:not(.active) {background-color: #ddd;}

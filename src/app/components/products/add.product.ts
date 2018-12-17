@@ -117,6 +117,7 @@ export class AddProductsComponent implements OnInit {
     updatedSkus = [];
     skuImge;
     image1 = false;
+    pageValue;
 
     constructor(private appService: AppService, private route: ActivatedRoute, public proserv: ProductService, public router: Router, private fb: FormBuilder) {
         // this.form = this.fb.group({
@@ -131,6 +132,7 @@ export class AddProductsComponent implements OnInit {
         // this.updateText();
         this.route.queryParams.subscribe(params => {
             this.action = params.prodId;
+            this.pageValue = params.page;
         });
 
         if (this.action === '') {
@@ -159,7 +161,7 @@ export class AddProductsComponent implements OnInit {
         this.skuimages = [];
         let goodResponse = [];
         this.skusData = [];
-        this.appService.getProduct()
+        this.appService.getProduct(this.pageValue)
             .subscribe(resp => {
                 // if (resp.json().message === 'Success') {
                 this.product = resp.json().data.results;
@@ -869,12 +871,12 @@ export class AddProductsComponent implements OnInit {
                 "skid": this.newSkuData[i].skid,
                 "product_id": parseInt(this.newSkuData[i].product_id),
                 "size": this.newSkuData[i].size,
-                "actual_price": (this.newSkuData[i].actual_price === undefined) ? parseInt(this.newSkuData[i].mrp) : this.newSkuData[i].actual_price,
+                "actual_price": (this.newSkuData[i].actual_price === undefined) ? this.newSkuData[i].actual_price : parseInt(this.newSkuData[i].mrp),
                 "mrp": (this.newSkuData[i].mrp === undefined) ? parseInt(this.newSkuData[i].mrp) : this.newSkuData[i].mrp,
-                "min_quantity": (this.newSkuData[i].min_quantity === undefined) ? parseInt(this.newSkuData[i].quantity) : this.newSkuData[i].min_quantity,
-                "stock": this.newSkuData[i].stock === undefined,
-                "selling_price": (this.newSkuData[i].selling_price === undefined) ? parseInt(this.newSkuData[i].sellingPrice) : this.newSkuData[i].selling_price,
-                "offer_price": (this.newSkuData[i].offer_price === undefined) ? parseInt(this.newSkuData[i].offer) : this.newSkuData[i].offer_price,
+                "min_quantity": (this.newSkuData[i].min_quantity === undefined) ? this.newSkuData[i].min_quantity : parseInt(this.newSkuData[i].quantity),
+                "stock": this.newSkuData[i].stock,
+                "selling_price": (this.newSkuData[i].selling_price === undefined) ? this.newSkuData[i].selling_price : parseInt(this.newSkuData[i].sellingPrice),
+                "offer_price": (this.newSkuData[i].offer_price === undefined) ? this.newSkuData[i].offer_price : parseInt(this.newSkuData[i].offer),
                 "image": this.newSkuData[i].image,
                 "express_delivery": this.newSkuData[i].express_delivery,
                 "normal_delivery": this.newSkuData[i].normal_delivery,

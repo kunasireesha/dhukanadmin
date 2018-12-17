@@ -60,7 +60,7 @@ export class AddBannerComponent implements OnInit {
 
     ngOnInit() {
         this.getCat();
-        this.getProduct();
+        // this.getProduct();
         this.getSubCategory();
         this.getBannerPostion();
 
@@ -201,18 +201,18 @@ export class AddBannerComponent implements OnInit {
                 console.log(error, "error");
             })
     }
-    getProduct() {
-        // let goodResponse = [];
-        this.AppService.getProduct()
-            .subscribe(resp => {
-                this.productData = resp.json().result;
+    // getProduct() {
 
-            })
+    //     this.AppService.getProduct()
+    //         .subscribe(resp => {
+    //             this.productData = resp.json().result;
 
-        error => {
-            console.log(error, "error");
-        }
-    }
+    //         })
+
+    //     error => {
+    //         console.log(error, "error");
+    //     }
+    // }
 
 
     changeCat(id, index, action) {

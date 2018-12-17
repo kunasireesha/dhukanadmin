@@ -39,7 +39,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr class="todo-list" *ngFor="let subCat of subCategory | filter:filter;let i = index">
+                                            <tr class="todo-list" *ngFor="let subCat of subCategory | filter:filter | paginate: { itemsPerPage: 10, currentPage: p };let i = index">
                                                 <td>{{i+1}}</td>
                                                 <td>{{subCat.main_cat}}</td>
                                                 <td>{{subCat.sub_cat}}</td>
@@ -53,6 +53,7 @@
                                             </tr>
                                         </tbody>
                                     </table>
+                                    <pagination-controls (pageChange)="p = $event" style="float:right; margin-top:15px;"></pagination-controls>
                                 </div>
                             </div>
                         </div>

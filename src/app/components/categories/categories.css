@@ -29,5 +29,9 @@ input[type=text] {
 .form-control{
     border-color: #495057;
 }
+.ngx-pagination{
+    float:right !important;
+    /* margin-top: 15px; */
+}
 
 

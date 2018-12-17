@@ -36,7 +36,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr class="todo-list" *ngFor="let cat of category | filter:filter; let i = index">
+                                            <tr class="todo-list" *ngFor="let cat of category | filter:filter | paginate: { itemsPerPage: 10, currentPage: p }; let i = index">
                                                 <td>{{i+1}}</td>
                                                 <td>{{cat.name}}</td>
                                                 <td><img [src]="cat.pic"></td>
@@ -48,7 +48,9 @@
                                                 </td>
                                             </tr>
                                         </tbody>
+
                                     </table>
+                                    <pagination-controls (pageChange)="p = $event" style="float:right; margin-top:15px;"></pagination-controls>
                                 </div>
                             </div>
                         </div>

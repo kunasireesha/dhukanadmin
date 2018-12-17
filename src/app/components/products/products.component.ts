@@ -17,46 +17,57 @@ export class ProductsComponent implements OnInit {
     product = [];
     productimg: any;
     image;
+    p: number = 0;
     constructor(private appService: AppService, public router: Router, public proServ: ProductService, private excelService: ExcelService) { }
     // url = 'http://versatilemobitech.co.in/DHUKAN/images/'
     ngOnInit() {
-        this.getProduct();
-
-
+        this.getProduct(this.p);
 
     }
     data = [];
     arrVal = [];
     imgval = [];
 
-
     snapshotToArray(snapshot) {
         var returnArr = [];
-
         snapshot.forEach(function (childSnapshot) {
             var item = childSnapshot.val();
             item.key = childSnapshot.key;
 
             returnArr.push(item);
         });
-        console.log(returnArr);
+
         return returnArr;
     };
+    changePage(page) {
+        this.getProduct(page);
 
+    }
     aa;
     bb;
     Image;
+    totalCount;
+    pages;
+    pagination = [];
+    paginationValues: {}
     //   get product
-    getProduct() {
+    getProduct(page) {
         let goodResponse = [];
-        this.appService.getProduct()
+        this.pagination = [];
+        this.appService.getProduct(page)
             .subscribe(resp => {
                 // if (resp.json().message === 'Success') {
                 this.product = resp.json().data.results;
+                this.paginationValues = resp.json().data.pagination;
+                this.totalCount = resp.json().data.pagination.totalCount;
+                this.pages = Math.ceil(this.totalCount / 10);
+                console.log(this.pages);
+                for (var i = 0; i < this.pages; i++) {
+                    this.pagination.push(i);
+                }
                 // for (var i = 0; i < this.product.length; i++) {
                 //     for (var j = 0; j < this.product[i].myImages.length; j++) {
                 //         this.product[i].image = this.product[i].myImages[0].product_image;
-
                 //     }
                 // }
                 // for (var j = 0; j < this.image.length; i++) {
@@ -75,7 +86,7 @@ export class ProductsComponent implements OnInit {
         }
     }
     // delete product
-    deleteProduct(id) {
+    deleteProduct(id, page) {
         swal("Do you want to delete?", "", "warning", {
             buttons: ["Cancel!", "Okay!"],
         }).then((value) => {
@@ -88,7 +99,7 @@ export class ProductsComponent implements OnInit {
                     .subscribe(resp => {
                         if (resp.json().message === 'Success') {
                             swal('product delete successfully', '', 'success')
-                            this.getProduct();
+                            this.getProduct(page);
                         }
                         else {
 
@@ -129,10 +140,11 @@ export class ProductsComponent implements OnInit {
     // }
 
     //    edit the product details
-    editProd(id) {
+    editProd(id, page) {
         let navigationExtras: NavigationExtras = {
             queryParams: {
-                prodId: id
+                prodId: id,
+                page: page
             }
         }
         this.router.navigate(['/addprducts'], navigationExtras);
@@ -145,12 +157,12 @@ export class ProductsComponent implements OnInit {
     }
     url = '';
     excel;
-    public fileEvent($event) {
+    public fileEvent($event, page) {
         const fileSelected: File = $event.target.files[0];
         this.appService.uploadFile(fileSelected)
             .subscribe((response) => {
                 swal('Import excel successfully', '', 'success');
-                this.getProduct();
+                this.getProduct(page);
                 return response;
 
             },

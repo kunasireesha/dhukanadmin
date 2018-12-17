@@ -8,6 +8,8 @@ import { Component, OnInit } from '@angular/core';
     styleUrls: ['./slot.component.css']
 })
 export class AddSlotComponent implements OnInit {
+    public value: Date = new Date(2000, 2, 10, 10, 30, 0);
+    public value1: Date = new Date(2000, 2, 10, 10, 30, 0);
     slot;
     model;
     starttime;
@@ -16,16 +18,15 @@ export class AddSlotComponent implements OnInit {
     constructor(private AppService: AppService) { }
 
     ngOnInit() {
-        console.log(new Date());
+        // console.log(new Date());
 
     }
     addSlot() {
-
         var data = {
             'slot_name': this.slot,
             'date': this.model.formatted,
-            'start_time': this.starttime,
-            'end_time': this.endtime
+            'start_time': this.value,
+            'end_time': this.value1
         }
         this.AppService.addCat(data).subscribe(resp => {
 

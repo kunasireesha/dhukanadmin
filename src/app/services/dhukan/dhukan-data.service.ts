@@ -28,9 +28,9 @@ export class AppService {
         const headers = new Headers({ 'Content-Type': "application/JSON" });
         return this.http.post(AppSettings.deleteCat, params, { headers: headers });
     }
-    getProduct() {
+    getProduct(page) {
         const headers = new Headers({ 'Content-Type': "application/x-www-form-urlencoded" });
-        return this.http.get(AppSettings.getProductUrl, { headers: headers });
+        return this.http.get(AppSettings.getProductUrl + 'page' + '=' + page, { headers: headers });
     }
     deleteProduct(params) {
         const headers = new Headers({ 'Content-Type': "application/JSON" });

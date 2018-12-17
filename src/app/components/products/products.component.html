@@ -22,7 +22,7 @@
                         <a (click)="addprod('')" id="show" class="btn btn-maron" style="float: right">Add Product</a>
                         <a id="show" class="btn btn-maron btn-import" style="float: right;"><label for="imageUpload">Import
                                 to Excel
-                            </label><input type="file" id="imageUpload" style="display: none" (change)=fileEvent($event)></a>
+                            </label><input type="file" id="imageUpload" style="display: none" (change)=fileEvent($event,paginationValues.current)></a>
                         <a (click)="exportAsXLSX()" id="show" class="btn btn-maron" style="float: right">Export to Excel
                         </a>
                         <h4 class="card-title">Products </h4>
@@ -46,6 +46,7 @@
                                         </thead>
                                         <tbody>
                                             <tr class="todo-list" *ngFor="let prod of product | filter:filter ;let i = index">
+                                                <!-- | paginate: { itemsPerPage: 10, currentPage: p } -->
                                                 <td>{{i+1}}</td>
                                                 <td>{{prod.main_cat_name}}</td>
                                                 <td>{{prod.sub_cat_name}} </td>
@@ -56,14 +57,31 @@
                                                 <!-- <td>{{prod.created_on | date: 'dd/MM/yyyy'}}</td> -->
                                                 <td>
                                                     <!-- <a routerLink="/addprducts" class="btn btn-outline-primary" (click)="editProd(prod.title,prod.category_id,prod.main_cat,prod.id,prod.sub_cat,prod.category2_id)">Edit</a> -->
-                                                    <a routerLink="/addprducts" class="btn btn-outline-primary" (click)="editProd(prod.id)">Edit</a>
+                                                    <a routerLink="/addprducts" class="btn btn-outline-primary" (click)="editProd(prod.id,paginationValues.current)">Edit</a>
 
-                                                    <button class="btn remove btn-outline-primary" (click)="deleteProduct(prod.id)">Remove
+                                                    <button class="btn remove btn-outline-primary" (click)="deleteProduct(prod.id,paginationValues.current)">Remove
                                                     </button>
                                                 </td>
                                             </tr>
                                         </tbody>
                                     </table>
+                                    <!-- <pagination-controls (pageChange)="p=$event" (click)="changePage(p)" style="float:right; margin-top:15px;"></pagination-controls> -->
+                                    <!-- <div class="pagination" style="float:right">
+                                        <a href="#">&laquo;</a>
+                                        <a href="#">1</a>
+                                        <a href="#" class="active">2</a>
+                                        <a href="#">3</a>
+                                        <a href="#">4</a>
+                                        <a href="#">5</a>
+                                        <a href="#">6</a>
+                                        <a href="#">&raquo;</a>
+                                    </div> -->
+                                    <div class="pagination" style="float:right">
+                                        <a>&laquo;</a>
+                                        <a *ngFor="let page of pagination" (click)="changePage(page)">{{page}}</a>
+                                        <a>&raquo;</a>
+                                    </div>
+                                    <!-- <label *ngFor="let page of pagination" (click)="changePage(page)">{{page}} &nbsp;&nbsp;</label> -->
                                 </div>
                             </div>
                         </div>
