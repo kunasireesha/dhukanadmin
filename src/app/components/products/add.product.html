@@ -69,12 +69,14 @@
                                             <div class="" *ngFor="let skuValues of skusData;let i= index" style="margin-bottom:30px;border: solid 2px #eb9809; padding: 25px">
                                                 <div class="row">
                                                     <div class="col-sm-3">
+                                                        <label for="firstname">Size :</label>
                                                         <div class="form-group">
                                                             <input id="category" class="form-control" type="text" placeholder="Size" [(ngModel)]="skuValues.size" [ngModelOptions]="{standalone:true}"
                                                             />
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-3">
+                                                        <label for="firstname">Quantity :</label>
                                                         <div class="form-group">
                                                             <input id="category" class="form-control" onkeypress="return (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57"
                                                                 min='0' max='10' type="number" placeholder="Quantity" [(ngModel)]="skuValues.quantity"
@@ -82,12 +84,14 @@
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-3">
+                                                        <label for="firstname">Actual Price :</label>
                                                         <div class="form-group">
                                                             <input id="category" class="form-control" type="text" placeholder="Actual Price" [(ngModel)]="skuValues.mrp" [ngModelOptions]="{standalone:true}"
                                                             />
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-3">
+                                                        <label for="firstname">Discount Price :</label>
                                                         <div class="form-group">
                                                             <input id="category" class="form-control" type="text" placeholder="Discount Price" [(ngModel)]="skuValues.offer" [ngModelOptions]="{standalone:true}"
                                                             />
@@ -96,6 +100,7 @@
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-sm-3">
+                                                        <label for="firstname">Selling Price :</label>
                                                         <div class="form-group">
 
                                                             <input id="category" class="form-control" type="text" placeholder="Selling Price" [(ngModel)]="skuValues.sellingPrice" [ngModelOptions]="{standalone:true}"
@@ -103,6 +108,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-3">
+                                                        <label for="firstname">Stock :</label>
                                                         <div class="form-group">
 
                                                             <input id="category" class="form-control" onkeypress="return (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57"
