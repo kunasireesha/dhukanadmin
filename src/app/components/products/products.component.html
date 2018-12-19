@@ -78,7 +78,7 @@
                                     </div> -->
                                     <div class="pagination" style="float:right">
                                         <a>&laquo;</a>
-                                        <a *ngFor="let page of pagination" (click)="changePage(page)">{{page}}</a>
+                                        <a *ngFor="let page of pagination;let i =index" (click)="changePage(page,i)" [ngClass]="{'active' : selectedpage === i }">{{page}}</a>
                                         <a>&raquo;</a>
                                     </div>
                                     <!-- <label *ngFor="let page of pagination" (click)="changePage(page)">{{page}} &nbsp;&nbsp;</label> -->

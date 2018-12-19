@@ -8,15 +8,6 @@
                     <span class="menu-title">Categories </span>
                 </a>
             </li>
-            <!-- <li data-toggle="collapse" data-target="#products" class="collapsed active">
-                    <a><i class="fa fa-gift fa-lg"></i> Anlagenauswahl <span class="arrow"></span></a>
-                </li>
-                <ul class="sub-menu collapse" id="products">
-                    <li class="active"><a>RFT-H1</a></li>
-                    <li><a>RFT-H2</a></li>
-                    <li><a>BTB-H1</a></li>
-                    <li><a>BTB-H2</a></li>
-                </ul> -->
 
             <li class="nav-item" [ngClass]="{'active':pageNav==='subcategorie' || pageNav==='addsubcategorie'}">
                 <a class="nav-link" routerLink="/subcategory">
@@ -24,7 +15,7 @@
                     <span class="menu-title sub">Sub Categories </span>
                 </a>
             </li>
-            <!-- <li class="nav-item" [ngClass]="{'active':pageNav==='vendors' || pageNav==='addvendors'}">
+            <li class="nav-item" [ngClass]="{'active':pageNav==='vendors' || pageNav==='addvendors'}">
                 <a class="nav-link" routerLink="/vendors">
                     <i class="icon-people menu-icon"></i>
                     <span class="menu-title">Admin List</span>
@@ -35,13 +26,14 @@
                     <i class="fa fa-cart-arrow-down" aria-hidden="true"></i>
                     <span class="menu-title sub">Coupon Management</span>
                 </a>
-            </li> -->
+            </li>
             <li class="nav-item" [ngClass]="{'active':pageNav==='products' || pageNav==='addproducts'}">
                 <a class="nav-link" routerLink="/prducts">
                     <i class="fa fa-product-hunt" aria-hidden="true"></i>
                     <span class="menu-title sub">Products</span>
                 </a>
             </li>
+
             <!-- <li class="nav-item" [ngClass]="{'active':pageNav==='banner' || pageNav==='addbanner'}">
                 <a class="nav-link" routerLink="/banner">
                     <i class="fa fa-picture-o" aria-hidden="true"></i>

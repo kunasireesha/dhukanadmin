@@ -6,7 +6,7 @@ import { Router, NavigationExtras } from '@angular/router';
 import { ProductData } from '../../services/productdata';
 import { ProductService } from '../../services/productService'
 // import * as XLSX from 'ts-xlsx';
-
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 
 @Component({
     selector: 'app-products',
@@ -18,7 +18,14 @@ export class ProductsComponent implements OnInit {
     productimg: any;
     image;
     p: number = 0;
-    constructor(private appService: AppService, public router: Router, public proServ: ProductService, private excelService: ExcelService) { }
+    selectedpage;
+    constructor(
+        private appService: AppService,
+        public router: Router,
+        public proServ: ProductService,
+        private excelService: ExcelService,
+        private spinnerService: Ng4LoadingSpinnerService
+    ) { }
     // url = 'http://versatilemobitech.co.in/DHUKAN/images/'
     ngOnInit() {
         this.getProduct(this.p);
@@ -39,7 +46,8 @@ export class ProductsComponent implements OnInit {
 
         return returnArr;
     };
-    changePage(page) {
+    changePage(page, index) {
+        this.selectedpage = index;
         this.getProduct(page);
 
     }
@@ -52,12 +60,14 @@ export class ProductsComponent implements OnInit {
     paginationValues: {}
     //   get product
     getProduct(page) {
+        this.spinnerService.show();
         let goodResponse = [];
         this.pagination = [];
         this.appService.getProduct(page)
             .subscribe(resp => {
                 // if (resp.json().message === 'Success') {
                 this.product = resp.json().data.results;
+                this.spinnerService.hide();
                 this.paginationValues = resp.json().data.pagination;
                 this.totalCount = resp.json().data.pagination.totalCount;
                 this.pages = Math.ceil(this.totalCount / 10);

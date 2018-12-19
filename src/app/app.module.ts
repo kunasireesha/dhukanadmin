@@ -16,7 +16,7 @@ import { AddOffersComponent } from './components/offers/add.offer';
 import { AddDeliveryComponent } from './components/delivery/add.delivery';
 import { ImageUploadComponent } from './components/image-upload/image-upload.component';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-
+import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
 // import * as xlsx from "xlsx";
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
@@ -184,6 +184,7 @@ import { OfferBannerComponent } from './components/banner/offer-banner/offer-ban
         IntlModule,
         NgxPaginationModule,
         DateInputsModule,
+        Ng4LoadingSpinnerModule.forRoot(),
         // MatNativeDateModule,
         // MatDatepickerModule,
         TooltipModule.forRoot(),

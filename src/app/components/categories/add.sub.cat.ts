@@ -3,7 +3,7 @@ import { AppService } from './../../services/dhukan/dhukan-data.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Router, NavigationExtras } from '@angular/router';
-
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 @Component({
     selector: 'add-sub-cat',
     templateUrl: './add.sub.cat.html',
@@ -23,7 +23,7 @@ export class AddSubCatComponent implements OnInit {
     mainCatId;
     textarea;
     img;
-    constructor(private appService: AppService, private route: ActivatedRoute, public router: Router) {
+    constructor(private appService: AppService, private route: ActivatedRoute, public router: Router, private spinnerService: Ng4LoadingSpinnerService) {
         this.route.queryParams.subscribe(params => {
             this.id = params.id,
                 this.subCa = params.subCat,
@@ -53,9 +53,11 @@ export class AddSubCatComponent implements OnInit {
     }
 
     getCat() {
+        this.spinnerService.show();
         this.appService.getCat()
             .subscribe(resp => {
                 if (resp.json().message === 'Success') {
+                    this.spinnerService.hide();
                     this.category = resp.json().result;
                 }
                 else {
@@ -67,6 +69,7 @@ export class AddSubCatComponent implements OnInit {
                 })
     }
     insertSubCat() {
+        this.spinnerService.show();
         var data = {
             'name': this.subCa,
             'categiryid': this.caId,
@@ -75,11 +78,13 @@ export class AddSubCatComponent implements OnInit {
 
         }
         this.appService.insertSubCat(data).subscribe(resp => {
+            this.spinnerService.hide();
             swal("add subCategory successfully", '', 'success');
             this.router.navigate(['/subcategory']);
         })
     }
     updateSubCat() {
+        this.spinnerService.show();
         var data = {
             'sub_cat_id': this.id,
             'sub_cat': this.subCa,
@@ -88,6 +93,7 @@ export class AddSubCatComponent implements OnInit {
             'description': this.textarea
         }
         this.appService.updateSubCat(data).subscribe(resp => {
+            this.spinnerService.hide();
             swal("update subCategory successfully", '', 'success');
             this.router.navigate(['/subcategory']);
         })

@@ -8,6 +8,7 @@ export const AppSettings = {
     updateCat: base_url + 'cart/admin/update',
     deleteCat: base_url + 'cart/admin/delete',
     getProductUrl: base_url + 'products/getproduct?npp=10&',
+    deleteSkuUrl: base_url + 'products/deletesku',
     deleteProdUrl: base_url + 'products/deleteproduct',
     updateProdUrl: base_url + 'products/updateproduct',
     insertProduct: base_url + 'products/insertproduct',
@@ -49,7 +50,8 @@ export const AppSettings = {
     deleteBannerUrl: base_url + 'banners/delteindivisuval_banner',
     editBannerUrl: base_url + 'banners/getiddetailes',
     updatebannerUrl: base_url + 'banners/updateBanner',
-    bannerPositionUrl: base_url + 'banners/getbannerpostion'
+    bannerPositionUrl: base_url + 'banners/getbannerpostion',
+
     // postDealbannersUrl: base_url + 'banners/new_banner',
     // getDealBannerUrl: base_url + 'banners/banners-list',
     // deleteDealBannerUrl: base_url + 'banners/delete_banner',

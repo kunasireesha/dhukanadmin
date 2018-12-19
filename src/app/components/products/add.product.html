@@ -59,6 +59,22 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <!-- <div class="row">
+                                        <div class="col-sm-3">
+                                            <div class="form-group">
+                                                <label for="firstname">Product Type :</label>
+                                                <div class="form-group">
+                                                    <select class="form-control border-primary" id="exampleSelectPrimary" (change)="productType($event.target.value)">
+                                                        <option value="" disabled>Select Product type</option>
+                                                        <option value="Main Product">Main Product</option>
+                                                        <option value="Best Deal of the Day">Best Deal of the Day</option>
+                                                        <option value="Best Deals">Best Deals</option>
+                                                        <option value="Best Deals on Appliances">Best Deals on Appliances</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div> -->
                                     <div class="row">
                                         <div class="col-sm-12">
                                             <div class="form-group" style="margin-top:20px;margin-bottom:25px;">
@@ -79,8 +95,8 @@
                                                         <label for="firstname">Quantity :</label>
                                                         <div class="form-group">
                                                             <input id="category" class="form-control" onkeypress="return (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57"
-                                                                min='0' max='10' type="number" placeholder="Quantity" [(ngModel)]="skuValues.quantity"
-                                                                [ngModelOptions]="{standalone:true}">
+                                                                min='0' max='10' type="number" placeholder="Quantity value should be 1"
+                                                                [(ngModel)]="skuValues.quantity" [ngModelOptions]="{standalone:true}">
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-3">
@@ -236,7 +252,7 @@
                                                         <div class="form-group">
                                                             <label for="firstname">Product Details :</label>
                                                             <br />
-                                                            <textarea class="form-control" rows="4" cols="50" style="width: 100%;border: 1px solid;" [(ngModel)]="skuValues.Description"
+                                                            <textarea class="form-control" rows="4" cols="50" style="width: 100%;border: 1px solid;" [(ngModel)]="skuValues.description"
                                                                 [ngModelOptions]="{standalone:true}" name="Description">
                                                                             </textarea>
                                                         </div>
@@ -284,7 +300,7 @@
                                                     </div>
                                                     <div class="col-sm-3">
                                                         <div class="form-group">
-                                                            <button type="submit" class="btn btn-primary" (click)="deleteSku(i)" style="margin-top: 36%;
+                                                            <button type="submit" class="btn btn-primary" (click)="deleteSku(i,skuValues.skid,skuValues.product_id)" style="margin-top: 36%;
                                                             margin-left: 5%;">Delete
                                                                 Sku
                                                             </button>

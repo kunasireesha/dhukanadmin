@@ -1,6 +1,7 @@
 import { AppService } from './../../../services/dhukan/dhukan-data.service';
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationExtras, ActivatedRoute } from '@angular/router';
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 
 @Component({
     selector: 'add-users',
@@ -31,7 +32,7 @@ export class AddBestDiscountComponent implements OnInit {
     subCatId = [];
     prodId = [];
     positions = [];
-    constructor(private AppService: AppService, private route: ActivatedRoute, public router: Router) {
+    constructor(private AppService: AppService, private route: ActivatedRoute, public router: Router, private spinnerService: Ng4LoadingSpinnerService) {
         this.route.queryParams.subscribe(params => {
             this.bannerId = params.bannerId
             this.mainId = params.mainId
@@ -261,6 +262,7 @@ export class AddBestDiscountComponent implements OnInit {
         this.skusData.splice(index, 1);
     }
     addbanner() {
+        this.spinnerService.show();
         var data = {
             'title': this.title,
             'banners': this.skusData
@@ -268,6 +270,7 @@ export class AddBestDiscountComponent implements OnInit {
         }
         this.AppService.postBannerUrl(data).subscribe(resp => {
             if (resp.json().status === 200) {
+                this.spinnerService.hide();
                 swal('banner added successfully', '', 'success');
                 this.router.navigate(['/bestDiscount']);
             }
@@ -311,11 +314,13 @@ export class AddBestDiscountComponent implements OnInit {
         })
     }
     updateBanner() {
+        this.spinnerService.show();
         var data = {
             'id': this.mainId
         }
         this.AppService.updateBannerbyId(data).subscribe(resp => {
             if (resp.json().status === 200) {
+                this.spinnerService.hide();
                 swal('banner added successfully', '', 'success');
                 this.router.navigate(['/bestDiscount']);
             }

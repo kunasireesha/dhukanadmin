@@ -1,6 +1,7 @@
 import { AppService } from './../../../services/dhukan/dhukan-data.service';
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationExtras } from '@angular/router';
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 
 @Component({
     selector: 'app-best-appliances',
@@ -14,7 +15,7 @@ export class BestAppliancesComponent implements OnInit {
     websiteBanner;
     image;
     mainBannerId;
-    constructor(private AppService: AppService, public router: Router) { }
+    constructor(private AppService: AppService, public router: Router, private spinnerService: Ng4LoadingSpinnerService) { }
 
     ngOnInit() {
         this.getBanners();
@@ -28,8 +29,10 @@ export class BestAppliancesComponent implements OnInit {
         this.router.navigate(['/addbestAppliances'], navigationExtras);
     }
     getBanners() {
+        this.spinnerService.show();
         this.AppService.getBannerUrl().subscribe(resp => {
             if (resp.json().status === 200) {
+                this.spinnerService.hide();
                 this.banner = resp.json().result[3].banner;
                 this.mainBannerId = resp.json().result[3].id;
                 for (var i = 0; i < this.banner.length; i++) {
@@ -48,10 +51,12 @@ export class BestAppliancesComponent implements OnInit {
         })
     }
     deleteBanner(id) {
+        this.spinnerService.show();
         var data = {
             'id': id
         }
         this.AppService.deleteBanner(data).subscribe(resp => {
+            this.spinnerService.hide();
             swal('banner deleted successfully', '', 'success');
             this.getBanners();
         })

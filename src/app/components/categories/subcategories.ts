@@ -1,7 +1,7 @@
 import { AppService } from './../../services/dhukan/dhukan-data.service';
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationExtras } from '@angular/router';
-
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 
 @Component({
     selector: 'sub-cat',
@@ -13,14 +13,16 @@ export class SubCatComponent implements OnInit {
     category: any;
     subCategory: any;
     p: number = 1;
-    constructor(private appService: AppService, public router: Router) { }
+    constructor(private appService: AppService, public router: Router, private spinnerService: Ng4LoadingSpinnerService) { }
 
     ngOnInit() {
         this.getSubCategory();
     }
 
     getSubCategory() {
+        this.spinnerService.show();
         this.appService.getSubCategery().subscribe(resp => {
+            this.spinnerService.hide();
             this.subCategory = resp.json().result;
             if (resp.json().result.length === 0) {
                 swal("No data found, please add new one", '', 'error');
@@ -32,6 +34,7 @@ export class SubCatComponent implements OnInit {
         )
     }
     deleteSubCat(id) {
+        this.spinnerService.show();
         swal("Do you want to delete?", "", "warning", {
             buttons: ["Cancel!", "Okay!"],
         }).then((value) => {
@@ -41,6 +44,7 @@ export class SubCatComponent implements OnInit {
                     'sub_cat_id': id
                 }
                 this.appService.deleteSubCat(data).subscribe(resp => {
+                    this.spinnerService.hide();
                     swal("delete subCat successfully", '', 'success');
                     this.getSubCategory();
                 })

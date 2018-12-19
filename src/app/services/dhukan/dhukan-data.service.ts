@@ -40,6 +40,10 @@ export class AppService {
         const headers = new Headers({ 'Content-Type': "application/JSON" });
         return this.http.post(AppSettings.updateProdUrl, params, { headers: headers });
     }
+    deleteSkuProduct(params) {
+        const headers = new Headers({ 'Content-Type': "application/JSON" });
+        return this.http.post(AppSettings.deleteSkuUrl, params, { headers: headers });
+    }
     insertProduct(params) {
         const headers = new Headers({ 'Content-Type': "application/JSON" });
         return this.http.post(AppSettings.insertProduct, params, { headers: headers })

@@ -7,7 +7,7 @@ import { IMyDpOptions } from 'mydatepicker';
 import { Router, NavigationExtras } from '@angular/router';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import * as _ from 'underscore';
-
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 @Component({
     selector: 'add-products',
     templateUrl: './add.product.html',
@@ -119,17 +119,14 @@ export class AddProductsComponent implements OnInit {
     image1 = false;
     pageValue;
 
-    constructor(private appService: AppService, private route: ActivatedRoute, public proserv: ProductService, public router: Router, private fb: FormBuilder) {
-        // this.form = this.fb.group({
-        //     enable: false,
-        //     text: [
-        //         {
-        //             value: null,
-        //             disabled: true,
-        //         },
-        //     ],
-        // });
-        // this.updateText();
+    constructor(
+        private appService: AppService,
+        private route: ActivatedRoute,
+        public proserv: ProductService,
+        public router: Router,
+        private fb: FormBuilder,
+        private spinnerService: Ng4LoadingSpinnerService
+    ) {
         this.route.queryParams.subscribe(params => {
             this.action = params.prodId;
             this.pageValue = params.page;
@@ -138,6 +135,7 @@ export class AddProductsComponent implements OnInit {
         if (this.action === '') {
             this.removeImg = false;
             this.addProd = true;
+
 
         } else {
             this.Image = true;
@@ -177,12 +175,12 @@ export class AddProductsComponent implements OnInit {
                         this.brand_id = this.product[i].brand_id;
                         this.skusData = this.product[i].sku;
                         this.upProduct = this.product[i].sku;
+                        console.log(this.skusData);
                         for (var j = 0; j < this.skusData.length; j++) {
                             this.skusData[j].offer = this.skusData[j].offer_price;
                             this.skusData[j].sellingPrice = this.skusData[j].selling_price;
                             this.skusData[j].quantity = this.skusData[j].min_quantity;
                             this.skusData[j].image1 = this.skusData[j].quality_image;
-                            this.skusData[j].Description = this.skusData[j].description;
                             this.skusData[j].termscnd = this.skusData[j].terms.data;
                             this.skusData[j].answer = this.skusData[j].faq.answer;
                             this.skusData[j].question = this.skusData[j].faq.question;
@@ -190,11 +188,12 @@ export class AddProductsComponent implements OnInit {
                             this.skusData[j].city = this.skusData[j].City;
                             this.skusData[j].area = this.skusData[j].Area;
                             this.skusData[j].country = this.skusData[j].Country;
+                            this.type = this.skusData[j].image;
                             this.skusData[j].sku_images = this.skusData[j].sku_images;
                             this.locationData = JSON.parse(localStorage.getItem('locationData'));
-                            this.getStates(this.skusData[j].country);
-                            this.getCitys(this.skusData[j].state);
-                            this.getArea(this.skusData[j].city);
+                            this.getStates(this.skusData[j].Country);
+                            this.getCitys(this.skusData[j].State);
+                            this.getArea(this.skusData[j].City);
                         }
                         return;
                     }
@@ -262,7 +261,7 @@ export class AddProductsComponent implements OnInit {
         this.getProduct();
 
 
-        this.type = 'Vegetrian';
+
         console.log(this.skusData);
 
     }
@@ -418,16 +417,20 @@ export class AddProductsComponent implements OnInit {
 
                             for (var i = 0; i < this.skusData.length; i++) {
                                 if (i === index) {
+
                                     this.skusData[i].sku_images.push({
-                                        "sku_image": this.img,
-                                        "product_id": this.skusData[i].sku_images[0].product_id,
-                                        "new_image": this.strImage,
-                                        "sku_img_path": '',
-                                        "id": '',
-                                        "sku_id": this.skusData[i].skid
+                                        sku_image: this.img,
+                                        product_id: parseInt(this.action),
+                                        new_image: this.strImage,
+                                        sku_img_path: '',
+                                        id: '',
+                                        sku_id: this.skusData[i].skid
 
                                     })
+
+
                                     this.skusData[i].images = this.skusData[i].sku_images;
+                                    console.log(this.skusData[i].sku_images);
                                     this.newSkuData.push(this.skusData[i]);
                                     for (var j = 0; j < this.newSkuData.length; j++) {
                                         if (skid === this.newSkuData[j].skid) {
@@ -540,6 +543,10 @@ export class AddProductsComponent implements OnInit {
     }
 
     insertProduct() {
+        if (this.formdata.categoryName === '' || this.formdata.subcategoryName === '' || this.formdata.proName === '' ||
+            this.formdata.Manufacture === '') {
+            swal('You are missing some field, Please check', '', 'error');
+        }
         for (var i = 0; i < this.skusData.length; i++) {
             this.skusData[i].quantity = this.skusData[i].quantity.toString();
             this.skusData[i].stock = this.skusData[i].stock.toString();
@@ -550,9 +557,15 @@ export class AddProductsComponent implements OnInit {
             this.skusData[i].terms = this.skusData[i].termscnd;
             this.skusData[i].faq = this.skusData[i].question;
             this.skusData[i].answer = this.skusData[i].answer;
-
-
+            if (this.skusData[i].size === '' || this.skusData[i].quantity == '' || this.skusData[i].mrp === '' || this.skusData[i].offer === '' ||
+                this.skusData[i].sellingPrice === '' || this.skusData[i].stock == '' || this.skusData[i].country === '' || this.skusData[i].state === '' ||
+                this.skusData[i].city === '' || this.skusData[i].area === '' || this.skusData[i].Description === '' || this.skusData[i].specification === '' ||
+                this.skusData[i].termscnd === '' || this.skusData[i].question === '' || this.skusData[i].answer === '') {
+                swal('You are missing some field, Please check', '', 'error');
+            }
         }
+
+
         var data = {
             // 'id': this.productId,
             'title': this.formdata.proName,
@@ -560,6 +573,7 @@ export class AddProductsComponent implements OnInit {
             'brand_name': this.formdata.Manufacture,
             'subcategory_id': this.subCatId,
             'brand_id': 123,
+            'product_type': this.product_type,
             // 'country': this.country,
             // 'state': this.state,
             // 'city': this.city,
@@ -584,10 +598,11 @@ export class AddProductsComponent implements OnInit {
         }
         // console.log(data);
 
-
+        this.spinnerService.show();
         this.appService.insertProduct(data)
             .subscribe(resp => {
                 if (resp.json().status === 200) {
+                    this.spinnerService.hide();
                     swal('product added successfully', '', 'success');
                     this.router.navigate(['/prducts']);
                 }
@@ -799,27 +814,70 @@ export class AddProductsComponent implements OnInit {
             },
             question: '',
             answer: '',
-            sku_images: [{
-                sku_image: '',
-                id: '',
-                sku_id: ''
-            }],
+            sku_images: [
+                // {
+                //     sku_image: '',
+                //     id: '',
+                //     sku_id: ''
+                // }
+            ]
 
         });
     }
+    sku_Id;
+    product_Id;
+    deleteSku(index, skid, productid) {
+        if (this.action === '') {
+            this.skusData.splice(index, 1);
+        }
+        else {
+            this.spinnerService.show();
+            swal("Do you want to delete?", "", "warning", {
+                buttons: ["Cancel!", "Okay!"],
+            }).then((value) => {
 
-    deleteSku(index) {
-        this.skusData.splice(index, 1);
+                if (value === true) {
+                    var data = {
+                        'product_id': productid,
+                        'skid': skid
+                    }
+                    this.appService.deleteSkuProduct(data).subscribe(resp => {
+                        if (resp.json().status === 200) {
+                            this.spinnerService.hide();
+                            swal('Delete sku successfully', '', 'success');
+                            this.router.navigate(['/prducts']);
+                            this.getProduct();
+                        }
+                    }),
+                        error => {
+                            console.log(error, "error");
+                        }
+                } else {
+                    return;
+                }
+            });
+        }
+
+
+
+
+        // this.sku_Id = skid;
+        // this.productId = productid;
+
+
+
     }
-
-
     updateProduct() {
+        this.spinnerService.show();
+        // setTimeout(() => this.spinnerService.hide(), 12000)
         for (var k = 0; k < this.skusData.length; k++) {
             this.skusData[k].product_id = this.action;
             this.skusData[k].image_quality_path = this.skusData[k].image_quality_path;
-            //   this.skusData[i].image_quality_path = this.skusData[i].quality_image;
-            //             this.skusData[i].quality_image = '';
-            // this.skusData[k].quality_image = (this.skusData[k].image1 === undefined || this.skusData[k].image1 === '') ? '' : this.strImage;
+            if (this.image2 === undefined) {
+                this.skusData[k].image_quality_path = this.skusData[k].quality_image;
+                this.skusData[k].quality_image = (this.image2 === undefined || this.image2 === '') ? '' : this.strImage;
+            }
+
             for (var j = 0; j < this.skusData[k].sku_images.length; j++) {
                 if (this.skusData[k].sku_images[j].sku_img_path === undefined) {
                     this.skusData[k].sku_images[j].id = '';
@@ -833,21 +891,7 @@ export class AddProductsComponent implements OnInit {
 
         }
 
-
-        // for (var l = 0; l < this.upProduct.length; l++) {
-        //     for (var k = 0; k < this.skusData.length; k++) {
-        //         if (this.upProduct[l].skid === this.skusData[k].skid) {
-        //             this.newSkuData.push(this.skusData[k]);
-        //         }
-        //     }
-        // }
-
-
-
         this.newSkuData = this.skusData;
-        // for (var l = 0; l < this.newSkuData.length; l++) {
-        //     this.newSkuData.splice(l, 1);
-        // }
 
         for (var i = 0; i < this.newSkuData.length; i++) {
             this.newSkuData[i].terms = {
@@ -873,18 +917,18 @@ export class AddProductsComponent implements OnInit {
                 "size": this.newSkuData[i].size,
                 "actual_price": (this.newSkuData[i].actual_price === undefined) ? parseInt(this.newSkuData[i].mrp) : this.newSkuData[i].actual_price,
                 "mrp": (this.newSkuData[i].mrp === undefined) ? parseInt(this.newSkuData[i].mrp) : this.newSkuData[i].mrp,
-                "min_quantity": (this.newSkuData[i].min_quantity === undefined) ? parseInt(this.newSkuData[i].quantity) : this.newSkuData[i].min_quantity,
+                "min_quantity": (this.newSkuData[i].quantity !== undefined) ? parseInt(this.newSkuData[i].quantity) : this.newSkuData[i].min_quantity,
                 "stock": this.newSkuData[i].stock,
-                "selling_price": (this.newSkuData[i].selling_price === undefined) ? parseInt(this.newSkuData[i].sellingPrice) : this.newSkuData[i].selling_price,
-                "offer_price": (this.newSkuData[i].offer_price === undefined) ? parseInt(this.newSkuData[i].offer) : this.newSkuData[i].offer_price,
-                "image": this.newSkuData[i].image,
+                "selling_price": (this.newSkuData[i].sellingPrice !== undefined) ? parseInt(this.newSkuData[i].sellingPrice) : this.newSkuData[i].selling_price,
+                "offer_price": (this.newSkuData[i].offer !== undefined) ? parseInt(this.newSkuData[i].offer) : this.newSkuData[i].offer_price,
+                "image": this.type,
                 "express_delivery": this.newSkuData[i].express_delivery,
                 "normal_delivery": this.newSkuData[i].normal_delivery,
-                "image_quality_path": (this.newSkuData[i].image_quality_path === undefined) ? this.newSkuData[i].image_quality_path : '',
+                "image_quality_path": (this.newSkuData[i].image_quality_path === undefined) ? '' : this.newSkuData[i].image_quality_path,
                 "quality_image": this.newSkuData[i].quality_image,
                 // "description": (this.newSkuData[i].description === undefined) ? this.newSkuData[i].Description : this.newSkuData[i].description,
-                "description": this.newSkuData[i].Description,
-                "specification": (this.newSkuData[i].specification === undefined) ? this.newSkuData[i].specification : '',
+                "description": this.newSkuData[i].description,
+                "specification": this.newSkuData[i].specification,
                 "country": this.newSkuData[i].country,
                 "state": this.newSkuData[i].state,
                 "city": this.newSkuData[i].city,
@@ -909,6 +953,7 @@ export class AddProductsComponent implements OnInit {
             .subscribe(resp => {
                 if (resp.json().status === 200) {
                     this.category = resp.json().result;
+                    this.spinnerService.hide();
                     swal('update product successfully', '', 'success')
                     this.router.navigate(['/prducts']);
                     this.getProduct();
@@ -1032,5 +1077,10 @@ export class AddProductsComponent implements OnInit {
             }
         }
         // console.log(this.type);
+    }
+    product_type: any;
+    productType(value) {
+        this.product_type = value;
+        // alert(this.product_type);
     }
 }

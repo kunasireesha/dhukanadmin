@@ -2,7 +2,7 @@ import { AppService } from './../../services/dhukan/dhukan-data.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Router, NavigationExtras } from '@angular/router';
-
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 
 @Component({
     selector: 'add-cat',
@@ -16,7 +16,7 @@ export class AddCatComponent implements OnInit {
     input;
     strImage: any;
     textarea
-    constructor(private appService: AppService, private route: ActivatedRoute, public router: Router) {
+    constructor(private appService: AppService, private route: ActivatedRoute, public router: Router, private spinnerService: Ng4LoadingSpinnerService) {
         this.route.queryParams.subscribe(params => {
             this.catname = params.name
             this.id = params.id
@@ -46,6 +46,7 @@ export class AddCatComponent implements OnInit {
 
     //add category
     addCat(name) {
+        this.spinnerService.show();
         var data = {
             'name': name,
             'image': this.strImage,
@@ -56,6 +57,7 @@ export class AddCatComponent implements OnInit {
             .subscribe(resp => {
                 if (resp.json().message === 'Success') {
                     this.data = resp.json().result;
+                    this.spinnerService.hide();
                     swal('Category added', '', 'success');
                     this.router.navigate(['/category']);
 
@@ -71,6 +73,7 @@ export class AddCatComponent implements OnInit {
 
     //update category
     updateCat(name) {
+        this.spinnerService.show();
         var data = {
             'name': name,
             'id': this.id,
@@ -79,6 +82,7 @@ export class AddCatComponent implements OnInit {
         }
         this.appService.updateCat(data)
             .subscribe(resp => {
+                this.spinnerService.hide();
                 swal('update category successfully', '', 'success');
                 this.router.navigate(['/category']);
             }),
