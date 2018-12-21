@@ -1,3 +1,4 @@
+// import { WareHouseComponent } from './components/banner/';
 import { AddHelpBannerComponent } from './components/banner/help-banner/add.help-banner';
 import { AddOffersBannerComponent } from './components/banner/offer-banner/add.offer-banner';
 import { AddBrandComponent } from './components/banner/best-brands/add.brand';
@@ -105,8 +106,7 @@ import { AddBestDiscountComponent } from './components/banner/best-discount/add.
 import { addDiscountAppliances } from './components/banner/best-discount-appliance/add.best-discount-appliance';
 import { HelpBannerComponent } from './components/banner/help-banner/help-banner.component';
 import { OfferBannerComponent } from './components/banner/offer-banner/offer-banner.component';
-
-
+import { WareHouseComponent } from './components/ware-house/ware-house.component';
 
 // import { ExcelService } from './excel.service';
 // import {MatDatepickerModule,MatNativeDateModule } from '@angular/material/datepicker';
@@ -163,7 +163,9 @@ import { OfferBannerComponent } from './components/banner/offer-banner/offer-ban
         HelpBannerComponent,
         OfferBannerComponent,
         AddOffersBannerComponent,
-        AddHelpBannerComponent
+        AddHelpBannerComponent,
+        WareHouseComponent,
+        // WareHouseComponent
 
     ],
     imports: [

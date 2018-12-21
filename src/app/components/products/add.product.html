@@ -59,7 +59,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <!-- <div class="row">
+                                    <div class="row">
                                         <div class="col-sm-3">
                                             <div class="form-group">
                                                 <label for="firstname">Product Type :</label>
@@ -74,7 +74,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div> -->
+                                    </div>
                                     <div class="row">
                                         <div class="col-sm-12">
                                             <div class="form-group" style="margin-top:20px;margin-bottom:25px;">
@@ -230,6 +230,11 @@
                                                             <mat-slide-toggle (change)="foodType($event.checked,i)" [(ngModel)]="type" name="type">Veg
                                                                 or Non-Veg (optional)
                                                             </mat-slide-toggle>
+                                                            <!-- <div class="margin" *ngFor="let item of radio">
+                                                                <label>
+                                                                    <input type="radio" name="options" value="{{item.title}}" (change)="radioType($event.target.value)" />                                                                    &nbsp;{{item.title}}
+                                                                </label>
+                                                            </div> -->
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-3">
@@ -238,7 +243,7 @@
                                                             <h6>Select Delivery Options</h6>
                                                             <div class="margin" *ngFor="let item of list">
                                                                 <label>
-                                                                    <input type="checkbox" name="options" value="{{item}}" [checked]="list.indexOf(item) == 0" [disabled]="list.indexOf(item) == 0"
+                                                                    <input type="checkbox" name="options" value="{{item.title}}" [checked]="list.indexOf(item) == 0" [disabled]="list.indexOf(item) == 0"
                                                                         (click)="checkbox($event.target.checked,item.id,item,i)"
                                                                     />                                                                    &nbsp;{{item.title}}
                                                                     {{option}}

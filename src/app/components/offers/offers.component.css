@@ -13,3 +13,6 @@
 .btn-outline-primary:hover{
     color: #fff !important;
 }
+.date-picker{
+    width: 400px;
+}

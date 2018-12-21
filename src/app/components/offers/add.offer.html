@@ -23,8 +23,7 @@
                                     <fieldset>
                                         <div class="form-group">
                                             <label for="firstname">Coupon Code</label>
-                                            <input id="category" class="form-control" name="coupon" type="text"
-                                                [(ngModel)]="coupon" />
+                                            <input id="category" class="form-control" name="coupon" type="text" [(ngModel)]="coupon" />
                                         </div>
                                         <div class="form-group">
                                             <label for="sel1">Discount type</label>
@@ -39,30 +38,32 @@
                                         </div>
                                         <div class="form-group" *ngIf="amount">
                                             <label for="firstname">Discount amount</label>
-                                            <input id="category" class="form-control" name="disAmt" type="text"
-                                                [(ngModel)]="disAmt" />
+                                            <input id="category" class="form-control" name="disAmt" type="text" [(ngModel)]="disAmt" />
                                         </div>
                                         <div class="form-group" *ngIf="percentage">
                                             <label for="firstname">Discount Percentage</label>
-                                            <input id="category" class="form-control" name="disPer" type="text"
-                                                [(ngModel)]="disPer" />
+                                            <input id="category" class="form-control" name="disPer" type="text" [(ngModel)]="disPer" />
                                         </div>
                                         <div class="form-group">
                                             <label for="firstname">Minimum Usage Count</label>
-                                            <input id="category" class="form-control" name="total" type="text"
-                                                [(ngModel)]="total" />
+                                            <input id="category" class="form-control" name="total" type="text" [(ngModel)]="total" />
                                         </div>
                                         <div class="form-group">
-                                            <label for="firstname">Up to </label>
-                                            <input id="category" class="form-control" name="upto" type="text"
-                                                [(ngModel)]="upto" />
+                                            <label for="firstname">Minimum amount </label>
+                                            <input id="category" class="form-control" name="upto" type="text" [(ngModel)]="upto" />
                                         </div>
-                                        <button type="submit" class="btn btn-primary vendor-button" *ngIf="!offerId"
-                                            (click)="addOffer()">
+                                        <div class="form-group date date-picker">
+                                            <label>Start date: </label>
+                                            <my-date-picker name="mydate" [options]="myDatePickerOptions" [(ngModel)]="model" required></my-date-picker>
+                                        </div>
+                                        <div class="form-group date date-picker">
+                                            <label>End date: </label>
+                                            <my-date-picker name="mydate" [options]="myDatePickerOptions" [(ngModel)]="model1" required></my-date-picker>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary vendor-button" *ngIf="!offerId" (click)="addOffer()">
                                             Add Coupon
                                         </button>
-                                        <button type="submit" class="btn btn-primary vendor-button" *ngIf="offerId"
-                                            (click)="updateOfferById()">
+                                        <button type="submit" class="btn btn-primary vendor-button" *ngIf="offerId" (click)="updateOfferById()">
                                             Update Coupon
                                         </button>
                                     </fieldset>

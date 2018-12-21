@@ -159,9 +159,11 @@ export class AddProductsComponent implements OnInit {
         this.skuimages = [];
         let goodResponse = [];
         this.skusData = [];
+        this.spinnerService.show();
         this.appService.getProduct(this.pageValue)
             .subscribe(resp => {
                 // if (resp.json().message === 'Success') {
+                this.spinnerService.hide();
                 this.product = resp.json().data.results;
                 for (var i = 0; i < this.product.length; i++) {
                     if (parseInt(this.action) === this.product[i].id) {
@@ -235,7 +237,7 @@ export class AddProductsComponent implements OnInit {
     // }
 
     optionsChecked = [];
-
+    radio: any[];
     ngOnInit() {
 
         this.list = [
@@ -247,6 +249,23 @@ export class AddProductsComponent implements OnInit {
             {
                 id: 2,
                 title: 'Express Delivery',
+                checked: false,
+            }
+        ]
+        this.radio = [
+            {
+                id: 1,
+                title: 'Veg',
+                checked: true,
+            },
+            {
+                id: 2,
+                title: 'Non-Veg',
+                checked: false,
+            },
+            {
+                id: 3,
+                title: 'Other',
                 checked: false,
             }
         ]
@@ -264,6 +283,10 @@ export class AddProductsComponent implements OnInit {
 
         console.log(this.skusData);
 
+    }
+    radioType(event) {
+        this.type = event;
+        console.log(this.type);
     }
     subCategoryName;
     changeCat(id) {
@@ -543,10 +566,10 @@ export class AddProductsComponent implements OnInit {
     }
 
     insertProduct() {
-        if (this.formdata.categoryName === '' || this.formdata.subcategoryName === '' || this.formdata.proName === '' ||
-            this.formdata.Manufacture === '') {
-            swal('You are missing some field, Please check', '', 'error');
-        }
+        // if (this.formdata.categoryName === '' || this.formdata.subcategoryName === '' || this.formdata.proName === '' ||
+        //     this.formdata.Manufacture === '') {
+        //     swal('You are missing some field, Please check', '', 'error');
+        // }
         for (var i = 0; i < this.skusData.length; i++) {
             this.skusData[i].quantity = this.skusData[i].quantity.toString();
             this.skusData[i].stock = this.skusData[i].stock.toString();
@@ -557,12 +580,13 @@ export class AddProductsComponent implements OnInit {
             this.skusData[i].terms = this.skusData[i].termscnd;
             this.skusData[i].faq = this.skusData[i].question;
             this.skusData[i].answer = this.skusData[i].answer;
-            if (this.skusData[i].size === '' || this.skusData[i].quantity == '' || this.skusData[i].mrp === '' || this.skusData[i].offer === '' ||
-                this.skusData[i].sellingPrice === '' || this.skusData[i].stock == '' || this.skusData[i].country === '' || this.skusData[i].state === '' ||
-                this.skusData[i].city === '' || this.skusData[i].area === '' || this.skusData[i].Description === '' || this.skusData[i].specification === '' ||
-                this.skusData[i].termscnd === '' || this.skusData[i].question === '' || this.skusData[i].answer === '') {
-                swal('You are missing some field, Please check', '', 'error');
-            }
+            // if (this.skusData[i].size === '' || this.skusData[i].quantity == '' || this.skusData[i].mrp === '' || this.skusData[i].offer === '' ||
+            //     this.skusData[i].sellingPrice === '' || this.skusData[i].stock == '' || this.skusData[i].country === '' || this.skusData[i].state === '' ||
+            //     this.skusData[i].city === '' || this.skusData[i].area === '' || this.skusData[i].Description === '' || this.skusData[i].specification === '' ||
+            //     this.skusData[i].termscnd === '' || this.skusData[i].question === '' || this.skusData[i].answer === '') {
+            //     swal('You are missing some field, Please check', '', 'error');
+            // }
+
         }
 
 
@@ -579,7 +603,6 @@ export class AddProductsComponent implements OnInit {
             // 'city': this.city,
             // 'area': this.area,
             // 'image': this.images,
-
             // 'actual_price': this.actualPrice,
             // 'selling_price': this.sellingPrice,
             // 'quality_image': this.strImage,
@@ -612,28 +635,7 @@ export class AddProductsComponent implements OnInit {
                 })
     }
     productImg = [];
-    // editProImages() {
-    //     var data = {
-    //         'id': this.productId
-    //     }
-    //     this.appService.editproductImg(data).subscribe(resp => {
-    //         this.productDetails = resp.json().result;
-    //         this.proName = this.productDetails[0].title;
-    //         this.categoryId = this.productDetails[0].category_id;
-    //         this.categoryName = this.productDetails[0].category1;
-    //         this.productId = this.productDetails[0].id;
-    //         this.subCatName = this.productDetails[0].category2;
-    //         this.subCateId = this.productDetails[0].category2_id;
-    //         this.Description = this.productDetails[0].description;
-    //         this.terms = this.productDetails[0].terms_and_conditions;
-    //         this.faq = this.productDetails[0].question;
-    //         this.answer = this.productDetails[0].answer;
-    //         this.actualPrice = this.productDetails[0].actual_price;
-    //         this.sellingPrice = this.productDetails[0].selling_price;
-    //         this.disAmount = this.productDetails[0].discount;
 
-    //     })
-    // }
     updateImage(index, skuId, image) {
         this.selectedImage = index;
         this.imgSku = skuId;
@@ -1062,25 +1064,27 @@ export class AddProductsComponent implements OnInit {
         this.selarea = area;
     }
 
-    foodType(value, index) {
-        // this.type = 'NonVegetrian';
-        if (value === true) {
-            this.type = 'Vegetrian'
-        }
-        else {
-            this.type = 'NonVegetrian'
-        }
-        for (var i = 0; i < this.skusData.length; i++) {
-            if (i === index) {
-                this.skusData[i].image = this.type
-                // this.skusData[i].quality_image = this.strImage;
-            }
-        }
-        // console.log(this.type);
-    }
+    // foodType(value, index) {
+
+    //     if (value === true) {
+    //         this.type = 'Vegetrian'
+    //     }
+    //     else {
+    //         this.type = 'NonVegetrian'
+    //     }
+    //     for (var i = 0; i < this.skusData.length; i++) {
+    //         if (i === index) {
+    //             this.skusData[i].image = this.type
+
+    //         }
+    //     }
+
+    // }
     product_type: any;
     productType(value) {
         this.product_type = value;
         // alert(this.product_type);
     }
+
+
 }
