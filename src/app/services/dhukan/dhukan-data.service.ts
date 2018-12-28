@@ -138,6 +138,14 @@ export class AppService {
         const headers = new Headers({ 'Content-Type': "application/JSON" });
         return this.http.get(AppSettings.getDeliveryUrl, { headers: headers });
     }
+    getDeliverybyId(params) {
+        const headers = new Headers({ 'Content-Type': "application/JSON" });
+        return this.http.post(AppSettings.getDeliveryById, params, { headers: headers });
+    }
+    updateDelivery(params) {
+        const headers = new Headers({ 'Content-Type': "application/JSON" });
+        return this.http.post(AppSettings.updateDeliveryUrl, params, { headers: headers });
+    }
     deleteDelivery(id) {
         const headers = new Headers({ 'Content-Type': "application/JSON" });
         return this.http.post(AppSettings.deleteDeliveryById, id, { headers: headers });
@@ -201,6 +209,34 @@ export class AppService {
     getBannerPostion() {
         const headers = new Headers({ 'Content-Type': "application/JSON" });
         return this.http.get(AppSettings.bannerPositionUrl, { headers: headers })
+    }
+    addCity(params) {
+        const headers = new Headers({ 'Content-Type': "application/JSON" });
+        return this.http.post(AppSettings.addCityUrl, params, { headers: headers })
+    }
+    getCity() {
+        const headers = new Headers({ 'Content-Type': "application/x-www-form-urlencoded" });
+        return this.http.get(AppSettings.getCitiesUrl, { headers: headers })
+    }
+    deleteCity(params) {
+        const headers = new Headers({ 'Content-Type': "application/JSON" });
+        return this.http.post(AppSettings.deleteCitiesUrl, params, { headers: headers })
+    }
+    addArea(params) {
+        const headers = new Headers({ 'Content-Type': "application/JSON" });
+        return this.http.post(AppSettings.addAreaUrl, params, { headers: headers })
+    }
+    getArea() {
+        const headers = new Headers({ 'Content-Type': "application/x-www-form-urlencoded" });
+        return this.http.get(AppSettings.getAreasUrl, { headers: headers })
+    }
+    deleteArea(params) {
+        const headers = new Headers({ 'Content-Type': "application/JSON" });
+        return this.http.post(AppSettings.deleteAreaUrl, params, { headers: headers })
+    }
+    addWarehouse(params) {
+        const headers = new Headers({ 'Content-Type': "application/JSON" });
+        return this.http.post(AppSettings.addwarehouseUrl, params, { headers: headers })
     }
     // postDealBannerUrl(params) {
     //     const headers = new Headers({ 'Content-Type': "application/JSON" });

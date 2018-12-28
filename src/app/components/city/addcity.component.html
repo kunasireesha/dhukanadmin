@@ -1,0 +1,73 @@
+<!-- <div class="container">
+    <h1>Angular 2 + Google Maps Places Autocomplete</h1>
+    <div class="form-group">
+        <input placeholder="search for location" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control"
+            #search [formControl]="searchControl">
+    </div>
+    <agm-map [latitude]="latitude" [longitude]="longitude" [scrollwheel]="false" [zoom]="zoom">
+        <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
+    </agm-map>
+</div> -->
+
+<div class="container-scroller">
+    <!-- partial:partials/_navbar.html -->
+    <logo-nav></logo-nav>
+    <!-- partial -->
+    <div class="container-fluid page-body-wrapper">
+        <div class="row row-offcanvas row-offcanvas-right">
+            <!-- partial:partials/_settings-panel.html -->
+            <header-nav></header-nav>
+            <profile-nav></profile-nav>
+            <!-- partial -->
+            <!-- partial:partials/_sidebar.html -->
+
+            <!-- partial -->
+            <div class="content-wrapper">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Add City</h4>
+                                <a routerLink="/city" id="show" class="btn  btn-maron" style="float: right;    margin-top: -45px;">Back</a>
+                                <form style="margin-top:30px;">
+                                    <div class="form-group">
+                                        <input placeholder="search for location" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control"
+                                            #search [formControl]="searchControl" style="width: 400px;">
+                                    </div>
+                                    <agm-map [latitude]="latitude" [longitude]="longitude" [scrollwheel]="false" [zoom]="zoom">
+                                        <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
+                                    </agm-map>
+                                    <button type="submit" *ngIf="!action" class="btn btn-primary vendor-button" (click)="addCity()" style="margin-top:20px">Add
+                                        City
+                                    </button>
+                                    <button type="submit" *ngIf="action" class="btn btn-primary vendor-button" (click)="updateCity()" style="margin-top:20px">Update
+                                        City
+                                    </button>
+                                    <!-- <button type="submit" class="btn btn-primary vendor-button"*ngIf="!addcat">Update
+                                        category
+                                    </button> -->
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- content-wrapper ends -->
+            <!-- partial:partials/_footer.html -->
+            <footer class="footer">
+                <div class="container-fluid clearfix">
+                    <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © 2018
+                        <a routerLink="#">Dhukan</a>. All rights reserved. </span>
+                    <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">
+
+                    </span>
+                </div>
+            </footer>
+            <!-- partial -->
+        </div>
+        <!-- row-offcanvas ends -->
+    </div>
+
+
+    <!-- page-body-wrapper ends -->
+</div>

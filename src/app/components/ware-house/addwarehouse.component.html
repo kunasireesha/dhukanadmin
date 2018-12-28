@@ -1,0 +1,87 @@
+<!-- <div class="container">
+    <h1>Angular 2 + Google Maps Places Autocomplete</h1>
+    <div class="form-group">
+        <input placeholder="search for location" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control"
+            #search [formControl]="searchControl">
+    </div>
+    <agm-map [latitude]="latitude" [longitude]="longitude" [scrollwheel]="false" [zoom]="zoom">
+        <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
+    </agm-map>
+</div> -->
+
+<div class="container-scroller">
+    <!-- partial:partials/_navbar.html -->
+    <logo-nav></logo-nav>
+    <!-- partial -->
+    <div class="container-fluid page-body-wrapper">
+        <div class="row row-offcanvas row-offcanvas-right">
+            <!-- partial:partials/_settings-panel.html -->
+            <header-nav></header-nav>
+            <profile-nav></profile-nav>
+            <!-- partial -->
+            <!-- partial:partials/_sidebar.html -->
+
+            <!-- partial -->
+            <div class="content-wrapper">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Add warehouse</h4>
+                                <a routerLink="/WareHouse" id="show" class="btn  btn-maron" style="float: right;    margin-top: -45px;">Back</a>
+                                <form style="margin-top:30px;">
+                                    <div class="form-group">
+                                        <select required class="form-control border-primary" id="exampleSelectPrimary" (change)="changeCity($event.target.value)">
+                                            <option value="" disabled>Select City</option>
+                                            <option *ngFor="let city of cities" value="{{city.contry}}">{{city.contry}}</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <select required class="form-control border-primary" id="exampleSelectPrimary" (change)="changeArea($event.target.value)">
+                                            <option value="" disabled>Select Area</option>
+                                            <option *ngFor="let area of areas" value="{{area.area}}">{{area.area}}</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Warehouse Name</label>
+                                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" [(ngModel)]="name" name="name">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Warehouse Description</label>
+                                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" [(ngModel)]="description" name="description">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Warehouse Address</label>
+                                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" [(ngModel)]="address" name="address">
+                                    </div>
+                                    <button type="submit" class="btn btn-primary vendor-button" (click)="addWarehouse()" style="margin-top:20px">Add
+                                        warehouse
+                                    </button>
+                                    <!-- <button type="submit" class="btn btn-primary vendor-button"*ngIf="!addcat">Update
+                                        category
+                                    </button> -->
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- content-wrapper ends -->
+            <!-- partial:partials/_footer.html -->
+            <footer class="footer">
+                <div class="container-fluid clearfix">
+                    <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © 2018
+                        <a routerLink="#">Dhukan</a>. All rights reserved. </span>
+                    <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">
+
+                    </span>
+                </div>
+            </footer>
+            <!-- partial -->
+        </div>
+        <!-- row-offcanvas ends -->
+    </div>
+
+
+    <!-- page-body-wrapper ends -->
+</div>

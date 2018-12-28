@@ -22,8 +22,7 @@
                                     <div class="form-group">
                                         <label for="firstname">Select Country</label>
                                         <div class="form-group">
-                                            <select required class="form-control" id="exampleSelectPrimary" [(ngModel)]="country"
-                                                name="country" (change)="changeCountry($event.target.value)">
+                                            <select required class="form-control" id="exampleSelectPrimary" [(ngModel)]="country" name="country" (change)="changeCountry($event.target.value)">
                                                 <option value="">Select Country</option>
                                                 <option *ngFor="let data of countrydata" value="{{data.location_id}}">{{data.location}}</option>
                                             </select>
@@ -75,8 +74,7 @@
                                             </option>
                                         </select>
                                     </div>
-                                    <button type="submit" class="btn btn-primary vendor-button" (click)="addLocation()"
-                                        style="margin-top:20px">Add
+                                    <button type="submit" class="btn btn-primary vendor-button" (click)="addLocation()" style="margin-top:20px">Add
                                         Location
                                     </button>
                                     <!-- <button type="submit" class="btn btn-primary vendor-button"*ngIf="!addcat">Update
@@ -103,5 +101,7 @@
         </div>
         <!-- row-offcanvas ends -->
     </div>
+
+
     <!-- page-body-wrapper ends -->
 </div>

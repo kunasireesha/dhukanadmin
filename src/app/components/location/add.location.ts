@@ -116,4 +116,9 @@ export class AddlocationComponent implements OnInit {
         })
     }
 
+    autoCompleteCallback1(selectedData: any) {
+        //do any necessery stuff.
+    }
+
+
 }

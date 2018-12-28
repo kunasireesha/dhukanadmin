@@ -1,3 +1,78 @@
-<p>
-  ware-house works!
-</p>
+<div class="container-scroller">
+    <!-- partial:partials/_navbar.html -->
+
+    <logo-nav></logo-nav>
+    <!-- partial -->
+    <div class="container-fluid page-body-wrapper">
+        <div class="row row-offcanvas row-offcanvas-right">
+            <!-- partial:partials/_settings-panel.html -->
+            <header-nav></header-nav>
+            <profile-nav></profile-nav>
+            <!-- partial -->
+            <!-- partial:partials/_sidebar.html -->
+
+            <!-- partial -->
+            <div class="content-wrapper">
+                <div class="card">
+                    <div class="card-body">
+                        <a routerLink="/addwarehouse" id="show" class="btn  btn-maron" style="float: right">Add Warehouse
+                        </a>
+                        <h4 class="card-title">Warehouse Management </h4>
+                        <span>
+                            <input class="form-control" type="text" placeholder="Search.." name="search" [(ngModel)]="filter" style="width:400px;"></span>
+                        <br />
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="table-responsive">
+                                    <table id="order-listing" class="table " style="text-align: center">
+                                        <thead class="thead-dark">
+                                            <tr>
+                                                <th>S.no</th>
+                                                <th>City
+                                                </th>
+                                                <th>Area
+                                                </th>
+                                                <th>Ware House</th>
+                                                <th>Description</th>
+                                                <th>Action </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="todo-list" *ngFor="let location of locationData | filter:filter;let i = index">
+                                                <td>{{i+1}}</td>
+                                                <td>{{location.country}}</td>
+                                                <td>{{location.state}}</td>
+                                                <td>{{location.city}}</td>
+                                                <td>{{location.area}}</td>
+                                                <td>
+                                                    <button class="btn remove btn-outline-primary">Edit
+                                                    </button>
+                                                    <button class="btn remove btn-outline-primary" (click)="deleteLoc(location.id)">Delete
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- content-wrapper ends -->
+            <!-- partial:partials/_footer.html -->
+            <footer class="footer">
+                <div class="container-fluid clearfix">
+                    <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © 2018
+                        <a routerLink="#">Dhukan </a>. All rights reserved. </span>
+                    <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">
+
+                    </span>
+                </div>
+            </footer>
+            <!-- partial -->
+        </div>
+        <!-- row-offcanvas ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+</div>

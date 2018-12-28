@@ -15,11 +15,11 @@
             <div class="content-wrapper">
                 <div class="card">
                     <div class="card-body">
-                        <!-- <a href="" id="show" class="btn  btn-maron" style="float: right">Export To Excel</a> -->
-                        <a routerLink="/addDelivery" id="show" class="btn  btn-maron" style="float: right">Add Delivery Boy
+                        <a routerLink="/addarea" id="show" class="btn  btn-maron" style="float: right">Add Area
                         </a>
-                        <h4 class="card-title">
-                            Delivery Persons </h4>
+                        <h4 class="card-title">Total Areas </h4>
+                        <span>
+                            <input class="form-control" type="text" placeholder="Search.." name="search" [(ngModel)]="filter" style="width:400px"></span>
                         <br />
                         <div class="row">
                             <div class="col-12">
@@ -28,37 +28,34 @@
                                         <thead class="thead-dark">
                                             <tr>
                                                 <th>S.no</th>
-                                                <th>Name</th>
-                                                <th>Email</th>
-                                                <!-- <th>Password</th> -->
-                                                <th>Phone</th>
-                                                <th>Logo</th>
-                                                <th>Action</th>
+                                                <th>City</th>
+                                                <th>Area
+                                                </th>
+
+                                                <th>Action </th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr class="todo-list" *ngFor="let item of delData;let i = index">
+                                            <tr class="todo-list" *ngFor="let area of areas | filter:filter;let i = index">
                                                 <td>{{i+1}}</td>
-                                                <td>{{item.first_name}}</td>
-                                                <td>{{item.email}}</td>
-                                                <td>{{item.phone}}</td>
+                                                <td>area</td>
+                                                <td>{{area.area}}</td>
+
                                                 <td>
-                                                    <img [src]="url+item.image"> </td>
-                                                <td>
-                                                    <a routerLink="/addDelivery" class="btn btn-outline-primary" (click)="edit(item.u_id)">Edit</a>
-                                                    <a (click)="delete(item.u_id)" class="btn btn-outline-primary vendor-delete">Delete</a>
+                                                    <button class="btn remove btn-outline-primary" (click)="editArea(area.id)">Edit
+                                                    </button>
+                                                    <button class="btn remove btn-outline-primary" (click)="deleteAreas(area.id)">Delete
+                                                    </button>
                                                 </td>
                                             </tr>
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
+
                         </div>
                     </div>
                 </div>
-
-
-
             </div>
             <!-- content-wrapper ends -->
             <!-- partial:partials/_footer.html -->

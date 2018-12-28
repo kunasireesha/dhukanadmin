@@ -33,6 +33,8 @@ export const AppSettings = {
     deleteOfferById: base_url + 'voucher/',
     addDeliveryUrl: base_url + 'oders/delvory',
     getDeliveryUrl: base_url + 'oders/getdelvory',
+    getDeliveryById: base_url + 'oders/getbyid',
+    updateDeliveryUrl: base_url + 'oders/updatedelvory',
     deleteDeliveryById: base_url + 'oders/deletedelvory',
     getCountriesUrl: base_url + 'users/location_management/countries',
     getStatesUrl: base_url + 'users/location_management/countries',
@@ -51,7 +53,13 @@ export const AppSettings = {
     editBannerUrl: base_url + 'banners/getiddetailes',
     updatebannerUrl: base_url + 'banners/updateBanner',
     bannerPositionUrl: base_url + 'banners/getbannerpostion',
-
+    addCityUrl: base_url + 'delivery/warehouse_coutry',
+    getCitiesUrl: base_url + 'delivery/getwarehouse_country',
+    deleteCitiesUrl: base_url + 'delivery/deletecity',
+    addAreaUrl: base_url + 'delivery/warehouse_area',
+    getAreasUrl: base_url + 'delivery/getallwerehousearea',
+    deleteAreaUrl: base_url + 'delivery/deletearea',
+    addwarehouseUrl: base_url + 'delivery/addarea'
     // postDealbannersUrl: base_url + 'banners/new_banner',
     // getDealBannerUrl: base_url + 'banners/banners-list',
     // deleteDealBannerUrl: base_url + 'banners/delete_banner',

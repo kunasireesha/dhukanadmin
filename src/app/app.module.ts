@@ -1,3 +1,33 @@
+import { AddwarehouseComponent } from './components/ware-house/addwarehouse.component';
+import { AddAreaComponent } from './components/area/addarea.component';
+import { AddCityComponent } from './components/city/addcity.component';
+import { AreaModule } from './components/area/area/area.module';
+import { CityModule } from './components/city/city/city.module';
+
+//modules
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { BrowserModule } from '@angular/platform-browser';
+
+import { NgModule, NO_ERRORS_SCHEMA, Component } from '@angular/core';
+import { RouterModule } from '@angular/router';
+import swal from 'sweetalert'
+import { HttpModule } from '@angular/http';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+// import { routing } from './app.routing';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { AppComponent } from './app.component';
+import { LoginComponent } from './components/login/login.component';
+import { ForgotPasswordComponent } from './components/login/forgot.password';
+import { CKEditorModule } from 'ng2-ckeditor';
+import { NgSelectModule } from '@ng-select/ng-select';
+import { AmazingTimePickerModule } from 'amazing-time-picker';
+import { NgxPaginationModule } from 'ngx-pagination';
+
+import { Ng4GeoautocompleteModule } from 'ng4-geoautocomplete';
+
 // import { WareHouseComponent } from './components/banner/';
 import { AddHelpBannerComponent } from './components/banner/help-banner/add.help-banner';
 import { AddOffersBannerComponent } from './components/banner/offer-banner/add.offer-banner';
@@ -19,26 +49,7 @@ import { ImageUploadComponent } from './components/image-upload/image-upload.com
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
 // import * as xlsx from "xlsx";
-import { HashLocationStrategy, LocationStrategy } from '@angular/common';
-import { BrowserModule } from '@angular/platform-browser';
 
-import { NgModule, NO_ERRORS_SCHEMA, Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
-import swal from 'sweetalert'
-import { HttpModule } from '@angular/http';
-import { Ng2SearchPipeModule } from 'ng2-search-filter';
-// import { routing } from './app.routing';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { TooltipModule } from 'ngx-bootstrap/tooltip';
-import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { AppComponent } from './app.component';
-import { LoginComponent } from './components/login/login.component';
-import { ForgotPasswordComponent } from './components/login/forgot.password';
-import { CKEditorModule } from 'ng2-ckeditor';
-import { NgSelectModule } from '@ng-select/ng-select';
-import { AmazingTimePickerModule } from 'amazing-time-picker';
-import { NgxPaginationModule } from 'ngx-pagination';
 //side menus
 import { LogNavComponent } from './components/sidenav/logo.nav';
 import { ProfileNavComponent } from './components/sidenav/profile.nav';
@@ -107,6 +118,8 @@ import { addDiscountAppliances } from './components/banner/best-discount-applian
 import { HelpBannerComponent } from './components/banner/help-banner/help-banner.component';
 import { OfferBannerComponent } from './components/banner/offer-banner/offer-banner.component';
 import { WareHouseComponent } from './components/ware-house/ware-house.component';
+import { CityComponent } from './components/city/city.component';
+import { AreaComponent } from './components/area/area.component';
 
 // import { ExcelService } from './excel.service';
 // import {MatDatepickerModule,MatNativeDateModule } from '@angular/material/datepicker';
@@ -127,6 +140,7 @@ import { WareHouseComponent } from './components/ware-house/ware-house.component
         ProductsComponent,
         AddProductsComponent,
         UsersComponent,
+        AddCityComponent,
         AddUsersComponent,
         WholesellersComponent,
         AddWholesellersComponent,
@@ -154,6 +168,7 @@ import { WareHouseComponent } from './components/ware-house/ware-house.component
         BestBrandsComponent,
         BestAppliancesComponent,
         addDealsComponent,
+        AddAreaComponent,
         // BestDiscountAppliancesComponent,
         AddBestDiscountComponent,
         AddBestAppliancesComponent,
@@ -165,6 +180,9 @@ import { WareHouseComponent } from './components/ware-house/ware-house.component
         AddOffersBannerComponent,
         AddHelpBannerComponent,
         WareHouseComponent,
+        CityComponent,
+        AreaComponent,
+        AddwarehouseComponent
         // WareHouseComponent
 
     ],
@@ -186,7 +204,10 @@ import { WareHouseComponent } from './components/ware-house/ware-house.component
         IntlModule,
         NgxPaginationModule,
         DateInputsModule,
+        CityModule,
+        AreaModule,
         Ng4LoadingSpinnerModule.forRoot(),
+        Ng4GeoautocompleteModule.forRoot(),
         // MatNativeDateModule,
         // MatDatepickerModule,
         TooltipModule.forRoot(),
@@ -245,7 +266,12 @@ import { WareHouseComponent } from './components/ware-house/ware-house.component
             { path: 'addoffersBanners', component: AddOffersBannerComponent, data: [{ page: 'addoffersBanners' }] },
             { path: 'helpBanners', component: HelpBannerComponent, data: [{ page: 'helpBanners' }] },
             { path: 'addhelpBanners', component: AddHelpBannerComponent, data: [{ page: 'addhelpBanners' }] },
-
+            { path: 'WareHouse', component: WareHouseComponent, data: [{ page: 'WareHouse' }] },
+            { path: 'addwarehouse', component: AddwarehouseComponent, data: [{ page: 'addwarehouse' }] },
+            { path: 'city', component: CityComponent, data: [{ page: 'city' }] },
+            { path: 'addcity', component: AddCityComponent, data: [{ page: 'addcity' }] },
+            { path: 'area', component: AreaComponent, data: [{ page: 'area' }] },
+            { path: 'addarea', component: AddAreaComponent, data: [{ page: 'addarea' }] }
         ], { useHash: true }),
         BrowserAnimationsModule
     ],

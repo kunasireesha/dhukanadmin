@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from './../../services/dhukan/dhukan-data.service';
 import { Router, NavigationExtras, ActivatedRoute } from '@angular/router';
-
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 @Component({
     selector: 'add-delivery',
     templateUrl: './add.delivery.html',
@@ -10,7 +10,7 @@ import { Router, NavigationExtras, ActivatedRoute } from '@angular/router';
 })
 export class AddDeliveryComponent implements OnInit {
     deliveryId;
-    constructor(private appService: AppService, private route: ActivatedRoute, public router: Router) {
+    constructor(private appService: AppService, private route: ActivatedRoute, public router: Router, private spinnerService: Ng4LoadingSpinnerService) {
         this.route.queryParams.subscribe(params => {
             this.deliveryId = params.deliveryId
         })
@@ -19,10 +19,13 @@ export class AddDeliveryComponent implements OnInit {
     email;
     password;
     phone;
+    deliveryImage;
+    path = 'http://versatilemobitech.co.in/DHUKAN/images/'
     ngOnInit() {
-        this.getDelivory();
+        this.getDelivorybyId();
     }
     addDelivory() {
+        this.spinnerService.show();
         var data = {
             "first_name": this.contact,
             'email': this.email,
@@ -35,7 +38,9 @@ export class AddDeliveryComponent implements OnInit {
         }
         else {
             this.appService.addDeliveryUrl(data).subscribe(res => {
+                this.spinnerService.hide();
                 swal(res.json().message, "", "success");
+                this.router.navigate(['/delivery']);
             }, error => {
                 swal(error.json().message, "", "error");
             })
@@ -58,8 +63,37 @@ export class AddDeliveryComponent implements OnInit {
         }
         myReader.readAsDataURL(file);
     }
-    getDelivory() {
+    getDelivorybyId() {
+        this.spinnerService.show();
+        var data = {
+            'id': this.deliveryId
+        }
+        this.appService.getDeliverybyId(data).subscribe(resp => {
+            this.spinnerService.hide();
+            this.contact = resp.json().data[0].first_name;
+            this.email = resp.json().data[0].email;
+            this.password = resp.json().data[0].password;
+            this.phone = resp.json().data[0].phone;
+            this.deliveryImage = resp.json().data[0].image;
 
+        })
     }
-
+    updateDelivery() {
+        this.spinnerService.show();
+        var data = {
+            'id': this.deliveryId,
+            'first_name': this.contact,
+            'email': this.email,
+            'image': this.strImage,
+            'password': this.password,
+            'phone': this.phone
+        }
+        this.appService.updateDelivery(data).subscribe(resp => {
+            if (resp.json().status === 200) {
+                this.spinnerService.hide();
+                swal(resp.json().message, "", "success");
+                this.router.navigate(['/delivery']);
+            }
+        })
+    }
 }

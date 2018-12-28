@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from './../../services/dhukan/dhukan-data.service';
 import { Router, NavigationExtras } from '@angular/router';
-
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 @Component({
     selector: 'app-delivery',
     templateUrl: './delivery.component.html',
@@ -9,7 +9,7 @@ import { Router, NavigationExtras } from '@angular/router';
 })
 export class DeliveryComponent implements OnInit {
 
-    constructor(private appService: AppService, public router: Router) { }
+    constructor(private appService: AppService, public router: Router, private spinnerService: Ng4LoadingSpinnerService) { }
     delData;
     url;
     ngOnInit() {
@@ -18,13 +18,16 @@ export class DeliveryComponent implements OnInit {
 
     }
     getDelivery() {
+        this.spinnerService.show();
         this.appService.getDelivery().subscribe(resp => {
+            this.spinnerService.hide();
             this.delData = resp.json().data;
         }, err => {
 
         })
     }
     delete(uId) {
+        this.spinnerService.show();
         var data = {
             'id': uId
         }
@@ -34,6 +37,7 @@ export class DeliveryComponent implements OnInit {
 
             if (value === true) {
                 this.appService.deleteDelivery(data).subscribe(resp => {
+                    this.spinnerService.hide();
                     swal(resp.json().data, "", "success");
                     this.getDelivery();
                 }, error => {

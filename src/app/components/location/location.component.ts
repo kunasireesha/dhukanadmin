@@ -2,6 +2,7 @@ import { AppService } from './../../services/dhukan/dhukan-data.service';
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
+
 @Component({
     selector: 'app-location',
     templateUrl: './location.component.html',
@@ -58,5 +59,6 @@ export class LocationComponent implements OnInit {
 
     //     })
     // }
+
 
 }

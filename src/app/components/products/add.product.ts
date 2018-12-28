@@ -239,7 +239,6 @@ export class AddProductsComponent implements OnInit {
     optionsChecked = [];
     radio: any[];
     ngOnInit() {
-
         this.list = [
             {
                 id: 1,
@@ -279,14 +278,12 @@ export class AddProductsComponent implements OnInit {
         this.getLocation();
         this.getProduct();
 
-
-
         console.log(this.skusData);
 
     }
     radioType(event) {
         this.type = event;
-        console.log(this.type);
+        alert(this.type);
     }
     subCategoryName;
     changeCat(id) {
@@ -339,7 +336,6 @@ export class AddProductsComponent implements OnInit {
                             this.skusData[i].express_delivery = this.selectedExpressValue;
                             this.skusData[i].normal_delivery = this.selectedExpressValue;
                             return;
-
                         }
                     }
                     return;
@@ -351,8 +347,6 @@ export class AddProductsComponent implements OnInit {
             }
         }
     }
-
-
     //add product
     getCat() {
         this.appService.getCat()
@@ -561,8 +555,6 @@ export class AddProductsComponent implements OnInit {
                 fileReader.readAsDataURL(event.target.files[i]);
             }
         }
-
-
     }
 
     insertProduct() {
@@ -586,7 +578,6 @@ export class AddProductsComponent implements OnInit {
             //     this.skusData[i].termscnd === '' || this.skusData[i].question === '' || this.skusData[i].answer === '') {
             //     swal('You are missing some field, Please check', '', 'error');
             // }
-
         }
 
 
@@ -622,7 +613,7 @@ export class AddProductsComponent implements OnInit {
         // console.log(data);
 
         this.spinnerService.show();
-        this.appService.insertProduct(data)
+        this.appService.insertSubCat(data)
             .subscribe(resp => {
                 if (resp.json().status === 200) {
                     this.spinnerService.hide();
@@ -1078,7 +1069,6 @@ export class AddProductsComponent implements OnInit {
 
     //         }
     //     }
-
     // }
     product_type: any;
     productType(value) {

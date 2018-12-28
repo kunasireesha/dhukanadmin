@@ -23,40 +23,42 @@
                                     <fieldset>
                                         <div class="form-group">
                                             <label for="firstname">Name</label>
-                                            <input id="category" class="form-control" name="category" type="text"
-                                                [(ngModel)]="contact" />
+                                            <input id="category" class="form-control" name="category" type="text" [(ngModel)]="contact" />
                                         </div>
                                         <div class="form-group">
-                                            <label for="firstname">Emai</label>
-                                            <input id="category" class="form-control" name="category" type="text"
-                                                [(ngModel)]="email" />
+                                            <label for="firstname">Email</label>
+                                            <input id="category" class="form-control" name="category1" type="text" [(ngModel)]="email" />
                                         </div>
                                         <div class="form-group">
                                             <label for="firstname">Password</label>
-                                            <input type="password" id="category" class="form-control" name="category"
-                                                type="text" [(ngModel)]="password" />
+
+                                            <input type="password" name="pwd" class="form-control" [(ngModel)]="password">
                                         </div>
                                         <div class="form-group">
                                             <label for="firstname">Phone</label>
-                                            <input id="category" class="form-control" name="category" type="text"
-                                                [(ngModel)]="phone" />
+                                            <input id="category" class="form-control" name="category2" type="text" [(ngModel)]="phone" />
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Id Proof</label>
-                                            <input class="form-control" type="file" accept="image/*" (change)="changeListener($event)">
+                                            <input class="form-control" type="file" accept="image/*" (change)="changeListener($event)" [(ngModel)]="deliveryImage" name="deliveryImage">
                                             <br>
                                             <div *ngIf="image">
                                                 <h4>Image:</h4>
-                                                <img src="{{image}}" alt="" width="200" height="200">
+                                                <img src="{{image}}" alt="" width="100" height="100" style="border: solid 1px;margin-top: 2%;">
                                             </div>
+                                            <div class="form-group">
+                                                <img src="{{path + deliveryImage}}" alt="" width="100" height="100" style="border: solid 1px;margin-top: 2%;">
+                                            </div>
+                                            <!-- <div *ngIf="Delimage">
+                                                <h4>Image:</h4>
+                                                <img src="{{path + deliveryImage}}" alt="" width="100" height="100">
+                                            </div> -->
                                         </div>
                                         <br>
-                                        <button type="submit" *ngIf="!deliveryId" class="btn btn-primary vendor-button"
-                                            (click)="addDelivory()">
+                                        <button type="submit" *ngIf="!deliveryId" class="btn btn-primary vendor-button" (click)="addDelivory()">
                                             Add
                                         </button>
-                                        <button type="submit" *ngIf="deliveryId" class="btn btn-primary vendor-button"
-                                            (click)="addDelivory()">
+                                        <button type="submit" *ngIf="deliveryId" class="btn btn-primary vendor-button" (click)="updateDelivery()">
                                             Update
                                         </button>
                                     </fieldset>
