@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 
 
 @Component({
-    selector: 'add-users',
+    selector: 'add-slot',
     templateUrl: './add.slot.html',
     styleUrls: ['./slot.component.css']
 })

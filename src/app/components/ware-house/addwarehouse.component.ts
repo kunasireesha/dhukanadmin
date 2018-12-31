@@ -1,6 +1,7 @@
 import { AppService } from './../../services/dhukan/dhukan-data.service';
 import { Component, OnInit } from '@angular/core';
-
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
+import { Router, NavigationExtras, ActivatedRoute } from '@angular/router';
 @Component({
     selector: 'add-users',
     templateUrl: './addwarehouse.component.html',
@@ -14,7 +15,7 @@ export class AddwarehouseComponent implements OnInit {
     address;
     name;
     description;
-    constructor(private AppService: AppService) { }
+    constructor(private AppService: AppService, private route: ActivatedRoute, private spinnerService: Ng4LoadingSpinnerService, public router: Router) { }
 
     ngOnInit() {
         this.getCities();
@@ -55,7 +56,8 @@ export class AddwarehouseComponent implements OnInit {
             "description": this.description
         }
         this.AppService.addWarehouse(data).subscribe(resp => {
-
+            swal('Add warehouse successfully', "", "success");
+            this.router.navigate(['/WareHouse']);
         })
     }
 }
