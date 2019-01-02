@@ -18,12 +18,17 @@ export class AddCityComponent implements OnInit {
     public zoom: number;
     cityName;
     action;
+    city;
+    positionValue;
     @ViewChild("search")
     public searchElementRef: ElementRef;
     constructor(private mapsAPILoader: MapsAPILoader,
         private ngZone: NgZone, private appService: AppService, private route: ActivatedRoute, private spinnerService: Ng4LoadingSpinnerService, public router: Router) {
         this.route.queryParams.subscribe(params => {
-            this.action = params.deliveryId
+            this.action = params.deliveryId;
+            if (this.action !== undefined) {
+                this.getCityById();
+            }
         })
     }
 
@@ -58,6 +63,8 @@ export class AddCityComponent implements OnInit {
                     this.latitude = place.geometry.location.lat();
                     this.longitude = place.geometry.location.lng();
                     this.position = place.address_components[0].short_name;
+                    this.positionValue = this.position.split('-');
+                    this.city = this.positionValue[0].trim();
                     this.zoom = 12;
                 });
             });
@@ -74,11 +81,8 @@ export class AddCityComponent implements OnInit {
         }
 
     }
-    city;
-    positionValue;
+
     addCity() {
-        this.positionValue = this.position.split('-');
-        this.city = this.positionValue[0].trim();
         var data = {
             'city': this.city
         }
@@ -90,6 +94,30 @@ export class AddCityComponent implements OnInit {
             else if (resp.json().status === 400) {
                 swal(resp.json().result, "", "error");
             }
+        })
+    }
+
+    updateCity() {
+        var data = {
+            'id': this.action,
+            'city': this.city
+        }
+        this.appService.updateCity(data).subscribe(resp => {
+            if (resp.json().status === 200) {
+                swal('Update city successfully', "", "success");
+                this.router.navigate(['/city']);
+            }
+        }
+        )
+    }
+
+
+    getCityById() {
+        var params = {
+            id: this.action
+        }
+        this.appService.getcitById(params).subscribe(resp => {
+            this.city = resp.json().result[0].contry;
         })
     }
 }

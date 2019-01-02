@@ -74,6 +74,12 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <div class="col-sm-3">
+                                            <div class="form-group m-t">
+                                                <h5 style="font-weight:normal">WareHouse :</h5>
+                                                <ss-multiselect-dropdown [options]="warehouse" [(ngModel)]="optionsModel" (ngModelChange)="onChange($event)" name="optionsModel"></ss-multiselect-dropdown>
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-sm-12">
@@ -126,7 +132,6 @@
                                                     <div class="col-sm-3">
                                                         <label for="firstname">Stock :</label>
                                                         <div class="form-group">
-
                                                             <input id="category" class="form-control" onkeypress="return (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57"
                                                                 type="text" placeholder="Stock" min='0' max='20' type="number"
                                                                 [(ngModel)]="skuValues.stock" [ngModelOptions]="{standalone:true}"
@@ -136,7 +141,7 @@
                                                     <div class="col-sm-3"></div>
                                                     <div class="col-sm-3"></div>
                                                 </div>
-                                                <div class="row">
+                                                <!-- <div class="row">
                                                     <div class="col-sm-3">
                                                         <div class="form-group">
                                                             <label for="firstname">Country :</label>
@@ -154,7 +159,7 @@
                                                         <div class="form-group">
                                                             <label for="firstname">State :</label>
                                                             <div class="form-group">
-                                                                <!-- <input [(ngModel)]="skuValues.state"> -->
+
                                                                 <select required class="form-control border-primary" id="exampleSelectPrimary" [(ngModel)]="skuValues.state" name="state"
                                                                     (change)="getCitys($event.target.value)">
                                                                     <option value="" disabled selected hidden>Select state
@@ -188,7 +193,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
+                                                </div> -->
                                                 <div class="row">
                                                     <div class="col-sm-3">
                                                         <div class="form-group">

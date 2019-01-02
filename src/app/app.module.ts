@@ -88,6 +88,7 @@ import { FormsModule } from '@angular/forms';
 import { MyDatePickerModule } from 'mydatepicker';
 import { IntlModule } from '@progress/kendo-angular-intl';
 import { DateInputsModule } from '@progress/kendo-angular-dateinputs';
+import { MultiselectDropdownModule } from 'angular-2-dropdown-multiselect';
 
 import { ProductService } from './services/productService'
 
@@ -206,6 +207,7 @@ import { AreaComponent } from './components/area/area.component';
         DateInputsModule,
         CityModule,
         AreaModule,
+        MultiselectDropdownModule,
         Ng4LoadingSpinnerModule.forRoot(),
         Ng4GeoautocompleteModule.forRoot(),
         // MatNativeDateModule,

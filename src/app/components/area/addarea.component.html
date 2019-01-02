@@ -32,13 +32,14 @@
                                 <form style="margin-top:30px;">
                                     <div class="form-group">
                                         <input placeholder="search for location" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control"
-                                            #search [formControl]="searchControl" style="width: 400px;">
+                                            #search [formControl]="searchControl" style="width: 400px;" [(ngModel)]="area" name="area">
                                     </div>
                                     <agm-map [latitude]="latitude" [longitude]="longitude" [scrollwheel]="false" [zoom]="zoom">
                                         <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
                                     </agm-map>
                                     <div class="form-group">
-                                        <select required class="form-control border-primary" id="exampleSelectPrimary" (change)="city($event.target.value)">
+                                        <select required class="form-control border-primary" id="exampleSelectPrimary" (change)="city($event.target.value)" [(ngModel)]="data.cityVlaue"
+                                            name="cityValue">
                                             <option value="" disabled>Select City</option>
                                             <option *ngFor="let city of cities" value="{{city.contry}}">{{city.contry}}</option>
                                         </select>

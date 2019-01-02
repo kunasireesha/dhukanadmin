@@ -8,6 +8,7 @@ import { Router, NavigationExtras } from '@angular/router';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import * as _ from 'underscore';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
+import { IMultiSelectOption } from 'angular-2-dropdown-multiselect';
 @Component({
     selector: 'add-products',
     templateUrl: './add.product.html',
@@ -154,6 +155,7 @@ export class AddProductsComponent implements OnInit {
     brand_id;
     is_active;
     upProduct = [];
+    optionsModel: number[];
     getProduct() {
         this.image1 = true;
         this.skuimages = [];
@@ -177,7 +179,11 @@ export class AddProductsComponent implements OnInit {
                         this.brand_id = this.product[i].brand_id;
                         this.skusData = this.product[i].sku;
                         this.upProduct = this.product[i].sku;
-                        console.log(this.skusData);
+                        // this.optionsModel = this.product[i].warehouse;
+                        for (var m = 0; m < this.product[i].warehouse.length; m++) {
+                            this.optionsModel.push(this.product[i].warehouse[m].warehouse_id);
+                        }
+
                         for (var j = 0; j < this.skusData.length; j++) {
                             this.skusData[j].offer = this.skusData[j].offer_price;
                             this.skusData[j].sellingPrice = this.skusData[j].selling_price;
@@ -221,6 +227,8 @@ export class AddProductsComponent implements OnInit {
         error => {
             console.log(error, "error");
         }
+
+        console.log(this.optionsModel)
     }
     // private updateText() {
     //     this.text = this.form.value.enable ? "Vegetrian" : "NonVegetrian";
@@ -238,38 +246,14 @@ export class AddProductsComponent implements OnInit {
 
     optionsChecked = [];
     radio: any[];
+
+    myOptions: IMultiSelectOption[];
+    // cities: IMultiSelectOption[];
     ngOnInit() {
-        this.list = [
-            {
-                id: 1,
-                title: 'Normal Delivery',
-                checked: true,
-            },
-            {
-                id: 2,
-                title: 'Express Delivery',
-                checked: false,
-            }
-        ]
-        this.radio = [
-            {
-                id: 1,
-                title: 'Veg',
-                checked: true,
-            },
-            {
-                id: 2,
-                title: 'Non-Veg',
-                checked: false,
-            },
-            {
-                id: 3,
-                title: 'Other',
-                checked: false,
-            }
-        ]
+
         if (this.action !== '') {
             // this.editProImages();
+
 
         }
 
@@ -277,9 +261,25 @@ export class AddProductsComponent implements OnInit {
         this.getSubCategory();
         this.getLocation();
         this.getProduct();
-
+        this.getwarehouse();
         console.log(this.skusData);
 
+    }
+    warehouse;
+    warehouseData = [];
+    dataWare = [];
+    // cities;
+    getwarehouse() {
+        this.appService.getwarehouse().subscribe(resp => {
+            this.warehouse = resp.json().result;
+        })
+    }
+    onChange(event) {
+
+
+
+        console.log(this.optionsModel);
+        console.log(this.dataWare);
     }
     radioType(event) {
         this.type = event;
@@ -558,6 +558,18 @@ export class AddProductsComponent implements OnInit {
     }
 
     insertProduct() {
+        this.dataWare = [];
+        for (var i = 0; i < this.warehouse.length; i++) {
+            for (var j = 0; j < this.optionsModel.length; j++) {
+                if (this.warehouse[i].id === this.optionsModel[j]) {
+                    this.warehouseData.push({ id: this.optionsModel[j], name: this.warehouse[i].name })
+                }
+            }
+        }
+        this.dataWare = _.uniq(this.warehouseData, function (obj) {
+            return obj.id;
+        });
+
         // if (this.formdata.categoryName === '' || this.formdata.subcategoryName === '' || this.formdata.proName === '' ||
         //     this.formdata.Manufacture === '') {
         //     swal('You are missing some field, Please check', '', 'error');
@@ -589,6 +601,7 @@ export class AddProductsComponent implements OnInit {
             'subcategory_id': this.subCatId,
             'brand_id': 123,
             'product_type': this.product_type,
+            'warehouse': this.dataWare,
             // 'country': this.country,
             // 'state': this.state,
             // 'city': this.city,
@@ -613,7 +626,7 @@ export class AddProductsComponent implements OnInit {
         // console.log(data);
 
         this.spinnerService.show();
-        this.appService.insertSubCat(data)
+        this.appService.insertProduct(data)
             .subscribe(resp => {
                 if (resp.json().status === 200) {
                     this.spinnerService.hide();
@@ -940,6 +953,7 @@ export class AddProductsComponent implements OnInit {
             "is_active": this.is_active,
             "brand_id": this.brand_id,
             "brand_name": this.formdata.Manufacture,
+            "warehouse": this.optionsModel,
             "sku": this.updatedSkus,
         }
         this.appService.updateProduct(data)

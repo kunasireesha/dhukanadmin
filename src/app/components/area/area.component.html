@@ -38,11 +38,10 @@
                                         <tbody>
                                             <tr class="todo-list" *ngFor="let item of areas | filter:filter;let i = index">
                                                 <td>{{i+1}}</td>
-                                                <td>area</td>
+                                                <td>{{item.contry}}</td>
                                                 <td>{{item.area}}</td>
-
                                                 <td>
-                                                    <button class="btn remove btn-outline-primary" (click)="editArea(item.id)">Edit
+                                                    <button class="btn remove btn-outline-primary" (click)="editArea(item.id,item.warehouse_contry_id)">Edit
                                                     </button>
                                                     <button class="btn remove btn-outline-primary" (click)="deleteAreas(item.id)">Delete
                                                     </button>
@@ -52,7 +51,6 @@
                                     </table>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>

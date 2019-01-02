@@ -31,16 +31,20 @@
                                 <a routerLink="/WareHouse" id="show" class="btn  btn-maron" style="float: right;    margin-top: -45px;">Back</a>
                                 <form style="margin-top:30px;">
                                     <div class="form-group">
-                                        <select required class="form-control border-primary" id="exampleSelectPrimary" (change)="changeCity($event.target.value)">
+                                        <select required class="form-control border-primary" id="exampleSelectPrimary" (change)="changeCity($event.target.value)"
+                                            [(ngModel)]="data.city" name="city">
                                             <option value="" disabled>Select City</option>
                                             <option *ngFor="let city of cities" value="{{city.contry}}">{{city.contry}}</option>
                                         </select>
                                     </div>
                                     <div class="form-group">
-                                        <select required class="form-control border-primary" id="exampleSelectPrimary" (change)="changeArea($event.target.value)">
+                                        <select required class="form-control border-primary" id="exampleSelectPrimary" (change)="changeArea($event.target.value)"
+                                            [(ngModel)]="data.area" name="area">
                                             <option value="" disabled>Select Area</option>
-                                            <option *ngFor="let area of areas" value="{{area.area}}">{{area.area}}</option>
-                                        </select>
+                                            <option *ngFor="let area of cityareas" value="{{area.area}}">{{area.area}}</option>
+                                        </select><br/>
+                                        <label *ngFor="let warehouse of warehouseAreas"><strong>{{warehouse.name}} ,</strong>
+                                            </label>
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Warehouse Name</label>
@@ -54,7 +58,10 @@
                                         <label for="exampleInputEmail1">Warehouse Address</label>
                                         <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" [(ngModel)]="address" name="address">
                                     </div>
-                                    <button type="submit" class="btn btn-primary vendor-button" (click)="addWarehouse()" style="margin-top:20px">Add
+                                    <button type="submit" *ngIf="!action" class="btn btn-primary vendor-button" (click)="addWarehouse()" style="margin-top:20px">Add
+                                        warehouse
+                                    </button>
+                                    <button type="submit" *ngIf="action" class="btn btn-primary vendor-button" (click)="updateWarehouse()" style="margin-top:20px">update
                                         warehouse
                                     </button>
                                     <!-- <button type="submit" class="btn btn-primary vendor-button"*ngIf="!addcat">Update

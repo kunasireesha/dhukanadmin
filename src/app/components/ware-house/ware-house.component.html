@@ -34,20 +34,22 @@
                                                 </th>
                                                 <th>Ware House</th>
                                                 <th>Description</th>
+                                                <th>Address</th>
                                                 <th>Action </th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr class="todo-list" *ngFor="let location of locationData | filter:filter;let i = index">
+                                            <tr class="todo-list" *ngFor="let data of warehouse | filter:filter;let i = index">
                                                 <td>{{i+1}}</td>
-                                                <td>{{location.country}}</td>
-                                                <td>{{location.state}}</td>
-                                                <td>{{location.city}}</td>
-                                                <td>{{location.area}}</td>
+                                                <td>{{data.contry}}</td>
+                                                <td>{{data.area}}</td>
+                                                <td>{{data.name}}</td>
+                                                <td>{{data.warehouse_discription}}</td>
+                                                <td>{{data.warehouse_address}}</td>
                                                 <td>
-                                                    <button class="btn remove btn-outline-primary">Edit
+                                                    <button class="btn remove btn-outline-primary" (click)="editLoc(data.id)">Edit
                                                     </button>
-                                                    <button class="btn remove btn-outline-primary" (click)="deleteLoc(location.id)">Delete
+                                                    <button class="btn remove btn-outline-primary" (click)="deleteLoc(data.id)">Delete
                                                     </button>
                                                 </td>
                                             </tr>

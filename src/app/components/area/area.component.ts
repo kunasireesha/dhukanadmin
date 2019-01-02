@@ -19,10 +19,11 @@ export class AreaComponent implements OnInit {
             this.areas = resp.json().result;
         })
     }
-    editArea(id) {
+    editArea(id, warehouseId) {
         let navigationExtras: NavigationExtras = {
             queryParams: {
-                areaId: id
+                areaId: id,
+                warehouse_Id: warehouseId
             }
         }
         this.router.navigate(['/addarea'], navigationExtras);

@@ -218,9 +218,19 @@ export class AppService {
         const headers = new Headers({ 'Content-Type': "application/x-www-form-urlencoded" });
         return this.http.get(AppSettings.getCitiesUrl, { headers: headers })
     }
+
+    getcitById(params) {
+        const headers = new Headers({ 'Content-Type': "application/JSON" });
+        return this.http.post(AppSettings.getCityByID, params, { headers: headers })
+    }
+
     deleteCity(params) {
         const headers = new Headers({ 'Content-Type': "application/JSON" });
         return this.http.post(AppSettings.deleteCitiesUrl, params, { headers: headers })
+    }
+    updateCity(params) {
+        const headers = new Headers({ 'Content-Type': "application/JSON" });
+        return this.http.post(AppSettings.updateCityUrl, params, { headers: headers })
     }
     addArea(params) {
         const headers = new Headers({ 'Content-Type': "application/JSON" });
@@ -230,13 +240,41 @@ export class AppService {
         const headers = new Headers({ 'Content-Type': "application/x-www-form-urlencoded" });
         return this.http.get(AppSettings.getAreasUrl, { headers: headers })
     }
+
+    getareaById(params) {
+        const headers = new Headers({ 'Content-Type': "application/JSON" });
+        return this.http.post(AppSettings.getAreaById, params, { headers: headers })
+    }
+
     deleteArea(params) {
         const headers = new Headers({ 'Content-Type': "application/JSON" });
         return this.http.post(AppSettings.deleteAreaUrl, params, { headers: headers })
     }
+    updateArea(params) {
+        const headers = new Headers({ 'Content-Type': "application/JSON" });
+        return this.http.post(AppSettings.updateAreaUrl, params, { headers: headers })
+    }
     addWarehouse(params) {
         const headers = new Headers({ 'Content-Type': "application/JSON" });
         return this.http.post(AppSettings.addwarehouseUrl, params, { headers: headers })
+    }
+    getwarehouse() {
+        const headers = new Headers({ 'Content-Type': "application/x-www-form-urlencoded" });
+        return this.http.get(AppSettings.getwarehouseurl, { headers: headers })
+    }
+    updatewarehouse(params) {
+        const headers = new Headers({ 'Content-Type': "application/JSON" });
+        return this.http.post(AppSettings.updatewarehouseUrl, params, { headers: headers })
+    }
+
+    getwarehouseById(params) {
+        const headers = new Headers({ 'Content-Type': "application/JSON" });
+        return this.http.post(AppSettings.getWarehouseById, params, { headers: headers })
+    }
+
+    deleteWareHoue(params) {
+        const headers = new Headers({ 'Content-Type': "application/JSON" });
+        return this.http.post(AppSettings.deleteWarehouse, params, { headers: headers })
     }
     // postDealBannerUrl(params) {
     //     const headers = new Headers({ 'Content-Type': "application/JSON" });

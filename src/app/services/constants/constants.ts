@@ -55,11 +55,23 @@ export const AppSettings = {
     bannerPositionUrl: base_url + 'banners/getbannerpostion',
     addCityUrl: base_url + 'delivery/warehouse_coutry',
     getCitiesUrl: base_url + 'delivery/getwarehouse_country',
+    getCityByID: base_url + 'delivery/getbycountryid',
+    updateCityUrl: base_url + 'delivery/updatecity',
     deleteCitiesUrl: base_url + 'delivery/deletecity',
     addAreaUrl: base_url + 'delivery/warehouse_area',
     getAreasUrl: base_url + 'delivery/getallwerehousearea',
+
+    getAreaById: base_url + 'delivery/getareabyid',
+
+    updateAreaUrl: base_url + 'delivery/updatearea',
     deleteAreaUrl: base_url + 'delivery/deletearea',
-    addwarehouseUrl: base_url + 'delivery/addarea'
+    addwarehouseUrl: base_url + 'delivery/addarea',
+    getwarehouseurl: base_url + 'delivery/getwerehousedata',
+
+    getWarehouseById: base_url + 'delivery/getwerehousebyid',
+
+    updatewarehouseUrl: base_url + 'delivery/updatewerehouse',
+    deleteWarehouse: base_url + 'delivery/deletewerehouse'
     // postDealbannersUrl: base_url + 'banners/new_banner',
     // getDealBannerUrl: base_url + 'banners/banners-list',
     // deleteDealBannerUrl: base_url + 'banners/delete_banner',
