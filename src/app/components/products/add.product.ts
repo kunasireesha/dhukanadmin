@@ -16,7 +16,6 @@ import { IMultiSelectOption } from 'angular-2-dropdown-multiselect';
 })
 export class AddProductsComponent implements OnInit {
     form: FormGroup;
-
     text: string;
     public myDatePickerOptions: IMyDpOptions = {
         // other options...
@@ -250,7 +249,14 @@ export class AddProductsComponent implements OnInit {
     myOptions: IMultiSelectOption[];
     // cities: IMultiSelectOption[];
     ngOnInit() {
-
+        this.list = [{
+            id: '1',
+            title: 'Express Delivery'
+        },
+        {
+            id: '2',
+            title: 'Normal Delivery'
+        }]
         if (this.action !== '') {
             // this.editProImages();
 
@@ -275,15 +281,12 @@ export class AddProductsComponent implements OnInit {
         })
     }
     onChange(event) {
-
-
-
         console.log(this.optionsModel);
         console.log(this.dataWare);
     }
     radioType(event) {
         this.type = event;
-        alert(this.type);
+
     }
     subCategoryName;
     changeCat(id) {
@@ -973,9 +976,6 @@ export class AddProductsComponent implements OnInit {
                 })
     }
 
-
-
-
     discountOption: any;
     changeDiscountOpt(event) {
         this.discountOption = event;
@@ -1089,6 +1089,4 @@ export class AddProductsComponent implements OnInit {
         this.product_type = value;
         // alert(this.product_type);
     }
-
-
 }

@@ -9,14 +9,24 @@ import { Router, NavigationExtras, ActivatedRoute } from '@angular/router';
 })
 export class WareHouseComponent implements OnInit {
     warehouse;
+    warehouseArea;
     constructor(private appservice: AppService, private spinnerService: Ng4LoadingSpinnerService, public router: Router) { }
 
     ngOnInit() {
         this.getwarehouse();
     }
+    area_values = [];
     getwarehouse() {
         this.appservice.getwarehouse().subscribe(resp => {
             this.warehouse = resp.json().result;
+            for (var i = 0; i < this.warehouse.length; i++) {
+                for (var j = 0; j < this.warehouse[i].area.length; j++) {
+                    if (this.warehouse[i].area[j].adress_id === this.warehouse[i].id) {
+                        this.area_values.push(this.warehouse[i].area[j].area_name);
+                        this.warehouse[i].area_names = this.area_values.join(',');
+                    }
+                }
+            }
         })
     }
     editLoc(id) {

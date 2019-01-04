@@ -42,7 +42,7 @@
                                             <tr class="todo-list" *ngFor="let data of warehouse | filter:filter;let i = index">
                                                 <td>{{i+1}}</td>
                                                 <td>{{data.contry}}</td>
-                                                <td>{{data.area}}</td>
+                                                <td>{{data.area[0].area_name}}</td>
                                                 <td>{{data.name}}</td>
                                                 <td>{{data.warehouse_discription}}</td>
                                                 <td>{{data.warehouse_address}}</td>

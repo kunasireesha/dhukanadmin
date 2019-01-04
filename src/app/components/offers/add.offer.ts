@@ -8,7 +8,7 @@ import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
     styleUrls: ['./offers.component.css']
 })
 export class AddOffersComponent implements OnInit {
-    discountType: any;
+    data = { discountType: '' };
     amount: boolean;
     percentage: boolean;
     coupon;
@@ -20,6 +20,7 @@ export class AddOffersComponent implements OnInit {
     disAmt;
     model;
     model1;
+    myDatePickerOptions;
     constructor(private appService: AppService, private route: ActivatedRoute, public router: Router, private spinnerService: Ng4LoadingSpinnerService) {
         this.route.queryParams.subscribe(params => {
             this.offerId = params.offerId
@@ -29,25 +30,29 @@ export class AddOffersComponent implements OnInit {
     ngOnInit() {
         this.getOfferbyId();
     }
+    DisType = [
+        { id: '1', name: 'Percentage' },
+        { id: '2', name: 'Flat' }
+    ]
     discount(event) {
-        this.discountType = event;
-        if (this.discountType === '1') {
+        this.data.discountType = event;
+        if (this.data.discountType === '1') {
             this.amount = false;
             this.percentage = true;
             this.disAmt = '';
-        }
-        else {
+        } else {
             this.percentage = false;
             this.amount = true;
             this.disPer = '';
         }
     }
     addOffer() {
+        console.log(this.myDatePickerOptions);
         var data = {
             'voucher_code': this.coupon,
             'total_count': this.total,
             // 'available_count': this.disAmt,
-            'discount_type': this.discountType,
+            'discount_type': this.data.discountType,
             'discount_amount': this.disAmt,
             'discount_percentage': this.disPer,
             'minimum_value': this.upto,
@@ -83,24 +88,28 @@ export class AddOffersComponent implements OnInit {
             this.disPer = this.offers[0].discount_percentage;
             this.total = this.offers[0].total_count;
             this.upto = this.offers[0].minimum_value;
-            this.model = this.offers[0].start_date;
+            this.model = this.myDatePickerOptions = this.offers[0].start_date;
             this.discountValue = this.offers[0].discount_type;
             this.model1 = this.offers[0].end_date;
             // alert(this.disType)
-            // if (this.disType === 0) {
-            //     this.discountType = "Percentage";
-            // } else {
-            //     this.discountType = "Flat";
-            // }
+            if (this.disType === 0) {
+                this.data.discountType = this.DisType[0].name;
+                this.amount = true;
+            } else {
+                this.data.discountType = this.DisType[1].name;
+                this.percentage = true;
+            }
         })
+        console.log(this.data.discountType);
     }
     updateOfferById() {
+        console.log(this.myDatePickerOptions);
         this.spinnerService.show();
         var data = {
             'voucher_code': this.coupon,
             'total_count': this.total,
             // 'available_count': '',
-            'discount_type': this.discountType,
+            'discount_type': this.data.discountType,
             'discount_amount': this.disAmt,
             'discount_percentage': this.disPer,
             'minimum_value': this.upto,
@@ -109,12 +118,14 @@ export class AddOffersComponent implements OnInit {
         }
         this.appService.updateOfferById(this.offerId, data).subscribe(resp => {
             this.spinnerService.hide();
-            swal(resp.json().message, "", "success");
-            this.router.navigate(['/offers']);
+            if (resp.json().status === 200) {
+                swal(resp.json().message, "", "success");
+                this.router.navigate(['/offers']);
+            }
+            else {
+                swal(resp.json().message, "", "error");
+            }
         })
     }
-    DisType = {
-        '1': 'Percentage',
-        '2': 'Flat'
-    }
+
 }

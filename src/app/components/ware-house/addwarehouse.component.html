@@ -43,8 +43,9 @@
                                             <option value="" disabled>Select Area</option>
                                             <option *ngFor="let area of cityareas" value="{{area.area}}">{{area.area}}</option>
                                         </select><br/>
-                                        <label *ngFor="let warehouse of warehouseAreas"><strong>{{warehouse.name}} ,</strong>
-                                            </label>
+                                        <label *ngFor="let warehouse of warehouseAreas"><strong>{{warehouse.name}}</strong>
+                                        </label>
+                                        <div class="" *ngFor="let data of areanames" style="font-size: 12px;">{{data.area_name}}</div>
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Warehouse Name</label>
@@ -56,7 +57,13 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Warehouse Address</label>
-                                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" [(ngModel)]="address" name="address">
+                                        <div class="form-group">
+                                            <input placeholder="search for location" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control"
+                                                #search [formControl]="searchControl" [(ngModel)]="address" name="address">
+                                        </div>
+                                        <agm-map [latitude]="latitude" [longitude]="longitude" [scrollwheel]="false" [zoom]="zoom">
+                                            <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
+                                        </agm-map>
                                     </div>
                                     <button type="submit" *ngIf="!action" class="btn btn-primary vendor-button" (click)="addWarehouse()" style="margin-top:20px">Add
                                         warehouse

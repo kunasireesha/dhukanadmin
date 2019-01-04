@@ -25,6 +25,10 @@
                                             <label for="firstname">Slot Name</label>
                                             <input id="category" class="form-control" name="slot" type="text" [(ngModel)]="slot" />
                                         </div>
+                                        <div class="form-group m-t">
+                                            <h5 style="font-weight:normal">WareHouse :</h5>
+                                            <ss-multiselect-dropdown [options]="warehouse" [(ngModel)]="optionsModel" (ngModelChange)="onChange($event)" name="optionsModel"></ss-multiselect-dropdown>
+                                        </div>
                                         <div class="form-group date date-picker">
                                             <label>Date: </label>
                                             <my-date-picker name="mydate" [options]="myDatePickerOptions" [(ngModel)]="model" required></my-date-picker>

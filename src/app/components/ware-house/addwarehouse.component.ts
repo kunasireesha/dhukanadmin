@@ -3,12 +3,24 @@ import { AppService } from './../../services/dhukan/dhukan-data.service';
 import { Component, OnInit } from '@angular/core';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { Router, NavigationExtras, ActivatedRoute } from '@angular/router';
+import { ElementRef, NgZone, ViewChild } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { } from 'googlemaps';
+import { MapsAPILoader } from '@agm/core';
+
 @Component({
     selector: 'add-users',
     templateUrl: './addwarehouse.component.html',
     styleUrls: ['./ware-house.component.css']
 })
 export class AddwarehouseComponent implements OnInit {
+    public latitude: number;
+    public longitude: number;
+    public searchControl: FormControl;
+    public zoom: number;
+
+    @ViewChild("search")
+    public searchElementRef: ElementRef;
     cities;
     areas;
     cityId;
@@ -24,7 +36,9 @@ export class AddwarehouseComponent implements OnInit {
     }
     warehouseAreas = [];
     changeAreaVlaue = false;
-    constructor(private AppService: AppService, private route: ActivatedRoute, private spinnerService: Ng4LoadingSpinnerService, public router: Router) {
+    constructor(private AppService: AppService, private route: ActivatedRoute, private spinnerService: Ng4LoadingSpinnerService, public router: Router,
+        private mapsAPILoader: MapsAPILoader,
+        private ngZone: NgZone) {
         this.route.queryParams.subscribe(params => {
             this.action = params.warehouseId;
             if (this.action !== undefined) {
@@ -32,10 +46,54 @@ export class AddwarehouseComponent implements OnInit {
             }
         })
     }
-
+    position;
     ngOnInit() {
+        this.zoom = 4;
+        this.latitude = 39.8282;
+        this.longitude = -98.5795;
+
+        //create search FormControl
+        this.searchControl = new FormControl();
+
+        //set current position
+        this.setCurrentPosition();
+
+        //load Places Autocomplete
+        this.mapsAPILoader.load().then(() => {
+            let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
+                types: ["address"]
+            });
+            autocomplete.addListener("place_changed", () => {
+                this.ngZone.run(() => {
+                    //get the place result
+                    let place: google.maps.places.PlaceResult = autocomplete.getPlace();
+
+                    //verify result
+                    if (place.geometry === undefined || place.geometry === null) {
+                        return;
+                    }
+
+                    //set latitude, longitude and zoom
+                    this.latitude = place.geometry.location.lat();
+                    this.longitude = place.geometry.location.lng();
+                    this.position = place.formatted_address;
+                    console.log(this.position);
+                    this.zoom = 12;
+                });
+            });
+        });
+
         this.getCities();
         this.getArea();
+    }
+    private setCurrentPosition() {
+        if ("geolocation" in navigator) {
+            navigator.geolocation.getCurrentPosition((position) => {
+                this.latitude = position.coords.latitude;
+                this.longitude = position.coords.longitude;
+                this.zoom = 12;
+            });
+        }
     }
     getCities() {
         this.AppService.getCity().subscribe(resp => {
@@ -45,7 +103,6 @@ export class AddwarehouseComponent implements OnInit {
     getArea() {
         this.AppService.getArea().subscribe(resp => {
             this.areas = resp.json().result;
-
         })
     }
     changeCity(value) {
@@ -84,11 +141,11 @@ export class AddwarehouseComponent implements OnInit {
         var data = {
             "contry_id": this.cityId,
             "area_id": this.areaId,
-            "address": this.address,
+            "address": this.position,
             "warehousename": this.name,
             "description": this.description,
             "cityname": this.data.city,
-            "area":  this.data.area
+            "area": this.warehouseAreas
         }
         this.AppService.addWarehouse(data).subscribe(resp => {
             swal('Add warehouse successfully', "", "success");
@@ -118,12 +175,13 @@ export class AddwarehouseComponent implements OnInit {
     }
 
 
-
+    areanames
     getWarehouseById() {
         var params = {
             id: this.action
         }
         this.AppService.getwarehouseById(params).subscribe(resp => {
+            this.areanames = resp.json().result[0].area;
             this.data.area = resp.json().result[0].area;
             this.data.city = resp.json().result[0].contry;
             this.cityId = resp.json().result[0].warehouse_contry_id;
@@ -131,12 +189,14 @@ export class AddwarehouseComponent implements OnInit {
             this.name = resp.json().result[0].name;
             this.description = resp.json().result[0].warehouse_discription;
             this.address = resp.json().result[0].warehouse_address;
-
-            for (var i = 0; i < this.areas.length; i++) {
-                if (this.data.city === this.areas[i].contry) {
-                    this.cityareas.push(this.areas[i]);
-                }
-            }
+            // for (var i = 0; i < this.areas.length; i++) {
+            //     if (this.data.city === this.areas[i].contry) {
+            //         this.cityareas.push(this.areas[i]);
+            //     }
+            // }
+            // for (var i = 0; i < this.data.area.length; i++) {
+            // this.areanames= this.data.area[i].area_name;
+            // }
         })
     }
 }

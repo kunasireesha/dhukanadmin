@@ -19,8 +19,15 @@ export class AddSlotComponent implements OnInit {
     constructor(private AppService: AppService) { }
 
     ngOnInit() {
+        this.getwarehouse();
         // console.log(new Date());
 
+    }
+    warehouse;
+    getwarehouse() {
+        this.AppService.getwarehouse().subscribe(resp => {
+            this.warehouse = resp.json().result;
+        })
     }
     addSlot() {
         var date = new Date(this.value);
