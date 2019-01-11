@@ -24,7 +24,7 @@ export class ProfileNavComponent implements OnInit {
         // this.getCat();
     }
     collapse() {
-        alert(this.banner);
+   
         this.banner = !this.banner;
     }
 

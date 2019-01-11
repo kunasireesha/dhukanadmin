@@ -10,6 +10,7 @@ import { Router, NavigationExtras, ActivatedRoute } from '@angular/router';
 export class WareHouseComponent implements OnInit {
     warehouse;
     warehouseArea;
+    p: number = 1;
     constructor(private appservice: AppService, private spinnerService: Ng4LoadingSpinnerService, public router: Router) { }
 
     ngOnInit() {

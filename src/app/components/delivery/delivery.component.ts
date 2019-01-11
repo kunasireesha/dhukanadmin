@@ -8,7 +8,7 @@ import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
     styleUrls: ['./delivery.component.css']
 })
 export class DeliveryComponent implements OnInit {
-
+    p: number = 1;
     constructor(private appService: AppService, public router: Router, private spinnerService: Ng4LoadingSpinnerService) { }
     delData;
     url;

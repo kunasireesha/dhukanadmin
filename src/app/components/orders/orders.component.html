@@ -23,16 +23,21 @@
                                                 <th>Address</th>
                                                 <th>Phone Number</th>
                                                 <th>Order Status</th>
+                                                <th>Assign</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr class="todo-list" *ngFor="let item of orders; let i =index">
-                                                <td>{{i+1}} </td>
-                                                <td>{{item.order_id}} </td>
-                                                <td>{{item.delivery_address}}</td>
-                                                <td> </td>
-                                                <td>{{item.status}}</td>
+                                            <tr class="todo-list" *ngFor="let data of orders;let i = index">
+                                                <td>{{i+1}}</td>
+                                                <td>{{data.order_id}} </td>
+                                                <td>{{data.delivery_address}} </td>
+                                                <td>{{data.phone}} </td>
+                                                <td>{{data.status}}</td>
+                                                <select class="form-control border-primary " id="exampleSelectPrimary" (change)="deliveryPerson($event.target.value)" style="margin-top: 12px;">
+                                                    <option value="" disabled>Assign Boy</option>
+                                                    <option value="{{item.first_name}}" *ngFor="let item of delivryBoy">{{item.first_name}}</option>
+                                                </select>
                                                 <td>
                                                     <a class="btn btn-outline-primary">Edit</a>
                                                     <button (click)="delete()" class="btn  remove btn-outline-primary">Remove
@@ -45,6 +50,7 @@
                                                 <td>TransactionId 2 </td>
                                                 <td>120666 </td>
                                                 <td>Returned Orders</td>
+                                                <td>boy</td>
                                                 <td>
                                                     <a class="btn btn-outline-primary">Edit</a>
                                                     <button (click)="delete()" class="btn  remove btn-outline-primary">Remove
@@ -57,6 +63,7 @@
                                                 <td>TransactionId 3 </td>
                                                 <td>1201323</td>
                                                 <td>Delivered Orders</td>
+                                                <td>boy</td>
                                                 <td>
                                                     <a class="btn btn-outline-primary">Edit</a>
                                                     <button (click)="delete()" class="btn  remove btn-outline-primary">Remove
@@ -69,6 +76,7 @@
                                                 <td>TransactionId 4 </td>
                                                 <td>6565666</td>
                                                 <td>Cancelled Orders</td>
+                                                <td>boy</td>
                                                 <td>
                                                     <a class="btn btn-outline-primary">Edit</a>
                                                     <button (click)="delete()" class="btn  remove btn-outline-primary">Remove
@@ -81,6 +89,7 @@
                                                 <td>TransactionId 1 </td>
                                                 <td>154545</td>
                                                 <td>Cancelled Orders</td>
+                                                <td>boy</td>
                                                 <td>
                                                     <a class="btn btn-outline-primary">Edit</a>
                                                     <button (click)="delete()" class="btn  remove btn-outline-primary">Remove
@@ -93,6 +102,7 @@
                                                 <td>TransactionId 1 </td>
                                                 <td>795656</td>
                                                 <td>Delivered Orders</td>
+                                                <td>boy</td>
                                                 <td>
                                                     <a class="btn btn-outline-primary">Edit</a>
                                                     <button (click)="delete()" class="btn  remove btn-outline-primary">Remove
@@ -105,6 +115,7 @@
                                                 <td>TransactionId 1 </td>
                                                 <td>78945</td>
                                                 <td>Confirmed Orders</td>
+                                                <td>boy</td>
                                                 <td>
                                                     <a class="btn btn-outline-primary">Edit</a>
                                                     <button (click)="delete()" class="btn  remove btn-outline-primary">Remove
@@ -117,6 +128,7 @@
                                                 <td>TransactionId 1 </td>
                                                 <td>465656</td>
                                                 <td>Dispatched Orders</td>
+                                                <td>boy</td>
                                                 <td>
                                                     <a class="btn btn-outline-primary">Edit</a>
                                                     <button (click)="delete()" class="btn  remove btn-outline-primary">Remove
@@ -135,7 +147,7 @@
             <!-- partial:partials/_footer.html -->
             <footer class="footer">
                 <div class="container-fluid clearfix">
-                    <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © 2018
+                    <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © 2019
                         <a routerLink="#">Dhukan </a>. All rights reserved. </span>
                     <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">
 

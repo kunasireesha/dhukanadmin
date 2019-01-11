@@ -9,6 +9,7 @@ import { Router, NavigationExtras, ActivatedRoute } from '@angular/router';
 })
 export class CityComponent implements OnInit {
     cities;
+    p: number = 1;
     constructor(private appservice: AppService, private spinnerService: Ng4LoadingSpinnerService, public router: Router) { }
 
     ngOnInit() {

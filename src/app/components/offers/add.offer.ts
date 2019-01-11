@@ -91,7 +91,7 @@ export class AddOffersComponent implements OnInit {
             this.model = this.myDatePickerOptions = this.offers[0].start_date;
             this.discountValue = this.offers[0].discount_type;
             this.model1 = this.offers[0].end_date;
-            // alert(this.disType)
+         
             if (this.disType === 0) {
                 this.data.discountType = this.DisType[0].name;
                 this.amount = true;

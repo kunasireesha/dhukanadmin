@@ -25,10 +25,10 @@
                                             <label for="firstname">Slot Name</label>
                                             <input id="category" class="form-control" name="slot" type="text" [(ngModel)]="slot" />
                                         </div>
-                                        <div class="form-group m-t">
+                                        <!-- <div class="form-group m-t">
                                             <h5 style="font-weight:normal">WareHouse :</h5>
                                             <ss-multiselect-dropdown [options]="warehouse" [(ngModel)]="optionsModel" (ngModelChange)="onChange($event)" name="optionsModel"></ss-multiselect-dropdown>
-                                        </div>
+                                        </div> -->
                                         <div class="form-group date date-picker">
                                             <label>Date: </label>
                                             <my-date-picker name="mydate" [options]="myDatePickerOptions" [(ngModel)]="model" required></my-date-picker>
@@ -63,7 +63,7 @@
             <!-- partial:partials/_footer.html -->
             <footer class="footer">
                 <div class="container-fluid clearfix">
-                    <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © 2018
+                    <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © 2019
                         <a routerLink="#">Dhukan </a>. All rights reserved. </span>
                     <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">
                     </span>

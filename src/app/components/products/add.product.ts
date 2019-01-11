@@ -21,7 +21,7 @@ export class AddProductsComponent implements OnInit {
         // other options...
         dateFormat: 'dd.mm.yyyy',
     };
-    public model: any = { date: { year: 2018, month: 10, day: 9 } };
+    public model: any = { date: { year: 2019, month: 10, day: 9 } };
     type;
     formdata = {
         categoryName: '',
@@ -256,7 +256,19 @@ export class AddProductsComponent implements OnInit {
         {
             id: '2',
             title: 'Normal Delivery'
-        }]
+        }],
+            this.radio = [{
+                id: '1',
+                name: 'Veg'
+            },
+            {
+                id: '2',
+                name: 'Non-Veg'
+            },
+            {
+                id: '3',
+                name: 'Other'
+            }]
         if (this.action !== '') {
             // this.editProImages();
 
@@ -806,6 +818,7 @@ export class AddProductsComponent implements OnInit {
             Description: '',
             specification: '',
             termscnd: '',
+            image1: '',
             terms: {
                 "id": '',
                 "data": '',
@@ -1087,6 +1100,5 @@ export class AddProductsComponent implements OnInit {
     product_type: any;
     productType(value) {
         this.product_type = value;
-        // alert(this.product_type);
     }
 }

@@ -69,9 +69,20 @@ export const AppSettings = {
     getwarehouseurl: base_url + 'delivery/getwerehousedata',
 
     getWarehouseById: base_url + 'delivery/getwerehousebyid',
-
     updatewarehouseUrl: base_url + 'delivery/updatewerehouse',
-    deleteWarehouse: base_url + 'delivery/deletewerehouse'
+    deleteWarehouse: base_url + 'delivery/deletewerehouse',
+    addslotUrl: base_url + 'delivery/insertdelivery',
+    getSlotUrl: base_url + 'delivery/getdelvoryslots',
+    deleteslotUrl: base_url + 'delivery/deltedate',
+    termsFooterUrl: base_url + 'footer/savefooter',
+    getTermsUrl: base_url + 'footer/gettermes',
+    getAboutusUrl: base_url + 'footer/aboutus',
+    getDeliveryInfoUrl: base_url + 'footer/DeliveryInfo',
+    getPrivacyUrl: base_url + 'footer/prevent',
+    updateTermsUrl: base_url + 'footer/updatefooter',
+    updateAboutUsUrl: base_url + '',
+    updateDeliveryInfoUrl: base_url + '',
+    updatePrivacyUrl: base_url + ''
     // postDealbannersUrl: base_url + 'banners/new_banner',
     // getDealBannerUrl: base_url + 'banners/banners-list',
     // deleteDealBannerUrl: base_url + 'banners/delete_banner',

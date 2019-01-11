@@ -1,9 +1,9 @@
 import { AddwarehouseComponent } from './components/ware-house/addwarehouse.component';
 import { AddAreaComponent } from './components/area/addarea.component';
 import { AddCityComponent } from './components/city/addcity.component';
-import { AreaModule } from './components/area/area/area.module';
-import { CityModule } from './components/city/city/city.module';
-
+// import { AreaModule } from './components/area/area/area.module';
+// import { CityModule } from './components/city/city/city.module';
+import { AgmCoreModule } from '@agm/core';
 //modules
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
@@ -89,7 +89,7 @@ import { MyDatePickerModule } from 'mydatepicker';
 import { IntlModule } from '@progress/kendo-angular-intl';
 import { DateInputsModule } from '@progress/kendo-angular-dateinputs';
 import { MultiselectDropdownModule } from 'angular-2-dropdown-multiselect';
-
+import { SafePipeModule } from 'safe-pipe';
 import { ProductService } from './services/productService'
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -205,8 +205,13 @@ import { AreaComponent } from './components/area/area.component';
         IntlModule,
         NgxPaginationModule,
         DateInputsModule,
-        CityModule,
-        AreaModule,
+        SafePipeModule,
+        AgmCoreModule.forRoot({
+            apiKey: "AIzaSyClUICP4-qGf2r4SSCZF5MzbSFXT6mIbvM",
+            libraries: ["places"]
+        }),
+        // CityModule,
+        // AreaModule,
         MultiselectDropdownModule,
         Ng4LoadingSpinnerModule.forRoot(),
         Ng4GeoautocompleteModule.forRoot(),

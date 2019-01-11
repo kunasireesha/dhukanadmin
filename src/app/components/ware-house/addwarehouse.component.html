@@ -43,9 +43,9 @@
                                             <option value="" disabled>Select Area</option>
                                             <option *ngFor="let area of cityareas" value="{{area.area}}">{{area.area}}</option>
                                         </select><br/>
-                                        <label *ngFor="let warehouse of warehouseAreas"><strong>{{warehouse.name}}</strong>
+                                        <label *ngFor="let warehouse of warehouseAreas"><strong>{{warehouse.area_name}},&nbsp;</strong>
                                         </label>
-                                        <div class="" *ngFor="let data of areanames" style="font-size: 12px;">{{data.area_name}}</div>
+                                        <!-- <div class="" *ngFor="let data of areanames" style="font-size: 12px;">{{data.area_name}}</div> -->
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Warehouse Name</label>
@@ -84,7 +84,7 @@
             <!-- partial:partials/_footer.html -->
             <footer class="footer">
                 <div class="container-fluid clearfix">
-                    <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © 2018
+                    <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © 2019
                         <a routerLink="#">Dhukan</a>. All rights reserved. </span>
                     <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">
 

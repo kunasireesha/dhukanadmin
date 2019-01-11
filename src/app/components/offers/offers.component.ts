@@ -11,6 +11,7 @@ import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 export class OffersComponent implements OnInit {
     coupons: any;
     couponsId: any;
+    p: number = 1;
     constructor(private AppService: AppService, public router: Router, private spinnerService: Ng4LoadingSpinnerService) { }
 
     ngOnInit() {

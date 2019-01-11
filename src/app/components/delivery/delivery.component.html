@@ -20,6 +20,8 @@
                         </a>
                         <h4 class="card-title">
                             Delivery Persons </h4>
+                        <span>
+                            <input class="form-control" type="text" placeholder="Search.." name="search" [(ngModel)]="filter"></span>
                         <br />
                         <div class="row">
                             <div class="col-12">
@@ -37,7 +39,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr class="todo-list" *ngFor="let item of delData;let i = index">
+                                            <tr class="todo-list" *ngFor="let item of delData | filter:filter | paginate: { itemsPerPage: 10, currentPage: p };let i = index">
                                                 <td>{{i+1}}</td>
                                                 <td>{{item.first_name}}</td>
                                                 <td>{{item.email}}</td>
@@ -51,6 +53,7 @@
                                             </tr>
                                         </tbody>
                                     </table>
+                                    <pagination-controls (pageChange)="p = $event" style="float:right; margin-top:15px;"></pagination-controls>
                                 </div>
                             </div>
                         </div>
@@ -64,7 +67,7 @@
             <!-- partial:partials/_footer.html -->
             <footer class="footer">
                 <div class="container-fluid clearfix">
-                    <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © 2018
+                    <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © 2019
                         <a routerLink="#">Dhukan </a>. All rights reserved. </span>
                     <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">
 

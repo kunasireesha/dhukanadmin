@@ -276,6 +276,54 @@ export class AppService {
         const headers = new Headers({ 'Content-Type': "application/JSON" });
         return this.http.post(AppSettings.deleteWarehouse, params, { headers: headers })
     }
+    addSlot(params) {
+        const headers = new Headers({ 'Content-Type': "application/JSON" });
+        return this.http.post(AppSettings.addslotUrl, params, { headers: headers })
+    }
+    getSlot() {
+        const headers = new Headers({ 'Content-Type': "application/x-www-form-urlencoded" });
+        return this.http.get(AppSettings.getSlotUrl, { headers: headers })
+    }
+    deleteSlot(params) {
+        const headers = new Headers({ 'Content-Type': "application/JSON" });
+        return this.http.post(AppSettings.deleteslotUrl, params, { headers: headers })
+    }
+    termsFooter(params) {
+        const headers = new Headers({ 'Content-Type': "application/JSON" });
+        return this.http.post(AppSettings.termsFooterUrl, params, { headers: headers })
+    }
+    getTerms() {
+        const headers = new Headers({ 'Content-Type': "application/x-www-form-urlencoded" });
+        return this.http.get(AppSettings.getTermsUrl, { headers: headers })
+    }
+    getAboutUs() {
+        const headers = new Headers({ 'Content-Type': "application/x-www-form-urlencoded" });
+        return this.http.get(AppSettings.getAboutusUrl, { headers: headers })
+    }
+    getDeliveryInfo() {
+        const headers = new Headers({ 'Content-Type': "application/x-www-form-urlencoded" });
+        return this.http.get(AppSettings.getDeliveryInfoUrl, { headers: headers })
+    }
+    getPrivacyPolicy() {
+        const headers = new Headers({ 'Content-Type': "application/x-www-form-urlencoded" });
+        return this.http.get(AppSettings.getPrivacyUrl, { headers: headers })
+    }
+    updateTerms(params) {
+        const headers = new Headers({ 'Content-Type': "application/json" });
+        return this.http.post(AppSettings.updateTermsUrl, params, { headers: headers })
+    }
+    updateAboutUs(params) {
+        const headers = new Headers({ 'Content-Type': "application/x-www-form-urlencoded" });
+        return this.http.post(AppSettings.updateAboutUsUrl, params, { headers: headers })
+    }
+    updateDeliveryInfo(params) {
+        const headers = new Headers({ 'Content-Type': "application/x-www-form-urlencoded" });
+        return this.http.post(AppSettings.updateDeliveryInfoUrl, params, { headers: headers })
+    }
+    updateprivacy(params) {
+        const headers = new Headers({ 'Content-Type': "application/x-www-form-urlencoded" });
+        return this.http.post(AppSettings.updatePrivacyUrl, params, { headers: headers })
+    }
     // postDealBannerUrl(params) {
     //     const headers = new Headers({ 'Content-Type': "application/JSON" });
     //     return this.http.post(AppSettings.postDealbannersUrl, params, { headers: headers })

@@ -9,6 +9,7 @@ import { Router, NavigationExtras, ActivatedRoute } from '@angular/router';
 })
 export class AreaComponent implements OnInit {
     areas;
+    p: number = 1;
     constructor(private AppService: AppService, private spinnerService: Ng4LoadingSpinnerService, public router: Router) { }
 
     ngOnInit() {

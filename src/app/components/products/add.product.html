@@ -70,6 +70,7 @@
                                                         <option value="Best Deal of the Day">Best Deal of the Day</option>
                                                         <option value="Best Deals">Best Deals</option>
                                                         <option value="Best Deals on Appliances">Best Deals on Appliances</option>
+                                                        <option value="All Offers">All Offers</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -228,8 +229,14 @@
 
                                                     </div>
                                                     <div class="col-sm-3">
-                                                        <div class="form-group" style="margin-top: 45px;
-                                                            margin-left: 10px;">
+                                                        <div class="form-group" style="margin-left: 10px;">
+                                                            <h6 for="exampleInputEmail1" style="font-style:bold">Select Type
+                                                                of Product :</h6>
+                                                            <!-- <div *ngFor="let enum of radio">
+                                                                <label>
+                                                                    <input value='{{enum.name}}' [checked]="radio.indexOf(enum) == 2" type="radio" name="enums">                                                                    {{enum.name}}
+                                                                </label>
+                                                            </div> -->
                                                             <mat-slide-toggle (change)="foodType($event.checked,i)" [(ngModel)]="type" name="type">Veg
                                                                 or Non-Veg (optional)
                                                             </mat-slide-toggle>
@@ -243,7 +250,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-3">
-                                                        <div class="form-group" style="margin-top: 38px;
+                                                        <div class="form-group" style="
                                                                         margin-left: 13px;">
                                                             <h6>Select Delivery Options</h6>
                                                             <div class="margin" *ngFor="let item of list">
@@ -336,7 +343,7 @@
             <!-- partial:partials/_footer.html -->
             <footer class="footer">
                 <div class="container-fluid clearfix">
-                    <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © 2018
+                    <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © 2019
                         <a routerLink="#">Dhukan </a>. All rights reserved. </span>
                     <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">
                     </span>

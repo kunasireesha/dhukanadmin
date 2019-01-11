@@ -20,12 +20,14 @@
                                 <h4 class="card-title">Privacy & Policy</h4>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Title</label>
-                                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" [(ngModel)]="input" name="input">
+                                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" [(ngModel)]="title" name="title">
                                 </div>
                                 <ckeditor [(ngModel)]="ckeditorContent">
                                 </ckeditor>
                                 <br>
-                                <button type="submit" class="btn btn-primary vendor-button" (click)="Terms()">Submit
+                                <!-- <button type="submit" class="btn btn-primary vendor-button" (click)="privacy()" style="margin-right:20px;">Submit
+                                </button> -->
+                                <button type="submit" class="btn btn-primary vendor-button" (click)="updatePrivacy()">Update
                                 </button>
                             </div>
                         </div>
@@ -36,7 +38,7 @@
             <!-- partial:partials/_footer.html -->
             <footer class="footer">
                 <div class="container-fluid clearfix">
-                    <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © 2018
+                    <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © 2019
                         <a routerLink="#">Dhukan </a>. All rights reserved. </span>
                     <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">
                     </span>
